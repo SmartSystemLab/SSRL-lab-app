@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import viteLogo from '/vite.svg'
+import MyRoutes from './components/MyRoutes'
 
 function App() {
 
   return (
-    <>
-      App
-    </>
+    <div className=''>
+      <MyRoutes />
+    </div>
   )
 }
 
