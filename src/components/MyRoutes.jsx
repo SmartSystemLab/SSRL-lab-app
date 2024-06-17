@@ -6,7 +6,10 @@ const MyRoutes = () => {
     return (
         <Router>
             <Routes>
-                <Route path='/test' element={<Test />} />
+                {/* <Route path='/test' element={<Test />} /> */}
+                <Route path="/" >
+
+                </Route>
             </Routes>
         </Router>
     )
