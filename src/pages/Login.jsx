@@ -9,8 +9,8 @@ const Login = () => {
   const validatePasswordRef = useRef(false)
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-200 w-screen shadow-md">
-      <div className="max-w-screen-md m-auto bg-white rounded-md ">
+    // <div className="flex items-center justify-center min-h-screen bg-gray-200 w-screen shadow-md">
+    //   <div className="max-w-screen-md m-auto bg-white rounded-md ">
         <div className="md:w-1/2 space-y-5 w-full flex justify-center items-center p-4 mt-12">
           <div className="w-full max-w-md space-y-5 p-6 mt-12 pt-4">
             <h2 className="text-center text-3xl font-semibold text-[#333333] leading-10">
@@ -84,8 +84,8 @@ const Login = () => {
             </form>
           </div>
         </div>
-      </div>
-    </div>
+    //   </div>
+    // </div>
   );
 };
 
