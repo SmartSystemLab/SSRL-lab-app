@@ -45,11 +45,8 @@ const Login = () => {
 
                     </div>
 
-
-
-
                     <div className='flex justify-end'>
-                        <button type="submit" className="flex space-x-2 items-center bg-[#053F05F0] text-white mt-6 px-1 py-2 font-bold text-xl capitalize rounded-xl w-32"><img src={Signin} /><span>Sign in</span></button>
+                        <button type="submit" className="flex space-x-2 items-center justify-center bg-[#053F05F0] text-white mt-6 px-1 py-2 font-bold text-xl rounded-xl w-32"><img src={Signin} /><span>Sign In</span></button>
                     </div>
                 </form>
             </div>
