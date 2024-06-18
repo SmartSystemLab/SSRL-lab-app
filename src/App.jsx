@@ -6,9 +6,9 @@ function App() {
 
   return (
     <div className=''>
-      {/* <MyRoutes />
-      <p>Dabira</p> */}
-      <Test />
+      <MyRoutes />
+      {/* // <p>Dabira</p> */}
+      {/* <Test /> */}
     </div>
   )
 }
