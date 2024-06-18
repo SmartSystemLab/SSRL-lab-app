@@ -20,69 +20,36 @@ const SideNav = () => {
 
             {/* Navigation Links */}
             <div className=''>
-                <Navlink>
-                    <img src={Dashboard} alt="dashboard" className="w-6 h-6" />
-                </Navlink>
-                <Navlink>
-                    <img src={Interns} alt="interns" className="w-6 h-6" />
-
-                </Navlink>
-                <Navlink>
-                    <img src={Projects} alt="projects" className="w-6 h-6" />
-                </Navlink>
-                <Navlink>
-                    <img src={Calendar} alt="calendar" className="w-6 h-6" />
-
-                </Navlink>
-                <Navlink>
-                    <img src={TeamChat} alt="team chat" className="w-6 h-6" />
-
-                </Navlink>
-                <Navlink>
-                    <img src={Attendance} alt="attendance" className="w-6 h-6" />
-
-                </Navlink>
-                <Navlink>
-                    <img src={Settings} alt="settings" className="w-6 h-6" />
-
-                </Navlink>
+                <Navlink> <img src={Dashboard} alt="dashboard" className="w-6 h-6" /></Navlink>
+                <Navlink><img src={Interns} alt="interns" className="w-6 h-6" /> </Navlink>
+                <Navlink> <img src={Projects} alt="projects" className="w-6 h-6" />  </Navlink>
+                <Navlink> <img src={Calendar} alt="calendar" className="w-6 h-6" /></Navlink>
+                <Navlink> <img src={TeamChat} alt="team chat" className="w-6 h-6" /></Navlink>
+                <Navlink> <img src={Attendance} alt="attendance" className="w-6 h-6" /></Navlink>
+                <Navlink><img src={Settings} alt="settings" className="w-6 h-6" /> </Navlink>
 
             </div>
             <div className='flex flex-col items-start py-4 space-y-4 overflow-y-auto'>
                 {/* Dashboard NavLink */}
-                <NavLink to="/" className="">
-                    Dashboard
-                </NavLink>
+                <NavLink to="/" className="">Dashboard</NavLink>
 
                 {/* Interns NavLink */}
-                <NavLink to="/interns" className="flex items-center gap-4 p-2">
-                    <span className="text-sm">Interns</span>
-                </NavLink>
+                <NavLink to="/interns" className=""> Interns </NavLink>
 
                 {/* Projects NavLink */}
-                <NavLink to="/projects" className="flex items-center gap-4 p-2">
-                    <span className="text-sm">Projects</span>
-                </NavLink>
+                <NavLink to="/projects" className=""> Projects</NavLink>
 
                 {/* Calendar NavLink */}
-                <NavLink to="/calendar" className="flex items-center gap-4 p-2">
-                    <span className="text-sm">Calendar</span>
-                </NavLink>
+                <NavLink to="/calendar" className="">Calendar </NavLink>
 
                 {/* Team Chat NavLink */}
-                <NavLink to="/team-chat" className="flex items-center gap-4 p-2">
-                    <span className="text-sm">Team Chat</span>
-                </NavLink>
+                <NavLink to="/team-chat" className="">Team Chat</NavLink>
 
                 {/* Attendance NavLink */}
-                <NavLink to="/attendance" className="flex items-center gap-4 p-2">
-                    <span className="text-sm">Attendance</span>
-                </NavLink>
+                <NavLink to="/attendance" className="flex items-center gap-4 p-2">Attendance</NavLink>
 
                 {/* Settings NavLink */}
-                <NavLink to="/settings" className="flex items-center gap-4 p-2">
-                    <span className="text-sm">Settings</span>
-                </NavLink>
+                <NavLink to="/settings" className="flex items-center gap-4 p-2">Settings</NavLink>
             </div>
 
             {/* Log out Button */}

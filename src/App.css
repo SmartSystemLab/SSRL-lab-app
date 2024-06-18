@@ -7,11 +7,3 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-
-@layer utilities {
-  .bg-custom-bg {
-    background: linear-gradient(to right, #74F769 25%, #225522 25%);
-    /* Override Tailwind's default background color utility */
-  }
-}
