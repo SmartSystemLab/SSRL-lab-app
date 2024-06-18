@@ -71,7 +71,7 @@ const ForgotPassword = () => {
                                             <path d="M11 1L1 8.5L11 16" stroke="#111111" stroke-width="0.444444" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
 
-                                        <a href="/" className="text-[#666666] opacity-75 font-medium text-base">Back to Sign in </a>
+                                        <a href="/login" className="text-[#666666] opacity-75 font-medium text-base">Back to Sign in </a>
                                     </div>
                                 </div>
                             </form>

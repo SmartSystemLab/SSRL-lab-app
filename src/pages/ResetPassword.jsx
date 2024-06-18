@@ -59,7 +59,7 @@ const ResetPassword = () => {
 
                                 <button type="submit" className="bg-[#053F05F0] text-white mt-6 px-1 py-2 font-bold text-xl capitalize rounded-xl w-full block" >Reset Password</button>
                                 <div className='flex items-center justify-end mt-1'>
-                                    <a href="/" className="bg-[#053F05F0] text-white mt-6 px-1 py-2 font-bold  text-base capitalize rounded-xl  w-28 text-center">Sign in</a>
+                                    <a href="/login" className="bg-[#053F05F0] text-white mt-6 px-1 py-2 font-bold  text-base capitalize rounded-xl  w-28 text-center">Sign in</a>
                                 </div>
 
                             </form>

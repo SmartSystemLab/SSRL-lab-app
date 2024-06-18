@@ -22,7 +22,7 @@ const Login = () => {
                         </div>
 
                         <div className="absolute top-0 left-14 mt-5 ml-2">
-                            <h2 className="text-2xl font-bold text-[#FFA500] tracking-wide">SSRL</h2>
+                            <h2 className="text-2xl font-bold text-logo tracking-wide">SSRL</h2>
                         </div>
 
                     </div>
@@ -66,7 +66,7 @@ const Login = () => {
                                 </div>
 
                                 <div className=" mt-6">
-                                    <a href="/forgotpassword" className="underline text-[#111111] font-medium text-sm"> Forgot your password? </a>
+                                    <a href="/onboarding/forgotpassword" className="underline text-[#111111] font-medium text-sm"> Forgot your password? </a>
                                 </div>
 
 
