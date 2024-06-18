@@ -22,4 +22,4 @@ const MyRoutes = () => {
   );
 };
 
-export default MyRoutes;
+export default MyRoutes;;

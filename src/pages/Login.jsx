@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { validateIdentity, validatePassword } from "../Modules/verifyForm";
+import Signin from "../assets/SignIn.svg";
 
 const Login = () => {
   const [identity, setIdentity] = useState({identity: "", isError: false, error: ""});
