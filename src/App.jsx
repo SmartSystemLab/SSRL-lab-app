@@ -8,9 +8,7 @@ function App() {
   return (
     <div className=''>
       <MyRoutes />
-      {/* <SideNav /> */}
-      {/* // <p>Dabira</p> */}
-      {/* <Test /> */}
+
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 
 const InputError = ({ chidren }) => {
     return (
-        <p>  {children} </p>
+        <p className='text-sm text-errorMsg'>  {children} </p>
     )
 }
 
