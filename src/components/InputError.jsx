@@ -1,10 +1,8 @@
 import React from 'react'
 
-const InputError = ({ chidren }) => {
+const InputError = ({ children }) => {
     return (
-        <div>
-            {children}
-        </div>
+        <p>{children}</p>
     )
 }
 

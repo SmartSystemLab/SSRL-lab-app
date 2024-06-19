@@ -12,7 +12,7 @@ export const validateIdentity = (
       error: "Please input your username or email",
     });
     validateIdentityRef.current = false;
-    console.log("Identity error: Input identiy")
+    // console.log("Identity error: Input identiy")
     return;
   }
 
@@ -23,41 +23,41 @@ export const validateIdentity = (
       error: "Invalid username or email",
     });
     validateIdentityRef.current = false;
-    console.log("Identity error: Invalid identiy")
+    // console.log("Identity error: Invalid identiy")
     return;
   }
   validateIdentityRef.current = true;
-  console.log("Good to go")
+  // console.log("Good to go")
   setIdentity({...identity, isInputElement: false, error: ""})
 };
 
-// export const validateEmail = (email, setEmail, validatedEmailRef) => {
-//   if (!email.val) {
-//     setEmail({
-//       ...email,
-//       isError: true,
-//       errorMsg: "Please input your email",
-//     });
-//     validatedEmailRef.current = false;
-//     return;
-//   }
-//   const reg = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
-//   if (!reg.test(email.val)) {
-//     setEmail({
-//       ...email,
-//       isError: true,
-//       errorMsg: "Invalid email",
-//     });
-//     validatedEmailRef.current = false;
-//     return;
-//   }
-//   setEmail({
-//     ...email,
-//     isError: false,
-//     errorMsg: "",
-//   });
-//   validatedEmailRef.current = true;
-// };
+export const validateEmail = (email, setEmail, validateEmailRef) => {
+  if (!email.email) {
+    setEmail({
+      ...email,
+      isError: true,
+      msg: "Please input your email",
+    });
+    validateEmailRef.current = false;
+    return;
+  }
+  const reg = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
+  if (!reg.test(email.email)) {
+    setEmail({
+      ...email,
+      isError: true,
+      msg: "Invalid email",
+    });
+    validateEmailRef.current = false;
+    return;
+  }
+  setEmail({
+    ...email,
+    isError: false,
+    errorMsg: "",
+  });
+  validateEmailRef.current = true;
+};
 
 // export const validatePhone = (phoneNum, setPhoneNum, validatedPhoneRef) => {
 //   if (!phoneNum.val) {
@@ -96,7 +96,7 @@ export const validatePassword = (password, setPassword, validatePasswordRef) => 
       error: "Please input your password",
     });
     validatePasswordRef.current = false;
-    console.log("Pass Error: Input your password")
+    // console.log("Pass Error: Input your password")
     return;
   }
   setPassword({
@@ -105,5 +105,5 @@ export const validatePassword = (password, setPassword, validatePasswordRef) => 
     error: "",
   });
   validatePasswordRef.current = true;
-  console.log("Good to go")
+  // console.log("Good to go")
 };

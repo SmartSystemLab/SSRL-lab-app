@@ -11,7 +11,8 @@ import LogOut from "../assets/LogOut.svg";
 
 const SideNav = () => {
     return (
-        <div className="h-screen w-60 flex  text-white rounded-3xl bg-custom-bg">
+        <div className="min-h-screen w-60 text-white bg-navBg2 flex justify-center items-center gap-7 rounded-3xl">
+
             {/* Logo and Title Section */}
             {/* <div className="flex items-center justify-end p-6 space-x-2">
                 <img src="/vite.svg" alt="Small Logo" className="w-9 h-9 rounded-md" />
@@ -19,37 +20,31 @@ const SideNav = () => {
             </div> */}
 
             {/* Navigation Links */}
-            <div className=''>
-                <Navlink> <img src={Dashboard} alt="dashboard" className="w-6 h-6" /></Navlink>
-                <Navlink><img src={Interns} alt="interns" className="w-6 h-6" /> </Navlink>
-                <Navlink> <img src={Projects} alt="projects" className="w-6 h-6" />  </Navlink>
-                <Navlink> <img src={Calendar} alt="calendar" className="w-6 h-6" /></Navlink>
-                <Navlink> <img src={TeamChat} alt="team chat" className="w-6 h-6" /></Navlink>
-                <Navlink> <img src={Attendance} alt="attendance" className="w-6 h-6" /></Navlink>
-                <Navlink><img src={Settings} alt="settings" className="w-6 h-6" /> </Navlink>
+            <div className='w-1/4 flex flex-col p-4 space-y-9 justify-center items-start bg-navBg1 min-h-screen rounded-3xl'>
+                <NavLink> <img src={Dashboard} alt="dashboard" className='w-6 h-6 ' /></NavLink>
+                <NavLink><img src={Interns} alt="interns" className='w-6 h-6' /> </NavLink>
+                <NavLink> <img src={Projects} alt="projects" className='w-6 h-6' />  </NavLink>
+                <NavLink> <img src={Calendar} alt="calendar" className='w-6 h-6' /></NavLink>
+                <NavLink> <img src={TeamChat} alt="team chat" className='w-6 h-6' /></NavLink>
+                <NavLink> <img src={Attendance} alt="attendance" className='w-6 h-6' /></NavLink>
+                <NavLink><img src={Settings} alt="settings" className='w-6 h-6' /> </NavLink>
 
             </div>
-            <div className='flex flex-col items-start py-4 space-y-4 overflow-y-auto'>
-                {/* Dashboard NavLink */}
-                <NavLink to="/" className="">Dashboard</NavLink>
 
-                {/* Interns NavLink */}
-                <NavLink to="/interns" className=""> Interns </NavLink>
+            <div className='w-3/4 flex flex-col py-4 px-0 space-y-5 justify-center items-start min-h-screen'>
+                <NavLink to="/" className="w-full p-2">Dashboard</NavLink>
 
-                {/* Projects NavLink */}
-                <NavLink to="/projects" className=""> Projects</NavLink>
+                <NavLink to="/interns" className="w-full p-2"> Interns </NavLink>
 
-                {/* Calendar NavLink */}
-                <NavLink to="/calendar" className="">Calendar </NavLink>
+                <NavLink to="/projects" className="w-full p-2"> Projects</NavLink>
 
-                {/* Team Chat NavLink */}
-                <NavLink to="/team-chat" className="">Team Chat</NavLink>
+                <NavLink to="/calendar" className="w-full p-2">Calendar </NavLink>
 
-                {/* Attendance NavLink */}
-                <NavLink to="/attendance" className="flex items-center gap-4 p-2">Attendance</NavLink>
+                <NavLink to="/team-chat" className="w-full p-2">Team Chat</NavLink>
 
-                {/* Settings NavLink */}
-                <NavLink to="/settings" className="flex items-center gap-4 p-2">Settings</NavLink>
+                <NavLink to="/attendance" className="w-full p-2">Attendance</NavLink>
+
+                <NavLink to="/settings" className="w-full p-2">Settings</NavLink>
             </div>
 
             {/* Log out Button */}
