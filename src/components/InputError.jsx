@@ -1,6 +1,6 @@
 import React from 'react'
 
-const InputError = ({ chidren }) => {
+const InputError = ({ children }) => {
     return (
         <p className='text-sm text-errorMsg'>  {children} </p>
     )

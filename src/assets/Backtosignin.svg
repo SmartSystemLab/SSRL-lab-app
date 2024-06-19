@@ -1,0 +1,33 @@
+ <svg
+            width="12"
+            height="17"
+            viewBox="0 0 12 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M11 1L1 8.5L11 16" fill="#111111" />
+            <path
+              d="M11 1L1 8.5L11 16"
+              stroke="black"
+              strokeWidth="0.444444"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M11 1L1 8.5L11 16"
+              stroke="black"
+              strokeWidth="0.444444"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M11 1L1 8.5L11 16"
+              stroke="#111111"
+              strokeWidth="0.444444"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
