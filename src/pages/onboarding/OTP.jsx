@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import InputError from "../../components/InputError";
 import { validateOTP } from "../../Modules/verifyForm";
-import {useGetRequest} from "../../Modules/useRequest"
+import { usePostRequest } from "../../Modules/useRequest";
 
 const OTP = () => {
   const [otp, setOtp] = useState({
@@ -10,7 +10,8 @@ const OTP = () => {
     error: "",
   }); //state to manage empty array of 6 items
   const otpRef = useRef(false);
-  const [sendOTPRequest, otpLoading, setOtpLoading, otpError, setOtpError] = useGetRequest()
+  const [sendOTPRequest, otpLoading, setOtpLoading, otpError, setOtpError] =
+    usePostRequest();
 
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return false;
@@ -31,13 +32,25 @@ const OTP = () => {
     validateOTP(otp, setOtp, otpRef);
 
     if (otpRef) {
-      console.log(otp.otp.join(""))
-      //Proceed to send request
+      const strOtp = otp.otp.join("");
+      sendOTPRequest("/confirm/otp", { otp: strOtp }).then((res) => {
+        const data = res.json();
+        if (res.ok) {
+          return data.then((data) => console.log(data.message))
+          // Go to reset password page
+        } else {
+          return data.then((data) =>
+            setOtpError({ status: true, msg: data.message })
+          );
+        }
+      });
     }
   };
+
   return (
     <div className="w-full flex justify-center items-center min-h-screen bg-white">
       <div className="w-full max-w-md space-y-5 p-6">
+        {otpError.status && <p>{otpError.msg}</p>}
         <h2 className="text-center text-3xl font-semibold text-[#333333] leading-10">
           Enter OTP
         </h2>
@@ -75,6 +88,7 @@ const OTP = () => {
               Verify OTP
             </button>
           </div>
+          {otpLoading && <p>Loading...</p>}
         </form>
       </div>
     </div>
