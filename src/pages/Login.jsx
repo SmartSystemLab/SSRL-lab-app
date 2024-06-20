@@ -1,9 +1,5 @@
 import React, { useRef, useState } from "react";
-// import { validateIdentity, validatePassword } from "../Modules/verifyForm.js";
-import Signin from "../assets/SignIn.svg";
-import InputError from "../components/InputError";
-// import { usePostRequest } from "../Modules/useRequest";
-import { setUserId } from "../components/UserContext.jsx";
+import { useUserData } from "../components/UserContext.jsx";
 import { validateIdentity, validatePassword } from "../Modules/verifyForm.js";
 import { usePostRequest } from "../Modules/useRequest.js";
 import CustomLabel from "../components/CustomLabel.jsx";
@@ -30,7 +26,7 @@ const Login = () => {
         setLoginError,
     ] = usePostRequest();
 
-    // const { setUserId } = useUserData();
+    const { setUserId } = useUserData();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
