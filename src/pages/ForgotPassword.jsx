@@ -1,20 +1,46 @@
 import React, { useEffect, useRef, useState } from "react";
 import SignupImage from "../assets/Sgnup-image.jpg"; // Importing the image
 import { validateEmail } from "../modules/verifyForm";
-import { useGetRequest } from "../modules/useRequest";
+import { useGetRequest, usePostRequest } from "../modules/useRequest";
+import { useUserData } from "../components/DataContext";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState({ email: "", isError: false, msg: "" });
   const validateEmailRef = useRef();
   const [sendForgetRequest, forgotLoading] = useGetRequest();
+  const [
+    sendCredRequest,
+    credLoading,
+    setCredLoading,
+    credError,
+    setCredError,
+  ] = usePostRequest();
+  const { userId } = useUserData();
 
   const handleForgetPassword = (event) => {
     event.preventDefault();
     validateEmail(email, setEmail, validateEmailRef);
 
-    if (validateEmailRef) {
-        
+    if (validateEmailRef.current) {
+      confirmCredentials();
     }
+  };
+
+  const confirmCredentials = () => {
+    sendCredRequest("/confirm/credentials", {
+      uid: userId,
+      email: email.email,
+    }).then((res) => {
+      const data = res.json();
+      if (res.ok) {
+        // To confirm OTP page
+      } else {
+        console.log("Error");
+        return data.then((data) =>
+          setCredError({ status: true, msg: data.message })
+        );
+      }
+    });
   };
 
   useEffect(() => {
@@ -26,8 +52,8 @@ const ForgotPassword = () => {
   return (
     <div className="w-full flex justify-center items-center min-h-screen bg-white">
       {/* forgot password tab */}
-
       <div className="w-full max-w-md space-y-6 p-6 m ">
+        {credError.status && <p>{credError.msg}</p>}
         <div className="flex justify-center items-center">
           <svg
             width="49"
@@ -44,7 +70,6 @@ const ForgotPassword = () => {
         </div>
 
         <h2 className=" text-center text-3xl font-semibold text-[#333333] leading-10">
-          {" "}
           Forgot Password
         </h2>
         <p className=" text-center text-[#666666] opacity-75 font-medium text-sm  py-1">
@@ -79,7 +104,7 @@ const ForgotPassword = () => {
               Submit
             </button>
           </div>
-          {forgotLoading && <p>Loading...</p>}
+          {credLoading && <p>Loading...</p>}
         </form>
 
         <div className="text-center  font-medium text-base flex justify-center items-center mt-2 gap-3">

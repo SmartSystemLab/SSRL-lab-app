@@ -31,9 +31,11 @@ const Login = () => {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     validateIdentity(identity, setIdentity, validateIdentityRef);
+    if (validateIdentityRef) setUserId(identity.identity)
     validatePassword(password, setPassword, validatePasswordRef);
 
     if (validateIdentityRef.current && validatePasswordRef.current) {
+      setUserId(identity.identity);
       validateUser();
     }
   };
@@ -49,7 +51,7 @@ const Login = () => {
         const data = res.json();
         if (res.ok) {
           setLoginError({ status: false, msg: "" });
-
+          console.log("Success")
           // Navigate to userhomepage
           return;
         } else {

@@ -1,16 +1,12 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useState } from "react";
+const userData = createContext();
 
-const userData = createContext()
-const DataContext = ({children}) => {
-    const {userId, setUserId} = useState("")
+const DataContext = ({ children }) => {
+  const [userId, setUserId] = useState("CovenantSSRL00");
 
-    const value = {userId, setUser}
-  return (
-    <userData.Provider value={value}>
-        {children}
-    </userData.Provider>
-  )
-}
+  const value = { userId, setUserId };
+  return <userData.Provider value={value}>{children}</userData.Provider>;
+};
 
-export default DataContext
-export const useUserData = () => useContext(userData)
+export default DataContext;
+export const useUserData = () => useContext(userData);
