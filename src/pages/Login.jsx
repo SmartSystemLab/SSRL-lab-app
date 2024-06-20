@@ -1,3 +1,4 @@
+
 import React, { useRef, useState } from "react";
 import { useUserData } from "../components/UserContext.jsx";
 import { validateIdentity, validatePassword } from "../Modules/verifyForm.js";
@@ -28,42 +29,42 @@ const Login = () => {
 
     const { setUserId } = useUserData();
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    validateIdentity(identity, setIdentity, validateIdentityRef);
-    if (validateIdentityRef) setUserId(identity.identity)
-    validatePassword(password, setPassword, validatePasswordRef);
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        validateIdentity(identity, setIdentity, validateIdentityRef);
+        if (validateIdentityRef) setUserId(identity.identity)
+        validatePassword(password, setPassword, validatePasswordRef);
 
-    if (validateIdentityRef.current && validatePasswordRef.current) {
-      setUserId(identity.identity);
-      validateUser();
-    }
-  };
-
-  const validateUser = async () => {
-    console.log("Request sent");
-    await sendLoginRequest("user/authenticate", {
-      user_id: identity.identity,
-      pwd: password.password,
-    })
-      .then((res) => {
-        console.log("Okay Okay", res);
-        const data = res.json();
-        if (res.ok) {
-          setLoginError({ status: false, msg: "" });
-          console.log("Success")
-          // Navigate to userhomepage
-          return;
-        } else {
-          return data.then((data) =>
-            setLoginError({ status: true, msg: data.message })
-          );
+        if (validateIdentityRef.current && validatePasswordRef.current) {
+            setUserId(identity.identity);
+            validateUser();
         }
-      })
-      .catch((error) => {
-        throw new Error(error);
-      });
-  };
+    };
+
+    const validateUser = async () => {
+        console.log("Request sent");
+        await sendLoginRequest("user/authenticate", {
+            user_id: identity.identity,
+            pwd: password.password,
+        })
+            .then((res) => {
+                console.log("Okay Okay", res);
+                const data = res.json();
+                if (res.ok) {
+                    setLoginError({ status: false, msg: "" });
+                    console.log("Success")
+                    // Navigate to userhomepage
+                    return;
+                } else {
+                    return data.then((data) =>
+                        setLoginError({ status: true, msg: data.message })
+                    );
+                }
+            })
+            .catch((error) => {
+                throw new Error(error);
+            });
+    };
 
     return (
         <div className="w-full flex justify-center items-center min-h-screen bg-white">
