@@ -1,5 +1,5 @@
 import React from 'react'
-import SignupImage from "../assets/Sgnup-image.jpg"; // Importing the image
+import SignupImage from "../../assets/Sgnup-image.jpg"; // Importing the image
 
 
 const ResetPassword = () => {

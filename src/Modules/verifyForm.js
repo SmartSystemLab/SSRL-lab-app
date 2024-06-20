@@ -28,7 +28,7 @@ export const validateIdentity = (
   }
   validateIdentityRef.current = true;
   // console.log("Good to go")
-  setIdentity({...identity, isInputElement: false, error: ""})
+  setIdentity({ ...identity, isInputElement: false, error: "" });
 };
 
 export const validateEmail = (email, setEmail, validateEmailRef) => {
@@ -88,7 +88,11 @@ export const validateEmail = (email, setEmail, validateEmailRef) => {
 //   validatedPhoneRef.current = true;
 // };
 
-export const validatePassword = (password, setPassword, validatePasswordRef) => {
+export const validatePassword = (
+  password,
+  setPassword,
+  validatePasswordRef
+) => {
   if (!password.password) {
     setPassword({
       ...password,
@@ -106,4 +110,19 @@ export const validatePassword = (password, setPassword, validatePasswordRef) => 
   });
   validatePasswordRef.current = true;
   // console.log("Good to go")
+};
+
+export const validateOTP = (otp, setOtp, otpRef) => {
+  if (otp.otp.includes("")) {
+    setOtp({
+      ...otp,
+      isError: true,
+      error: "Please ensure all fields are filled",
+    });
+    otpRef.current = false;
+  } else {
+    setOtp({ ...otp, isError: false, error: "" });
+    // console.log(otp.otp.join(""));
+    otpRef.current = true;
+  }
 };
