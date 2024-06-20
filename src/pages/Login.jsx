@@ -1,5 +1,6 @@
+
 import React, { useRef, useState } from "react";
-import { useUserData } from "../components/DataContext.jsx";
+import { useUserData } from "../components/UserContext.jsx";
 import { validateIdentity, validatePassword } from "../Modules/verifyForm.js";
 import { usePostRequest } from "../Modules/useRequest.js";
 import CustomLabel from "../components/CustomLabel.jsx";
@@ -31,9 +32,11 @@ const Login = () => {
     const handleFormSubmit = (event) => {
         event.preventDefault();
         validateIdentity(identity, setIdentity, validateIdentityRef);
+        if (validateIdentityRef) setUserId(identity.identity)
         validatePassword(password, setPassword, validatePasswordRef);
 
         if (validateIdentityRef.current && validatePasswordRef.current) {
+            setUserId(identity.identity);
             validateUser();
         }
     };
@@ -49,7 +52,7 @@ const Login = () => {
                 const data = res.json();
                 if (res.ok) {
                     setLoginError({ status: false, msg: "" });
-
+                    console.log("Success")
                     // Navigate to userhomepage
                     return;
                 } else {
@@ -119,7 +122,7 @@ const Login = () => {
                         </label>
                     </div>
 
-                    <div className="mt-6">
+                    <div className=" mt-6">
                         <a
                             href="/forgotpassword"
                             className="underline text-[#111111] font-medium text-sm"
