@@ -7,6 +7,7 @@ export default {
         logo: '#FFA500',
         navBg1: '#74F769',
         navBg2: '#225522',
+        errorMsg: '#EE1D52',
       }
     },
   },
