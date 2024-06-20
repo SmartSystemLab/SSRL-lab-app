@@ -1049,10 +1049,23 @@ video {
 }
 
 .active {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.active img {
+  border-radius: 0px;
+  border-left-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(116 247 105 / var(--tw-bg-opacity));
+  padding: 0px;
+  padding-left: 0.25rem;
 }
 
 .hover\:scale-105:hover {

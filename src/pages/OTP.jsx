@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import InputError from '../components/InputError';
 
 const OTP = () => {
-  const [otp, setOtp] = useState(new Array(6).fill("")) //state to manage empty array of 6 items #
+  const [otp, setOtp] = useState(new Array(6).fill("")) //state to manage empty array of 6 items
   const [error, setError] = useState(false)
 
   const handleChange = (element, index) => {
@@ -11,7 +11,7 @@ const OTP = () => {
     if (isNaN(element.value)) return false;
 
     // update the otp array
-    setOtp([...otp.map((d, id) => (id === index ? element.value : d))]);
+    setOtp([otp.map((d, id) => (id === index ? element.value : d))]);
 
     console.log(otp)
     if (element.nextSibling) {
@@ -52,7 +52,6 @@ const OTP = () => {
                   onChange={(e) => { handleChange(e.target, index) }}
                   onFocus={(e) => { e.target.select() }}
                 />
-
               )
             })}
           </div>

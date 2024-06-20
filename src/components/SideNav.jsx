@@ -26,11 +26,11 @@ const SideNav = () => {
                         [isActive ? "active" : "",].join(" ")
                     }> <img src={Dashboard} alt="dashboard" className="w-6 h-6" />
                 </NavLink>
-                <NavLink to="/home/interns"
+                <NavLink to="interns"
                     className={({ isActive }) =>
                         [isActive ? "active" : "",].join(" ")
-                    }><img src={Interns} alt="interns" className="w-6 h-6" /
-                    ></NavLink>
+                    }><img src={Interns} alt="interns" className="w-6 h-6" />
+                </NavLink>
                 <NavLink to="/projects"><img src={Projects} alt="projects" className="w-6 h-6" /></NavLink>
                 <NavLink to="/calendar"><img src={Calendar} alt="calendar" className="w-6 h-6" /></NavLink>
                 <NavLink to="/team-chat"><img src={TeamChat} alt="team chat" className="w-6 h-6" /></NavLink>
@@ -39,8 +39,8 @@ const SideNav = () => {
             </div>
 
             <div className='w-3/4 flex flex-col py-4 px-0 space-y-5 justify-center items-start min-h-screen'>
-                <NavLink to="/home" className="w-full p-2">Dashboard</NavLink>
-                <NavLink to="/home/interns" className="w-full p-2"> Interns </NavLink>
+                <NavLink to="/home" className="w-full p-2" end>Dashboard</NavLink>
+                <NavLink to="interns" className="w-full p-2"> Interns </NavLink>
                 <NavLink to="/projects" className="w-full p-2"> Projects</NavLink>
                 <NavLink to="/calendar" className="w-full p-2">Calendar </NavLink>
                 <NavLink to="/team-chat" className="w-full p-2">Team Chat</NavLink>
