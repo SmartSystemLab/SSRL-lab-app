@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from 'react'
 const userData = createContext()
 
 const DataContext = ({ children }) => {
-  const { userId, setUserId } = useState("")
+  const [userId, setUserId] = useState("")
 
   const value = { userId, setUserId }
   return (

@@ -29,7 +29,7 @@ const ForgotPassword = () => {
     <div className="w-full flex justify-center items-center min-h-screen bg-white">
       {/* forgot password tab */}
 
-      <div className="w-full max-w-md space-y-6 p-6 m ">
+      <div className="w-full max-w-md space-y-6 p-6 ">
         <div className="flex justify-center items-center">
           <img src={forgotPassword} alt="forgot Password" />
         </div>

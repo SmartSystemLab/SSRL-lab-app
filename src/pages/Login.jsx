@@ -1,8 +1,4 @@
 import React, { useRef, useState } from "react";
-// import { validateIdentity, validatePassword } from "../Modules/verifyForm.js";
-import Signin from "../assets/SignIn.svg";
-import InputError from "../components/InputError";
-// import { usePostRequest } from "../Modules/useRequest";
 import { useUserData } from "../components/DataContext.jsx";
 import { validateIdentity, validatePassword } from "../Modules/verifyForm.js";
 import { usePostRequest } from "../Modules/useRequest.js";
@@ -30,7 +26,7 @@ const Login = () => {
         setLoginError,
     ] = usePostRequest();
 
-    // const { setUserId } = useUserData();
+    const { setUserId } = useUserData();
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
@@ -123,7 +119,7 @@ const Login = () => {
                         </label>
                     </div>
 
-                    <div className=" mt-6">
+                    <div className="mt-6">
                         <a
                             href="/forgotpassword"
                             className="underline text-[#111111] font-medium text-sm"

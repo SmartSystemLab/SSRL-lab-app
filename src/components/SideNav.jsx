@@ -21,8 +21,16 @@ const SideNav = () => {
 
             {/* Navigation Links */}
             <div className='w-1/4 flex flex-col p-4 space-y-9 justify-center items-start bg-navBg1 min-h-screen rounded-3xl'>
-                <NavLink to="/home"> <img src={Dashboard} alt="dashboard" className="w-6 h-6" /></NavLink>
-                <NavLink to="/home/interns"><img src={Interns} alt="interns" className="w-6 h-6" /></NavLink>
+                <NavLink to="/home" end
+                    className={({ isActive }) =>
+                        [isActive ? "active" : "",].join(" ")
+                    }> <img src={Dashboard} alt="dashboard" className="w-6 h-6" />
+                </NavLink>
+                <NavLink to="/home/interns"
+                    className={({ isActive }) =>
+                        [isActive ? "active" : "",].join(" ")
+                    }><img src={Interns} alt="interns" className="w-6 h-6" /
+                    ></NavLink>
                 <NavLink to="/projects"><img src={Projects} alt="projects" className="w-6 h-6" /></NavLink>
                 <NavLink to="/calendar"><img src={Calendar} alt="calendar" className="w-6 h-6" /></NavLink>
                 <NavLink to="/team-chat"><img src={TeamChat} alt="team chat" className="w-6 h-6" /></NavLink>
