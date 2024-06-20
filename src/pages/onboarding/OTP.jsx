@@ -1,34 +1,40 @@
-import React, { useState } from 'react'
-import InputError from '../components/InputError';
+import React, { useEffect, useRef, useState } from "react";
+import InputError from "../../components/InputError";
+import { validateOTP } from "../../Modules/verifyForm";
+import { useGetRequest } from "../../Modules/useRequest"
 
 const OTP = () => {
-  const [otp, setOtp] = useState(new Array(6).fill("")) //state to manage empty array of 6 items
-  const [error, setError] = useState(false)
+  const [otp, setOtp] = useState({
+    otp: new Array(6).fill(""),
+    isError: false,
+    error: "",
+  }); //state to manage empty array of 6 items
+  const otpRef = useRef(false);
+  const [sendOTPRequest, otpLoading, setOtpLoading, otpError, setOtpError] = useGetRequest()
 
   const handleChange = (element, index) => {
-    console.log(element.value, index)
-    // verify if input is a number
     if (isNaN(element.value)) return false;
 
-    // update the otp array
-    setOtp([otp.map((d, id) => (id === index ? element.value : d))]);
+    setOtp({
+      ...otp,
+      otp: otp.otp.map((d, id) => (id === index ? element.value : d)),
+    });
 
-    console.log(otp)
+    console.log(otp.otp);
     if (element.nextSibling) {
       element.nextSibling.focus();
     }
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    if (otp.includes("")) {
-      setError(true)
-    } else {
-      setError(false)
-      console.log(otp.join(""))
-    }
+    event.preventDefault();
+    validateOTP(otp, setOtp, otpRef);
 
-  }
+    if (otpRef) {
+      console.log(otp.otp.join(""))
+      //Proceed to send request
+    }
+  };
   return (
     <div className="w-full flex justify-center items-center min-h-screen bg-white">
       <div className="w-full max-w-md space-y-5 p-6">
@@ -39,23 +45,27 @@ const OTP = () => {
           Enter the OTP sent to your email address
         </p>
 
-        <form onSubmit={handleSubmit} className='text-center'>
+        <form onSubmit={handleSubmit} className="text-center">
           <div className="text-base font-normal opacity-80 space-x-2 flex justify-center ">
-            {otp.map((data, index) => {
+            {otp.otp.map((data, index) => {
               return (
                 <input
-                  type='text'
+                  type="text"
                   key={index}
                   value={data}
                   maxLength="1"
                   className="text-center w-10 h-10 border border-[#666666] rounded-lg text-[#111111] focus:outline-none  focus:text-black"
-                  onChange={(e) => { handleChange(e.target, index) }}
-                  onFocus={(e) => { e.target.select() }}
+                  onChange={(e) => {
+                    handleChange(e.target, index);
+                  }}
+                  onFocus={(e) => {
+                    e.target.select();
+                  }}
                 />
-              )
+              );
             })}
           </div>
-          {error && <InputError>All fields must be filled!!! </InputError>}
+          {otp.isError && <InputError>{otp.error}</InputError>}
 
           <div className="text-center mt-2">
             <button
@@ -65,11 +75,10 @@ const OTP = () => {
               Verify OTP
             </button>
           </div>
-
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default OTP
+export default OTP;

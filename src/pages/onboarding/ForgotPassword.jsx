@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import forgotPassword from "../assets/ForgotPassword.svg"; // Importing the image
-import Backtosignin from "../assets/Backtosignin.svg"; // Importing the image
-import CustomLabel from "../components/CustomLabel.jsx";
-import { validateEmail } from "../Modules/verifyForm";
-import { useGetRequest, usePostRequest } from "../Modules/useRequest";
-import { useUserData } from "../components/UserContext";
+import forgotPassword from "../../assets/ForgotPassword.svg"; // Importing the image
+import Backtosignin from "../../assets/Backtosignin.svg"; // Importing the image
+import CustomLabel from "../../components/CustomLabel.jsx";
+import { validateEmail } from "../../Modules/verifyForm.js";
+import { useGetRequest, usePostRequest } from "../../Modules/useRequest.js";
+import { useUserData } from "../../components/UserContext.jsx";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState({ email: "", isError: false, msg: "" });

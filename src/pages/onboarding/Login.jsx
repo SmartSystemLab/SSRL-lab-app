@@ -1,9 +1,9 @@
 
 import React, { useRef, useState } from "react";
-import { useUserData } from "../components/UserContext.jsx";
-import { validateIdentity, validatePassword } from "../Modules/verifyForm.js";
-import { usePostRequest } from "../Modules/useRequest.js";
-import CustomLabel from "../components/CustomLabel.jsx";
+import { useUserData } from "../../components/UserContext.jsx";
+import { validateIdentity, validatePassword } from "../../Modules/verifyForm.js";
+import { usePostRequest } from "../../Modules/useRequest.js";
+import CustomLabel from "../../components/CustomLabel.jsx";
 
 const Login = () => {
     const [identity, setIdentity] = useState({

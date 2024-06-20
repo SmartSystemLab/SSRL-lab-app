@@ -1,5 +1,6 @@
 import React from 'react'
-import SignupImage from "../assets/Sgnup-image.jpg"; // Importing the image
+import SignupImage from "../../assets/Sgnup-image.jpg"; // Importing the image
+import CustomLabel from '../../components/CustomLabel';
 
 
 const ResetPassword = () => {
@@ -16,16 +17,27 @@ const ResetPassword = () => {
                 <form className="" >
                     <div className="rounded-md shadow-sm text-base font-normal opacity-80 space-y-4">
 
-                        <div className=''>
-                            <label htmlFor="password" className="text-[#666666]">New password </label>
+                        <CustomLabel
+                            htmlFor="password"
+                            labelText="New password"
+                            inputType="text"
+                        //   inputValue={}
+                        //   onChange={}
+                        //   onBlur={}
+                        //   isError={}
+                        //   errorMessage={}
+                        />
+                        <CustomLabel
+                            htmlFor="password"
+                            labelText="Confirm password"
+                            inputType="text"
+                        //   inputValue={}
+                        //   onChange={}
+                        //   onBlur={}
+                        //   isError={}
+                        //   errorMessage={}
+                        />
 
-                            <input type="text" className=" appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg opacity-35 text-[#111111] focus:outline-none focus:opacity-100 focus:text-black" />
-                        </div>
-                        <div className=''>
-                            <label htmlFor="password" className="text-[#666666]">Confirm password  </label>
-
-                            <input type="text" className=" appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg opacity-35 text-[#111111] focus:outline-none focus:opacity-100 focus:text-black" />
-                        </div>
 
 
                     </div>
