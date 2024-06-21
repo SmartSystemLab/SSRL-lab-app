@@ -26,12 +26,29 @@ const OTP = () => {
     }
   };
 
+  //  delete input shit
+  const handleBackkey = (element, index) => {
+    // console.log(element.key)
+    // check key and check if input is empty
+    if (element.key === 'Backspace' && otp.otp[index] === "") {
+      if (element.target.previousSibling) {
+        element.preventDefault()
+        element.target.previousSibling.focus()
+        setOtp({
+          ...otp,
+          otp: otp.otp.map((d, id) => (id === index - 1 ? "" : d)),
+        })
+      }
+    }
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     validateOTP(otp, setOtp, otpRef);
 
     if (otpRef) {
       console.log(otp.otp.join(""))
+
       //Proceed to send request
     }
   };
@@ -61,6 +78,7 @@ const OTP = () => {
                   onFocus={(e) => {
                     e.target.select();
                   }}
+                  onKeyDown={(e) => handleBackkey(e, index)}
                 />
               );
             })}

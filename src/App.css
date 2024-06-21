@@ -9,9 +9,21 @@
 }
 
 .active {
-  @apply bg-white text-black rounded-l-2xl;
+  @apply bg-white text-black rounded-l-2xl transition-all duration-200 ease-out translate-x-0;
 }
 
 .active img {
-  @apply bg-navBg1 rounded-none p-0 border-l-2 border-white pl-1;
+  @apply bg-navBg1 rounded-none p-0 border-l-2 border-white pl-1 transition-all duration-200 ease-out;
+}
+
+/* .transitioning {
+  @apply bg-black;
+} */
+
+.translate-x-full {
+  transform: translateX(100%);
+}
+
+.translate-x-0 {
+  transform: translateX(0%);
 }
