@@ -5,6 +5,7 @@ import CustomLabel from "../../components/CustomLabel.jsx";
 import { validateEmail } from "../../Modules/verifyForm.js";
 import { useGetRequest, usePostRequest } from "../../Modules/useRequest.js";
 import { useUserData } from "../../components/UserContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState({ email: "", isError: false, msg: "" });
@@ -18,6 +19,7 @@ const ForgotPassword = () => {
     setCredError,
   ] = usePostRequest();
   const { userId } = useUserData();
+  const navigate = useNavigate()
 
   const handleForgetPassword = (event) => {
     event.preventDefault();
@@ -35,9 +37,9 @@ const ForgotPassword = () => {
     }).then((res) => {
       const data = res.json();
       if (res.ok) {
-        // To confirm OTP page
+        console.log("Success")
+        navigate("/sendOTP")
       } else {
-        console.log("Error");
         return data.then((data) =>
           setCredError({ status: true, msg: data.message })
         );
@@ -67,7 +69,7 @@ const ForgotPassword = () => {
           Enter your Email and we'll send you a link to reset your password
         </p>
 
-        <form className=" space-y-8" onSubmit={handleForgetPassword}>
+        <form className=" space-y-8" onSubmit={handleForgetPassword} noValidate>
           <div className="rounded-md shadow-sm text-base font-normal opacity-80">
 
             <CustomLabel

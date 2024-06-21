@@ -9,5 +9,9 @@
 }
 
 .active {
-  @apply bg-white text-black;
+  @apply bg-white text-black rounded-l-2xl;
+}
+
+.active img {
+  @apply bg-navBg1 rounded-none p-0 border-l-2 border-white pl-1;
 }

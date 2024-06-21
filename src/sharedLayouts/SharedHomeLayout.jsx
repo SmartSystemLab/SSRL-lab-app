@@ -5,11 +5,11 @@ import { Outlet } from 'react-router-dom'
 
 const SharedHomeLayout = () => {
   return (
-    <div className='flex'>
-        <SideNav />
-        <div className='flex-grow'>
-            <Outlet />
-        </div>
+    <div className='flex min-h-screen'>
+      <SideNav />
+      <div className='flex-grow'>
+        <Outlet />
+      </div>
     </div>
   )
 }

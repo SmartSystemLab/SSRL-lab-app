@@ -21,7 +21,6 @@ const OTP = () => {
       otp: otp.otp.map((d, id) => (id === index ? element.value : d)),
     });
 
-    console.log(otp.otp);
     if (element.nextSibling) {
       element.nextSibling.focus();
     }
@@ -33,6 +32,7 @@ const OTP = () => {
 
     if (otpRef) {
       const strOtp = otp.otp.join("");
+      console.log(strOtp)
       sendOTPRequest("/confirm/otp", { otp: strOtp }).then((res) => {
         const data = res.json();
         if (res.ok) {

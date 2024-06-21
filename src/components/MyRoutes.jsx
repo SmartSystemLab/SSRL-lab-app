@@ -7,6 +7,11 @@ import OTP from "../pages/onboarding/OTP";
 import SharedOnboardingLayout from "../sharedLayouts/SharedOnboardingLayout.jsx";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Interns from "../pages/interns/Interns";
+import Projects from "../pages/Projects/Projects";
+import Calendar from "../pages/Calendar/Calendar";
+import TeamChat from "../pages/TeamChat/TeamChat";
+import Attendance from "../pages/Attendance/Attendance";
+import Settings from "../pages/Settings/Settings";
 import SharedHomeLayout from "../sharedLayouts/SharedHomeLayout.jsx";
 
 const MyRoutes = () => {
@@ -20,9 +25,14 @@ const MyRoutes = () => {
           <Route path="resetPassword" element={<ResetPassword />} />
         </Route>
 
-        <Route path="/home" element={<SharedHomeLayout/>}>
+        <Route path="/home" element={<SharedHomeLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path="/home/interns" element={<Interns />} />
+          <Route path="home/interns" element={<Interns />} />
+          <Route path="home/projects" element={<Projects />} />
+          <Route path="home/calendar" element={<Calendar />} />
+          <Route path="home/team-chat" element={<TeamChat />} />
+          <Route path="home/attendance" element={<Attendance />} />
+          <Route path="home/settings" element={< Settings />} />
         </Route>
       </Routes>
     </Router>

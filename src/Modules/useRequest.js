@@ -54,6 +54,7 @@ export const usePostRequest = () => {
 
     let res = await fetch(`${url}/${path}`, requestOptions).catch((error) => {
       setLoading(false);
+      console.log("Error")
       setError({
         status: true,
         msg: "Something went wrong. Check your internet connection or try again in a bit.",
