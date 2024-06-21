@@ -20,7 +20,7 @@ const SideNav = () => {
             </div>
 
             {/* Navigation Links */}
-            <div className='w-1/4 flex flex-col p-4 space-y-9 justify-center items-start bg-navBg1 min-h-screen rounded-3xl'>
+            <div className='w-1/4 flex flex-col p-4 space-y-9 justify-center items-start bg-navBg1 min-h-screen rounded-r-3xl'>
                 <NavLink to="/home" end
                     className={({ isActive }) =>
                         [isActive ? "active" : "",].join(" ")

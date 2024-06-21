@@ -27,12 +27,12 @@ const MyRoutes = () => {
 
         <Route path="/home" element={<SharedHomeLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path="home/interns" element={<Interns />} />
-          <Route path="home/projects" element={<Projects />} />
-          <Route path="home/calendar" element={<Calendar />} />
-          <Route path="home/team-chat" element={<TeamChat />} />
-          <Route path="home/attendance" element={<Attendance />} />
-          <Route path="home/settings" element={< Settings />} />
+          <Route path="interns" element={<Interns />} />
+          <Route path="projects" element={<Projects />} />
+          <Route path="calendar" element={<Calendar />} />
+          <Route path="team-chat" element={<TeamChat />} />
+          <Route path="attendance" element={<Attendance />} />
+          <Route path="settings" element={< Settings />} />
         </Route>
       </Routes>
     </Router>
