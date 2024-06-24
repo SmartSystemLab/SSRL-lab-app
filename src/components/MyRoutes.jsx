@@ -29,14 +29,14 @@ const MyRoutes = () => {
           <Route index element={<Dashboard />} />
           <Route path="interns" element={<Interns />} />
           <Route path="projects" element={<Projects />} />
-          <Route path="calendar" element={<Calendar />} />
-          <Route path="team-chat" element={<TeamChat />} />
+          <Route path="teamchat" element={<TeamChat />} />
+          <Route path="calender" element={<Calendar />} />
           <Route path="attendance" element={<Attendance />} />
-          <Route path="settings" element={< Settings />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
     </Router>
   );
 };
 
-export default MyRoutes;;
+export default MyRoutes;
