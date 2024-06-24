@@ -22,11 +22,12 @@ const navData = [
 const SideNav = () => {
   return (
     <div className="relative min-h-screen w-60 text-white bg-navBg2 flex justify-center items-center gap-7 rounded-r-3xl">
+        
       {/* Logo and Title Section */}
-      {/* <div className="flex items-center justify-end p-6 space-x-2 absolute top-0 right-0">
+      <div className="flex items-center justify-end p-6 space-x-2 absolute top-4 right-0">
         <img src="/vite.svg" alt="Small Logo" className="w-9 h-9 rounded-md" />
         <h2 className="text-xl font-bold text-logo tracking-wider">SSRL</h2>
-      </div> */}
+      </div>
 
       {/* Navigation Links */}
       <div className="w-1/4 flex items-center bg-navBg1 min-h-screen rounded-r-3xl justify-center">
@@ -42,32 +43,11 @@ const SideNav = () => {
                   end={text === "Dashboard"}
                   className={({ isActive }) => isActive && "activeImg" }
                 >
-                  <img src={img} alt={text} className="h-[40px] my-4" />
+                  <img src={img} alt={text} className="h-[40px] my-4 w-4/5 mx-auto" />
                 </NavLink>
             );
           })}
         </div>
-        {/* <NavLink to="/home" end>
-          <img src={Dashboard} alt="dashboard" className="w-6 h-6" />
-        </NavLink>
-        <NavLink to="interns">
-          <img src={Interns} alt="interns" className="w-6 h-6" />
-        </NavLink>
-        <NavLink to="projects">
-          <img src={Projects} alt="projects" className="w-6 h-6" />
-        </NavLink>
-        <NavLink to="calendar">
-          <img src={Calendar} alt="calendar" className="w-6 h-6" />
-        </NavLink>
-        <NavLink to="team-chat">
-          <img src={TeamChat} alt="team chat" className="w-6 h-6" />
-        </NavLink>
-        <NavLink to="attendance">
-          <img src={Attendance} alt="attendance" className="w-6 h-6" />
-        </NavLink>
-        <NavLink to="settings">
-          <img src={Settings} alt="settings" className="w-6 h-6" />
-        </NavLink> */}
       </div>
 
       <div className="w-3/4 flex flex-col py-4 px-0 space-y-5 justify-center min-h-screen ">
@@ -96,36 +76,14 @@ const SideNav = () => {
             );
           })}
         </div>
-
-        {/* <NavLink to="/home" className="w-full p-2" end>
-          Dashboard
-        </NavLink>
-        <NavLink to="interns" className="w-full p-2">
-          Interns
-        </NavLink>
-        <NavLink to="projects" className="w-full p-2">
-          Projects
-        </NavLink>
-        <NavLink to="calendar" className="w-full p-2">
-          Calendar
-        </NavLink>
-        <NavLink to="team-chat" className="w-full p-2">
-          Team Chat
-        </NavLink>
-        <NavLink to="attendance" className="w-full p-2">
-          Attendance
-        </NavLink>
-        <NavLink to="settings" className="w-full p-2">
-          Settings
-        </NavLink> */}
       </div>
 
       {/* Log out Button */}
-      {/* <div className="p-4 absolute bottom-0 right-0">
+      <div className="p-4 absolute bottom-0 right-0">
         <button className="text-logo p-6 font-semibold  text-base flex items-center gap-2">
           <img src={LogOut} className="w-6 h-6" /> Log out
         </button>
-      </div> */}
+      </div>
     </div>
   );
 };
