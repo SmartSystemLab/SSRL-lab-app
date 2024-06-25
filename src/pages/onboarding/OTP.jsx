@@ -26,10 +26,8 @@ const OTP = () => {
     }
   };
 
-  //  delete input shit
   const handleBackkey = (element, index) => {
-    // console.log(element.key)
-    // check key and check if input is empty
+
     if (element.key === 'Backspace' && otp.otp[index] === "") {
       if (element.target.previousSibling) {
         element.preventDefault()
