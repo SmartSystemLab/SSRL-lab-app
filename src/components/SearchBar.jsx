@@ -10,7 +10,7 @@ const SearchBar = () => {
     // console.log(query)
 
     return (
-        <div className='relative w-3/4'>
+        <div className='relative md:max-w-2xl max-w-xs'>
             <input
                 type="text"
                 placeholder="Search for tasks, projects..."
