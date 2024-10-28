@@ -33,15 +33,15 @@ const SideNav = () => {
       <div className="w-1/4 flex items-center bg-navBg1 min-h-screen rounded-r-3xl justify-center">
         <div className="flex flex-col w-[90%] items-center">
           {navData.map((eachNav) => {
-            const { img, text } = eachNav;
+            const { img, text, id } = eachNav;
             let to = text.toLowerCase();
             if (text === "Dashboard") to = "/home";
-            if (text === "Team Chat") to = "teamchat";
             return (
                 <NavLink
                   to={to}
                   end={text === "Dashboard"}
-                  className={({ isActive }) => isActive && "activeImg" }
+                  className={({ isActive }) => isActive ? "activeImg" : "" }
+                  key={id}
                 >
                   <img src={img} alt={text} className="h-[40px] my-4 w-4/5 mx-auto" />
                 </NavLink>
@@ -53,7 +53,7 @@ const SideNav = () => {
       <div className="w-3/4 flex flex-col py-4 px-0 space-y-5 justify-center min-h-screen ">
         <div className="flex flex-col w-full">
           {navData.map((eachNav) => {
-            const { text } = eachNav;
+            const { text, id } = eachNav;
             let to = text.toLowerCase();
             if (text === "Dashboard") to = "/home";
             if (text === "Team Chat") to = "teamchat";
@@ -70,6 +70,7 @@ const SideNav = () => {
                       "my-4",
                     ].join(" ")
                   }
+                  key={id}
                 >
                   <span>{text}</span>
                 </NavLink>
@@ -89,4 +90,3 @@ const SideNav = () => {
 };
 
 export default SideNav;
-`    Z`;

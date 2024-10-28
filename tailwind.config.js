@@ -4,11 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        logo: '#FFA500',
+        logo: "#FFA500",
         navBg1: "rgba(116, 247, 105, 0.22)",
-        navBg2: '#225522',
-        errorMsg: '#EE1D52',
-      }
+        navBg2: "#225522",
+        errorMsg: "#EE1D52",
+        darkGreen: "rgb(80, 147, 80)",
+      },
     },
   },
   plugins: [],

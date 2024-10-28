@@ -13,10 +13,6 @@
   @apply bg-white text-black rounded-l-full transition-all duration-200 ease-in-out relative;
 }
 
-/* .activeText + .activeImg {
-  @apply border
-} */
-
 .activeText::before {
   content: "";
   position: absolute;
@@ -47,14 +43,6 @@
   @apply rounded-none transition-all duration-200 ease-out bg-none border-l-2 p-2;
 }
 
-/* .transitioning {
-  @apply bg-black;
-} */
-
-.translate-x-full {
-  transform: translateX(100%);
-}
-
-.translate-x-0 {
-  transform: translateX(0%);
+#tasksNav a.active {
+  border: 2px solid green;
 }
