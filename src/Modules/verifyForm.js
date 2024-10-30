@@ -1,34 +1,33 @@
-export const validateIdentity = (
-  identity,
-  setIdentity,
-  validateIdentityRef
+export const validateUsername = (
+  username,
+  setUsername,
+  validateUsernameRef
 ) => {
   const regName = /^[a-zA-Z]*SSRL\d{3}$/;
-  const regEmail = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
-  if (!identity.identity) {
-    setIdentity({
-      ...identity,
+  if (!username.name) {
+    setUsername({
+      ...username,
       isError: true,
-      error: "Please input your username or email",
+      error: "Please input your username",
     });
-    validateIdentityRef.current = false;
+    validateUsernameRef.current = false;
     // console.log("Identity error: Input identiy")
     return;
   }
 
-  if (!(regName.test(identity.identity) || regEmail.test(identity.identity))) {
-    setIdentity({
-      ...identity,
+  if (!regName.test(username.name)) {
+    setUsername({
+      ...username,
       isError: true,
-      error: "Invalid username or email",
+      error: "Invalid username",
     });
-    validateIdentityRef.current = false;
+    validateUsernameRef.current = false;
     // console.log("Identity error: Invalid identiy")
     return;
   }
-  validateIdentityRef.current = true;
+  validateUsernameRef.current = true;
   // console.log("Good to go")
-  setIdentity({ ...identity, isInputElement: false, error: "" });
+  setUsername({ ...username, isInputElement: false, error: "" });
 };
 
 export const validateEmail = (email, setEmail, validateEmailRef) => {

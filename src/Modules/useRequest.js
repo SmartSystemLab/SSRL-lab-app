@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const url = "https://ssrl-lab-app-backend.onrender.com"
-// const url = "http://127.0.0.1:5000";
+// const url = "https://ssrl-lab-app-backend.onrender.com"
+const url = "http://127.0.0.1:5000";
 
 export const useGetRequest = () => {
   const [loading, setLoading] = useState(false);
@@ -54,6 +54,7 @@ export const usePostRequest = () => {
 
     let res = await fetch(`${url}/${path}`, requestOptions).catch((error) => {
       setLoading(false);
+      console.log("Error")
       setError({
         status: true,
         msg: "Something went wrong. Check your internet connection or try again in a bit.",
