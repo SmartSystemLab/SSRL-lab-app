@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MyRoutes from "./pages/Personnel/Personnel";
+import MyRoutes from "./pages/Projects/Projects";
 import Test from "./components/Test";
 import SideNav from "./components/SideNav";
 
