@@ -10,11 +10,11 @@ const SearchBar = () => {
     // console.log(query)
 
     return (
-        <div className='relative md:max-w-2xl max-w-xs'>
+        <div className='relative w-full md:max-w-2xl max-w-xs'>
             <input
                 type="text"
                 placeholder="Search for tasks, projects..."
-                className='w-full pl-4 pr-10 py-2 border border-[#111111] rounded-3xl text-[#000000] focus:outline-none focus:ring-1 ring-black'
+                className='w-full px-4 pr-10 py-2 border border-[#111111] rounded-3xl text-[#000000] focus:outline-none focus:ring-1 ring-black'
                 value={query}
                 onChange={handleInputChange}
             />

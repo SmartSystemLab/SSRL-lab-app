@@ -1,15 +1,12 @@
-import { useState } from 'react'
-import MyRoutes from './components/MyRoutes'
-import Test from './components/Test'
-import SideNav from './components/SideNav'
+import { useState } from "react";
+import Test from "./components/Test";
+import SideNav from "./components/SideNav";
+import MyRoutes from "./components/MyRoutes";
 
 function App() {
-
   return (
-    <div className=''>
       <MyRoutes />
-    </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -8,10 +8,15 @@ export default {
         navBg1: "rgba(116, 247, 105, 0.22)",
         navBg2: "#225522",
         errorMsg: "#EE1D52",
-        darkGreen: "rgb(80, 147, 80)",
+      },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "1rem",
+          sm: "3rem",
+        },
       },
     },
   },
   plugins: [],
 };
-
