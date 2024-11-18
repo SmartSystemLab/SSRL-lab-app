@@ -13,7 +13,8 @@ import TeamChat from "../pages/TeamChat/TeamChat";
 import Submissions from "../pages/Submissions/Submissions.jsx";
 import Settings from "../pages/Settings/Settings";
 import SharedHomeLayout from "../sharedLayouts/SharedHomeLayout.jsx";
-import Notifications from "../pages/Settings/Notifications.jsx";
+import Notifications from "../pages/dashboard/Notifications.jsx";
+import Profile from "../pages/dashboard/Profile.jsx"
 
 const MyRoutes = () => {
   return (
@@ -29,6 +30,12 @@ const MyRoutes = () => {
         <Route path="/home/" element={<SharedHomeLayout />}>
           <Route index element={<Dashboard />} />
 
+          <Route path="dashboard">
+            <Route index element={<Dashboard />} />
+            <Route path="notifications" element={<Notifications />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
+
           <Route path="personnel" element={<Personnel />} />
           <Route path="projects" element={<Projects />} />
           <Route path="teamchat" element={<TeamChat />} />
@@ -36,9 +43,6 @@ const MyRoutes = () => {
           <Route path="submissions" element={<Submissions />} />
           <Route path="settings/" element={<Settings />} />
           <Route path="notifications" element={<Notifications />} />
-
-
-
         </Route>
       </Routes>
     </Router>

@@ -6,10 +6,6 @@ import Dashboxes from '../../components/Dashboxes';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdClose } from 'react-icons/md';
 
-
-
-
-
 const Dashboard = () => {
     const [projects, setProjects] = useState([]);
     const [reports, setReports] = useState([]);
@@ -58,12 +54,12 @@ const Dashboard = () => {
     const formattedDate = `${day}${getOrdinalSuffix(day)}, ${month} ${year}`;
 
     return (
-        <div className='p-5 w-full max-h-screen object-cover flex flex-1 gap-12 justify-start items-start overflow-y-auto'>
+        <div className='p-2 flex flex-col md:flex-row gap-10 justify-start md:items-start items-center w-full overflow-y-auto'>
 
-            <div className='w-1/2 space-y-6 py-2 px-6 '>
+            <div className='space-y-6 py-2 px-6 min-w-[386px] md:w-2/5 w-2/3'>
 
                 <div className='space-y-2 bg-white shadow-lg border-2 p-6 rounded-md text-center'>
-                    <h2 className=' text-navBg2 font-semibold text-3xl'>Welcome Madara!</h2>
+                    <h2 className=' text-navBg2 font-semibold text-xl md:text-2xl lg:text-3xl'>Welcome Madara!</h2>
                     <p className=' text-navBg2 text-xl font-normal'>{formattedDate} </p>
                     <p className=' text-[#357932] text-lg font-bold'>Let's do the best today</p>
                 </div>
@@ -76,9 +72,10 @@ const Dashboard = () => {
                 <Dashboxes header='Requests' boxData={requests} nav='submissions' />
 
 
+
             </div>
 
-            <div className=' py-2 w-1/2'>
+            <div className='py-2 flex-grow'>
 
                 {/* to dos */}
                 <div className='w-full border-2 p-2 shadow-md rounded-md'>
@@ -121,7 +118,7 @@ const Dashboard = () => {
                         )}
                     </ul>
                     <Link to={`/home/to-do`}
-                        className=' text-logo block text-base text-right p-2 rounded font-medium  hover:bg-purple-300 hover:text-white transition-all duration-300 ease-in'
+                        className=' text-logo block text-base text-right p-2 rounded font-medium  hover:text-navBg1 transition-all duration-300 ease-in'
                     >See All</Link>
                 </div>
 
@@ -148,8 +145,8 @@ const Dashboard = () => {
                             <p>No notifications</p>
                         )}
                     </ul>
-                    <Link to={`/home/notifications`}
-                        className=' text-logo block text-base text-right p-2 rounded font-medium  hover:bg-purple-300 hover:text-white transition-all duration-300 ease-in'
+                    <Link to={`/home/dashboard/notifications`}
+                        className=' text-logo block text-base text-right p-2 rounded font-medium  hover:text-navBg1 transition-all duration-300 ease-in'
                     >See All</Link>
                 </div>
             </div>
