@@ -13,6 +13,20 @@
   @apply bg-white text-black rounded-l-full transition-all duration-200 ease-in-out relative;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
 .activeText::before {
   content: "";
   position: absolute;
@@ -43,6 +57,22 @@
   @apply rounded-none transition-all duration-200 ease-out bg-none border-l-2 p-2;
 }
 
-#tasksNav a.active {
-  border: 2px solid green;
+.m::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFA500;
+  border-radius: 4px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #705013;
 }

@@ -6,13 +6,14 @@ import ForgotPassword from "../pages/onboarding/ForgotPassword";
 import OTP from "../pages/onboarding/OTP";
 import SharedOnboardingLayout from "../sharedLayouts/SharedOnboardingLayout.jsx";
 import Dashboard from "../pages/dashboard/Dashboard";
-import Interns from "../pages/interns/Interns";
+import Personnel from "../pages/Personnel/Personnel.jsx";
 import Projects from "../pages/Projects/Projects";
-import Calendar from "../pages/Calendar/Calendar";
+import Todo from "../pages/Todo/Todo.jsx";
 import TeamChat from "../pages/TeamChat/TeamChat";
-import Attendance from "../pages/Attendance/Attendance";
+import Submissions from "../pages/Submissions/Submissions.jsx";
 import Settings from "../pages/Settings/Settings";
 import SharedHomeLayout from "../sharedLayouts/SharedHomeLayout.jsx";
+import Notifications from "../pages/Settings/Notifications.jsx";
 
 const MyRoutes = () => {
   return (
@@ -25,14 +26,19 @@ const MyRoutes = () => {
           <Route path="resetPassword" element={<ResetPassword />} />
         </Route>
 
-        <Route path="/home" element={<SharedHomeLayout />}>
+        <Route path="/home/" element={<SharedHomeLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path="interns" element={<Interns />} />
+
+          <Route path="personnel" element={<Personnel />} />
           <Route path="projects" element={<Projects />} />
           <Route path="teamchat" element={<TeamChat />} />
-          <Route path="calender" element={<Calendar />} />
-          <Route path="attendance" element={<Attendance />} />
-          <Route path="settings" element={<Settings />} />
+          <Route path="to-do" element={<Todo />} />
+          <Route path="submissions" element={<Submissions />} />
+          <Route path="settings/" element={<Settings />} />
+          <Route path="notifications" element={<Notifications />} />
+
+
+
         </Route>
       </Routes>
     </Router>
