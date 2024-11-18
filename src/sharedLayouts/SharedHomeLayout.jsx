@@ -18,7 +18,7 @@ const SharedHomeLayout = () => {
         </div>
 
 
-        <div className={`p-4 flex-1 max-w-screen-2xl`} >
+        <div className={`p-4 flex-1 max-w-screen-2xl w-full`} >
           <Headerbar />
           <Outlet />
         </div>

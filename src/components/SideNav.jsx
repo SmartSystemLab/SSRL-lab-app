@@ -52,7 +52,7 @@ const SideNav = () => {
                   <img
                     src={img}
                     alt={text}
-                    className={`w-6 h-6 transition-all duration-200 ease-out ${isActive ? 'brightness-0' : ''
+                    className={`w-6 h-6 transition-all duration-200 ease-in ${isActive ? 'brightness-0' : ''
                       }`}
                   />
                   <span className="text-sm md:text-base">{text}</span>
