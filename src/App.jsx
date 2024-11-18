@@ -1,12 +1,12 @@
 import MyRoutes from './components/MyRoutes'
 
-function App() {
 
+function App() {
   return (
-    <div>
+    <div >
       <MyRoutes />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
