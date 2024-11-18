@@ -14,7 +14,7 @@ const DropDownMenu = () => {
             <div className='relative'>
                 <button onClick={toggleMenu} className='dropdown'>
 
-                    <FaEllipsisV className=" text-lg text-gray-900" />
+                    <FaEllipsisV className=" text-lg text-white/75" />
                 </button>
                 {isMenuOpen && (
                     <div className="absolute top-10 right-0 mt-2 font-medium bg-white border rounded shadow-lg transition-all ease-in duration-300" style={{ width: 'max-content' }}>

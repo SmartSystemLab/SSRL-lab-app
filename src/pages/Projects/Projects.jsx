@@ -1,10 +1,8 @@
 import React from "react";
 import { LiaCheckDoubleSolid } from "react-icons/lia";
-import { IoMdSearch } from "react-icons/io";
-import { FaArrowLeft } from "react-icons/fa6";
+import Messages from "../../sharedLayouts/Messages";
 
-import img1 from "./img1.jpg";
-import profile from "./profile.jpeg";
+import img1 from "../../assets/img1.jpg";
 
 const info = [
   {
@@ -53,23 +51,23 @@ const Projects = () => {
 
 
           {/* Header */}
-          <div className="mt-12">
-            <div className="uppercase font-bold text-4xl">
+          <div className="mt-8">
+            <div className="uppercase font-bold text-2xl">
               weekly activity reports
             </div>
             <hr className="bg-black" />
 
             {/* Content */}
-            <div className="mt-12">
+            <div className="mt-6">
               <div className="flex justify-between items-center">
                 <div className="flex gap-2 font-semibold">
-                  <div className="underline text-xl">Unread</div>{" "}
+                  <div className="underline ">Unread</div>{" "}
                   <div className="bg-[#FFa500] text-white flex items-center justify-center rounded-full w-6 h-6 text-center">
                     6
                   </div>
                 </div>
                 <div className="flex gap-1">
-                  <LiaCheckDoubleSolid className="text-2xl text-green-700" />
+                  <LiaCheckDoubleSolid className=" text-green-700" />
                   <p>mark all as read</p>
                 </div>
               </div>
@@ -78,12 +76,12 @@ const Projects = () => {
               <section>
                 {info.map((item) => {
                   return (
-                    <Message
+                    <Messages
                       name={item.name}
                       summary={item.summary}
                       images={item.images}
                       duration={item.duration}
-                    ></Message>
+                    ></Messages>
                   );
                 })}
               </section>
@@ -95,25 +93,5 @@ const Projects = () => {
   );
 };
 
-const Message = ({ name, summary, images, duration }) => {
-  return (
-    <>
-      <section className="p-4 flex justify-between items-center">
-        <div className="flex justify-between items-center ">
-          <div className="bg-green-600 w-2 h-2 rounded-full"></div>
-          <img src={images} alt="" className="h-20 w-20 rounded-full m-4 object-cover" />
-          <div>
-            <h1 className="text-3xl font-bold text-gray-700">{name}</h1>
-            <div className="text-xl text-gray-500">{summary}</div>
-          </div>
-        </div>
-        <div>
-          <div className="text-gray-500">{duration} ago</div>
-        </div>
-      </section>
-      <hr className="bg-black" />
-    </>
-  );
-};
 
 export default Projects;
