@@ -10,7 +10,7 @@ const SearchBar = () => {
     // console.log(query)
 
     return (
-        <div className="relative w-full sm:max-w-xs md:max-w-md lg:max-w-lg p-2">
+        <div className="relative w-full sm:max-w-xs md:max-w-md lg:max-w-lg ">
             <input
                 type="text"
                 placeholder="Search for tasks, projects..."
