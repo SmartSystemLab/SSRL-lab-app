@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Dashboxes = ({ header, boxData, nav }) => {
     return (
         <div className='space-y-1 shadow-lg border-2 p-6 rounded-md text-left'>
-            <h2 className='font-semibold text-2xl text-center uppercase'>{header}</h2>
+            <h2 className='font-semibold text-2xl text-center'>{header}</h2>
             <ul className=''>
                 {boxData.length > 0 ? (
                     boxData.map((data) => (

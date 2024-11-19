@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useUserData } from "../../components/UserContext.jsx";
+import { useUserData } from "../../Modules/UserContext.jsx";
 import {
   validateUsername,
   validatePassword,
@@ -47,8 +47,7 @@ const Login = () => {
   };
 
   const validateUser = async () => {
-    console.log("Request sent");
-    await sendLoginRequest("user/authenticate", {
+    await sendLoginRequest("login", {
       user_id: username.name,
       pwd: password.password,
     }).then((res) => {
@@ -59,12 +58,6 @@ const Login = () => {
         console.log("Success");
         // redirect("/home")
         navigate("/home");
-        return;
-      } else if (res.status >= 500) {
-        setLoginError({
-          status: true,
-          msg: "Something went wrong. Check your internet connection or try again in a bit.",
-        });
         return;
       } else {
         return data.then((data) =>
@@ -92,8 +85,11 @@ const Login = () => {
               onChange={(event) =>
                 setUsername({ ...username, name: event.target.value })
               }
-              onBlur={() =>
+              onBlur={() =>{
+                console.log(username.name);
+                setUserId(username.name);
                 validateUsername(username, setUsername, validateUsernameRef)
+              }
               }
               isError={username.isError}
               errorMessage={username.error}
@@ -126,12 +122,12 @@ const Login = () => {
           </div>
 
           <div className=" mt-6">
-            <a
-              href="/forgotpassword"
+            <p
+              onClick={() => navigate("/forgotpassword")}
               className="underline text-[#111111] font-medium text-sm"
             >
               Forgot your password?
-            </a>
+            </p>
           </div>
 
           <div className="text-right">

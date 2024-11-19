@@ -47,7 +47,7 @@ const OTP = () => {
     if (otpRef) {
       const strOtp = otp.otp.join("");
       console.log(strOtp)
-      sendOTPRequest("/confirm/otp", { otp: strOtp }).then((res) => {
+      sendOTPRequest("confirm/otp", { otp: strOtp }).then((res) => {
         const data = res.json();
         if (res.ok) {
           return data.then((data) => console.log(data.message))

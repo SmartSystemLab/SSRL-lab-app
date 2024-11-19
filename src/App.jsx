@@ -1,11 +1,11 @@
-import { useState } from "react";
-import Test from "./components/Test";
-import SideNav from "./components/SideNav";
-import MyRoutes from "./components/MyRoutes";
+import MyRoutes from './components/MyRoutes'
+
 
 function App() {
   return (
+    < >
       <MyRoutes />
+    </>
   );
 }
 

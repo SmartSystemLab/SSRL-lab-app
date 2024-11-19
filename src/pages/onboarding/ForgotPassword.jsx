@@ -4,7 +4,7 @@ import Backtosignin from "../../assets/Backtosignin.svg"; // Importing the image
 import CustomLabel from "../../components/CustomLabel.jsx";
 import { validateEmail } from "../../Modules/verifyForm.js";
 import { useGetRequest, usePostRequest } from "../../Modules/useRequest.js";
-import { useUserData } from "../../components/UserContext.jsx";
+import { useUserData } from "../../Modules/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
@@ -19,7 +19,7 @@ const ForgotPassword = () => {
     setCredError,
   ] = usePostRequest();
   const { userId } = useUserData();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleForgetPassword = (event) => {
     event.preventDefault();
@@ -31,14 +31,15 @@ const ForgotPassword = () => {
   };
 
   const confirmCredentials = () => {
-    sendCredRequest("/confirm/credentials", {
+    console.log(userId);
+    sendCredRequest("confirm/credentials", {
       uid: userId,
       email: email.email,
     }).then((res) => {
       const data = res.json();
       if (res.ok) {
-        console.log("Success")
-        navigate("/sendOTP")
+        console.log("Success");
+        navigate("/sendOTP");
       } else {
         return data.then((data) =>
           setCredError({ status: true, msg: data.message })
@@ -48,9 +49,8 @@ const ForgotPassword = () => {
   };
 
   useEffect(() => {
-    sendForgetRequest("/forgot/password")
-      .then((res) => res.json())
-      .then((data) => console.log(data.message));
+    sendForgetRequest("forgot/password").then((res) => res.json());
+    // .then((data) => console.log(data.status));
   }, []);
 
   return (
@@ -71,7 +71,6 @@ const ForgotPassword = () => {
 
         <form className=" space-y-8" onSubmit={handleForgetPassword} noValidate>
           <div className="rounded-md shadow-sm text-base font-normal opacity-80">
-
             <CustomLabel
               htmlFor="email"
               labelText="Email:"
@@ -83,9 +82,7 @@ const ForgotPassword = () => {
               onBlur={() => validateEmail(email, setEmail, validateEmailRef)}
               isError={email.isError}
               errorMessage={email.msg}
-
             />
-
           </div>
 
           <div className="text-center mt-2">

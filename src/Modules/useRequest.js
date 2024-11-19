@@ -1,17 +1,17 @@
 import { useState } from "react";
 
-const url = "https://ssrl-lab-app-backend.onrender.com"
-// const url = "http://127.0.0.1:5000";
+// const url = "https://ssrl-lab-app-backend.onrender.com"
+const url = "http://127.0.0.1:5000";
 
 export const useGetRequest = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ status: false, msg: "" });
 
-  const sendRequest = async (path, method = "GET") => {
+  const sendRequest = async (path) => {
     setError({ status: false, msg: "" });
     console.log("Request sent in module");
     const requestOptions = {
-      method: method,
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Searchbar from '../assets/Searchbar.svg';
 
 const SearchBar = () => {
@@ -10,7 +10,7 @@ const SearchBar = () => {
     // console.log(query)
 
     return (
-        <div className='relative w-full md:max-w-2xl max-w-xs'>
+        <div className="relative w-full sm:max-w-xs md:max-w-md lg:max-w-lg p-2">
             <input
                 type="text"
                 placeholder="Search for tasks, projects..."

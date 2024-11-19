@@ -9,9 +9,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-.activeText {
-  @apply bg-white text-black rounded-l-full transition-all duration-200 ease-in-out relative;
-}
 
 @keyframes fadeIn {
   from {
@@ -27,11 +24,16 @@
   animation: fadeIn 0.5s ease-in-out forwards;
 }
 
+.activeText {
+  @apply bg-white text-black rounded-l-full transition-all duration-200 ease-in-out relative;
+}
+
 .activeText::before {
+  padding: 10px;
   content: "";
   position: absolute;
   background-color: transparent;
-  right: 0;
+  right: 0px;
   top: 100%;
   height: 100%;
   width: 20%;
@@ -41,6 +43,7 @@
 }
 
 .activeText::after {
+  padding: 10px;
   content: "";
   position: absolute;
   background-color: transparent;
@@ -51,28 +54,4 @@
   border-bottom-right-radius: 50%;
   box-shadow: 0 25px 0 0 white;
   transition: all 200 ease-in-out;
-}
-
-.activeImg {
-  @apply rounded-none transition-all duration-200 ease-out bg-none border-l-2 p-2;
-}
-
-.m::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-
-}
-
-::-webkit-scrollbar-track {
-  background: white;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #FFA500;
-  border-radius: 4px;
-}
-
-
-::-webkit-scrollbar-thumb:hover {
-  background: #705013;
 }
