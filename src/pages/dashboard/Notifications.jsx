@@ -10,36 +10,43 @@ const info = [
     summary: "Sent you reports for week 2",
     images: img1,
     duration: "10 mins",
+    id: 1,
   },
   {
     name: "Ogunjirin M. Boluwatife",
     summary: "Sent you reports for week 2",
     images: img1,
     duration: "1 day",
+    id: 2,
   },
   {
     name: "Ogunjirin M. Boluwatife",
     summary: "Sent you reports for week 2",
     images: img1,
     duration: "1 day",
+    id: 3,
+
   },
   {
     name: "Ogunjirin M. Boluwatife",
     summary: "Sent you reports for week 2",
     images: img1,
     duration: "1 day",
+    id: 4,
   },
   {
     name: "Ogunjirin M. Boluwatife",
     summary: "Sent you reports for week 2",
     images: img1,
     duration: "1 day",
+    id: 5,
   },
   {
     name: "Ogunjirin M. Boluwatife",
     summary: "Sent you reports for week 2",
     images: img1,
     duration: "1 day",
+    id: 6,
   },
 ];
 
@@ -72,16 +79,19 @@ const Notifications = () => {
 
               {/* Messages */}
               <section className="mt-4">
-                {info.map((item) => {
-                  return (
-                    <Messages
-                      name={item.name}
-                      summary={item.summary}
-                      images={item.images}
-                      duration={item.duration}
-                    ></Messages>
-                  );
-                })}
+
+
+                <Messages
+                  info={info}
+                  to='/home/dashboard/notifications'
+                // name={item.name}
+                // summary={item.summary}
+                // images={item.images}
+                // duration={item.duration}
+
+                ></Messages>
+
+
               </section>
             </div>
           </div>

@@ -22,7 +22,7 @@ const Profile = () => {
                         Agboola Oluwatofunmi Bolutife
                     </p>
                 </div>
-                <div className="flex justify-center mt-8 gap-10 p-2">
+                <div className="flex justify-center mt-8 gap-10 px-2 py-6">
                     <div className="w-1/2 space-y-4">
                         <p className=" text-xl font-semibold text-center">Information</p>
                         <div className="px-6 space-y-4">

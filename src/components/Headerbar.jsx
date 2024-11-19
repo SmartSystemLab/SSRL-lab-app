@@ -8,7 +8,7 @@ const Headerbar = () => {
     const navigate = useNavigate()
     return (
         < div className='flex md:justify-between justify-center w-full items-center px-6 max-w-screen-2xl' >
-            <div className='flex gap-1 items-center w-3/4'>
+            <div className='flex gap-2 items-center w-3/4'>
                 <img
                     src={Navarrow} alt="back"
                     className='w-7 h-7 hover:scale-125 transition-all duration-200 hover:transition-transform '
