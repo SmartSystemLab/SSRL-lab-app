@@ -4,8 +4,8 @@ import Backdrop from "../../assets/Backdrop.svg"
 
 const Profile = () => {
     return (
-        <div className="p-6 mx-auto rounded-lg  max-w-6xl">
-            <div className="border-2 shadow rounded-lg">
+        <div className="p-6 mx-auto rounded-lg max-w-6xl h-screen">
+            <div className="border-2 shadow rounded-lg h-full">
                 <div className="relative flex flex-col justify-center items-center p-6 gap-4"
                     style={{ backgroundImage: `url(${Backdrop})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover' }}>
 

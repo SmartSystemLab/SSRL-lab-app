@@ -42,7 +42,7 @@ const SideNav = () => {
               className={({ isActive }) =>
                 [
                   isActive ? "activeText activeImg" : "hover:bg-navBg1",
-                  "flex items-center gap-3 p-3 rounded-md transition-all duration-200",
+                  "flex items-center gap-3 p-3 rounded-md transition-colors duration-200",
                 ].join(" ")
               }
               key={text}
@@ -52,7 +52,7 @@ const SideNav = () => {
                   <img
                     src={img}
                     alt={text}
-                    className={`w-6 h-6 transition-all duration-200 ease-in ${isActive ? 'brightness-0' : ''
+                    className={`w-6 h-6 transition-all duration-100 ease-in ${isActive ? 'brightness-0' : ''
                       }`}
                   />
                   <span className="text-sm md:text-base">{text}</span>

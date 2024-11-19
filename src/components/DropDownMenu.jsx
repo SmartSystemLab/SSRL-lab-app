@@ -6,6 +6,7 @@ import Suspend from '../assets/Suspend.svg'
 
 const DropDownMenu = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
     return (
@@ -25,17 +26,20 @@ const DropDownMenu = () => {
                                 <span>Edit</span>
                             </button>
 
+                          
+                                    
+                                        <button className="flex items-center w-full gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                            <img src={Suspend} alt="Suspend" className="w-4 h-4 " />
+                                            <span>Suspend</span>
+                                        </button>
 
-                            <button className="flex items-center w-full gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                <img src={Suspend} alt="Suspend" className="w-4 h-4 " />
-                                <span>Suspend</span>
-                            </button>
 
-
-                            <button className="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50">
-                                <img src={Remove} alt="Delete" className="w-4 h-4 " />
-                                <span>Delete</span>
-                            </button>
+                                        <button className="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                                            <img src={Remove} alt="Delete" className="w-4 h-4 " />
+                                            <span>Delete</span>
+                                        </button>
+                                    
+                                
                         </div>
                     </div>
                 )}
