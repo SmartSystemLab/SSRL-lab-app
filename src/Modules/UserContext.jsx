@@ -3,8 +3,9 @@ const userData = createContext();
 
 const DataContext = ({ children }) => {
   const [userId, setUserId] = useState("");
+  const [userProfile, setUserProfile] = useState({});
 
-  const value = { userId, setUserId };
+  const value = { userId, setUserId, userProfile, setUserProfile };
   return <userData.Provider value={value}>{children}</userData.Provider>;
 };
 

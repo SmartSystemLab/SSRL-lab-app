@@ -15,6 +15,7 @@ import Settings from "../pages/Settings/Settings";
 import SharedHomeLayout from "../sharedLayouts/SharedHomeLayout.jsx";
 import Notifications from "../pages/dashboard/Notifications.jsx";
 import Profile from "../pages/dashboard/Profile.jsx"
+import NotificationCard from "../pages/dashboard/NotificationCard.jsx";
 
 const MyRoutes = () => {
   return (
@@ -33,6 +34,7 @@ const MyRoutes = () => {
           <Route path="dashboard">
             <Route index element={<Dashboard />} />
             <Route path="notifications" element={<Notifications />} />
+            <Route path='notifications/:id' element={<NotificationCard />} />
             <Route path="profile" element={<Profile />} />
           </Route>
 

@@ -32,7 +32,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const { setUserId } = useUserData();
+  const { setUserId, setUserProfile } = useUserData();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -47,24 +47,19 @@ const Login = () => {
   };
 
   const validateUser = async () => {
-    await sendLoginRequest("login", {
+    const res = await sendLoginRequest("login", {
       user_id: username.name,
       pwd: password.password,
-    }).then((res) => {
-      console.log("Okay Okay", res);
-      const data = res.json();
-      if (res.ok) {
-        setLoginError({ status: false, msg: "" });
-        console.log("Success");
-        // redirect("/home")
-        navigate("/home");
-        return;
-      } else {
-        return data.then((data) =>
-          setLoginError({ status: true, msg: data.message })
-        );
-      }
     });
+
+    const data = await res.json();
+    if (res.ok) {
+      console.log(data);
+      setUserProfile(data.user_profile);
+      navigate("/home");
+    } else {
+      setLoginError({ status: true, msg: data.message });
+    }
   };
 
   return (
@@ -85,12 +80,11 @@ const Login = () => {
               onChange={(event) =>
                 setUsername({ ...username, name: event.target.value })
               }
-              onBlur={() =>{
+              onBlur={() => {
                 console.log(username.name);
                 setUserId(username.name);
-                validateUsername(username, setUsername, validateUsernameRef)
-              }
-              }
+                validateUsername(username, setUsername, validateUsernameRef);
+              }}
               isError={username.isError}
               errorMessage={username.error}
             />
