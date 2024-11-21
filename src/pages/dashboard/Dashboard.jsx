@@ -88,6 +88,8 @@ const Dashboard = () => {
                 {/* reports */}
                 <Dashboxes header='Reports' boxData={reports} nav='submissions' />
                 {/* requests */}
+                <Dashboxes header='Requests' boxData={requests} nav='submissions' />
+
 
 
 
