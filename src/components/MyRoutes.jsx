@@ -28,7 +28,7 @@ const MyRoutes = () => {
           <Route path="resetPassword" element={<ResetPassword />} />
         </Route>
 
-        <Route path="/home/" element={<SharedHomeLayout />}>
+        <Route path="/home" element={<SharedHomeLayout />}>
           <Route index element={<Dashboard />} />
 
           <Route path="dashboard">
@@ -43,7 +43,7 @@ const MyRoutes = () => {
           <Route path="teamchat" element={<TeamChat />} />
           <Route path="to-do" element={<Todo />} />
           <Route path="submissions" element={<Submissions />} />
-          <Route path="settings/" element={<Settings />} />
+          <Route path="settings" element={<Settings />} />
           <Route path="notifications" element={<Notifications />} />
         </Route>
       </Routes>

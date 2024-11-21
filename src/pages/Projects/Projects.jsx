@@ -3,6 +3,7 @@ import { LiaCheckDoubleSolid } from "react-icons/lia";
 import Messages from "../../sharedLayouts/Messages";
 
 import img1 from "../../assets/img1.jpg";
+import SearchBar from "../../components/SearchBar";
 
 const info = [
   {
@@ -55,7 +56,32 @@ const Projects = () => {
     <>
       <div>
         <div className="container">
+          <div className="mt-12 flex justify-between">
 
+            {/* Back Arrow and Search Bar */}
+            <div className="flex items-center gap-2 w-full">
+              <button className="bg-[#FFa500] p-3 rounded-full">
+                <FaArrowLeft className=" text-white text-4xl" />
+              </button>
+              {/* <div className="relative w-3/5 p-3 border border-black rounded-full">
+                <input
+                  type="text"
+                  placeholder="Search for tasks, projects ..."
+                  className="w-full rounded-full  px-3 py-1 focus:outline-none"
+                />
+                <IoMdSearch className="text-4xl text-[#FFa500] absolute top-1/2 -translate-y-1/2 right-1" />
+              </div> */}
+              <SearchBar />
+            </div>
+            {/* Profile Pic */}
+            <div>
+              <img
+                src={profile}
+                alt=""
+                className="h-16 w-16 rounded-full object-cover"
+              />
+            </div>
+          </div>
 
           {/* Header */}
           <div className="mt-8">

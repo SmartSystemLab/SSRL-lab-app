@@ -7,11 +7,11 @@ export const useGetRequest = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ status: false, msg: "" });
 
-  const sendRequest = async (path, method = "GET") => {
+  const sendRequest = async (path) => {
     setError({ status: false, msg: "" });
     console.log("Request sent in module");
     const requestOptions = {
-      method: method,
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
