@@ -56,7 +56,7 @@ const Dashboard = () => {
     return (
         <div className='p-2 flex flex-col md:flex-row gap-10 justify-start md:items-start items-center w-full overflow-y-auto'>
 
-            <div className='space-y-6 py-2 px-6 min-w-[386px] md:w-2/5 w-2/3'>
+            <div className='space-y-6 py-2 px-6 min-w-[370px] lg:w-2/5 md:w-1/2 w-2/3'>
 
                 <div className='space-y-2 bg-white shadow-lg border-2 p-6 rounded-md text-center'>
                     <h2 className=' text-navBg2 font-semibold text-xl md:text-2xl lg:text-3xl'>Welcome Madara!</h2>
@@ -69,6 +69,8 @@ const Dashboard = () => {
                 {/* reports */}
                 <Dashboxes header='Reports' boxData={reports} nav='submissions' />
                 {/* requests */}
+                <Dashboxes header='Requests' boxData={requests} nav='submissions' />
+                <Dashboxes header='Requests' boxData={requests} nav='submissions' />
                 <Dashboxes header='Requests' boxData={requests} nav='submissions' />
 
 
