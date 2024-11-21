@@ -17,7 +17,7 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(true);
     const [sendProfileRequest, profileLoading, setProfileLoading, profileError, setProfileError] = useGetRequest()
 
-    const {userProfile} = useUserData()
+    const { userProfile } = useUserData()
 
     const getProfile = async () => {
         setProfileLoading(true)
@@ -88,9 +88,6 @@ const Dashboard = () => {
                 {/* reports */}
                 <Dashboxes header='Reports' boxData={reports} nav='submissions' />
                 {/* requests */}
-                <Dashboxes header='Requests' boxData={requests} nav='submissions' />
-                <Dashboxes header='Requests' boxData={requests} nav='submissions' />
-                <Dashboxes header='Requests' boxData={requests} nav='submissions' />
 
 
 
