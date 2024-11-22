@@ -1,27 +1,25 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useUserData } from "../../Modules/UserContext.jsx";
 import {
   validateUsername,
   validatePassword,
 } from "../../Modules/verifyForm.js";
-import { usePostRequest } from "../../Modules/useRequest.js";
+import { useGetRequest, usePostRequest } from "../../Modules/useRequest.js";
 import CustomLabel from "../../components/CustomLabel.jsx";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { setSessionStorage } from "../../Modules/getSessionStorage.js";
 
 const Login = () => {
   const [username, setUsername] = useState({
-    name: "",
+    name: "AdemideSSRL692",
     isError: false,
     error: "",
   });
   const [password, setPassword] = useState({
-    password: "",
+    password: "rJu7aZKFe2yH",
     isError: false,
     error: "",
   });
-  const validateUsernameRef = useRef(false);
-  const validatePasswordRef = useRef(false);
-  const checkedRef = useRef();
   const [
     sendLoginRequest,
     loginLoading,
@@ -29,10 +27,32 @@ const Login = () => {
     loginError,
     setLoginError,
   ] = usePostRequest();
+  const [
+    sendSessionRequest,
+    sessionLoading,
+    setSessionLoading,
+    sessionError,
+    setSessionError,
+  ] = useGetRequest();
+  const validateUsernameRef = useRef(false);
+  const validatePasswordRef = useRef(false);
+  const checkedRef = useRef();
+  const { setUserId, setUserProfile } = useUserData();
 
   const navigate = useNavigate();
 
-  const { setUserId, setUserProfile } = useUserData();
+  useEffect(() => {
+    getSession();
+  }, []);
+
+  const getSession = async () => {
+    console.log("Okay");
+    const res = await sendSessionRequest("session");
+    const sess = await res.json();
+    if (res.ok) {
+      setSessionStorage("session_sid", sess.sid);
+    }
+  };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -54,9 +74,16 @@ const Login = () => {
 
     const data = await res.json();
     if (res.ok) {
-      console.log(data);
+      const profile = await sendProfileRequest('home')
+      const profileData = await profile.json()
+      if (profile.ok) {
+        setDashboard(profileData)
+      } else {
+        console.log("Praise, e no work")
+      }
+      // console.log(data);
       setUserProfile(data.user_profile);
-      navigate("/home");
+      // navigate("/home");
     } else {
       setLoginError({ status: true, msg: data.message });
     }

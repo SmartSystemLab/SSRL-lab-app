@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getSessionStorage } from "./getSessionStorage";
 
 // const url = "https://ssrl-lab-app-backend.onrender.com"
 const url = "http://127.0.0.1:5000";
@@ -14,7 +15,11 @@ export const useGetRequest = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Origin": "http://localhost:5173",
+        session_sid: getSessionStorage("session_sid", "None"),
       },
+      credentials: "include",
     };
     setLoading(true);
 
@@ -45,16 +50,18 @@ export const usePostRequest = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:5173",
         "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Origin": "http://localhost:5173",
+        session_sid: getSessionStorage("session_sid", "None"),
       },
+      credentials: "include",
       body: JSON.stringify(body),
     };
     setLoading(true);
 
     let res = await fetch(`${url}/${path}`, requestOptions).catch((error) => {
       setLoading(false);
-      console.log("Error")
+      console.log("Error");
       setError({
         status: true,
         msg: "Something went wrong. Check your internet connection or try again in a bit.",
