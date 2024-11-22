@@ -54,12 +54,3 @@
   box-shadow: 0 25px 0 0 white;
   transition: all 200 ease-in-out;
 }
-
-@layer utilities {
-  .button-active {
-    @apply text-white bg-[#347831]  p-[0.6rem] shadow-2xl;
-  }
-  .button-passive {
-    @apply bg-white text-black bg-[#64cb5e] p-2;
-  }
-}

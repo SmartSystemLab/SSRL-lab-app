@@ -8,6 +8,9 @@ import Projects from "../assets/Projects.svg";
 import Settings from "../assets/Settings.svg";
 import TeamChat from "../assets/TeamChat.svg";
 import LogOut from "../assets/LogOut.svg";
+import { FaXmark } from "react-icons/fa6";
+import SearchBar from '../components/SearchBar.jsx'
+
 
 const navData = [
   { img: Dashboard, text: "Dashboard", id: 1 },
@@ -19,13 +22,25 @@ const navData = [
   { img: Settings, text: "Settings", id: 7 },
 ];
 
-const SideNav = () => {
+const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
   return (
-    <div className="bg-navBg2 text-white min-h-screen py-4 pr-0 pl-2 rounded-r-3xl w-64 max-w-[20rem] flex flex-col">
+    <div className={`relative bg-navBg2 text-white min-h-screen py-4 pr-0 pl-2 rounded-r-3xl w-64 max-w-[20rem] flex flex-col`}>
       {/* Logo Section */}
-      <div className="flex justify-end items-center gap-3 py-4 px-6 mt-2 mb-4">
-        <img src="/vite.svg" alt="Logo" className="w-8 h-8 rounded-md" />
-        <h2 className="text-base md:text-2xl font-bold text-logo tracking-wider whitespace-nowrap">SSRL</h2>
+      <div className="flex justify-end items-center gap-3 py-4 px-6 mt-2 mb-4 ">
+        <img src="/vite.svg" alt="Logo" className="w-8 h-8 rounded-md text-lg" />
+        <h2 className="text-base md:text-2xl font-bold text-logo tracking-wider whitespace-nowrap nav-text">SSRL</h2>
+      </div>
+
+      <div className='text-logo lg:hidden absolute top-4 left-4'>
+        <button onClick={toggleSideNav} className='cursor-pointer'>
+          {
+            isSideNavOpen && <FaXmark className='w-5 h-5' />
+          }
+        </button>
+      </div>
+
+      <div className="lg:hidden block px-2">
+        <SearchBar />
       </div>
 
       {/* Navigation Links */}
@@ -39,6 +54,7 @@ const SideNav = () => {
             <NavLink
               to={to}
               end={text !== "Dashboard"}
+              onClick={toggleSideNav}
               className={({ isActive }) =>
                 [
                   isActive ? "activeText activeImg" : "hover:bg-navBg1",
@@ -67,7 +83,7 @@ const SideNav = () => {
       <div className="flex justify-end items-center py-4 px-2 mt-auto">
         <button className="flex items-center gap-3 text-logo font-semibold p-2 md:p-3 rounded-md hover:bg-navBg1 transition-colors">
           <img src={LogOut} alt="Log Out" className="w-5 h-5 md:w-6 md:h-6" />
-          <span className="text-sm md:text-base">Log Out</span>
+          <span className="text-sm md:text-base ">Log Out</span>
         </button>
       </div>
     </div>

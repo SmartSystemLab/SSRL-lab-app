@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useUserData } from "../../components/UserContext.jsx";
+import { useUserData } from "../../Modules/UserContext.jsx";
 import {
   validateUsername,
   validatePassword,
@@ -32,7 +32,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const { setUserId } = useUserData();
+  const { setUserId, setUserProfile } = useUserData();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -47,31 +47,19 @@ const Login = () => {
   };
 
   const validateUser = async () => {
-    console.log("Request sent");
-    await sendLoginRequest("user/authenticate", {
+    const res = await sendLoginRequest("login", {
       user_id: username.name,
       pwd: password.password,
-    }).then((res) => {
-      console.log("Okay Okay", res);
-      const data = res.json();
-      if (res.ok) {
-        setLoginError({ status: false, msg: "" });
-        console.log("Success");
-        // redirect("/home")
-        navigate("/home");
-        return;
-      } else if (res.status >= 500) {
-        setLoginError({
-          status: true,
-          msg: "Something went wrong. Check your internet connection or try again in a bit.",
-        });
-        return;
-      } else {
-        return data.then((data) =>
-          setLoginError({ status: true, msg: data.message })
-        );
-      }
     });
+
+    const data = await res.json();
+    if (res.ok) {
+      console.log(data);
+      setUserProfile(data.user_profile);
+      navigate("/home");
+    } else {
+      setLoginError({ status: true, msg: data.message });
+    }
   };
 
   return (
@@ -92,9 +80,11 @@ const Login = () => {
               onChange={(event) =>
                 setUsername({ ...username, name: event.target.value })
               }
-              onBlur={() =>
-                validateUsername(username, setUsername, validateUsernameRef)
-              }
+              onBlur={() => {
+                console.log(username.name);
+                setUserId(username.name);
+                validateUsername(username, setUsername, validateUsernameRef);
+              }}
               isError={username.isError}
               errorMessage={username.error}
             />
@@ -126,12 +116,12 @@ const Login = () => {
           </div>
 
           <div className=" mt-6">
-            <a
-              href="/forgotpassword"
+            <p
+              onClick={() => navigate("/forgotpassword")}
               className="underline text-[#111111] font-medium text-sm"
             >
               Forgot your password?
-            </a>
+            </p>
           </div>
 
           <div className="text-right">

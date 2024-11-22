@@ -5,6 +5,8 @@ import Dashboxes from '../../components/Dashboxes';
 // import Write from '../../assets/Write.svg'
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdClose } from 'react-icons/md';
+import { useGetRequest } from '../../Modules/useRequest';
+import { useUserData } from '../../Modules/UserContext';
 
 const Dashboard = () => {
     const [projects, setProjects] = useState([]);
@@ -13,7 +15,24 @@ const Dashboard = () => {
     const [todos, setTodos] = useState([]);
     const [notifications, setNotifications] = useState([])
     const [loading, setLoading] = useState(true);
+    const [sendProfileRequest, profileLoading, setProfileLoading, profileError, setProfileError] = useGetRequest()
 
+    const { userProfile } = useUserData()
+
+    const getProfile = async () => {
+        setProfileLoading(true)
+        await sendProfileRequest("home").then((res) => {
+            if (res.ok) {
+                console.log(res)
+            } else {
+                setProfileError
+            }
+        }).finally(() => setProfileLoading(false))
+    }
+
+    useEffect(() => {
+        getProfile()
+    }, [])
 
     useEffect(() => {
 
@@ -56,10 +75,10 @@ const Dashboard = () => {
     return (
         <div className='p-2 flex flex-col md:flex-row gap-10 justify-start md:items-start items-center w-full overflow-y-auto'>
 
-            <div className='space-y-6 py-2 px-6 min-w-[386px] md:w-2/5 w-2/3'>
+            <div className='space-y-6 py-2 px-6 min-w-[370px] lg:w-2/5 md:w-1/2 w-2/3'>
 
                 <div className='space-y-2 bg-white shadow-lg border-2 p-6 rounded-md text-center'>
-                    <h2 className=' text-navBg2 font-semibold text-xl md:text-2xl lg:text-3xl'>Welcome Madara!</h2>
+                    <h2 className=' text-navBg2 font-semibold text-xl md:text-2xl lg:text-3xl'>Welcome {userProfile?.firstname || "User"}!</h2>
                     <p className=' text-navBg2 text-xl font-normal'>{formattedDate} </p>
                     <p className=' text-[#357932] text-lg font-bold'>Let's do the best today</p>
                 </div>
@@ -70,6 +89,7 @@ const Dashboard = () => {
                 <Dashboxes header='Reports' boxData={reports} nav='submissions' />
                 {/* requests */}
                 <Dashboxes header='Requests' boxData={requests} nav='submissions' />
+
 
 
 
@@ -155,4 +175,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default Dashboard;

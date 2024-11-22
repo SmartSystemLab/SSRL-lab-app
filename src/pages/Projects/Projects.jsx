@@ -3,6 +3,7 @@ import { LiaCheckDoubleSolid } from "react-icons/lia";
 import Messages from "../../sharedLayouts/Messages";
 
 import img1 from "../../assets/img1.jpg";
+import SearchBar from "../../components/SearchBar";
 
 const info = [
   {
@@ -57,6 +58,7 @@ const Projects = () => {
         <div className="container">
 
 
+
           {/* Header */}
           <div className="mt-8">
             <div className="uppercase font-bold text-2xl">
@@ -95,7 +97,7 @@ const Projects = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 };

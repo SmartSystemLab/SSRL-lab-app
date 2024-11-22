@@ -5,6 +5,8 @@ import { Outlet } from 'react-router-dom';
 
 
 const SharedHomeLayout = () => {
+  const [isSideNavOpen, setisSideNavOpen] = useState(false);
+  const toggleSideNav = () => setisSideNavOpen(!isSideNavOpen)
 
 
   return (
@@ -13,14 +15,17 @@ const SharedHomeLayout = () => {
 
       <div className='flex justify-center items-start gap-2'>
 
-        <div className="hidden md:flex top-0 h-dvh sticky tranition-all duration-300" >
-          <SideNav />
+        {/* Sidebar */}
+        <div
+          className={`sidebar fixed top-0 left-0 h-screen bg-navBg2 z-50 rounded-r-3xl transition-transform transform ${isSideNavOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:sticky lg:flex w-64`}>
+          <SideNav isSideNavOpen={isSideNavOpen} toggleSideNav={toggleSideNav} />
         </div>
 
+        <div className={`p-4 flex-1 `} >
+          <Headerbar toggleSideNav={toggleSideNav} isSideNavOpen={isSideNavOpen} />
 
-        <div className={`p-4 flex-1 max-w-screen-2xl w-full`} >
-          <Headerbar />
           <Outlet />
+
         </div>
 
       </div>
