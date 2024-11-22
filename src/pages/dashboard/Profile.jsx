@@ -6,7 +6,7 @@ import BgProfile from "../../assets/bg_profile.jpeg"
 const Profile = () => {
     return (
         <div className="p-6 mx-auto  max-w-6xl ">
-            <div className=" rounded-lg shadow-2xl">
+            <div className=" rounded-lg shadow-2xl object-contains">
                 <div
                     className="relative flex flex-col justify-center rounded-t-lg items-center p-6 gap-4"
                     style={{
@@ -22,8 +22,8 @@ const Profile = () => {
                         Agboola Oluwatofunmi Bolutife
                     </p>
                 </div>
-                <div className="flex justify-center mt-8 gap-10 px-2 py-6">
-                    <div className="w-1/2 space-y-4">
+                <div className="flex flex-col md:flex-row justify-center mt-8 gap-10 px-2 py-6">
+                    <div className="md:w-1/2 w-full space-y-4">
                         <p className=" text-xl font-semibold text-center">Information</p>
                         <div className="px-6 space-y-4">
                             <p className="flex gap-4">
@@ -45,7 +45,7 @@ const Profile = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="w-1/2 space-y-4">
+                    <div className="md:w-1/2 w-full space-y-4">
                         <p className=" text-xl font-semibold text-center">Bio</p>
                         <div className="px-6 space-y-4 ">
                             <p>
@@ -62,7 +62,9 @@ const Profile = () => {
                             </p>
                             <p className="flex gap-4">
                                 <span className=" font-medium">Email:</span>
+
                                 oluwatofunmiagboola1@gmail.com
+
                             </p>
                         </div>
                     </div>

@@ -3,12 +3,19 @@ import Navarrow from '../assets/Navarrow.svg'
 import { Link, useNavigate } from "react-router-dom"
 import { IoNotificationsOutline } from "react-icons/io5"
 import { RxAvatar } from "react-icons/rx"
+import { FaBars } from "react-icons/fa6";
 
-const Headerbar = () => {
+
+const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
     const navigate = useNavigate()
     return (
-        < div className='flex md:justify-between justify-center w-full items-center px-6 max-w-screen-2xl' >
-            <div className='flex gap-2 items-center w-3/4'>
+        < div className='flex justify-between w-full items-center md:px-0 px-4 max-w-screen-2xl ' >
+            <div className='text-logo lg:hidden'>
+                <button onClick={toggleSideNav} className='cursor-pointer'>
+                    {!isSideNavOpen && <FaBars className="w-5 h-5" />}
+                </button>
+            </div>
+            <div className='lg:flex gap-2 items-center w-3/4 hidden'>
                 <img
                     src={Navarrow} alt="back"
                     className='w-7 h-7 hover:scale-125 transition-all duration-200 hover:transition-transform '
