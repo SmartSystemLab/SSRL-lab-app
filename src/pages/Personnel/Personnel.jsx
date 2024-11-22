@@ -191,14 +191,14 @@ const Personnel = () => {
               <div className=" w-max p-2 rounded-full">
                 <button
                   ref={software}
-                  className="software button-passive rounded-l-full"
+                  className="software  button-active  rounded-l-full"
                   onClick={() => handleButtonStyle(software)}
                 >
                   Software
                 </button>
                 <button
                   ref={hardware}
-                  className="hardware  button-active  rounded-r-full"
+                  className="hardware button-passive rounded-r-full"
                   onClick={() => handleButtonStyle(hardware)}
                 >
                   Hardware
