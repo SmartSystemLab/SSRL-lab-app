@@ -17,7 +17,7 @@ export const useGetRequest = () => {
         "Content-Type": "application/json",
         "Access-Control-Allow-Credentials": "true",
         "Access-Control-Allow-Origin": "http://localhost:5173",
-        session_sid: getSessionStorage("session_sid", "None"),
+        "session_sid": getSessionStorage("session_sid", "None"),
       },
       credentials: "include",
     };
@@ -52,7 +52,7 @@ export const usePostRequest = () => {
         "Content-Type": "application/json",
         "Access-Control-Allow-Credentials": "true",
         "Access-Control-Allow-Origin": "http://localhost:5173",
-        session_sid: getSessionStorage("session_sid", "None"),
+        "session_sid": getSessionStorage("session_sid", "None"),
       },
       credentials: "include",
       body: JSON.stringify(body),

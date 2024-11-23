@@ -74,16 +74,16 @@ const Login = () => {
 
     const data = await res.json();
     if (res.ok) {
-      const profile = await sendProfileRequest('home')
-      const profileData = await profile.json()
-      if (profile.ok) {
-        setDashboard(profileData)
-      } else {
-        console.log("Praise, e no work")
-      }
+      // const profile = await sendProfileRequest('home')
+      // const profileData = await profile.json()
+      // if (profile.ok) {
+      //   setDashboard(profileData)
+      // } else {
+      //   console.log("Praise, e no work")
+      // }
       // console.log(data);
       setUserProfile(data.user_profile);
-      // navigate("/home");
+      navigate("/home");
     } else {
       setLoginError({ status: true, msg: data.message });
     }

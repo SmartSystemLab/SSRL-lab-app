@@ -31,7 +31,7 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        // getProfile()
+        getProfile()
     }, [])
 
     useEffect(() => {
