@@ -7,7 +7,7 @@ import {
 import { useGetRequest, usePostRequest } from "../../Modules/useRequest.js";
 import CustomLabel from "../../components/CustomLabel.jsx";
 import { useNavigate } from "react-router-dom";
-import { setSessionStorage } from "../../Modules/getSessionStorage.js";
+import { getSessionStorage, setSessionStorage } from "../../Modules/getSessionStorage.js";
 
 const Login = () => {
   const [username, setUsername] = useState({
@@ -41,18 +41,20 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    getSession();
-  }, []);
-
   const getSession = async () => {
     console.log("Okay");
-    const res = await sendSessionRequest("session");
+    const res = await sendSessionRequest("session/new");
     const sess = await res.json();
     if (res.ok) {
-      setSessionStorage("session_sid", sess.sid);
+      setSessionStorage("session_id", sess.session_id);
     }
   };
+  
+  useEffect(() => {
+    if (!getSessionStorage("session_id", "")) {
+      getSession();
+    }
+  }, []);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -74,14 +76,6 @@ const Login = () => {
 
     const data = await res.json();
     if (res.ok) {
-      // const profile = await sendProfileRequest('home')
-      // const profileData = await profile.json()
-      // if (profile.ok) {
-      //   setDashboard(profileData)
-      // } else {
-      //   console.log("Praise, e no work")
-      // }
-      // console.log(data);
       setUserProfile(data.user_profile);
       navigate("/home");
     } else {
