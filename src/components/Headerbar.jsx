@@ -28,7 +28,7 @@ const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
                     <IoNotificationsOutline className='w-7 h-7 cursor-pointer hover:scale-125 transition-all duration-200 hover:transition-transform' />
 
                 </Link>
-                <Link to={`/home/dashboard/userprofile`}>
+                <Link to={`/home/dashboard/user-profile`}>
                     <RxAvatar className='w-7 h-7 cursor-pointer hover:scale-125 transition-all duration-200 hover:transition-transform' />
                 </Link>
             </div>

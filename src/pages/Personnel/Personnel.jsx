@@ -10,7 +10,7 @@ const Personnel = () => {
     {
       name: "Ogunjirin M. Boluwatife",
       image: img1,
-      id: 1,
+      id: 'Ceejayssrl001',
     },
     {
       name: "Ogunjirin M. Boluwatif",
@@ -180,7 +180,7 @@ const Personnel = () => {
                   {adminsInfo.map((item) => {
                     return (
                       <div>
-                        <LeadCard name={item.name} image={item.image} />
+                        <LeadCard name={item.name} image={item.image} id={item.id} />
                       </div>
                     );
                   })}
@@ -214,7 +214,7 @@ const Personnel = () => {
                     if (item.section === toggle) {
                       return (
                         <div>
-                          <LeadCard name={item.name} image={item.image} />
+                          <LeadCard name={item.name} image={item.image} id={item.id} />
                         </div>
                       );
                     }
@@ -236,6 +236,8 @@ const Personnel = () => {
                             name={item.name}
                             image={item.image}
                             unit={item.unit}
+                            id={item.id}
+
                           />
                         </div>
                       );
