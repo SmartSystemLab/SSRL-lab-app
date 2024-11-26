@@ -1,9 +1,9 @@
 import DropDownMenu from "../../components/DropDownMenu"
 import Avatar from "../../assets/Avatar.svg"
-import Backdrop from "../../assets/Backdrop.svg"
+
 import BgProfile from "../../assets/bg_profile.jpeg"
 
-const Profile = () => {
+const Userprofile = () => {
     return (
         <div className="p-6 mx-auto  max-w-6xl ">
             <div className=" rounded-lg shadow-2xl object-contains">
@@ -74,4 +74,4 @@ const Profile = () => {
     );
 }
 
-export default Profile
+export default Userprofile

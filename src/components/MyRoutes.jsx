@@ -14,8 +14,10 @@ import Submissions from "../pages/Submissions/Submissions.jsx";
 import Settings from "../pages/Settings/Settings";
 import SharedHomeLayout from "../sharedLayouts/SharedHomeLayout.jsx";
 import Notifications from "../pages/dashboard/Notifications.jsx";
-import Profile from "../pages/dashboard/Profile.jsx"
+import Userprofile from "../pages/dashboard/Userprofile.jsx"
 import NotificationCard from "../pages/dashboard/NotificationCard.jsx";
+import Registration from "../pages/Personnel/Registration.jsx"
+import Profile from "../pages/Personnel/Profile.jsx"
 
 const MyRoutes = () => {
   return (
@@ -35,10 +37,15 @@ const MyRoutes = () => {
             <Route index element={<Dashboard />} />
             <Route path="notifications" element={<Notifications />} />
             <Route path='notifications/:id' element={<NotificationCard />} />
+            <Route path="userprofile" element={<Userprofile />} />
+          </Route>
+
+          <Route path="personnel"  >
+            <Route index element={<Personnel />} />
+            <Route path="registration" element={<Registration />} />
             <Route path="profile" element={<Profile />} />
           </Route>
 
-          <Route path="personnel" element={<Personnel />} />
           <Route path="projects" element={<Projects />} />
           <Route path="teamchat" element={<TeamChat />} />
           <Route path="to-do" element={<Todo />} />
