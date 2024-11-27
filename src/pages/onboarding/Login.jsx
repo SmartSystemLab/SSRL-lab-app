@@ -79,7 +79,7 @@ const Login = () => {
     const data = await res.json();
     if (res.ok) {
       setUserProfile(data.user_profile);
-      navigate("/home");
+      navigate("/home/dashboard");
     } else {
       setLoginError({ status: true, msg: data.message });
     }

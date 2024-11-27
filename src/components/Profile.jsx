@@ -1,9 +1,9 @@
-import DropDownMenu from "../../components/DropDownMenu"
-import Avatar from "../../assets/Avatar.svg"
-import Backdrop from "../../assets/Backdrop.svg"
-import BgProfile from "../../assets/bg_profile.jpeg"
+import DropDownMenu from "./DropDownMenu.jsx"
+import Avatar from "../assets/Avatar.svg"
+import BgProfile from "../assets/bg_profile.jpeg"
 
-const Profile = () => {
+const Profile = ({ user, role, currentUserId }) => {
+    const isOwnProfile = user.id === currentUserId;
     return (
         <div className="p-6 mx-auto  max-w-6xl ">
             <div className=" rounded-lg shadow-2xl object-contains">
@@ -16,10 +16,10 @@ const Profile = () => {
                         backgroundSize: "cover",
                     }}
                 >
-                    <DropDownMenu />
+                    <DropDownMenu role={role} isOwnProfile={isOwnProfile} />
                     <img src={Avatar} alt="avatar" className="m-5" />
                     <p className="font-semibold text-2xl uppercase text-white/75">
-                        Agboola Oluwatofunmi Bolutife
+                        {user.name}
                     </p>
                 </div>
                 <div className="flex flex-col md:flex-row justify-center mt-8 gap-10 px-2 py-6">
@@ -28,42 +28,38 @@ const Profile = () => {
                         <div className="px-6 space-y-4">
                             <p className="flex gap-4">
                                 <span className=" font-medium ">Unique ID:</span>{" "}
-                                AgboolaSSRL001
+                                {user.id}
                             </p>
                             <p className="flex gap-4">
-                                <span className=" font-medium ">Stack:</span> Software
+                                <span className=" font-medium ">Stack:</span>  {user.stack}
                             </p>
                             <p className="flex gap-4">
-                                <span className=" font-medium">Niche:</span> Web Development
+                                <span className=" font-medium">Niche:</span> {user.niche}
                             </p>
                             <p className="flex gap-4">
-                                <span className=" font-medium">Role:</span> Intern
+                                <span className=" font-medium">Role:</span>  {user.role}
                             </p>
                             <p className="flex gap-4">
-                                <span className=" font-medium">Date joined:</span> April 20th
-                                20204
+                                <span className=" font-medium">Date joined:</span>  {user.dateJoined}
                             </p>
                         </div>
                     </div>
                     <div className="md:w-1/2 w-full space-y-4">
                         <p className=" text-xl font-semibold text-center">Bio</p>
                         <div className="px-6 space-y-4 ">
-                            <p>
-                                An upcoming web developer at Smart System Research Laboratory
+                            <p>{user.bio}</p>
+                            <p className="flex gap-4">
+                                <span className=" font-medium">DOB</span>{user.DOB}
                             </p>
                             <p className="flex gap-4">
-                                <span className=" font-medium">DOB:</span> May 1st 2003
+                                <span className=" font-medium">Location </span>{user.location}
                             </p>
                             <p className="flex gap-4">
-                                <span className=" font-medium">Location:</span> Southgate
+                                <span className=" font-medium">Contact</span>{user.contact}
                             </p>
                             <p className="flex gap-4">
-                                <span className=" font-medium">Contact:</span> 09057299991
-                            </p>
-                            <p className="flex gap-4">
-                                <span className=" font-medium">Email:</span>
+                                <span className=" font-medium">Email</span>{user.email}
 
-                                oluwatofunmiagboola1@gmail.com
 
                             </p>
                         </div>

@@ -1,10 +1,7 @@
 import React from "react";
 import { LiaCheckDoubleSolid } from "react-icons/lia";
 import Messages from "../../sharedLayouts/Messages";
-
 import img1 from "../../assets/img1.jpg";
-import SearchBar from "../../components/SearchBar";
-
 const info = [
   {
     name: "Ogunjirin M. Boluwatife",
@@ -56,13 +53,10 @@ const Projects = () => {
     <>
       <div>
         <div className="container">
-
-
-
           {/* Header */}
           <div className="mt-8">
             <div className="uppercase font-bold text-2xl">
-              weekly activity reports
+              projects
             </div>
             <hr className="bg-black" />
 
@@ -87,10 +81,6 @@ const Projects = () => {
                 <Messages
                   info={info}
                   to='/home/projects'
-                // name={item.name}
-                // summary={item.summary}
-                // images={item.images}
-                // duration={item.duration}
                 ></Messages>
 
               </section>
