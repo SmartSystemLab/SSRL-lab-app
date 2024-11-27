@@ -157,7 +157,7 @@ const Personnel = () => {
       hardware.current.classList.add("button-active");
       software.current.classList.remove("button-active");
       hardware.current.classList.remove("button-passive");
-      setToggle("hardware")
+      setToggle("hardware");
     }
   };
   return (
