@@ -55,6 +55,15 @@
   transition: all 200 ease-in-out;
 }
 
+.button-active {
+  @apply bg-[#347832] p-[0.85rem] text-white scale-105;
+}
+
+.button-passive {
+  @apply bg-[#55b752] p-3;
+}
+
+
 ::-webkit-scrollbar {
   display: none;
   height: 8px;

@@ -157,7 +157,7 @@ const Personnel = () => {
       hardware.current.classList.add("button-active");
       software.current.classList.remove("button-active");
       hardware.current.classList.remove("button-passive");
-      setToggle("hardware")
+      setToggle("hardware");
     }
   };
   return (
@@ -188,10 +188,10 @@ const Personnel = () => {
               </div>
 
               {/* Hardware/Software Button */}
-              <div className=" w-max p-2 rounded-full">
+              <div className=" w-max rounded-full">
                 <button
                   ref={software}
-                  className="software  button-active  rounded-l-full"
+                  className="software p-3 button-active  rounded-l-full"
                   onClick={() => handleButtonStyle(software)}
                 >
                   Software
