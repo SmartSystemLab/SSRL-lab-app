@@ -3,21 +3,21 @@ import forgotPassword from "../../assets/ForgotPassword.svg"; // Importing the i
 import Backtosignin from "../../assets/Backtosignin.svg"; // Importing the image
 import CustomLabel from "../../components/CustomLabel.jsx";
 import { validateEmail } from "../../Modules/verifyForm.js";
-import { useGetRequest, usePostRequest } from "../../Modules/useRequest.js";
+import { useRequest } from "../../Modules/useRequest.js";
 import { useUserData } from "../../Modules/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState({ email: "", isError: false, msg: "" });
   const validateEmailRef = useRef();
-  const [sendForgetRequest, forgotLoading] = useGetRequest();
+  const [sendForgetRequest, forgotLoading] = useRequest();
   const [
     sendCredRequest,
     credLoading,
     setCredLoading,
     credError,
     setCredError,
-  ] = usePostRequest();
+  ] = useRequest();
   const { userId } = useUserData();
   const navigate = useNavigate();
 

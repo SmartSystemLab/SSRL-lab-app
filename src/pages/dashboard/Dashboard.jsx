@@ -5,7 +5,7 @@ import Dashboxes from "../../components/Dashboxes";
 // import Write from '../../assets/Write.svg'
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdClose } from "react-icons/md";
-import { useGetRequest } from "../../Modules/useRequest";
+import { useRequest } from "../../Modules/useRequest";
 import { useUserData } from "../../Modules/UserContext";
 import { BiArrowToTop } from "react-icons/bi";
 
@@ -23,13 +23,14 @@ const Dashboard = () => {
     setProfileLoading,
     profileError,
     setProfileError,
-  ] = useGetRequest();
+  ] = useRequest();
 
   const { userProfile } = useUserData();
 
   const getProfile = async () => {
     setProfileLoading(true);
     const res = await sendProfileRequest("home");
+    console.log(res)
     const data = await res.json();
     if (res.ok) {
       if (data) {
@@ -107,6 +108,7 @@ const Dashboard = () => {
   return (
     <div className="p-2 flex flex-col md:flex-row gap-10 justify-start md:items-start items-center w-full overflow-y-auto">
       <div className="space-y-6 py-2 px-6 min-w-[370px] lg:w-2/5 md:w-1/2 w-2/3">
+        {profileError.status && <p>{profileError.msg}</p>}
         <div className="space-y-2 bg-white shadow-lg border-2 p-6 rounded-md text-left">
           <h2 className=" text-navBg2 font-semibold text-xl md:text-2xl lg:text-3xl">
             Welcome {name || "Intern"}!
