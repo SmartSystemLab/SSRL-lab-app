@@ -6,7 +6,7 @@ const Header = ({title}) => {
       <div>{title}</div>
       <div>
         <button>
-          <BsFillPersonPlusFill />
+          <BsFillPersonPlusFill size={24}/>
         </button>
       </div>
     </div>

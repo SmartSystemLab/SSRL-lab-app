@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom"
-const LeadCard = ({ image, name, id }) => {
+
+const PersonnelCard = ({ image, name, id }) => {
   return (
-    <Link to={`/home/personnel/profile/${id}`} className="card" state={{ name, image, id }}>
-      <div className="flex justify-start items-center hover:bg-slate-100">
+    <Link
+      to={`/home/personnel/profile/${id}`}
+      className="card"
+      state={{ name, image, id }}
+    >
+      <div className="flex justify-start items-center hover:bg-navBg1 border rounded-xl">
         <img
           src={image}
-          alt=''
+          alt=""
           className="h-12 w-12 rounded-full m-2  object-cover"
         />
         <div className="ml-3">
@@ -15,4 +20,4 @@ const LeadCard = ({ image, name, id }) => {
     </Link>
   );
 };
-export default LeadCard;
+export default PersonnelCard;

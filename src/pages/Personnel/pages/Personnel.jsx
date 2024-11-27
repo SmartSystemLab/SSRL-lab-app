@@ -1,16 +1,24 @@
 import { MdFastfood } from "react-icons/md";
-import Header from "./component/Header";
-import LeadCard from "./component/LeadCard";
-import img1 from "../../assets/img1.jpg";
-import InternCard from "./component/InternCard";
-import { useRef, useState } from "react";
+import Header from "../component/Header";
+import LeadCard from "../component/PersonnelCard";
+import img1 from "../../../assets/img1.jpg";
+import InternCard from "../component/InternCard";
+import { useRef, useState, useEffect } from "react";
+import Toggle from "../component/Toggle";
+import PersonnelCard from "../component/PersonnelCard";
+import { useRequest } from "../../../Modules/useRequest";
 
 const Personnel = () => {
+  const [toggle, setToggle] = useState("software");
+  const [admins, setAdmins] = useState([])
+
+  const [getAllPersonnels, personnelsLoading, setPersonnelsLoading, personellsError, setPersonnelsError] = useRequest()
+
   const adminsInfo = [
     {
       name: "Ogunjirin M. Boluwatife",
       image: img1,
-      id: 'Ceejayssrl001',
+      id: "Ceejayssrl001",
     },
     {
       name: "Ogunjirin M. Boluwatif",
@@ -23,7 +31,6 @@ const Personnel = () => {
       id: 3,
     },
   ];
-
   const leadsInfo = [
     {
       name: "Ogunjirin M. Boluwatife",
@@ -142,24 +149,41 @@ const Personnel = () => {
       id: 12,
     },
   ];
-  const [toggle, setToggle] = useState("software");
-  const software = useRef(null);
-  const hardware = useRef(null);
-  const handleButtonStyle = (buttonRef) => {
-    if (buttonRef === software) {
-      software.current.classList.remove("button-passive");
-      hardware.current.classList.remove("button-active");
-      software.current.classList.add("button-active");
-      hardware.current.classList.add("button-passive");
-      setToggle("software");
-    } else {
-      software.current.classList.add("button-passive");
-      hardware.current.classList.add("button-active");
-      software.current.classList.remove("button-active");
-      hardware.current.classList.remove("button-passive");
-      setToggle("hardware")
+
+  const getPersonnels = async () => {
+    const res = await getAllPersonnels('view/members')
+    const personnels = await res.json()
+
+    if (res.ok) {
+      setAdmins(personnels.admins)
+      console.log(res, personnels)
     }
-  };
+  }
+
+  useEffect(() => {
+    getPersonnels()
+  }, [])
+
+  // const software = useRef(null);
+  // const hardware = useRef(null);
+
+  // Dabira, this function is not needed. Pls check out my implementation.
+  // const handleButtonStyle = (buttonRef) => {
+  //   if (buttonRef === software) {
+  //     software.current.classList.remove("button-passive");
+  //     hardware.current.classList.remove("button-active");
+  //     software.current.classList.add("button-active");
+  //     hardware.current.classList.add("button-passive");
+  //     setToggle("software");
+  //   } else {
+  //     software.current.classList.add("button-passive");
+  //     hardware.current.classList.add("button-active");
+  //     software.current.classList.remove("button-active");
+  //     hardware.current.classList.remove("button-passive");
+  //     setToggle("hardware");
+  //   }
+  // };
+
   return (
     <>
       <div>
@@ -170,17 +194,22 @@ const Personnel = () => {
             <hr className="bg-black" />
 
             {/* Content */}
-            <div className="mt-8 flex flex-col gap-8">
+            <div className="mt-8 flex flex-col gap-6">
               {/* Admins Section*/}
               <div className="flex flex-col gap-6">
                 <div>
                   <Header title="Admin(s)" />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6">
-                  {adminsInfo.map((item) => {
+                  {admins.map((item) => {
                     return (
-                      <div>
-                        <LeadCard name={item.name} image={item.image} id={item.id} />
+                      <div key={item.uid}>
+                        <PersonnelCard
+                          name={item.fullname}
+                          image={item.avatar}
+                          niche={item.niche}
+                          id={item.uid}
+                        />
                       </div>
                     );
                   })}
@@ -188,22 +217,8 @@ const Personnel = () => {
               </div>
 
               {/* Hardware/Software Button */}
-              <div className=" w-max p-2 rounded-full">
-                <button
-                  ref={software}
-                  className="software  button-active  rounded-l-full"
-                  onClick={() => handleButtonStyle(software)}
-                >
-                  Software
-                </button>
-                <button
-                  ref={hardware}
-                  className="hardware button-passive rounded-r-full"
-                  onClick={() => handleButtonStyle(hardware)}
-                >
-                  Hardware
-                </button>
-              </div>
+              <Toggle setToggle={setToggle} toggle={toggle}/>
+
               {/* Leads Section */}
               <div className="flex flex-col gap-6">
                 <div>
@@ -213,8 +228,12 @@ const Personnel = () => {
                   {leadsInfo.map((item) => {
                     if (item.section === toggle) {
                       return (
-                        <div>
-                          <LeadCard name={item.name} image={item.image} id={item.id} />
+                        <div key={item.id}>
+                          <PersonnelCard
+                            name={item.name}
+                            image={item.image}
+                            id={item.id}
+                          />
                         </div>
                       );
                     }
@@ -231,13 +250,12 @@ const Personnel = () => {
                   {internsInfo.map((item) => {
                     if (item.section === toggle) {
                       return (
-                        <div>
-                          <InternCard
+                        <div key={item.id}>
+                          <PersonnelCard
                             name={item.name}
                             image={item.image}
-                            unit={item.unit}
+                            niche={item.niche}
                             id={item.id}
-
                           />
                         </div>
                       );
