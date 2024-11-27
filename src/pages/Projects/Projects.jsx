@@ -1,96 +1,121 @@
-import React from "react";
-import { LiaCheckDoubleSolid } from "react-icons/lia";
-import Messages from "../../sharedLayouts/Messages";
-import img1 from "../../assets/img1.jpg";
+import ProjectStatus from "./components/ProjectStatus"
+import ProjectList from "./components/ProjectList"
+import img1 from "../../assets/img1.jpg"
+import Add from '../../assets/Add.svg'
+
+
 const info = [
   {
-    name: "Ogunjirin M. Boluwatife",
-    summary: "Sent you reports for week 2",
-    images: img1,
-    duration: "10 mins",
+    name: "SSRL lab app",
+    members: [
+      { name: 'Bolu', img: img1, role: 'Lead' },
+      { name: 'Ceejay', img: img1, role: 'Admin' },
+      { name: 'Dabira', img: img1, role: 'Intern' },
+      { name: 'Banky', img: img1, role: 'Admin' },
+    ],
+
+    deadline: "Jan 2025",
     id: 1,
   },
   {
-    name: "Ogunjirin M. Boluwatife",
-    summary: "Sent you reports for week 2",
-    images: img1,
-    duration: "1 day",
+    name: "SSRL lab app",
+    members: [
+      { name: 'Bolu', img: img1, role: 'Lead' },
+      // { name: 'Ceejay', img: img1, role: 'Admin' },
+      // { name: 'Dabira', img: img1, role: 'Intern' },
+    ],
+
+    deadline: "Jan 2025",
     id: 2,
   },
   {
-    name: "Ogunjirin M. Boluwatife",
-    summary: "Sent you reports for week 2",
-    images: img1,
-    duration: "1 day",
-    id: 3,
+    name: "SSRL lab app",
+    members: [
+      { name: 'Bolu', img: img1, role: 'Lead' },
+      { name: 'Ceejay', img: img1, role: 'Admin' },
+      { name: 'Dabira', img: img1, role: 'Intern' },
+      { name: 'Banky', img: img1, role: 'Admin' },
+    ],
 
+    deadline: "Jan 2025",
+    id: 3,
   },
   {
-    name: "Ogunjirin M. Boluwatife",
-    summary: "Sent you reports for week 2",
-    images: img1,
-    duration: "1 day",
+    name: "SSRL lab app",
+    members: [
+      { name: 'Bolu', img: img1, role: 'Lead' },
+      { name: 'Ceejay', img: img1, role: 'Admin' },
+      { name: 'Dabira', img: img1, role: 'Intern' },
+      { name: 'Banky', img: img1, role: 'Admin' },
+    ],
+
+    deadline: "Jan 2025",
     id: 4,
   },
   {
-    name: "Ogunjirin M. Boluwatife",
-    summary: "Sent you reports for week 2",
-    images: img1,
-    duration: "1 day",
+    name: "SSRL lab app",
+    members: [
+      { name: 'Ceejay', img: img1, role: 'Admin' },
+      { name: 'Ceejay', img: img1, role: 'Admin' },
+      { name: 'Bolu', img: img1, role: 'Lead' },
+      { name: 'Dabira', img: img1, role: 'Intern' },
+      { name: 'Banky', img: img1, role: 'Admin' },
+    ],
+
+    deadline: "Jan 2025",
     id: 5,
   },
   {
-    name: "Ogunjirin M. Boluwatife",
-    summary: "Sent you reports for week 2",
-    images: img1,
-    duration: "1 day",
+    name: "SSRL lab app",
+    members: [
+      { name: 'Bolu', img: img1, role: 'Lead' },
+      { name: 'Ceejay', img: img1, role: 'Admin' },
+      { name: 'Dabira', img: img1, role: 'Intern' },
+      { name: 'Banky', img: img1, role: 'Admin' },
+      { name: 'Banky', img: img1, role: 'Admin' },
+      { name: 'Banky', img: img1, role: 'Admin' },
+    ],
+
+    deadline: "Jan 2025",
     id: 6,
   },
+
 ];
 
 const Projects = () => {
   return (
-    <>
-      <div>
-        <div className="container">
-          {/* Header */}
-          <div className="mt-8">
-            <div className="uppercase font-bold text-2xl">
-              projects
+    <div className="flex flex-col">
+      <div className="mt-4 py-2 px-4">
+        {/* Header */}
+        <div className="flex justify-between items-center">
+          <h1 className="uppercase font-bold text-2xl">Projects</h1>
+          <button className="flex items-center gap-2 text-lg font-medium hover:bg-neutral-100 p-1 hover:rounded-lg transition-all duration-300">
+            <span>Add Project</span> <img src={Add} alt="add" />
+          </button>
+        </div>
+        <hr className="bg-black mt-1" />
+
+        {/* Content */}
+        <div className="mt-8 space-y-6">
+          <p className="text-lg font-medium">Projects you're on</p>
+
+          <div className="project overflow-x-auto">
+
+            <div className="flex gap-10 pb-4 min-w-max">
+              {info.map((project) => (
+                <ProjectStatus key={project.id} project={project} />
+              ))}
             </div>
-            <hr className="bg-black" />
 
-            {/* Content */}
-            <div className="mt-6">
-              <div className="flex justify-between items-center">
-                <div className="flex gap-2 font-semibold">
-                  <div className="underline ">Unread</div>{" "}
-                  <div className="bg-[#FFa500] text-white flex items-center justify-center rounded-full w-6 h-6 text-center">
-                    6
-                  </div>
-                </div>
-                <div className="flex gap-1">
-                  <LiaCheckDoubleSolid className=" text-green-700" />
-                  <p>mark all as read</p>
-                </div>
-              </div>
-
-              {/* Messages */}
-              <section>
-
-                <Messages
-                  info={info}
-                  to='/home/projects'
-                ></Messages>
-
-              </section>
-            </div>
           </div>
         </div>
-      </div >
-    </>
+        <div className='mt-10'>
+          <h1 className="uppercase font-medium text-xl">Projects Report</h1>
+          <ProjectList projectCounts={{ total: 6, completed: 3, inProgress: 3 }} />
+        </div>
+      </div>
+    </div >
   );
 };
 
-
-export default Projects;
+export default Projects

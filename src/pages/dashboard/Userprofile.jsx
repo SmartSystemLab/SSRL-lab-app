@@ -17,11 +17,14 @@ const Userprofile = () => {
     };
 
     return (
-        <Profile
-            user={user}
-            role={user.role}
-            currentUserId={currentUserId}
-        />
+        <div>
+
+            <Profile
+                user={user}
+                role={user.role}
+                currentUserId={currentUserId}
+            />
+        </div>
     )
 }
 
