@@ -12,14 +12,15 @@ import { FaXmark } from "react-icons/fa6";
 import SearchBar from '../components/SearchBar.jsx'
 
 
+
 const navData = [
-  { img: Dashboard, text: "Dashboard", id: 1 },
-  { img: Interns, text: "Personnel", id: 2 },
-  { img: Projects, text: "Projects", id: 3 },
-  { img: Calendar, text: "To-do", id: 4 },
-  { img: TeamChat, text: "Team Chat", id: 5 },
-  { img: Attendance, text: "Submissions", id: 6 },
-  { img: Settings, text: "Settings", id: 7 },
+  { img: Dashboard, text: "Dashboard", path: "/home/dashboard", id: 1 },
+  { img: Interns, text: "Personnel", path: "/home/personnel", id: 2 },
+  { img: Projects, text: "Projects", path: "/home/projects", id: 3 },
+  { img: Calendar, text: "To-do", path: "/home/to-do", id: 4 },
+  { img: TeamChat, text: "Team Chat", path: "/home/teamchat", id: 5 },
+  { img: Attendance, text: "Submissions", path: "/home/submissions", id: 6 },
+  { img: Settings, text: "Settings", path: "/home/settings", id: 7 },
 ];
 
 const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
@@ -44,39 +45,36 @@ const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
       </div>
 
       {/* Navigation Links */}
-      <div className="flex-1 space-y-3 ml-3 px-0 py-4 text-white ">
-        {navData.map(({ img, text }) => {
-          let to = text.toLowerCase();
-          if (text === "Dashboard") to = "/home/dashboard";
-          if (text === "Team Chat") to = "teamchat";
-
-          return (
-            <NavLink
-              to={to}
-              end={text !== "Dashboard"}
-              onClick={toggleSideNav}
-              className={({ isActive }) =>
-                [
-                  isActive ? "activeText activeImg" : "hover:bg-navBg1",
-                  "flex items-center gap-3 p-3 rounded-md transition-colors duration-200",
-                ].join(" ")
-              }
-              key={text}
-            >
-              {({ isActive }) => (
-                <>
-                  <img
-                    src={img}
-                    alt={text}
-                    className={`w-6 h-6 transition-all duration-100 ease-in ${isActive ? 'brightness-0' : ''
-                      }`}
-                  />
-                  <span className="text-sm md:text-base">{text}</span>
-                </>
-              )}
-            </NavLink>
-          );
-        })}
+      <div className="flex-1 space-y-3 ml-3 px-0 py-4 text-white">
+        {navData.map(({ img, text, path }) => (
+          <NavLink
+            to={path}
+            className={({ isActive }) =>
+              [
+                isActive ? "activeText activeImg" : "hover:bg-navBg1",
+                "flex items-center gap-3 p-3 rounded-md transition-colors duration-200",
+              ].join(" ")
+            }
+            key={text}
+          >
+            {({ isActive }) => (
+              <>
+                <img
+                  src={img}
+                  alt={text}
+                  className={`w-6 h-6 transition-all duration-100 ease-in ${isActive ? "brightness-0" : ""
+                    }`}
+                />
+                <span
+                  className={`text-sm md:text-base ${isActive ? "font-bold" : ""
+                    }`}
+                >
+                  {text}
+                </span>
+              </>
+            )}
+          </NavLink>
+        ))}
       </div>
 
       {/* Logout Button */}

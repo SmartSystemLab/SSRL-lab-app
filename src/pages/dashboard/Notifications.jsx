@@ -84,11 +84,6 @@ const Notifications = () => {
                 <Messages
                   info={info}
                   to='/home/dashboard/notifications'
-                // name={item.name}
-                // summary={item.summary}
-                // images={item.images}
-                // duration={item.duration}
-
                 ></Messages>
 
 
