@@ -1,4 +1,3 @@
-import { MdFastfood } from "react-icons/md";
 import Header from "./component/Header";
 import LeadCard from "./component/LeadCard";
 import img1 from "../../assets/img1.jpg";

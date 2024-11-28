@@ -1,4 +1,4 @@
-// import Pro_bg from "./../../../assets/Pro_bg.svg"
+import Pro_bg from "./../../../assets/Pro_bg.svg"
 import { Link } from "react-router-dom"
 const ProjectStatus = ({ project }) => {
     const { name, deadline, members } = project;
@@ -6,7 +6,13 @@ const ProjectStatus = ({ project }) => {
     const extraMembers = members.length - maxVisibleMembers;
     return (
         <Link to={`/home/projects/${project.id}`}>
-            <div className=" w-80 min-w-[240px] shadow-lg rounded-3xl p-4 m-2 text-white bg-navBg2 cursor:pointer" >
+            <div className=" w-80 min-w-[240px] shadow-lg rounded-3xl p-4 m-2 text-white bg-navBg2 cursor:pointer"
+                style={{
+                    backgroundImage: `url(${Pro_bg})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "bottom -5px right -5px",
+                    backgroundSize: "50%",
+                }} >
                 <div className="py-2 px-1">
                     <h3 className="text-xl font-medium">{name}</h3>
                     <p className="text-base mt-1">{deadline}</p>
