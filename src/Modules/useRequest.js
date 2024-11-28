@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { getSessionStorage } from "./getSessionStorage";
 
-const url = "https://ssrl-lab-app-backend.onrender.com"
-// const url = "http://127.0.0.1:5000";
+// const url = "https://ssrl-lab-app-backend.onrender.com"
+const url = "http://127.0.0.1:5000";
 
 export const useGetRequest = () => {
   const [loading, setLoading] = useState(false);
@@ -41,7 +41,7 @@ export const useRequest = () => {
 
   const sendRequest = async (path, method='GET', body={}) => {
     setError({ status: false, msg: "" });
-    console.log("Request sent in module use");
+    console.log("Request sent in module");
 
      let requestOptions = {
        method: method,
@@ -53,13 +53,11 @@ export const useRequest = () => {
 
     if( method !== 'GET') requestOptions = {...requestOptions, body: JSON.stringify(body) };
     
-
-   
     setLoading(true);
 
     let res = await fetch(`${url}/${path}`, requestOptions).catch((error) => {
       setLoading(false);
-      console.log("Error");
+      console.log("Error", error);
       setError({
         status: true,
         msg: "Something went wrong. Check your internet connection or try again in a bit. You can also try logging out and loggin in again.",
