@@ -49,6 +49,7 @@ const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
         {navData.map(({ img, text, path }) => (
           <NavLink
             to={path}
+            onClick={toggleSideNav}
             className={({ isActive }) =>
               [
                 isActive ? "activeText activeImg" : "hover:bg-navBg1",

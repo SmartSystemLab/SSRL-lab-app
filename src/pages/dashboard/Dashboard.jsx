@@ -8,6 +8,7 @@ import { MdClose } from "react-icons/md";
 import { useRequest } from "../../Modules/useRequest";
 import { useUserData } from "../../Modules/UserContext";
 import { BiArrowToTop } from "react-icons/bi";
+import { setSessionStorage } from "../../Modules/getSessionStorage";
 
 const Dashboard = () => {
   const [name, setName] = useState("");
@@ -34,7 +35,8 @@ const Dashboard = () => {
     const data = await res.json();
     if (res.ok) {
       if (data) {
-        const { firstname, notifications, projects, reports, requests } = data;
+        const { firstname, user_role, notifications, projects, reports, requests } = data;
+        setSessionStorage("userRole", user_role)
         setName(firstname);
         setNotifications(notifications);
         setProjects(projects);
@@ -51,33 +53,6 @@ const Dashboard = () => {
   useEffect(() => {
     getProfile();
   }, []);
-
-  //   useEffect(() => {
-  //     setTimeout(() => {
-  //       setProjects([
-  //         { id: 1, name: "Project 1" },
-  //         { id: 2, name: "Project 2" },
-  //       ]);
-  //       setLoading(false);
-  //       setReports([
-  //         { id: 1, name: "Report 1" },
-  //         { id: 2, name: "Report 2" },
-  //       ]);
-  //       setRequests([
-  //         { id: 1, name: "Request 1" },
-  //         { id: 2, name: "Request 2" },
-  //       ]);
-  //       setTodos([
-  //         { id: 1, task: "Complete the proposal" },
-  //         { id: 2, task: "Fix dashboard bug" },
-  //       ]);
-  //       setNotifications([
-  //         { id: 1, message: "New project assigned" },
-  //         { id: 2, message: "Meeting at 3 PM" },
-  //         { id: 3, message: "Task due tomorrow" },
-  //       ]);
-  //     }, 1000);
-  //   }, []);
 
   const dismissNotification = (id) => {
     setNotifications(
