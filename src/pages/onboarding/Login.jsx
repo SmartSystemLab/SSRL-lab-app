@@ -4,10 +4,13 @@ import {
   validateUsername,
   validatePassword,
 } from "../../Modules/verifyForm.js";
-import { useGetRequest, usePostRequest } from "../../Modules/useRequest.js";
+import { useRequest } from "../../Modules/useRequest.js";
 import CustomLabel from "../../components/CustomLabel.jsx";
 import { useNavigate } from "react-router-dom";
-import { getSessionStorage, setSessionStorage } from "../../Modules/getSessionStorage.js";
+import {
+  getSessionStorage,
+  setSessionStorage,
+} from "../../Modules/getSessionStorage.js";
 
 const Login = () => {
   const [username, setUsername] = useState({
@@ -26,14 +29,14 @@ const Login = () => {
     setLoginLoading,
     loginError,
     setLoginError,
-  ] = usePostRequest();
+  ] = useRequest();
   const [
     sendSessionRequest,
     sessionLoading,
     setSessionLoading,
     sessionError,
     setSessionError,
-  ] = useGetRequest();
+  ] = useRequest();
   const validateUsernameRef = useRef(false);
   const validatePasswordRef = useRef(false);
   const checkedRef = useRef();
@@ -42,18 +45,17 @@ const Login = () => {
   const navigate = useNavigate();
 
   const getSession = async () => {
-    console.log("Okay");
-    const res = await sendSessionRequest("session/new");
+    const res = await sendSessionRequest(`session/new/${getSessionStorage("session_id", "") || "new"}`);
     const sess = await res.json();
     if (res.ok) {
-      setSessionStorage("session_id", sess.session_id);
+      if (Object.keys(sess.old_session).length === 0 || sess.old_session.expired === "true") {
+        setSessionStorage("session_id", sess.new_session.session_id);
+    }
     }
   };
 
   useEffect(() => {
-    if (!getSessionStorage("session_id", "")) {
-      getSession();
-    }
+    getSession()
   }, []);
 
   const handleFormSubmit = (event) => {
@@ -69,7 +71,7 @@ const Login = () => {
   };
 
   const validateUser = async () => {
-    const res = await sendLoginRequest("login", {
+    const res = await sendLoginRequest("login", "POST", {
       user_id: username.name,
       pwd: password.password,
     });

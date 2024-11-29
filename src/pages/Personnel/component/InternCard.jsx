@@ -10,7 +10,7 @@ const InternCard = ({ name, image, unit, id }) => {
         />
         <div className="ml-3">
           <h1 className="text font-bold text-gray-700">{name}</h1>
-          <h1>{unit}</h1>
+          {/* <h1>{unit}</h1> */}
           {/* <p>{role}</p> */}
         </div>
       </div>

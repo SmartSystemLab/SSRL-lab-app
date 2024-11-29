@@ -10,21 +10,21 @@ import SharedHomeLayout from "../sharedLayouts/SharedHomeLayout.jsx";
 
 import Dashboard from "../pages/dashboard/Dashboard";
 import Notifications from "../pages/dashboard/Notifications.jsx";
-import Userprofile from "../pages/dashboard/Userprofile.jsx"
+import Userprofile from "../pages/dashboard/Userprofile.jsx";
 import NotificationCard from "../pages/dashboard/NotificationCard.jsx";
 
-import Personnel from "../pages/Personnel/Personnel.jsx";
-import Registration from "../pages/Personnel/Registration.jsx"
-import ProfileCard from "../pages/Personnel/ProfileCard.jsx"
+import Personnel from "../pages/Personnel/pages/Personnel.jsx";
+import Registration from "../pages/Personnel/pages/Registration.jsx";
+// import ProfileCard from "../pages/Personnel/ProfileCard.jsx";
 
 import Projects from "../pages/Projects/Projects.jsx";
-import ProjectCard from "../pages/Projects/ProjectCard.jsx"
-import CreateProject from "../pages/Projects/CreateProject.jsx"
+import ProjectCard from "../pages/Projects/ProjectCard.jsx";
 
 import Todo from "../pages/Todo/Todo.jsx";
 import TeamChat from "../pages/TeamChat/TeamChat";
 import Submissions from "../pages/Submissions/Submissions.jsx";
 import Settings from "../pages/Settings/Settings";
+import ProfileCard from "../pages/Personnel/component/ProfileCard.jsx";
 
 const MyRoutes = () => {
   return (
@@ -43,20 +43,19 @@ const MyRoutes = () => {
           <Route path="dashboard">
             <Route index element={<Dashboard />} />
             <Route path="notifications" element={<Notifications />} />
-            <Route path='notifications/:id' element={<NotificationCard />} />
+            <Route path="notifications/:id" element={<NotificationCard />} />
             <Route path="user-profile" element={<Userprofile />} />
           </Route>
 
-          <Route path="personnel"  >
+          <Route path="personnel">
             <Route index element={<Personnel />} />
             <Route path="registration" element={<Registration />} />
             <Route path="profile/:id" element={<ProfileCard />} />
           </Route>
 
-          <Route path="projects"  >
+          <Route path="projects">
             <Route index element={<Projects />} />
-            <Route path=':id' element={<ProjectCard />} />
-            <Route path='add-project' element={<CreateProject />} />
+            <Route path=":id" element={<ProjectCard />} />
           </Route>
 
           <Route path="teamchat" element={<TeamChat />} />

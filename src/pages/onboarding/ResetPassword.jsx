@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom"
 import CustomLabel from "../../components/CustomLabel";
 import { validatePassword } from "../../Modules/verifyForm";
-import { usePostRequest } from "../../Modules/useRequest";
+import { useRequest } from "../../Modules/useRequest";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState({
@@ -26,7 +26,7 @@ const ResetPassword = () => {
     setResetLoading,
     resetError,
     setResetError,
-  ] = usePostRequest();
+  ] = useRequest();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
