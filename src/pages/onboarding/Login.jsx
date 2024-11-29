@@ -108,6 +108,9 @@ const Login = () => {
               }}
               isError={username.isError}
               errorMessage={username.error}
+              labelCLassName="text-[#666666] inline-block"
+              inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
+              placeholder='Enter userId'
             />
             <CustomLabel
               htmlFor="password"
@@ -122,6 +125,9 @@ const Login = () => {
               }
               isError={password.isError}
               errorMessage={password.error}
+              labelCLassName="text-[#666666] inline-block"
+              inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
+              placeholder='Enter password'
             />
           </div>
 

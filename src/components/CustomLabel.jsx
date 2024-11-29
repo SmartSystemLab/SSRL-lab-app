@@ -10,17 +10,20 @@ const CustomLabel = ({
     onBlur,
     isError,
     errorMessage,
-
+    inputClassName,
+    labelCLassName,
+    placeholder,
 }) => {
     return (
         <div>
-            <label htmlFor={htmlFor} className="text-[#666666] inline-block"> {labelText} </label>
+            <label htmlFor={htmlFor} className={labelCLassName}> {labelText} </label>
             <input
                 type={inputType}
                 value={inputValue}
                 onChange={onChange}
                 onBlur={onBlur}
-                className=" appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
+                className={inputClassName}
+                placeholder={placeholder}
             />
             {isError && <InputError> {errorMessage} </InputError>}
         </div>

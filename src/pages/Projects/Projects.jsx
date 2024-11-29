@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import ProjectStatus from "./components/ProjectStatus"
 import ProjectList from "./components/ProjectList"
 import img1 from "../../assets/img1.jpg"
@@ -89,9 +90,11 @@ const Projects = () => {
         {/* Header */}
         <div className="flex justify-between items-center">
           <h1 className="uppercase font-bold text-2xl">Projects</h1>
-          <button className="flex items-center gap-2 text-lg font-medium hover:bg-neutral-100 p-1 hover:rounded-lg transition-all duration-300">
-            <span>Add Project</span> <img src={Add} alt="add" />
-          </button>
+          <Link to={`/home/projects/add-project`}>
+            <button className="flex items-center gap-2 text-lg font-medium hover:bg-neutral-100 p-1 hover:rounded-lg transition-all duration-300">
+              <span>Add Project</span> <img src={Add} alt="add" />
+            </button>
+          </Link>
         </div>
         <hr className="bg-black mt-1" />
 

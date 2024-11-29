@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom"
 import forgotPassword from "../../assets/ForgotPassword.svg"; // Importing the image
 import Backtosignin from "../../assets/Backtosignin.svg"; // Importing the image
 import CustomLabel from "../../components/CustomLabel.jsx";
@@ -82,6 +83,9 @@ const ForgotPassword = () => {
               onBlur={() => validateEmail(email, setEmail, validateEmailRef)}
               isError={email.isError}
               errorMessage={email.msg}
+              labelCLassName="text-[#666666] inline-block"
+              inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
+              placeholder='Enter email address'
             />
           </div>
 
@@ -99,12 +103,12 @@ const ForgotPassword = () => {
         <div className="text-center  font-medium text-base flex justify-center items-center mt-2 gap-3">
           <img src={Backtosignin} alt="BacK" />
 
-          <a
-            href="/"
+          <Link
+            to="/"
             className="text-[#666666] opacity-75 font-medium text-base"
           >
             Back to Sign in{" "}
-          </a>
+          </Link>
         </div>
       </div>
     </div>
