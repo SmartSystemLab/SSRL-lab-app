@@ -32,7 +32,7 @@ const Toggle = ({setToggle, toggle}) => {
   return (
     <div className=" w-max p-1 rounded-full border ">
       <button
-        className={`software px-2 py-1 button-active ${
+        className={`software px-2 py-1 ${
           toggle === "software" && "rounded-l-full bg-navBg2 text-white"
         }`}
         onClick={() => setToggle("software")}
@@ -40,7 +40,7 @@ const Toggle = ({setToggle, toggle}) => {
         Software
       </button>
       <button
-        className={`hardware px-2 py-1   ${
+        className={`hardware px-2 py-1 ${
           toggle === "hardware" && "rounded-r-full text-white bg-navBg2"
         }`}
         onClick={() => setToggle("hardware")}

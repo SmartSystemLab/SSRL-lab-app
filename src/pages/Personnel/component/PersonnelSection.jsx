@@ -21,10 +21,7 @@ const PersonnelSection = ({ personnels, title, loading }) => {
               return (
                 <div key={uid}>
                   <PersonnelCard
-                    name={fullname}
-                    image={avatar}
-                    niche={niche}
-                    id={uid}
+                    personnel={personnel}
                   />
                 </div>
               );
@@ -33,7 +30,7 @@ const PersonnelSection = ({ personnels, title, loading }) => {
             <p>No {title} ...</p>
           )
         ) : (
-          <p>loading ...</p>
+          <p>loading ...</p> /*Tofunmi, add proper skeletons here*/
         )}
       </div>
     </div>
