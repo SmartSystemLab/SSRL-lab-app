@@ -16,7 +16,7 @@ const Profile = ({ user, userRole, currentUserId }) => {
           className="relative flex flex-col justify-center rounded-t-lg items-center p-6 md:p-12 gap-4 bg-no-repeat bg-center bg-cover"
           style={{ backgroundImage: `url(${BgProfile})` }}
         >
-          <DropDownMenu />
+          <DropDownMenu uid={uid}/>
           <img
             src={avatar !== "NIL" ? avatar : avatarPlaceholder}
             alt="avatar"

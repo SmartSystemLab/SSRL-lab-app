@@ -59,6 +59,7 @@ const Login = () => {
   }, []);
 
   const handleFormSubmit = (event) => {
+    getSession()
     event.preventDefault();
     validateUsername(username, setUsername, validateUsernameRef);
     if (validateUsernameRef) setUserId(username.username);

@@ -1,14 +1,27 @@
 import { useState } from "react";
 import { FaEllipsisV } from "react-icons/fa";
-import Edit from "../../../assets/Edit.svg";
-import Remove from "../../../assets/Remove.svg";
-import Suspend from "../../../assets/Suspend.svg";
-import Add from "../../../assets/Add.svg";
 import { getSessionStorage } from "../../../Modules/getSessionStorage";
+import { Edit, Trash2, TriangleAlert, UserRoundCog, UserRoundPlus } from "lucide-react";
+import { useRequest } from "../../../Modules/useRequest";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
-const DropDownMenu = () => {
+const DropDownMenu = ({uid}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const userRole = getSessionStorage("userRole", "");
+  const [useAdminRequest] = useRequest()
+  const navigate = useNavigate()
+
+  const handleAdmin = async () => {
+    const res = await useAdminRequest(`admin/add_lead/${uid}`, 'PATCH')
+    const data = await res.json()
+
+    if (res.ok) {
+      toast.success(data.message)
+      // navigate(-1)
+    }
+    console.log(res)
+  }
 
   return (
     <div
@@ -27,28 +40,34 @@ const DropDownMenu = () => {
               <button
                 className={`items-center gap-2 w-full px-4 py-2 text-sm text-zinc-700 hover:bg-gray-100 border-b flex`}
               >
-                <img src={Edit} alt="Edit" className="w-4 h-4" />
+                <Edit />
                 <p>Edit</p>
               </button>
 
               {userRole !== "Lead" && (
                 <>
-                  <button className="flex items-center w-full gap-2 px-4 py-2 text-sm text-zinc-700 hover:bg-gray-100 border-b">
-                    <img src={Suspend} alt="Suspend" className="w-4 h-4" />
+                  <button className="flex items-center w-full gap-2 px-4 py-2 text-sm text-zinc-700 hover:bg-yellow-50 border-b">
+                    <TriangleAlert color='gold' />
                     <span>Suspend</span>
                   </button>
 
-                  <button className="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 border-b">
-                    <img src={Remove} alt="Delete" className="w-4 h-4" />
-                    <span>Delete</span>
+                  <button className="flex items-center w-full gap-2 px-4 py-2 text-sm hover:bg-green-50 border-b" onClick={handleAdmin}>
+                    <UserRoundCog />
+                    <span>Make an Admin</span>
                   </button>
                 </>
               )}
 
               <button className="flex items-center w-full gap-2 px-4 py-2 text-sm text-zinc-700 hover:bg-green-50 border-b">
-                <img src={Add} alt="Suspend" className="w-4 h-4" />
-                <span>Make Lead</span>
+                <UserRoundPlus />
+                <span>Make a Lead</span>
               </button>
+
+              {userRole !== "Lead" &&  <button className="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 border-b">
+                    <Trash2 color='red' />
+                    <span>Delete</span>
+                  </button>
+}
             </div>
           </div>
         )}
