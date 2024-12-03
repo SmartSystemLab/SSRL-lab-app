@@ -27,7 +27,7 @@ const PersonnelSection = ({ personnels, title, loading }) => {
               );
             })
           ) : (
-            <p>No {title} ...</p>
+            <p>No {title} found...</p>
           )
         ) : (
           <p>loading ...</p> /*Tofunmi, add proper skeletons here*/
