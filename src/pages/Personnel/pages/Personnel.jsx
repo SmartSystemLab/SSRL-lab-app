@@ -1,11 +1,5 @@
-import { MdFastfood } from "react-icons/md";
-import Header from "../component/Header";
-import LeadCard from "../component/PersonnelCard";
-import img1 from "../../../assets/img1.jpg";
-import InternCard from "../component/InternCard";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Toggle from "../component/Toggle";
-import PersonnelCard from "../component/PersonnelCard";
 import { useRequest } from "../../../Modules/useRequest";
 import PersonnelSection from "../component/PersonnelSection";
 
@@ -63,7 +57,6 @@ const Personnel = () => {
 
             {/* Content */}
             <div className="mt-8 flex flex-col gap-6">
-
               {/* Admins Section*/}
               <PersonnelSection
                 title="Admin(s)"

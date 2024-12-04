@@ -7,7 +7,6 @@ const ProfileCard = () => {
   const { id } = useParams();
   const { state } = useLocation();
   const user = state;
-  // console.log(user, id, currentUserId)
 
   return (
     <div>
