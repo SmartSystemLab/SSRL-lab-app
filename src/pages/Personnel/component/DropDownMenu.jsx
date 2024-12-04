@@ -6,7 +6,7 @@ import { useRequest } from "../../../Modules/useRequest";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-const DropDownMenu = ({uid, role, suspended}) => {
+const DropDownMenu = ({ uid, role, suspended }) => {
   const [setProfileRole, profileRole] = role
   const [suspend, setSuspend] = suspended
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -84,9 +84,8 @@ const DropDownMenu = ({uid, role, suspended}) => {
 
   return (
     <div
-      className={`absolute top-10 right-10 ${
-        userRole !== "Intern" ? "block" : "hidden"
-      }`}
+      className={`absolute top-10 right-10 ${userRole !== "Intern" ? "block" : "hidden"
+        }`}
     >
       <div className="relative">
         <button onClick={() => setIsMenuOpen(!isMenuOpen)}>

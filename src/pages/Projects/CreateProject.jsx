@@ -19,7 +19,7 @@ const CreateProject = () => {
     const [selectedLeads, setSelectedLeads] = useState([])
     const [showMembersDropdown, setShowMembersDropdown] = useState(false)
     const [showLeadsDropdown, setShowLeadsDropdown] = useState(false)
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
 
     const toggleMembersDropdown = () => setShowMembersDropdown(!showMembersDropdown)
@@ -30,6 +30,12 @@ const CreateProject = () => {
         { id: '2', name: 'Ceejay ' },
         { id: '3', name: 'Adebola' },
         { id: '4', name: 'dabira' },
+        { id: '5', name: 'Bolu' },
+        { id: '5', name: 'Bolu' },
+        { id: '5', name: 'Bolu' },
+        { id: '5', name: 'Bolu' },
+        { id: '5', name: 'Bolu' },
+        { id: '5', name: 'Bolu' },
         { id: '5', name: 'Bolu' },
     ]
 
@@ -61,6 +67,7 @@ const CreateProject = () => {
         e.preventDefault()
         const newProject = [projectTitle, projectDescription, objectives, selectedDate, selectedLeads, selectedMembers]
         console.log(newProject)
+        navigate(-1)
     }
 
 
@@ -171,32 +178,30 @@ const CreateProject = () => {
                         </div>
 
                         {/* Select Leads */}
-                        {selectedMembers.length > 0 && (
-                            <div className="relative w-full md:w-1/2">
-                                <button
-                                    type="button"
-                                    onClick={toggleLeadsDropdown}
-                                    className="px-4 py-2 bg-green-600 text-white rounded-lg flex gap-2 items-center"
-                                >
-                                    <span>Add Team Leads</span> <IoIosArrowDown className=' w-4 h-4' />
-                                </button>
-                                {showLeadsDropdown && (
-                                    <div className="absolute z-10 w-3/4 bg-white border border-gray-300 rounded-lg mt-2 max-h-48 overflow-y-auto">
-                                        {selectedMembers.map((member) => (
-                                            <div key={member.id} className="flex items-center p-1">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={selectedLeads.some((lead) => lead.id === member.id)}
-                                                    onChange={() => handleLeadSelect(member)}
-                                                    className="mr-2"
-                                                />
-                                                {member.name}
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-                        )}
+                        <div className="relative w-full md:w-1/2">
+                            <button
+                                type="button"
+                                onClick={toggleLeadsDropdown}
+                                className="px-4 py-2 bg-green-600 text-white rounded-lg flex gap-2 items-center"
+                            >
+                                <span>Add Team Leads</span> <IoIosArrowDown className=' w-4 h-4' />
+                            </button>
+                            {showLeadsDropdown && selectedMembers.length > 0 && (
+                                <div className="absolute z-10 w-3/4 bg-white border border-gray-300 rounded-lg mt-2 max-h-48 overflow-y-auto">
+                                    {selectedMembers.map((member) => (
+                                        <div key={member.id} className="flex items-center p-1">
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedLeads.some((lead) => lead.id === member.id)}
+                                                onChange={() => handleLeadSelect(member)}
+                                                className="mr-2"
+                                            />
+                                            {member.name}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <button
                         type='submit'

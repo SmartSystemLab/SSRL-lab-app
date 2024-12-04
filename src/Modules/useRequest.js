@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { getSessionStorage } from "./getSessionStorage";
 
-// const url = "https://ssrl-lab-app-backend.onrender.com"
-const url = "http://127.0.0.1:5000";
+const url = "https://ssrl-lab-app-backend.onrender.com"
+// const url = "http://127.0.0.1:5000";
 
 export const useGetRequest = () => {
   const [loading, setLoading] = useState(false);
@@ -39,20 +39,20 @@ export const useRequest = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ status: false, msg: undefined });
 
-  const sendRequest = async (path, method='GET', body={}) => {
+  const sendRequest = async (path, method = 'GET', body = {}) => {
     setError({ status: false, msg: "" });
     console.log("Request sent in module");
 
-     let requestOptions = {
-       method: method,
-       headers: {
-         "Content-Type": "application/json",
-         "Session_ID": getSessionStorage("session_id", ""),
-       },
-     };
+    let requestOptions = {
+      method: method,
+      headers: {
+        "Content-Type": "application/json",
+        "Session_ID": getSessionStorage("session_id", ""),
+      },
+    };
 
-    if( method !== 'GET') requestOptions = {...requestOptions, body: JSON.stringify(body) };
-    
+    if (method !== 'GET') requestOptions = { ...requestOptions, body: JSON.stringify(body) };
+
     setLoading(true);
 
     let res = await fetch(`${url}/${path}`, requestOptions).catch((error) => {
