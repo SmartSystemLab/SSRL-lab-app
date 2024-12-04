@@ -51,7 +51,8 @@ const Personnel = () => {
 
             {personellsError.status && (
               <p className="text-red-500 mt-2">
-                Couldn't load personnels. {personellsError.msg}
+                {personellsError.msg}
+                <p className="hover:underline hover:cursor-pointer" onClick={getPersonnels}>Retry?</p> 
               </p>
             )}
 

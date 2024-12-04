@@ -17,8 +17,8 @@ import Personnel from "../pages/Personnel/pages/Personnel.jsx";
 import Registration from "../pages/Personnel/pages/Registration.jsx";
 // import ProfileCard from "../pages/Personnel/ProfileCard.jsx";
 
-import Projects from "../pages/Projects/Projects.jsx";
-import ProjectCard from "../pages/Projects/ProjectCard.jsx";
+import Projects from "../pages/Projects/pages/Projects.jsx";
+import SingleProject from "../pages/Projects/pages/SingleProject.jsx";
 
 import Todo from "../pages/Todo/Todo.jsx";
 import TeamChat from "../pages/TeamChat/TeamChat";
@@ -55,7 +55,7 @@ const MyRoutes = () => {
 
           <Route path="projects">
             <Route index element={<Projects />} />
-            <Route path=":id" element={<ProjectCard />} />
+            <Route path=":id" element={<SingleProject />} />
           </Route>
 
           <Route path="teamchat" element={<TeamChat />} />

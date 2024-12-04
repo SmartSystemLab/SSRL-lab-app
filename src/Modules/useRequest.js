@@ -60,7 +60,7 @@ export const useRequest = () => {
       console.log("Error", error);
       setError({
         status: true,
-        msg: "Something went wrong. Check your internet connection or try again in a bit. You can also try logging out and loggin in again.",
+        msg: "Something went wrong. Check your internet connection or try again in a bit. You can also try logging out and logging in again.",
       });
       return new Error(error);
     });

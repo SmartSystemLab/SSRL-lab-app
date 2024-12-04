@@ -8,7 +8,7 @@ const ProjectList = ({ projectCounts }) => {
                     <img src={Dot} alt="dot" className="w-2.5 h-2.5 mr-2" />
                     Total projects
                 </div>
-                <span className="bg-logo text-white  rounded-full px-2 py-0.5 text-sm font-medium">
+                <span className="bg-logo text-white rounded-full px-2 py-0.5 text-sm font-medium">
                     {projectCounts.total || 0}
                 </span>
             </li>

@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom'
-import Dropdown from './components/Dropdown'
-import Dot from './../../assets/Dot.svg'
+import Dropdown from '../components/Dropdown'
+import Dot from './../../../assets/Dot.svg'
 
-const ProjectCard = () => {
+const SingleProject = () => {
     const { id } = useParams();
 
     // Dummy data for objectives, leads, and team members
@@ -94,4 +94,4 @@ const ProjectCard = () => {
     );
 };
 
-export default ProjectCard
+export default SingleProject
