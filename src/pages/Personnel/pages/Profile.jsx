@@ -4,8 +4,8 @@ import BgProfile from "../../../assets/bg_profile.jpeg";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
-const Profile = ({ user, userRole, currentUserId }) => {
-  const isOwnProfile = user.id === currentUserId;
+const Profile = ({ user, userRole, }) => {
+  // const isOwnProfile = user.id === currentUserId;
   const currentLocation = useLocation();
   const profile = currentLocation.state;
   const { fullname, avatar, email, bday, datetime_created, niche, stack, uid, location, role, phone_num, bio, suspended } = profile;

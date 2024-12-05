@@ -1,87 +1,86 @@
 import ProjectCard from "../components/ProjectCard"
 import ProjectList from "../components/ProjectList"
-import img1 from "../../../assets/img1.jpg"
 import { Plus } from "lucide-react";
 import {useRequest} from "../../../Modules/useRequest"
 import { useEffect, useState } from "react";
 
-const info = [
-  {
-    name: "SSRL lab app",
-    members: [
-      { name: 'Bolu', img: img1, role: 'Lead' },
-      { name: 'Ceejay', img: img1, role: 'Admin' },
-      { name: 'Dabira', img: img1, role: 'Intern' },
-      { name: 'Banky', img: img1, role: 'Admin' },
-    ],
+// const info = [
+//   {
+//     name: "SSRL lab app",
+//     members: [
+//       { name: 'Bolu', img: img1, role: 'Lead' },
+//       { name: 'Ceejay', img: img1, role: 'Admin' },
+//       { name: 'Dabira', img: img1, role: 'Intern' },
+//       { name: 'Banky', img: img1, role: 'Admin' },
+//     ],
 
-    deadline: "Jan 2025",
-    id: 1,
-  },
-  {
-    name: "SSRL lab app",
-    members: [
-      { name: 'Bolu', img: img1, role: 'Lead' },
-      // { name: 'Ceejay', img: img1, role: 'Admin' },
-      // { name: 'Dabira', img: img1, role: 'Intern' },
-    ],
+//     deadline: "Jan 2025",
+//     id: 1,
+//   },
+//   {
+//     name: "SSRL lab app",
+//     members: [
+//       { name: 'Bolu', img: img1, role: 'Lead' },
+//       // { name: 'Ceejay', img: img1, role: 'Admin' },
+//       // { name: 'Dabira', img: img1, role: 'Intern' },
+//     ],
 
-    deadline: "Jan 2025",
-    id: 2,
-  },
-  {
-    name: "SSRL lab app",
-    members: [
-      { name: 'Bolu', img: img1, role: 'Lead' },
-      { name: 'Ceejay', img: img1, role: 'Admin' },
-      { name: 'Dabira', img: img1, role: 'Intern' },
-      { name: 'Banky', img: img1, role: 'Admin' },
-    ],
+//     deadline: "Jan 2025",
+//     id: 2,
+//   },
+//   {
+//     name: "SSRL lab app",
+//     members: [
+//       { name: 'Bolu', img: img1, role: 'Lead' },
+//       { name: 'Ceejay', img: img1, role: 'Admin' },
+//       { name: 'Dabira', img: img1, role: 'Intern' },
+//       { name: 'Banky', img: img1, role: 'Admin' },
+//     ],
 
-    deadline: "Jan 2025",
-    id: 3,
-  },
-  {
-    name: "SSRL lab app",
-    members: [
-      { name: 'Bolu', img: img1, role: 'Lead' },
-      { name: 'Ceejay', img: img1, role: 'Admin' },
-      { name: 'Dabira', img: img1, role: 'Intern' },
-      { name: 'Banky', img: img1, role: 'Admin' },
-    ],
+//     deadline: "Jan 2025",
+//     id: 3,
+//   },
+//   {
+//     name: "SSRL lab app",
+//     members: [
+//       { name: 'Bolu', img: img1, role: 'Lead' },
+//       { name: 'Ceejay', img: img1, role: 'Admin' },
+//       { name: 'Dabira', img: img1, role: 'Intern' },
+//       { name: 'Banky', img: img1, role: 'Admin' },
+//     ],
 
-    deadline: "Jan 2025",
-    id: 4,
-  },
-  {
-    name: "SSRL lab app",
-    members: [
-      { name: 'Ceejay', img: img1, role: 'Admin' },
-      { name: 'Ceejay', img: img1, role: 'Admin' },
-      { name: 'Bolu', img: img1, role: 'Lead' },
-      { name: 'Dabira', img: img1, role: 'Intern' },
-      { name: 'Banky', img: img1, role: 'Admin' },
-    ],
+//     deadline: "Jan 2025",
+//     id: 4,
+//   },
+//   {
+//     name: "SSRL lab app",
+//     members: [
+//       { name: 'Ceejay', img: img1, role: 'Admin' },
+//       { name: 'Ceejay', img: img1, role: 'Admin' },
+//       { name: 'Bolu', img: img1, role: 'Lead' },
+//       { name: 'Dabira', img: img1, role: 'Intern' },
+//       { name: 'Banky', img: img1, role: 'Admin' },
+//     ],
 
-    deadline: "Jan 2025",
-    id: 5,
-  },
-  {
-    name: "SSRL lab app",
-    members: [
-      { name: 'Bolu', img: img1, role: 'Lead' },
-      { name: 'Ceejay', img: img1, role: 'Admin' },
-      { name: 'Dabira', img: img1, role: 'Intern' },
-      { name: 'Banky', img: img1, role: 'Admin' },
-      { name: 'Banky', img: img1, role: 'Admin' },
-      { name: 'Banky', img: img1, role: 'Admin' },
-    ],
+//     deadline: "Jan 2025",
+//     id: 5,
+//   },
+//   {
+//     name: "SSRL lab app",
+//     members: [
+//       { name: 'Bolu', img: img1, role: 'Lead' },
+//       { name: 'Ceejay', img: img1, role: 'Admin' },
+//       { name: 'Dabira', img: img1, role: 'Intern' },
+//       { name: 'Banky', img: img1, role: 'Admin' },
+//       { name: 'Banky', img: img1, role: 'Admin' },
+//       { name: 'Banky', img: img1, role: 'Admin' },
+//     ],
 
-    deadline: "Jan 2025",
-    id: 6,
-  },
+//     deadline: "Jan 2025",
+//     id: 6,
+//   },
 
-];
+// ];
 
 const Projects = () => {
   const [projects, setProjects] = useState([])
@@ -93,6 +92,7 @@ const Projects = () => {
     const data = await res.json()
 
     if(res.ok) {
+      console.log(data.projects)
       setProjects(data.projects)
     }
     else {
@@ -114,7 +114,7 @@ const Projects = () => {
           <button className="flex items-center gap-2 text-lg font-medium hover:bg-neutral-100 p-2 hover:rounded-lg transition-all duration-300">
             <span>Add Project</span>
             <div className="p-[2px] bg-logo rounded-full">
-              <Plus color="white"/>
+              <Plus color="white" />
             </div>
           </button>
         </div>
@@ -124,22 +124,38 @@ const Projects = () => {
         <div className="mt-8 space-y-6">
           <p className="text-lg font-medium">Projects you're on</p>
 
-          <div className="project overflow-x-auto">
+          {projectsError.status && (
+            <p className="text-red-500 mt-2">
+              {projectsError.msg}
+              <p
+                className="hover:underline hover:cursor-pointer"
+                onClick={getProjects}
+              >
+                Retry?
+              </p>
+            </p>
+          )}
 
-            <div className="flex pb-4 min-w-max">
-              {projectsLoading ? projects.map((project) => (
-                <ProjectCard key={project._id} project={project} />
-              )) : <p>Loading...</p>} {/*Work on better loading skeletons */}
+          <div className="project overflow-x-auto pl-4">
+            <div className="flex pb-4 min-w-max gap-6">
+              {!projectsError.status ? projectsLoading ? (
+                <p>Loading...</p> /*Please add better loading skeletons */
+              ) : (
+                projects.map((project) => (
+                  <ProjectCard key={project._id} project={project} />
+                ))
+              ) : <p>No projects found...</p>}
             </div>
-
           </div>
         </div>
-        <div className='mt-10'>
+        <div className="mt-10">
           <h1 className="uppercase font-medium text-xl">Projects Report</h1>
-          <ProjectList projectCounts={{ total: 6, completed: 3, inProgress: 3 }} />
+          <ProjectList
+            projectCounts={{ total: 6, completed: 3, inProgress: 3 }}
+          />
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
