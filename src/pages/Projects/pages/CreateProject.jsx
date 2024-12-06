@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { Plus } from "lucide-react";
 
 const CreateProject = () => {
   const [projectTitle, setProjectTitle] = useState("");
@@ -28,12 +29,12 @@ const CreateProject = () => {
     { id: "3", name: "Adebola" },
     { id: "4", name: "dabira" },
     { id: "5", name: "Bolu" },
-    { id: "5", name: "Bolu" },
-    { id: "5", name: "Bolu" },
-    { id: "5", name: "Bolu" },
-    { id: "5", name: "Bolu" },
-    { id: "5", name: "Bolu" },
-    { id: "5", name: "Bolu" },
+    // { id: "5", name: "Bolu" },
+    // { id: "5", name: "Bolu" },
+    // { id: "5", name: "Bolu" },
+    // { id: "5", name: "Bolu" },
+    // { id: "5", name: "Bolu" },
+    // { id: "5", name: "Bolu" },
   ];
 
   const handleMemberSelect = (intern) => {

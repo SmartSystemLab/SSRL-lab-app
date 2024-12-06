@@ -1,8 +1,9 @@
-import ProjectCard from "../components/ProjectCard"
-import ProjectList from "../components/ProjectList"
+import ProjectCard from "../components/ProjectCard";
+import ProjectList from "../components/ProjectList";
 import { Plus } from "lucide-react";
-import {useRequest} from "../../../Modules/useRequest"
+import { useRequest } from "../../../Modules/useRequest";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 // const info = [
 //   {
@@ -83,27 +84,43 @@ import { useEffect, useState } from "react";
 // ];
 
 const Projects = () => {
-  const [projects, setProjects] = useState([])
-  const [projectsRequest, projectsLoading, setProjectsLoading, projectsError, setProjectsError] = useRequest()
+  const [projects, setProjects] = useState([]);
+  const [projectsStats, setProjectsStats] = useState({
+    total: 0,
+    completed: 0,
+    inProgress: 0,
+  });
+  const [
+    projectsRequest,
+    projectsLoading,
+    setProjectsLoading,
+    projectsError,
+    setProjectsError,
+  ] = useRequest();
 
   const getProjects = async () => {
-    setProjectsLoading(true)
-    const res = await projectsRequest('project/get_all')
-    const data = await res.json()
+    setProjectsLoading(true);
+    const res = await projectsRequest("project/get_all");
+    const data = await res.json();
 
-    if(res.ok) {
-      console.log(data.projects)
-      setProjects(data.projects)
+    if (res.ok) {
+      console.log(data.projects);
+      setProjects(data.projects);
+      const total = data.projects.length;
+      const completed = data.projects.filter(
+        (project) => project.status === "Completed"
+      ).length;
+      const inProgress = total - completed;
+      setProjectsStats({ total, completed, inProgress });
+    } else {
+      setProjectsError({ status: true, msg: data.message });
     }
-    else {
-      setProjectsError({status: true, msg: data.message})
-    }
-    setProjectsLoading(false)
-  }
+    setProjectsLoading(false);
+  };
 
   useEffect(() => {
-    getProjects()
-  }, [])
+    getProjects();
+  }, []);
 
   return (
     <div className="flex flex-col">
@@ -111,12 +128,12 @@ const Projects = () => {
         {/* Header */}
         <div className="flex justify-between items-center">
           <h1 className="uppercase font-bold text-2xl">Projects</h1>
-          <button className="flex items-center gap-2 text-lg font-medium hover:bg-neutral-100 p-2 hover:rounded-lg transition-all duration-300">
+          <Link className="flex items-center gap-2 text-lg font-medium hover:bg-neutral-100 p-2 hover:rounded-lg transition-all duration-300" to={'/home/projects/create'}>
             <span>Add Project</span>
             <div className="p-[2px] bg-logo rounded-full">
               <Plus color="white" />
             </div>
-          </button>
+          </Link>
         </div>
         <hr className="bg-black mt-1" />
 
@@ -136,27 +153,29 @@ const Projects = () => {
             </p>
           )}
 
-          <div className="project overflow-x-auto pl-4">
+          <div className="project overflow-x-auto px-4">
             <div className="flex pb-4 min-w-max gap-6">
-              {!projectsError.status ? projectsLoading ? (
-                <p>Loading...</p> /*Please add better loading skeletons */
+              {!projectsError.status ? (
+                projectsLoading ? (
+                  <p>Loading...</p> /*Please add better loading skeletons */
+                ) : (
+                  projects.map((project) => (
+                    <ProjectCard key={project._id} project={project} />
+                  ))
+                )
               ) : (
-                projects.map((project) => (
-                  <ProjectCard key={project._id} project={project} />
-                ))
-              ) : <p>No projects found...</p>}
+                <p>No projects found...</p>
+              )}
             </div>
           </div>
         </div>
         <div className="mt-10">
           <h1 className="uppercase font-medium text-xl">Projects Report</h1>
-          <ProjectList
-            projectCounts={{ total: 6, completed: 3, inProgress: 3 }}
-          />
+          <ProjectList projectCounts={projectsStats} />
         </div>
       </div>
     </div>
   );
 };
 
-export default Projects
+export default Projects;

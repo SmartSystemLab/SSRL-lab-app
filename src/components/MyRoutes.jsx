@@ -57,7 +57,7 @@ const MyRoutes = () => {
           <Route path="projects">
             <Route index element={<Projects />} />
             <Route path=":id" element={<SingleProject />} />
-            <Route path="add-project" element={<CreateProject />} />
+            <Route path="create" element={<CreateProject />} />
           </Route>
 
           <Route path="teamchat" element={<TeamChat />} />

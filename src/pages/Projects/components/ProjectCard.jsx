@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 const ProjectCard = ({ project }) => {
   const { name, date_created, team_members, leads, team_avatars } = project;
   const maxVisibleMembers = 3;
-  const allMembers = [...team_members, ...leads]
+  const allMembers = [...leads, ...team_members]
   const extraMembers = allMembers.length - maxVisibleMembers;
   return (
-    <Link to={`/home/projects/${project.id}`}>
+    <Link to={`/home/projects/${project._id}`} state={project}>
       <div
         className=" w-80 min-w-[240px] shadow-lg rounded-3xl p-4 my-2 text-white bg-navBg2 cursor:pointer hover:scale-105 bg-no-repeat border-r-gray-50"
         style={{

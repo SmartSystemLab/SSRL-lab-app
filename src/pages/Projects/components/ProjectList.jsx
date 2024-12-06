@@ -9,7 +9,7 @@ const ProjectList = ({ projectCounts }) => {
                     Total projects
                 </div>
                 <span className="bg-logo text-white rounded-full px-2 py-0.5 text-sm font-medium">
-                    {projectCounts.total || 0}
+                    {projectCounts.total}
                 </span>
             </li>
 
@@ -19,7 +19,7 @@ const ProjectList = ({ projectCounts }) => {
                     Completed projects
                 </div>
                 <span className="bg-logo text-white rounded-full px-2 py-0.5 text-sm font-medium">
-                    {projectCounts.completed || 0}
+                    {projectCounts.completed}
                 </span>
             </li>
 
@@ -29,7 +29,7 @@ const ProjectList = ({ projectCounts }) => {
                     Projects in progress
                 </div>
                 <span className="bg-logo text-white  rounded-full px-2 py-0.5 text-sm font-medium">
-                    {projectCounts.inProgress || 0}
+                    {projectCounts.inProgress}
                 </span>
             </li>
         </ul>
