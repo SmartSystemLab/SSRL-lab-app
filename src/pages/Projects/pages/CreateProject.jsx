@@ -1,41 +1,39 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import CustomLabel from "../../../components/CustomLabel";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { Plus } from "lucide-react";
+import { ChevronDown, Plus } from "lucide-react";
+import { getSessionStorage } from "../../../Modules/getSessionStorage";
+import { useRequest } from "../../../Modules/useRequest";
 
 const CreateProject = () => {
-  const [projectTitle, setProjectTitle] = useState("");
-  const [projectDescription, setProjectDescription] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [objectives, setObjectives] = useState([]);
   const [currentObjective, setCurrentObjective] = useState("");
-  const ObjInput = useRef(null);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [allMembers, setAllMembers] = useState([]);
   const [selectedMembers, setSelectedMembers] = useState([]);
   const [selectedLeads, setSelectedLeads] = useState([]);
-  const [showMembersDropdown, setShowMembersDropdown] = useState(false);
-  const [showLeadsDropdown, setShowLeadsDropdown] = useState(false);
+  const [showMembersDropdown, setShowMembersDropdown] = useState(false); //Use selec and options input instead of creating the dropdown manually
+  const [showLeadsDropdown, setShowLeadsDropdown] = useState(false); //Use selec and options input instead of creating the dropdown manually
   const navigate = useNavigate();
-
-  const toggleMembersDropdown = () =>
-    setShowMembersDropdown(!showMembersDropdown);
-  const toggleLeadsDropdown = () => setShowLeadsDropdown(!showLeadsDropdown);
-
-  const interns = [
-    { id: "1", name: "Oluwatofunmi Agboola" },
-    { id: "2", name: "Ceejay " },
-    { id: "3", name: "Adebola" },
-    { id: "4", name: "dabira" },
-    { id: "5", name: "Bolu" },
-    // { id: "5", name: "Bolu" },
-    // { id: "5", name: "Bolu" },
-    // { id: "5", name: "Bolu" },
-    // { id: "5", name: "Bolu" },
-    // { id: "5", name: "Bolu" },
-    // { id: "5", name: "Bolu" },
-  ];
+  const [
+    membersRequest,
+    membersLoading,
+    setMembersLoading,
+    membersError,
+    setMembersError,
+  ] = useRequest();
+  const [
+    createRequest,
+    createLoading,
+    setCreateLoading,
+    createError,
+    setCreateError,
+  ] = useRequest();
 
   const handleMemberSelect = (intern) => {
     if (!selectedMembers.find((member) => member.id === intern.id)) {
@@ -50,32 +48,57 @@ const CreateProject = () => {
   const handleLeadSelect = (member) => {
     if (!selectedLeads.find((lead) => lead.id === member.id)) {
       setSelectedLeads([...selectedLeads, member]);
+      setSelectedMembers(selectedMembers.filter((e)))
     } else {
       setSelectedLeads(selectedLeads.filter((lead) => lead.id !== member.id));
     }
   };
 
-  const addObjective = () => {
+  const addObjective = (event) => {
     if (currentObjective.trim() !== "") {
       setObjectives([...objectives, currentObjective]);
       setCurrentObjective("");
     }
-    ObjInput.current.focus();
+    // ObjInput.current.focus();
+    event.target.focus(); // We can just use the event to focus here so I removed the ref
   };
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const res = await createRequest('project/create', 'POST', {
+      name,
+      description,
+      objectives,
+
+    })
     const newProject = [
-      projectTitle,
-      projectDescription,
+      name,
+      description,
       objectives,
       selectedDate,
       selectedLeads,
       selectedMembers,
     ];
     console.log(newProject);
-    navigate(-1);
+    // navigate(-1);
   };
 
+  const getStackMembers = async () => {
+    const userStack = getSessionStorage("userStack", "");
+    const res = await membersRequest(
+      `get_${userStack === "Software" ? "soft" : "hard"}_members`
+    );
+    const data = await res.json();
+    if (res.ok) {
+      setAllMembers(data.members);
+    }
+  };
+
+  useEffect(() => {
+    getStackMembers();
+  }, []);
+
+  // console.log(members)
   // console.log(selectedLeads, selectedMembers)
   return (
     <div className="mt-4 px-6 py-4 min-h-screen overflow-y-auto">
@@ -93,8 +116,8 @@ const CreateProject = () => {
             htmlFor="projectTitle"
             labelText="Project Name"
             inputType="text"
-            inputValue={projectTitle}
-            onChange={(event) => setProjectTitle(event.target.value)}
+            inputValue={name}
+            onChange={(event) => setName(event.target.value)}
             //   onBlur={() => {}}
             labelCLassName="text-black inline-block font-medium text-lg  mb-1 "
             inputClassName="appearance-none relative block w-full  px-3 py-2 border border-gray-400 rounded-lg focus:outline-none"
@@ -109,8 +132,8 @@ const CreateProject = () => {
             </label>
             <textarea
               id="projectDescription"
-              value={projectDescription}
-              onChange={(event) => setProjectDescription(event.target.value)}
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
               className="appearance-none block w-full px-4 py-3 border border-gray-400 rounded-lg focus:outline-none resize-none h-32"
               placeholder="Add project description"
               rows={5}
@@ -125,7 +148,6 @@ const CreateProject = () => {
                   type="text"
                   value={currentObjective}
                   onChange={(e) => setCurrentObjective(e.target.value)}
-                  ref={ObjInput}
                   className="w-full px-3 py-2 border border-gray-400 rounded-lg focus:outline-none"
                   placeholder="Add an objective"
                 />
@@ -155,7 +177,7 @@ const CreateProject = () => {
               <DatePicker
                 selected={selectedDate}
                 onChange={(date) => setSelectedDate(date)}
-                dateFormat="dd/MM/yyyy"
+                dateFormat="dd/mm/yyyy"
                 className="w-full px-3 py-2 border border-gray-400 rounded-lg focus:outline-none"
                 placeholderText="Select a deadline"
               />
@@ -166,15 +188,14 @@ const CreateProject = () => {
             <div className="relative w-full md:w-1/2">
               <button
                 type="button"
-                onClick={toggleMembersDropdown}
+                onClick={() => setShowMembersDropdown(!showMembersDropdown)}
                 className="px-4 py-2 bg-navBg2 text-white rounded-lg flex gap-2 items-center"
               >
-                <span>Add Team Members</span>{" "}
-                <IoIosArrowDown className=" w-4 h-4" />
+                <span>Add Team Members</span> <ChevronDown />
               </button>
               {showMembersDropdown && (
                 <div className="absolute z-10 w-3/4 bg-white border border-gray-300 rounded-lg mt-2 max-h-48 overflow-y-auto">
-                  {interns.map((intern) => (
+                  {allMembers.map((intern) => (
                     <div key={intern.id} className="flex items-center p-1">
                       <input
                         type="checkbox"
@@ -195,11 +216,10 @@ const CreateProject = () => {
             <div className="relative w-full md:w-1/2">
               <button
                 type="button"
-                onClick={toggleLeadsDropdown}
+                onClick={() => setShowLeadsDropdown(!showLeadsDropdown)}
                 className="px-4 py-2 bg-green-600 text-white rounded-lg flex gap-2 items-center"
               >
-                <span>Add Team Leads</span>{" "}
-                <IoIosArrowDown className=" w-4 h-4" />
+                <span>Add Team Leads</span> <ChevronDown />
               </button>
               {showLeadsDropdown && selectedMembers.length > 0 && (
                 <div className="absolute z-10 w-3/4 bg-white border border-gray-300 rounded-lg mt-2 max-h-48 overflow-y-auto">
@@ -222,7 +242,7 @@ const CreateProject = () => {
           </div>
           <button
             type="submit"
-            className=" bg-[#58249c] text-white px-4 py-2 text-lg rounded-xl cursor-pointer mx-auto mt-2 font-semibold"
+            className=" bg-navBg2 text-white px-4 py-2 text-lg rounded-xl cursor-pointer mx-auto mt-2 font-semibold"
           >
             Submit
           </button>
