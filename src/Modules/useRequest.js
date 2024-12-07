@@ -15,12 +15,8 @@ export const useGetRequest = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Origin": "http://localhost:5173",
-        // "Session_ID": "6742a29f82fb70ecf368acb5",
         "Session_ID": getSessionStorage("session_id", ""),
       },
-      credentials: "include",
     };
     setLoading(true);
 
@@ -39,34 +35,32 @@ export const useGetRequest = () => {
   return [sendRequest, loading, setLoading, error, setError];
 };
 
-export const usePostRequest = () => {
+export const useRequest = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ status: false, msg: undefined });
 
-  const sendRequest = async (path, body) => {
+  const sendRequest = async (path, method = 'GET', body = {}) => {
     setError({ status: false, msg: "" });
     console.log("Request sent in module");
 
-    const requestOptions = {
-      method: "POST",
+    let requestOptions = {
+      method: method,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Origin": "http://localhost:5173",
-        // "Session_ID": "6742a29f82fb70ecf368acb5",
         "Session_ID": getSessionStorage("session_id", ""),
       },
-      credentials: "include",
-      body: JSON.stringify(body),
     };
+
+    if (method !== 'GET') requestOptions = { ...requestOptions, body: JSON.stringify(body) };
+
     setLoading(true);
 
     let res = await fetch(`${url}/${path}`, requestOptions).catch((error) => {
       setLoading(false);
-      console.log("Error");
+      console.log("Error", error);
       setError({
         status: true,
-        msg: "Something went wrong. Check your internet connection or try again in a bit.",
+        msg: "Something went wrong. Check your internet connection or try again in a bit. You can also try logging out and logging in again.",
       });
       return new Error(error);
     });

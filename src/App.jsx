@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import MyRoutes from './components/MyRoutes'
 import { useGetRequest } from './Modules/useRequest';
 import { setSessionStorage } from './Modules/getSessionStorage';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   // const [session, setSession] = useState
@@ -22,6 +23,7 @@ function App() {
 
   return (
     < >
+      <Toaster />
       <MyRoutes />
     </>
   );

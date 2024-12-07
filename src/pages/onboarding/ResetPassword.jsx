@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom"
 import CustomLabel from "../../components/CustomLabel";
 import { validatePassword } from "../../Modules/verifyForm";
-import { usePostRequest } from "../../Modules/useRequest";
+import { useRequest } from "../../Modules/useRequest";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState({
@@ -25,7 +26,7 @@ const ResetPassword = () => {
     setResetLoading,
     resetError,
     setResetError,
-  ] = usePostRequest();
+  ] = useRequest();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -91,6 +92,9 @@ const ResetPassword = () => {
               }
               isError={password.isError}
               errorMessage={password.error}
+              labelCLassName="text-[#666666] inline-block"
+              inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
+              placeholder='Enter new password'
             />
             <CustomLabel
               htmlFor="password"
@@ -113,6 +117,9 @@ const ResetPassword = () => {
               }
               isError={confPassword.isError}
               errorMessage={confPassword.error}
+              labelCLassName="text-[#666666] inline-block"
+              inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
+              placeholder='Confirm new password'
             />
           </div>
 
@@ -125,12 +132,12 @@ const ResetPassword = () => {
           {resetLoading && <p>Loading...</p>}
         </form>
         <div className="flex items-center justify-end mt-1">
-          <a
-            href="/"
+          <Link
+            to="/"
             className="bg-[#053F05F0] text-white mt-6 px-1 py-2 font-bold  text-base capitalize rounded-xl  w-28 text-center"
           >
             Sign in
-          </a>
+          </Link>
         </div>
       </div>
     </div>

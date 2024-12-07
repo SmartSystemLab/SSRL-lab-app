@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import InputError from "../../components/InputError";
 import { validateOTP } from "../../Modules/verifyForm";
-import { usePostRequest } from "../../Modules/useRequest";
+import { useRequest } from "../../Modules/useRequest";
 
 const OTP = () => {
   const [otp, setOtp] = useState({
@@ -11,7 +11,7 @@ const OTP = () => {
   }); //state to manage empty array of 6 items
   const otpRef = useRef(false);
   const [sendOTPRequest, otpLoading, setOtpLoading, otpError, setOtpError] =
-    usePostRequest();
+    useRequest();
 
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return false;

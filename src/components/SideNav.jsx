@@ -25,7 +25,7 @@ const navData = [
 
 const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
   return (
-    <div className={`relative bg-navBg2 text-white min-h-screen py-4 pr-0 pl-2 rounded-r-3xl w-64 max-w-[20rem] flex flex-col`}>
+    <div className={`relative bg-navBg2 text-white min-h-screen py-4 pr-0 pl-2  w-64 max-w-[20rem] flex flex-col`}>
       {/* Logo Section */}
       <div className="flex justify-end items-center gap-3 py-4 px-6 mt-2 mb-4 ">
         <img src="/vite.svg" alt="Logo" className="w-8 h-8 rounded-md text-lg" />
@@ -49,10 +49,11 @@ const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
         {navData.map(({ img, text, path }) => (
           <NavLink
             to={path}
+            onClick={toggleSideNav}
             className={({ isActive }) =>
               [
                 isActive ? "activeText activeImg" : "hover:bg-navBg1",
-                "flex items-center gap-3 p-3 rounded-md transition-colors duration-200",
+                "flex items-center gap-3 p-3 pl-4 rounded-l-full transition-colors duration-300",
               ].join(" ")
             }
             key={text}
