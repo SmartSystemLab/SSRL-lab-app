@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
-const InternCard = ({ name, image, unit, id }) => {
+const InternCard = ({ name, image, niche, id }) => {
   return (
-    <Link to={`/home/personnel/profile/${id}`} className="card" state={{ name, image, unit, id }}>
+    <Link to={`/home/personnel/profile/${id}`} className="card" state={{ name, image, niche, id }}>
       <div className="flex justify-start items-center hover:bg-slate-100">
         <img
           src={image}
@@ -10,7 +10,7 @@ const InternCard = ({ name, image, unit, id }) => {
         />
         <div className="ml-3">
           <h1 className="text font-bold text-gray-700">{name}</h1>
-          <h1>{unit}</h1>
+          <h1>{niche}</h1>
           {/* <p>{role}</p> */}
         </div>
       </div>

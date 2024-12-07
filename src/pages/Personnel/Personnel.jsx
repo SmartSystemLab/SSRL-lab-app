@@ -28,116 +28,116 @@ const Personnel = () => {
     {
       name: "Ogunjirin M. Boluwatife",
       image: img1,
-      section: "hardware",
+      stack: "hardware",
       id: 1,
     },
     {
       name: "Ogunjirin M. Boluwatife",
       image: img1,
-      section: "hardware",
+      stack: "hardware",
       id: 2,
     },
     {
       name: "Ogunjirin M. Boluwatife",
       image: img1,
-      section: "hardware",
+      stack: "hardware",
       id: 3,
     },
     {
       name: "Ogunjirin M. Bolu",
       image: img1,
-      section: "software",
+      stack: "software",
       id: 4,
     },
     {
       name: "Ogunjirin M. Bolu",
       image: img1,
-      section: "software",
+      stack: "software",
       id: 5,
     },
   ];
   const internsInfo = [
     {
       name: "Ogunjirin M. Boluwatife",
-      section: "software",
-      unit: "UI/UX Designer",
+      stack: "software",
+      niche: "UI/UX Designer",
       image: img1,
       id: 1,
     },
     {
       name: "Ogunjirin M. Boluwatife",
-      section: "software",
-      unit: "UI/UX Designer",
+      stack: "software",
+      niche: "UI/UX Designer",
       image: img1,
       id: 2,
     },
     {
       name: "Ogunjirin M. Boluwatife",
-      section: "software",
-      unit: "UI/UX Designer",
+      stack: "software",
+      niche: "UI/UX Designer",
       image: img1,
       id: 3,
     },
     {
       name: "Ogunjirin M. Boluwatife",
-      section: "software",
-      unit: "UI/UX Designer",
+      stack: "software",
+      niche: "UI/UX Designer",
       image: img1,
       id: 4,
     },
     {
       name: "Ogunjirin M. Boluwatife",
-      section: "software",
-      unit: "UI/UX Designer",
+      stack: "software",
+      niche: "UI/UX Designer",
       image: img1,
       id: 5,
     },
     {
       name: "Ogunjirin M. Boluwatife",
-      section: "software",
-      unit: "UI/UX Designer",
+      stack: "software",
+      niche: "UI/UX Designer",
       image: img1,
       id: 6,
     },
     {
       name: "Ogunjirin M. Boluwatife",
-      section: "hardware",
-      unit: "Embedded Systems",
+      stack: "hardware",
+      niche: "Embedded Systems",
       image: img1,
       id: 7,
     },
     {
       name: "Ogunjirin M. Boluwatife",
-      section: "hardware",
-      unit: "Embedded Systems",
+      stack: "hardware",
+      niche: "Embedded Systems",
       image: img1,
       id: 8,
     },
     {
       name: "Ogunjirin M. Boluwatife",
-      section: "hardware",
-      unit: "Embedded Systems",
+      stack: "hardware",
+      niche: "Embedded Systems",
       image: img1,
       id: 9,
     },
     {
       name: "Ogunjirin M. Boluwatife",
-      section: "hardware",
-      unit: "Embedded Systems",
+      stack: "hardware",
+      niche: "Embedded Systems",
       image: img1,
       id: 10,
     },
     {
       name: "Ogunjirin M. Boluwatife",
-      section: "hardware",
-      unit: "Embedded Systems",
+      stack: "hardware",
+      niche: "Embedded Systems",
       image: img1,
       id: 11,
     },
     {
       name: "Ogunjirin M. Boluwatife",
-      section: "hardware",
-      unit: "Embedded Systems",
+      stack: "hardware",
+      niche: "Embedded Systems",
       image: img1,
       id: 12,
     },
@@ -207,11 +207,11 @@ const Personnel = () => {
               {/* Leads Section */}
               <div className="flex flex-col gap-6">
                 <div>
-                  <Header title="Leads" />
+                  <Header title="Lead(s)" />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 col">
                   {leadsInfo.map((item) => {
-                    if (item.section === toggle) {
+                    if (item.stack === toggle) {
                       return (
                         <div>
                           <LeadCard name={item.name} image={item.image} id={item.id} />
@@ -229,13 +229,13 @@ const Personnel = () => {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 col">
                   {internsInfo.map((item) => {
-                    if (item.section === toggle) {
+                    if (item.stack === toggle) {
                       return (
                         <div>
                           <InternCard
                             name={item.name}
                             image={item.image}
-                            unit={item.unit}
+                            niche={item.niche}
                             id={item.id}
 
                           />
