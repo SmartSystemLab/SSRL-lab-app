@@ -30,13 +30,6 @@ const CreateProject = () => {
         { id: '2', name: 'Ceejay ' },
         { id: '3', name: 'Adebola' },
         { id: '4', name: 'dabira' },
-        { id: '5', name: 'Bolu' },
-        { id: '5', name: 'Bolu' },
-        { id: '5', name: 'Bolu' },
-        { id: '5', name: 'Bolu' },
-        { id: '5', name: 'Bolu' },
-        { id: '5', name: 'Bolu' },
-        { id: '5', name: 'Bolu' },
     ]
 
     const handleMemberSelect = (intern) => {
@@ -97,7 +90,6 @@ const CreateProject = () => {
                             Project Description
                         </label>
                         <textarea
-                            id="projectDescription"
                             value={projectDescription}
                             onChange={(event) => setProjectDescription(event.target.value)}
                             className="appearance-none block w-full px-4 py-3 border border-gray-400 rounded-lg focus:outline-none resize-none h-32"

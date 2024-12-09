@@ -15,17 +15,18 @@ import NotificationCard from "../pages/dashboard/NotificationCard.jsx";
 
 import Personnel from "../pages/Personnel/pages/Personnel.jsx";
 import Registration from "../pages/Personnel/pages/Registration.jsx";
-// import ProfileCard from "../pages/Personnel/ProfileCard.jsx";
+import ProfileCard from "../pages/Personnel/component/ProfileCard.jsx";
 
 import Projects from "../pages/Projects/Projects.jsx";
 import ProjectCard from "../pages/Projects/ProjectCard.jsx";
 import CreateProject from "../pages/Projects/CreateProject.jsx"
+import EditProject from "../pages/Projects/EditProject.jsx"
+import Announcement from "../pages/Projects/Announcement.jsx"
 
 import Todo from "../pages/Todo/Todo.jsx";
 import TeamChat from "../pages/TeamChat/TeamChat";
 import Submissions from "../pages/Submissions/Submissions.jsx";
 import Settings from "../pages/Settings/Settings";
-import ProfileCard from "../pages/Personnel/component/ProfileCard.jsx";
 
 const MyRoutes = () => {
   return (
@@ -58,6 +59,8 @@ const MyRoutes = () => {
             <Route index element={<Projects />} />
             <Route path=":id" element={<ProjectCard />} />
             <Route path="add-project" element={<CreateProject />} />
+            <Route path="edit/:id" element={<EditProject />} />
+            <Route path="announcement/:id" element={<Announcement />} />
           </Route>
 
           <Route path="teamchat" element={<TeamChat />} />

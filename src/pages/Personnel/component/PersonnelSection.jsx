@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import PersonnelCard from "./PersonnelCard";
 import { getSessionStorage } from "../../../Modules/getSessionStorage";
+
 const SkeletonCard = () => (
   <div className="flex justify-start items-center hover:bg-navBg1 border rounded-xl p-1 animate-pulse">
     <div className="h-12 w-12 rounded-full m-2 bg-gray-300"></div>
