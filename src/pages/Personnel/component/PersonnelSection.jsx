@@ -2,16 +2,8 @@ import React from "react";
 import Header from "./Header";
 import PersonnelCard from "./PersonnelCard";
 import { getSessionStorage } from "../../../Modules/getSessionStorage";
+import PersonnelCardSkeleton from "../../../components/skeletons/personnelCardSkeleton";
 
-const SkeletonCard = () => (
-  <div className="flex justify-start items-center hover:bg-navBg1 border rounded-xl p-1 animate-pulse">
-    <div className="h-12 w-12 rounded-full m-2 bg-gray-300"></div>
-    <div className="ml-3 flex flex-col space-y-2 w-full">
-      <div className="h-4 bg-gray-300 rounded w-3/4"></div>
-      <div className="h-3 bg-gray-300 rounded w-1/2"></div>
-    </div>
-  </div>
-);
 const PersonnelSection = ({ personnels, title, loading }) => {
   const userRole = getSessionStorage("userRole", "");
   const showAddButton =
@@ -29,9 +21,7 @@ const PersonnelSection = ({ personnels, title, loading }) => {
               const { uid, fullname, avatar, niche } = personnel;
               return (
                 <div key={uid}>
-                  <PersonnelCard
-                    personnel={personnel}
-                  />
+                  <PersonnelCard personnel={personnel} />
                 </div>
               );
             })
@@ -41,9 +31,11 @@ const PersonnelSection = ({ personnels, title, loading }) => {
         ) : (
           // <p>loading ...</p> /*Tofunmi, add proper skeletons here*/
           <>
-            {Array.from({ length: 2 }).map((_, index) => (
-              <SkeletonCard key={index} />
-            ))}</> // is this okay?
+            <PersonnelCardSkeleton />
+            <PersonnelCardSkeleton />
+            <PersonnelCardSkeleton />
+          </> // is this okay?
+          // Yes, it's very good, thanks a lot. I just made a few changes to make things simpler and I moved the whole component to another folder in components called skeletons because we will be creating other skeletons too, basically for almost every page, so those skeletons will just be there. I don't know if we should add the skeletons on each page inside a skeletons folder for each page or leave it like tjis. Let's leave it like this for now. If things get too complex, then we can make the changes.
         )}
       </div>
     </div>
