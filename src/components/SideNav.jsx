@@ -6,7 +6,6 @@ import Calendar from "../assets/Calendar.svg";
 import Interns from "../assets/Interns.svg";
 import Projects from "../assets/Projects.svg";
 import Settings from "../assets/Settings.svg";
-import TeamChat from "../assets/TeamChat.svg";
 import LogOut from "../assets/LogOut.svg";
 import { FaXmark } from "react-icons/fa6";
 import SearchBar from '../components/SearchBar.jsx'
@@ -18,8 +17,9 @@ const navData = [
   { img: Interns, text: "Personnel", path: "/home/personnel", id: 2 },
   { img: Projects, text: "Projects", path: "/home/projects", id: 3 },
   { img: Calendar, text: "To-do", path: "/home/to-do", id: 4 },
-  { img: TeamChat, text: "Team Chat", path: "/home/teamchat", id: 5 },
-  { img: Attendance, text: "Submissions", path: "/home/submissions", id: 6 },
+  // { img: TeamChat, text: "Team Chat", path: "/home/teamchat", id: 5 },
+  { img: Attendance, text: "Reports", path: "/home/reports", id: 5 },
+  { img: Attendance, text: "Requests", path: "/home/requests", id: 6 },
   { img: Settings, text: "Settings", path: "/home/settings", id: 7 },
 ];
 

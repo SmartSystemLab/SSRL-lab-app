@@ -98,7 +98,7 @@ const SingleProject = () => {
 
           {/* Team Members */}
           <div>
-            <h2 className="text-lg font-medium">Team Members</h2>
+            <h2 className="text-lg font-medium border-b">Team Members</h2>
             <ul className=" space-y-2 mt-2">
               {team_members.length > 0 ? (
                 team_members.map((member, index) => (
