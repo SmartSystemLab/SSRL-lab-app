@@ -35,8 +35,9 @@ const Dashboard = () => {
     const data = await res.json();
     if (res.ok) {
       if (data) {
-        const { firstname, user_role, notifications, projects, reports, requests } = data;
+        const { firstname, user_role, notifications, projects, reports, requests, stack } = data;
         setSessionStorage("userRole", user_role)
+        setSessionStorage("userStack", stack)
         setName(firstname);
         setNotifications(notifications);
         setProjects(projects);

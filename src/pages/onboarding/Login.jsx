@@ -54,9 +54,9 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    getSession()
-  }, []);
+  // useEffect(() => {
+  //   getSession()
+  // });
 
   const handleFormSubmit = (event) => {
     // getSession()

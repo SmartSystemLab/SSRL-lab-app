@@ -25,8 +25,10 @@ import Announcement from "../pages/Projects/pages/Announcement.jsx"
 
 import Todo from "../pages/Todo/Todo.jsx";
 import TeamChat from "../pages/TeamChat/TeamChat";
-import Submissions from "../pages/Submissions/Submissions.jsx";
 import Settings from "../pages/Settings/Settings";
+import ProfileCard from "../pages/Personnel/component/ProfileCard.jsx";
+import Reports from "../pages/reports/Reports.jsx";
+import Requests from "../pages/requests/Requests.jsx";
 
 const MyRoutes = () => {
   return (
@@ -66,7 +68,8 @@ const MyRoutes = () => {
 
           <Route path="teamchat" element={<TeamChat />} />
           <Route path="to-do" element={<Todo />} />
-          <Route path="submissions" element={<Submissions />} />
+          <Route path="reports" element={<Reports />} />
+          <Route path="requests" element={<Requests />} />
           <Route path="settings" element={<Settings />} />
           <Route path="notifications" element={<Notifications />} />
         </Route>

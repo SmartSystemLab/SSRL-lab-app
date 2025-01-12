@@ -98,7 +98,7 @@ const SingleProject = () => {
 
           {/* Team Members */}
           <div>
-            <h2 className="text-lg font-medium">Team Members</h2>
+            <h2 className="text-lg font-medium border-b">Team Members</h2>
             <ul className=" space-y-2 mt-2">
               {team_members.length > 0 ? (
                 team_members.map((member, index) => (
@@ -136,6 +136,8 @@ const SingleProject = () => {
                     <Link
                       className="border rounded-lg p-4 flex justify-between w-4/5 hover:bg-navBg1"
                       to={download_link}
+                      key={download_link}
+
                     >
                       <p className="truncate mr-2 text-sm">{filename}</p>
                       <DownloadCloud />
@@ -163,6 +165,7 @@ const SingleProject = () => {
                       className="border rounded-lg p-4 flex justify-between w-4/5 hover:bg-navBg1"
                       to={link}
                       target="_blank"
+                      key={link}
                     >
                       <p className="truncate mr-2 text-sm">{title}</p>
                       <LinkIcon />

@@ -1,8 +1,6 @@
-import React from 'react'
-
 const TeamChat = () => {
     return (
-        <div>TeamChat</div>
+        <div className='w-full min-h-screen flex justify-center items-center text-4xl font-medium'>Coming Soon ...</div>
     )
 }
 
