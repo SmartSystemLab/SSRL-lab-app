@@ -15,11 +15,13 @@ import NotificationCard from "../pages/dashboard/NotificationCard.jsx";
 
 import Personnel from "../pages/Personnel/pages/Personnel.jsx";
 import Registration from "../pages/Personnel/pages/Registration.jsx";
-// import ProfileCard from "../pages/Personnel/ProfileCard.jsx";
+import ProfileCard from "../pages/Personnel/component/ProfileCard.jsx";
 
 import Projects from "../pages/Projects/pages/Projects.jsx";
 import SingleProject from "../pages/Projects/pages/SingleProject.jsx";
 import CreateProject from "../pages/Projects/pages/CreateProject.jsx";
+import EditProject from "../pages/Projects/pages/EditProject.jsx"
+import Announcement from "../pages/Projects/pages/Announcement.jsx"
 
 import Todo from "../pages/Todo/Todo.jsx";
 import TeamChat from "../pages/TeamChat/TeamChat";
@@ -59,6 +61,9 @@ const MyRoutes = () => {
             <Route index element={<Projects />} />
             <Route path=":id" element={<SingleProject />} />
             <Route path="create" element={<CreateProject />} />
+            <Route path="edit" element={<EditProject />} />
+            <Route path="announcement" element={<Announcement />} />
+
           </Route>
 
           <Route path="teamchat" element={<TeamChat />} />

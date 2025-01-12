@@ -10,7 +10,7 @@ const ProjectCard = ({ project }) => {
   return (
     <Link to={`/home/projects/${project._id}`} state={project}>
       <div
-        className=" w-80 min-w-[240px] shadow-lg rounded-3xl p-4 my-2 text-white bg-navBg2 cursor:pointer hover:scale-105 bg-no-repeat border-r-gray-50"
+        className=" w-80 min-w-[240px] shadow-lg rounded-3xl p-4 my-2 text-white bg-navBg2 cursor:pointer hover:scale-105 transition-all duration-200 bg-no-repeat border-r-gray-50"
         style={{
           backgroundImage: `url(${Pro_bg})`,
           backgroundPosition: "bottom -5px right -5px",
