@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import Dashboard from "../assets/Dashboard.svg";
 import Attendance from "../assets/Attendance.svg";
@@ -7,20 +6,30 @@ import Interns from "../assets/Interns.svg";
 import Projects from "../assets/Projects.svg";
 import Settings from "../assets/Settings.svg";
 import LogOut from "../assets/LogOut.svg";
-import { FaXmark } from "react-icons/fa6";
+import TeamChat from "../assets/TeamChat.svg"
 import SearchBar from '../components/SearchBar.jsx'
-
-
+import {X} from 'lucide-react'
 
 const navData = [
   { img: Dashboard, text: "Dashboard", path: "/home/dashboard", id: 1 },
   { img: Interns, text: "Personnel", path: "/home/personnel", id: 2 },
   { img: Projects, text: "Projects", path: "/home/projects", id: 3 },
   { img: Calendar, text: "To-do", path: "/home/to-do", id: 4 },
-  // { img: TeamChat, text: "Team Chat", path: "/home/teamchat", id: 5 },
-  { img: Attendance, text: "Reports", path: "/home/reports", id: 5 },
-  { img: Attendance, text: "Requests", path: "/home/requests", id: 6 },
-  { img: Settings, text: "Settings", path: "/home/settings", id: 7 },
+  { img: TeamChat, text: "Team Chat", path: "/home/teamchat", id: 5 },
+  { img: Attendance, text: "Reports", path: "/home/reports", id: 6 },
+  { img: Attendance, text: "Requests", path: "/home/requests", id: 7 },
+  { img: Settings, text: "Settings", path: "/home/settings", id: 8 },
+];
+
+const navData2 = [
+  { icon: Dashboard, text: "Dashboard", path: "/home/dashboard", id: 1 },
+  { icon: Interns, text: "Personnel", path: "/home/personnel", id: 2 },
+  { icon: Projects, text: "Projects", path: "/home/projects", id: 3 },
+  { icon: Calendar, text: "To-do", path: "/home/to-do", id: 4 },
+  { icon: TeamChat, text: "Team Chat", path: "/home/teamchat", id: 5 },
+  { icon: Attendance, text: "Reports", path: "/home/reports", id: 6 },
+  { icon: Attendance, text: "Requests", path: "/home/requests", id: 7 },
+  { icon: Settings, text: "Settings", path: "/home/settings", id: 8 },
 ];
 
 const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
@@ -35,7 +44,7 @@ const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
       <div className='text-logo lg:hidden absolute top-4 left-4'>
         <button onClick={toggleSideNav} className='cursor-pointer'>
           {
-            isSideNavOpen && <FaXmark className='w-5 h-5' />
+            isSideNavOpen && <X />
           }
         </button>
       </div>
