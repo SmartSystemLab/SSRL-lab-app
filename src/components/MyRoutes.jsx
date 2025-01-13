@@ -26,7 +26,6 @@ import Announcement from "../pages/Projects/pages/Announcement.jsx"
 import Todo from "../pages/Todo/Todo.jsx";
 import TeamChat from "../pages/TeamChat/TeamChat";
 import Settings from "../pages/Settings/Settings";
-import ProfileCard from "../pages/Personnel/component/ProfileCard.jsx";
 import Reports from "../pages/reports/Reports.jsx";
 import Requests from "../pages/requests/Requests.jsx";
 

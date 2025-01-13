@@ -254,8 +254,6 @@
 
 html,
 :host {
-html,
-:host {
   line-height: 1.5;
   /* 1 */
   -webkit-text-size-adjust: 100%;
@@ -472,9 +470,6 @@ button,
 input:where([type='button']),
 input:where([type='reset']),
 input:where([type='submit']) {
-input:where([type='button']),
-input:where([type='reset']),
-input:where([type='submit']) {
   -webkit-appearance: button;
   /* 1 */
   background-color: transparent;
@@ -678,7 +673,6 @@ video {
 
 /* Make elements with the HTML hidden attribute stay hidden by default */
 
-[hidden]:where(:not([hidden="until-found"])) {
 [hidden]:where(:not([hidden="until-found"])) {
   display: none;
 }
