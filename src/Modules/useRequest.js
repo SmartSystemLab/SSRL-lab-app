@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { getSessionStorage } from "./getSessionStorage";
 
-const url = "https://ssrl-lab-app-backend.onrender.com"
-// const url = "http://127.0.0.1:5000";
+// const url = "https://ssrl-lab-app-backend.onrender.com"
+const url = "http://127.0.0.1:5000";
 
 export const useGetRequest = () => {
   const [loading, setLoading] = useState(false);
@@ -15,6 +15,7 @@ export const useGetRequest = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        "Access-control-allow-origin": "*",
         "Session_ID": getSessionStorage("session_id", ""),
       },
     };
@@ -42,7 +43,7 @@ export const useRequest = () => {
   const sendRequest = async (path, method = 'GET', body = {}) => {
     setError({ status: false, msg: "" });
     console.log("Request sent in module");
-
+  
     let requestOptions = {
       method: method,
       headers: {

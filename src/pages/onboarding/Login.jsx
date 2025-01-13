@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useUserData } from "../../Modules/UserContext.jsx";
 import {
   validateUsername,
@@ -32,10 +32,10 @@ const Login = () => {
   ] = useRequest();
   const [
     sendSessionRequest,
-    sessionLoading,
-    setSessionLoading,
-    sessionError,
-    setSessionError,
+    // sessionLoading,
+    // setSessionLoading,
+    // sessionError,
+    // setSessionError,
   ] = useRequest();
   const validateUsernameRef = useRef(false);
   const validatePasswordRef = useRef(false);
@@ -46,6 +46,7 @@ const Login = () => {
 
   const getSession = async () => {
     const res = await sendSessionRequest(`session/new/${getSessionStorage("session_id", "") || "new"}`);
+    console.log(res)
     const sess = await res.json();
     if (res.ok) {
       if (Object.keys(sess.old_session).length === 0 || sess.old_session.expired === "true") {
@@ -54,9 +55,9 @@ const Login = () => {
     }
   };
 
-  // useEffect(() => {
-  //   getSession()
-  // });
+  useEffect(() => {
+    getSession()
+  }, []);
 
   const handleFormSubmit = (event) => {
     // getSession()

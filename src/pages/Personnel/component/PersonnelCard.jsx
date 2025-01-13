@@ -6,7 +6,7 @@ const PersonnelCard = ({ personnel }) => {
   const { uid, fullname, avatar, niche } = personnel;
   return (
     <Link to={`/home/personnel/profile/${uid}`} className="" state={personnel}>
-      <div className="flex justify-center items-center hover:bg-navBg1 border rounded-xl p-1">
+      <div className="flex items-center hover:bg-navBg1 border rounded-xl p-1">
         <div className="flex h-12 w-12 rounded-full m-2 flex-shrink-0 items-center justify-center object-cover border border-zinc-600">
           {avatar !== "NIL" ? (
             <img

@@ -16,6 +16,7 @@ import NotificationCard from "../pages/dashboard/NotificationCard.jsx";
 import Personnel from "../pages/Personnel/pages/Personnel.jsx";
 import Registration from "../pages/Personnel/pages/Registration.jsx";
 import ProfileCard from "../pages/Personnel/component/ProfileCard.jsx";
+import EditPersonnel from "../pages/Personnel/pages/EditPersonnel.jsx";
 
 import Projects from "../pages/Projects/pages/Projects.jsx";
 import SingleProject from "../pages/Projects/pages/SingleProject.jsx";
@@ -26,7 +27,6 @@ import Announcement from "../pages/Projects/pages/Announcement.jsx"
 import Todo from "../pages/Todo/Todo.jsx";
 import TeamChat from "../pages/TeamChat/TeamChat";
 import Settings from "../pages/Settings/Settings";
-import ProfileCard from "../pages/Personnel/component/ProfileCard.jsx";
 import Reports from "../pages/reports/Reports.jsx";
 import Requests from "../pages/requests/Requests.jsx";
 
@@ -55,6 +55,7 @@ const MyRoutes = () => {
             <Route index element={<Personnel />} />
             <Route path="registration" element={<Registration />} />
             <Route path="profile/:id" element={<ProfileCard />} />
+            <Route path="edit/:id" element={<EditPersonnel />} />
           </Route>
 
           <Route path="projects">

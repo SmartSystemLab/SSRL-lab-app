@@ -20,9 +20,9 @@ const Profile = ({ user, userRole, }) => {
           style={{ backgroundImage: `url(${BgProfile})` }}
         >
           <DropDownMenu
-            uid={uid}
             role={[setProfileRole, profileRole]}
             suspended={[suspend, setSuspend]}
+            profile={profile}
           />
           <img
             src={avatar !== "NIL" ? avatar : avatarPlaceholder}
