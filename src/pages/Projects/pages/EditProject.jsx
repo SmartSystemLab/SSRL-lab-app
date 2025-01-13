@@ -132,7 +132,7 @@ const EditProject = () => {
                     </div>
                     <ul className="list-decimal list-outside ml-4 mt-2">
                         {objectives.map((objective, index) => (
-                            <li key={index} classNme="flex gap-2">
+                            <li key={index} className="flex gap-2">
                                 <span>{objective}</span>
 
                                 <button

@@ -114,7 +114,7 @@ const Dropdown = ({ completed, id }) => {
                             </button>
 
                             <button
-                                className="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 border-b"
+                                className="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50"
                                 onClick={handleDelete}
                             >
                                 <Trash2 />

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { IoNotificationsOutline } from "react-icons/io5"
 import { RxAvatar } from "react-icons/rx"
 import { FaBars } from "react-icons/fa6";
-
+import { ArrowLeft } from 'lucide-react'
 
 const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
     const navigate = useNavigate()
@@ -16,11 +16,15 @@ const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
                 </button>
             </div>
             <div className='lg:flex gap-2 items-center w-3/4 hidden'>
-                <img
+                {/* <img
                     src={Navarrow} alt="back"
+
                     className='w-7 h-7 hover:scale-125 transition-all duration-200 hover:transition-transform '
                     onClick={() => navigate(-1)}
-                />
+                /> */}
+                <div className='p-1 rounded-full bg-logo hover:scale-125 transition-all duration-200 hover:transition-transform w-7 h-7 cursor-pointer flex justify-center items-center'>
+                    <ArrowLeft className=' ' color='white' />
+                </div>
                 <SearchBar />
             </div>
             <div className='flex gap-2'>
