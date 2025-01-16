@@ -83,7 +83,7 @@ const EditProject = () => {
 
         <div className="mt-4 px-6 py-4 min-h-screen overflow-y-auto">
             <button className="flex items-center gap-2 text-xl font-semibold tracking-wider mb-2">
-                <span>Edit Project {projectData.id}</span>
+                <span>Edit</span>  <span className="text-navBg2">{projectData.name}</span>
             </button>
             <hr className="bg-black mt-1" />
 
@@ -125,14 +125,14 @@ const EditProject = () => {
                         <button
                             type="button"
                             onClick={handleAddOrUpdateObjective}
-                            className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+                            className="px-4 py-2 bg-navBg2 text-white rounded-lg"
                         >
                             {editingIndex !== null ? "Update" : "Add"}
                         </button>
                     </div>
                     <ul className="list-decimal list-outside ml-4 mt-2">
                         {objectives.map((objective, index) => (
-                            <li key={index} className="flex gap-2">
+                            <li key={index} className="flex gap-2 items-center border-2 p-1 mb-1 w-3/4">
                                 <span>{objective}</span>
 
                                 <button
@@ -194,7 +194,7 @@ const EditProject = () => {
                             <button
                                 type="button"
                                 onClick={toggleLeadsDropdown}
-                                className="px-4 py-2 bg-green-600 text-white rounded-lg flex gap-2 items-center"
+                                className="px-4 py-2 bg-navBg2 text-white rounded-lg flex gap-2 items-center"
                             >
                                 <span>Add Team Leads</span> <IoIosArrowDown className=' w-4 h-4' />
                             </button>
@@ -216,7 +216,7 @@ const EditProject = () => {
                         </div>
                     </div>
                     {/* Submit Button */}
-                    <button type="submit" className="bg-[#58249c] text-white px-4 py-2 text-lg rounded-xl mt-4">
+                    <button type="submit" className="bg-logo text-white px-4 py-2 text-lg rounded-xl mt-4">
                         Save Changes
                     </button>
                 </div>

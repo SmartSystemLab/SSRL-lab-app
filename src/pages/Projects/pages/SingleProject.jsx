@@ -37,7 +37,7 @@ const SingleProject = () => {
           {isCompleted ? "Completed" : "Uncompleted"}
         </span>
 
-        <Dropdown completed={{ isCompleted, setIsCompleted }} id={_id} />
+        <Dropdown completed={{ isCompleted, setIsCompleted }} id={_id} project={project} />
       </div>
 
       {/* Project Details */}

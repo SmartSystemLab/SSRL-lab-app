@@ -1,87 +1,10 @@
 import ProjectCard from "../components/ProjectCard";
 import ProjectList from "../components/ProjectList";
+import ProjectCardSkeleton from '../../../components/skeletons/projectCardSkeleton'
 import { Plus } from "lucide-react";
 import { useRequest } from "../../../Modules/useRequest";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-// const info = [
-//   {
-//     name: "SSRL lab app",
-//     members: [
-//       { name: 'Bolu', img: img1, role: 'Lead' },
-//       { name: 'Ceejay', img: img1, role: 'Admin' },
-//       { name: 'Dabira', img: img1, role: 'Intern' },
-//       { name: 'Banky', img: img1, role: 'Admin' },
-//     ],
-
-//     deadline: "Jan 2025",
-//     id: 1,
-//   },
-//   {
-//     name: "SSRL lab app",
-//     members: [
-//       { name: 'Bolu', img: img1, role: 'Lead' },
-//       // { name: 'Ceejay', img: img1, role: 'Admin' },
-//       // { name: 'Dabira', img: img1, role: 'Intern' },
-//     ],
-
-//     deadline: "Jan 2025",
-//     id: 2,
-//   },
-//   {
-//     name: "SSRL lab app",
-//     members: [
-//       { name: 'Bolu', img: img1, role: 'Lead' },
-//       { name: 'Ceejay', img: img1, role: 'Admin' },
-//       { name: 'Dabira', img: img1, role: 'Intern' },
-//       { name: 'Banky', img: img1, role: 'Admin' },
-//     ],
-
-//     deadline: "Jan 2025",
-//     id: 3,
-//   },
-//   {
-//     name: "SSRL lab app",
-//     members: [
-//       { name: 'Bolu', img: img1, role: 'Lead' },
-//       { name: 'Ceejay', img: img1, role: 'Admin' },
-//       { name: 'Dabira', img: img1, role: 'Intern' },
-//       { name: 'Banky', img: img1, role: 'Admin' },
-//     ],
-
-//     deadline: "Jan 2025",
-//     id: 4,
-//   },
-//   {
-//     name: "SSRL lab app",
-//     members: [
-//       { name: 'Ceejay', img: img1, role: 'Admin' },
-//       { name: 'Ceejay', img: img1, role: 'Admin' },
-//       { name: 'Bolu', img: img1, role: 'Lead' },
-//       { name: 'Dabira', img: img1, role: 'Intern' },
-//       { name: 'Banky', img: img1, role: 'Admin' },
-//     ],
-
-//     deadline: "Jan 2025",
-//     id: 5,
-//   },
-//   {
-//     name: "SSRL lab app",
-//     members: [
-//       { name: 'Bolu', img: img1, role: 'Lead' },
-//       { name: 'Ceejay', img: img1, role: 'Admin' },
-//       { name: 'Dabira', img: img1, role: 'Intern' },
-//       { name: 'Banky', img: img1, role: 'Admin' },
-//       { name: 'Banky', img: img1, role: 'Admin' },
-//       { name: 'Banky', img: img1, role: 'Admin' },
-//     ],
-
-//     deadline: "Jan 2025",
-//     id: 6,
-//   },
-
-// ];
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -157,7 +80,9 @@ const Projects = () => {
             <div className="flex pb-4 min-w-max gap-6">
               {!projectsError.status ? (
                 projectsLoading ? (
-                  <p>Loading...</p> /*Please add better loading skeletons */
+
+                  <ProjectCardSkeleton />
+
                 ) : (
                   projects.map((project) => (
                     <ProjectCard key={project._id} project={project} />
