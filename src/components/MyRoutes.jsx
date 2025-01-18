@@ -29,6 +29,8 @@ import TeamChat from "../pages/TeamChat/TeamChat";
 import Settings from "../pages/Settings/Settings";
 import Reports from "../pages/reports/Reports.jsx";
 import Requests from "../pages/requests/Requests.jsx";
+import SingleRequests from "../pages/requests/SingleRequests.jsx"
+import CreateRequest from "../pages/requests/CreateRequest.jsx";
 
 const MyRoutes = () => {
   return (
@@ -62,17 +64,24 @@ const MyRoutes = () => {
             <Route index element={<Projects />} />
             <Route path=":id" element={<SingleProject />} />
             <Route path="create" element={<CreateProject />} />
-            <Route path="edit" element={<EditProject />} />
-            <Route path="announcement" element={<Announcement />} />
+            <Route path="edit/:id" element={<EditProject />} />
+            <Route path="announcement/:id" element={<Announcement />} />
 
           </Route>
+
+          <Route path="requests" >
+            <Route index element={<Requests />} />
+            <Route path=":id" element={<SingleRequests />} />
+            <Route path="create" element={<CreateRequest />} />
+          </Route>
+
+
 
           <Route path="teamchat" element={<TeamChat />} />
           <Route path="to-do" element={<Todo />} />
           <Route path="reports" element={<Reports />} />
-          <Route path="requests" element={<Requests />} />
           <Route path="settings" element={<Settings />} />
-          <Route path="notifications" element={<Notifications />} />
+
         </Route>
       </Routes>
     </Router>

@@ -6,6 +6,6 @@ const PersonnelCardSkeleton = () => (
       <div className="h-3 bg-gray-300 rounded w-1/2"></div>
     </div>
   </div>
-);
+)
 
-export default PersonnelCardSkeleton;
+export default PersonnelCardSkeleton

@@ -20,23 +20,21 @@ const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
                     src={Navarrow} alt="back"
 
                     className='w-7 h-7 hover:scale-125 transition-all duration-200 hover:transition-transform '
-                    onClick={() => navigate(-1)}
+                    
                 /> */}
-        <div className="p-1 rounded-full bg-logo hover:scale-125 transition-all duration-200 hover:transition-transform w-7 h-7 cursor-pointer flex justify-center items-center">
-          <ArrowLeft onClick={() => navigate(-1)} className=" " color="white" />
-        </div>
-        <SearchBar />
-      </div>
-      <div className="flex gap-2">
-        <Link to={`/home/dashboard/notifications`}>
-          <IoNotificationsOutline className="w-7 h-7 cursor-pointer hover:scale-125 transition-all duration-200 hover:transition-transform" />
-        </Link>
-        <Link to={`/home/dashboard/user-profile`}>
-          <RxAvatar className="w-7 h-7 cursor-pointer hover:scale-125 transition-all duration-200 hover:transition-transform" />
-        </Link>
-      </div>
-    </div>
-  );
-};
+                <div className='p-1 rounded-full bg-logo hover:scale-125 transition-all duration-200 hover:transition-transform w-7 h-7 cursor-pointer flex justify-center items-center'>
+                    <ArrowLeft className=' ' color='white' onClick={() => navigate(-1)}/>
+                </div>
+                <SearchBar />
+            </div>
+            <div className='flex gap-2'>
+                <Link to={`/home/dashboard/notifications`}>
+                    <IoNotificationsOutline className='w-7 h-7 cursor-pointer hover:scale-125 transition-all duration-200 hover:transition-transform' />
+
+                </Link>
+                <Link to={`/home/dashboard/user-profile`}>
+                    <RxAvatar className='w-7 h-7 cursor-pointer hover:scale-125 transition-all duration-200 hover:transition-transform' />
+                </Link>
+            </div>
 
 export default Headerbar;

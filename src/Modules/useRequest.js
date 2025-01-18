@@ -43,7 +43,7 @@ export const useRequest = () => {
   const sendRequest = async (path, method = 'GET', body = {}) => {
     setError({ status: false, msg: "" });
     console.log("Request sent in module");
-  
+
     let requestOptions = {
       method: method,
       headers: {

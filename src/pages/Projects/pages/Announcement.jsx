@@ -29,7 +29,7 @@ const Announcement = () => {
     return (
         <div className="mt-4 py-6 px-6 mx-auto bg-white  overflow-y-auto min-h-screen">
             <h1 className="text-2xl font-semibold text-gray-800 mb-4">
-                Send an Announcement About <span className="text-indigo-600">{project.name} {project.id}</span>
+                Send an Announcement About <span className="text-logo">{project.name} {project.id}</span>
             </h1>
             <hr className="bg-black mt-1 mb-6" />
 
@@ -49,23 +49,23 @@ const Announcement = () => {
                     rows={5}
                 />
 
-                <div className="flex flex-col sm:flex-row gap-4 mt-6">
+                <div className="flex flex-col sm:flex-row gap-4 mt-6 transition-all duration-200 ease-in">
                     <button
                         onClick={() => handleSendMessage("all")}
-                        className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow hover:bg-indigo-700 focus:outline-none"
+                        className="px-6 py-2 bg-logo text-white font-semibold rounded-lg shadow hover:bg-yellow-800 focus:outline-none"
                     >
                         Send to All
                     </button>
                     <button
                         onClick={() => handleSendMessage("leads")}
-                        className="px-6 py-2 bg-green-600 text-white font-semibold rounded-lg shadow hover:bg-green-700 focus:outline-none"
+                        className="px-6 py-2 bg-navBg2 text-white font-semibold rounded-lg shadow hover:bg-green-700 focus:outline-none"
                     >
                         Send to Leads Only
                     </button>
                     <div className="relative w-full sm:w-auto">
                         <button
                             onClick={toggleDropdown}
-                            className="px-6 py-2 bg-gray-600 text-white font-semibold rounded-lg shadow flex items-center justify-between gap-2 hover:bg-gray-700 focus:outline-none w-full"
+                            className="px-6 py-2 bg-navBg2 text-white font-semibold rounded-lg shadow flex items-center justify-between gap-2 hover:bg-green-700 focus:outline-none w-full"
                         >
                             Select Recipients <IoIosArrowDown className="w-5 h-5" />
                         </button>
@@ -93,7 +93,7 @@ const Announcement = () => {
                     onClick={() => handleSendMessage(selectedRecipients.map((recipient) => recipient.name))}
                     disabled={selectedRecipients.length === 0}
                     className={`mt-6 px-6 py-2 font-semibold rounded-lg shadow focus:outline-none ${selectedRecipients.length > 0
-                        ? "bg-blue-600 text-white hover:bg-blue-700"
+                        ? "bg-logo text-white hover:bg-logo"
                         : "bg-gray-400 text-gray-200 cursor-not-allowed"
                         }`}
                 >

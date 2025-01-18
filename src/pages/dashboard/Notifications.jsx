@@ -1,6 +1,6 @@
 import React from "react";
 import { LiaCheckDoubleSolid } from "react-icons/lia";
-import Messages from "../../sharedLayouts/Messages";
+import Messages from "../../components/Messages"
 
 import img1 from "../../assets/img1.jpg";
 
