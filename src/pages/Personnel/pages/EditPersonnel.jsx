@@ -9,6 +9,7 @@ const Edit = () => {
   return (
     <div>{ profile.firstname}</div>
   )
+
 }
 
 export default Edit

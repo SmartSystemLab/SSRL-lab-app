@@ -5,9 +5,8 @@ import { Edit, Loader, Loader2, LoaderCircle, Trash2, TriangleAlert, UserRoundCo
 import { useRequest } from "../../../Modules/useRequest";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
 
-const DropDownMenu = ({ role, suspended, profile }) => {
+const DropDownMenu = ({ uid, role, suspended }) => {
   const [setProfileRole, profileRole] = role
   const [suspend, setSuspend] = suspended
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,7 +16,6 @@ const DropDownMenu = ({ role, suspended, profile }) => {
   const [useDeleteRequest, deleteLoading, setDeleteLoading] = useRequest();
   const [useSuspendRequest, suspendLoading, setSuspendLoading] = useRequest();
   const navigate = useNavigate()
-  const uid = profile.uid
 
   const handleLead = async () => {
     const lead = profileRole === "Lead";
@@ -52,7 +50,10 @@ const DropDownMenu = ({ role, suspended, profile }) => {
 
   const handleDelete = async () => {
     setDeleteLoading(true);
-    const res = await useDeleteRequest(`admin/delete_user/${uid}`, "PATCH");
+    const res = await useDeleteRequest(
+      `admin/delete_user/${uid}`,
+      "PATCH"
+    );
     const data = await res.json();
 
     if (res.ok) {
@@ -76,7 +77,6 @@ const DropDownMenu = ({ role, suspended, profile }) => {
       setSuspend(suspend === "False" ? "True" : "False")
       toast.success(data.message);
     } else {
-      console.log(data)
       toast.error(data.message);
     }
     setSuspendLoading(false);
@@ -84,7 +84,8 @@ const DropDownMenu = ({ role, suspended, profile }) => {
 
   return (
     <div
-      className={`absolute top-10 right-10 ${userRole !== "Intern" ? "block" : "hidden"}`}
+      className={`absolute top-10 right-10 ${userRole !== "Intern" ? "block" : "hidden"
+        }`}
     >
       <div className="relative">
         <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -93,20 +94,19 @@ const DropDownMenu = ({ role, suspended, profile }) => {
         {isMenuOpen && (
           <div className="absolute top-6 right-0 mt-2 z-50 font-medium bg-white border rounded shadow-lg transition-all ease-in duration-300 w-max">
             <div>
-              <Link
+              <button
                 className={`items-center gap-2 w-full px-4 py-2 text-sm text-zinc-700 hover:bg-gray-100 border-b flex`}
-                to={`/home/personnel/edit/${uid}`}
-                state={profile}
               >
                 <Edit />
                 <p>Edit</p>
-              </Link>
+              </button>
 
               <button
                 className="flex items-center w-full gap-2 px-4 py-2 text-sm text-zinc-700 hover:bg-green-50 border-b"
                 onClick={handleLead}
               >
                 <UserRoundPlus />
+                {/* <span>Make a Lead</span> */}
                 <span>
                   {profileRole !== "Lead" ? "Make a Lead" : "Remove Lead"}
                 </span>
