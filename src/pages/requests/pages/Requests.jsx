@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import { LiaCheckDoubleSolid } from "react-icons/lia";
 import { Plus } from "lucide-react";
-import Messages from "../../components/Messages";
-import img1 from "../../assets/img1.jpg";
+import Messages from "../pages../../../../components/Messages";
+import img1 from "../pages../../../../assets/img1.jpg";
 
 const info = [
   {
@@ -17,7 +17,6 @@ const info = [
     summary: "Sent you requests for equipments",
     images: img1,
     duration: "1 day",
-    id: 2,
   },
   {
     name: "Adeosun Covenant J",
@@ -30,18 +29,20 @@ const info = [
 ];
 const Requests = () => {
   return (
-    <div>
+    <div >
       {/* Header */}
       <div className="mt-8 p-2">
         <div className="flex justify-between items-center">
-          <h1 className="uppercase font-bold text-2xl">Requests</h1>
-          <Link className="flex items-center gap-2 text-lg font-medium hover:bg-neutral-100 p-2 hover:rounded-lg transition-all duration-300"
-            to={'/home/requests/create'}>
-            <span>Create Request</span>
-            <div className="p-[2px] bg-logo rounded-full">
-              <Plus color="white" />
-            </div>
-          </Link>
+          <h1 className="uppercase font-bold text-xl md:text-2xl">Requests</h1>
+          <div>
+            <Link className="flex items-center gap-2 text-base md:text-lg font-medium hover:bg-neutral-100 p-2 hover:rounded-lg transition-all duration-300"
+              to={'/home/requests/create'}>
+              <span>Create Request</span>
+              <div className="p-[2px] bg-logo rounded-full">
+                <Plus color="white" />
+              </div>
+            </Link>
+          </div>
         </div>
 
         <hr className="bg-black" />

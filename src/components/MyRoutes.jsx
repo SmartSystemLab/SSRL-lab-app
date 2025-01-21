@@ -24,13 +24,15 @@ import CreateProject from "../pages/Projects/pages/CreateProject.jsx";
 import EditProject from "../pages/Projects/pages/EditProject.jsx"
 import Announcement from "../pages/Projects/pages/Announcement.jsx"
 
+import Requests from "../pages/requests/pages/Requests.jsx";
+import SingleRequests from "../pages/requests/pages/SingleRequests.jsx"
+import CreateRequest from "../pages/requests/pages/CreateRequest.jsx"
+import PreviewRequest from "../pages/requests/pages/PreviewRequest.jsx"
+
 import Todo from "../pages/Todo/Todo.jsx";
 import TeamChat from "../pages/TeamChat/TeamChat";
 import Settings from "../pages/Settings/Settings";
 import Reports from "../pages/reports/Reports.jsx";
-import Requests from "../pages/requests/Requests.jsx";
-import SingleRequests from "../pages/requests/SingleRequests.jsx"
-import CreateRequest from "../pages/requests/CreateRequest.jsx";
 
 const MyRoutes = () => {
   return (
@@ -66,16 +68,14 @@ const MyRoutes = () => {
             <Route path="create" element={<CreateProject />} />
             <Route path="edit/:id" element={<EditProject />} />
             <Route path="announcement/:id" element={<Announcement />} />
-
           </Route>
 
-          <Route path="requests" >
+          <Route path="requests">
             <Route index element={<Requests />} />
             <Route path=":id" element={<SingleRequests />} />
             <Route path="create" element={<CreateRequest />} />
+            <Route path="preview-request" element={< PreviewRequest />} />
           </Route>
-
-
 
           <Route path="teamchat" element={<TeamChat />} />
           <Route path="to-do" element={<Todo />} />

@@ -51,7 +51,7 @@ const Login = () => {
     if (res.ok) {
       if (Object.keys(sess.old_session).length === 0 || sess.old_session.expired === "true") {
         setSessionStorage("session_id", sess.new_session.session_id);
-    }
+      }
     }
   };
 

@@ -156,12 +156,11 @@ const EditProject = () => {
 
                     {/* Deadline ceejay do am yourself */}
                     <label className="font-medium text-lg">Deadline</label>
-                    {/* <DatePicker
+                    <DatePicker
                         selected={selectedDate}
                         onChange={(date) => setSelectedDate(date)}
-                        dateFormat="dd/MM/yyyy"
                         className="w-full px-3 py-2 border border-gray-400 rounded-lg focus:outline-none"
-                    /> */}
+                    />
 
                     <div className='flex flex-col md:flex-row gap-8 mt-8'>
                         <div className="relative w-full md:w-1/2">
