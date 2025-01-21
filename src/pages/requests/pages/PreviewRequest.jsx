@@ -81,9 +81,9 @@ const PreviewRequest = () => {
                         </p>
                     </>
                 )}
-                <ul className="list-decimal list-outside ml-2 space-y-1 italicpl-2">
-                   <h2 className="text-lg font-medium mt-2"> Recipients</h2>
-                    {selectedRecipients.map((recipient )=> (
+                <ul className="list-decimal list-outside ml-2 space-y-1 pl-2">
+                    <h2 className="text-lg font-medium mt-2"> Recipients</h2>
+                    {selectedRecipients.map((recipient) => (
                         <li key={recipient} className="break-words">
                             {recipient}
                         </li>
