@@ -119,6 +119,7 @@ const Registration = () => {
                       <option value="" disabled>
                         Select Role
                       </option>
+                      <option value="software">Admin</option>
                       <option value="software">Lead</option>
                       <option value="hardware">Member</option>
                     </select>

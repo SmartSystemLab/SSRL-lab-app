@@ -36,5 +36,6 @@ const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
                     <RxAvatar className='w-7 h-7 cursor-pointer hover:scale-125 transition-all duration-200 hover:transition-transform' />
                 </Link>
             </div>
+            </div>)};
 
 export default Headerbar;

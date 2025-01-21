@@ -5,8 +5,9 @@ import { Edit, Loader, Loader2, LoaderCircle, Trash2, TriangleAlert, UserRoundCo
 import { useRequest } from "../../../Modules/useRequest";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
-const DropDownMenu = ({ uid, role, suspended }) => {
+const DropDownMenu = ({ uid, role, suspended, profile }) => {
   const [setProfileRole, profileRole] = role
   const [suspend, setSuspend] = suspended
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -84,8 +85,9 @@ const DropDownMenu = ({ uid, role, suspended }) => {
 
   return (
     <div
-      className={`absolute top-10 right-10 ${userRole !== "Intern" ? "block" : "hidden"
-        }`}
+      className={`absolute top-10 right-10 ${
+        userRole !== "Intern" ? "block" : "hidden"
+      }`}
     >
       <div className="relative">
         <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -97,8 +99,10 @@ const DropDownMenu = ({ uid, role, suspended }) => {
               <button
                 className={`items-center gap-2 w-full px-4 py-2 text-sm text-zinc-700 hover:bg-gray-100 border-b flex`}
               >
-                <Edit />
-                <p>Edit</p>
+                <Link to={`/home/personnel/edit/:id`} className="" state={profile}>
+                  <Edit />
+                  <p>Edit</p>
+                </Link>
               </button>
 
               <button
@@ -131,7 +135,10 @@ const DropDownMenu = ({ uid, role, suspended }) => {
                     )}
                   </button>
 
-                  <button className="flex items-center w-full gap-2 px-4 py-2 text-sm text-zinc-700 hover:bg-yellow-50 border-b" onClick={handleSuspend}>
+                  <button
+                    className="flex items-center w-full gap-2 px-4 py-2 text-sm text-zinc-700 hover:bg-yellow-50 border-b"
+                    onClick={handleSuspend}
+                  >
                     <TriangleAlert color="gold" />
                     <span>{suspend === "True" ? "Unsuspend" : "Suspend"}</span>
                     {suspendLoading && (
