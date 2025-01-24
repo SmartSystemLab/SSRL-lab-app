@@ -16,6 +16,10 @@ const Registration = () => {
     setUser({ ...user, [e.target.firstname]: e.target.value });
     console.log(user);
   };
+  
+  const handleCancel = () => {
+    navigate(-1);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -179,7 +183,7 @@ const Registration = () => {
               <div className="text-right">
                 <Button
                 text="Cancel"
-                handler={""}/>
+                handler={handleCancel}/>
               </div>
             </form>
           </div>
