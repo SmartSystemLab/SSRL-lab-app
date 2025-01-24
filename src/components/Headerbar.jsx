@@ -22,7 +22,7 @@ const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
                     className='w-7 h-7 hover:scale-125 transition-all duration-200 hover:transition-transform '
                     onClick={() => navigate(-1)}
                 /> */}
-                <div className='p-1 rounded-full bg-logo hover:scale-125 transition-all duration-200 hover:transition-transform w-7 h-7 cursor-pointer flex justify-center items-center'>
+                <div className='p-1 rounded-full bg-logo hover:scale-125 transition-all duration-200 hover:transition-transform w-7 h-7 cursor-pointer flex justify-center items-center' onClick={() => navigate(-1)}>
                     <ArrowLeft className=' ' color='white' />
                 </div>
                 <SearchBar />

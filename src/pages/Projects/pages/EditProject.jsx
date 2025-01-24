@@ -179,7 +179,7 @@ const EditProject = () => {
                                             <input
                                                 type="checkbox"
                                                 checked={selectedMembers.some((member) => member.id === intern.id)}
-                                                onChange={() => handleMemberSelect(intern)}
+                                                // onChange={() => handleMemberSelect(intern)}
                                                 className="mr-2"
                                             />
                                             {intern.name}
@@ -205,7 +205,7 @@ const EditProject = () => {
                                             <input
                                                 type="checkbox"
                                                 checked={selectedLeads.some((lead) => lead.id === member.id)}
-                                                onChange={() => handleLeadSelect(member)}
+                                                // onChange={() => handleLeadSelect(member)}
                                                 className="mr-2"
                                             />
                                             {member.name}
