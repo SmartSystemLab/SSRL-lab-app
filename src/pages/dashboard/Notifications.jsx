@@ -85,8 +85,6 @@ const Notifications = () => {
                   info={info}
                   to='/home/dashboard/notifications'
                 ></Messages>
-
-
               </section>
             </div>
           </div>

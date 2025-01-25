@@ -30,13 +30,6 @@ const Login = () => {
     loginError,
     setLoginError,
   ] = useRequest();
-  const [
-    sendSessionRequest,
-    // sessionLoading,
-    // setSessionLoading,
-    // sessionError,
-    // setSessionError,
-  ] = useRequest();
   const validateUsernameRef = useRef(false);
   const validatePasswordRef = useRef(false);
   const checkedRef = useRef();
@@ -44,23 +37,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const getSession = async () => {
-    const res = await sendSessionRequest(`session/new/${getSessionStorage("session_id", "") || "new"}`);
-    console.log(res)
-    const sess = await res.json();
-    if (res.ok) {
-      if (Object.keys(sess.old_session).length === 0 || sess.old_session.expired === "true") {
-        setSessionStorage("session_id", sess.new_session.session_id);
-      }
-    }
-  };
-
-  useEffect(() => {
-    getSession()
-  }, []);
-
   const handleFormSubmit = (event) => {
-    // getSession()
     event.preventDefault();
     validateUsername(username, setUsername, validateUsernameRef);
     if (validateUsernameRef) setUserId(username.username);
@@ -80,6 +57,7 @@ const Login = () => {
 
     const data = await res.json();
     if (res.ok) {
+      setSessionStorage('access_token', data.access_token)
       setUserProfile(data.user_profile);
       navigate("/home/dashboard");
     } else {

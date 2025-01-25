@@ -9,6 +9,7 @@ import { useRequest } from "../../Modules/useRequest";
 import { useUserData } from "../../Modules/UserContext";
 import { BiArrowToTop } from "react-icons/bi";
 import { setSessionStorage } from "../../Modules/getSessionStorage";
+import { X } from "lucide-react";
 
 const Dashboard = () => {
   const [name, setName] = useState("");
@@ -31,6 +32,7 @@ const Dashboard = () => {
   const getProfile = async () => {
     setProfileLoading(true);
     const res = await sendProfileRequest("home");
+
     console.log(res)
     const data = await res.json();
     if (res.ok) {
@@ -52,7 +54,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    getProfile();
+    // getProfile();
   }, []);
 
   const dismissNotification = (id) => {
@@ -83,20 +85,20 @@ const Dashboard = () => {
 
   return (
     <div className="p-2">
-      {profileError.status && <p className="text-red-500">Couldn't load your dashboard. {profileError.msg}</p>}
+      {profileError.status && <p className="text-red-500">Couldn&apos;t load your dashboard. {profileError.msg}</p>}
       <div className="flex flex-col md:flex-row gap-10 justify-start md:items-start items-center w-full overflow-y-auto">
         <div className="space-y-6 py-2 px-6 min-w-[370px] lg:w-2/5 md:w-1/2 w-2/3">
-          <div className="space-y-2 bg-white shadow-lg border-2 p-6 rounded-md text-left">
+          <div className="space-y-2 bg-white shadow-lg border-1 p-6 rounded-2xl text-left">
             <h2 className=" text-navBg2 font-semibold text-xl md:text-2xl lg:text-3xl">
               Welcome {name || "Intern"}!
             </h2>
-            <p className=" text-navBg2 text-xl font-normal">{formattedDate} </p>
+            <p className=" text-navBg2 text-xl font-normal">{formattedDate}</p>
             <p className=" text-[#357932] text-lg font-bold">
-              Let's do the best today
+              Let&apos;s do the best today
             </p>
           </div>
           {/* projects */}
-          {/*Tofunmi, pls work on this such that the Dashboxes will display No items for all it's instances when there is no content to be displayed. However, note that the structure of the projects, requests and reports e.t.c are different and so they have different implementations and that's why I had to bt=ring them out as children. Kindly find a workaround. */}
+          {/*Tofunmi, pls work on this such that the Dashboxes will display No items for all it's instances when there is no content to be displayed. However, note that the structure of the projects, requests and reports e.t.c are different and so they have different implementations and that's why I had to bring them out as children. Kindly find a workaround. */}
           <Dashboxes header="Projects" nav="projects">
             <ul className="">
               {projects.length > 0 ? (
@@ -192,22 +194,24 @@ const Dashboard = () => {
             </Link>
           </div>
           {/* notifications */}
-          {/*Let's add a dot that shows whether the notification has been read or not, bases on the status. The dot will only be there if the notification isn't read. */}
-          <div className="p-4 border-2 bg-white shadow-md mt-6 rounded-md h-full">
-            <h2 className="text-xl font-bold text-center mb-4">Notifications</h2>
-            <ul className="space-y-2 mx-4 ">
+          {/*Let's add a dot that shows whether the notification has been read or not, based on the status. The dot will only be there if the notification isn't read. */}
+          <h2 className="text-lg font-bold text mt-6">Notifications</h2>
+          <div className="p-4 shadow-md rounded-2xl bg-navBg2 text-white h-full">
+            <ul className="space-y-2 text-sm ">
               {notifications.length > 0 ? (
                 notifications.map((notification) => (
                   <li
                     key={notification._id}
-                    className="flex justify-between items-center bg-gray-100 px-4 py-4 rounded-md"
+                    className="flex justify-between items-end px-2 py-4 gap-4 border-b border-slate-300 "
                   >
-                    <span>{notification.message}</span>
+                    <p>{notification.message}</p>
+                    <p></p> {/*Add date and time using the sent_at property in the notification object */}
                     <button
                       onClick={() => dismissNotification(notification._id)}
-                      className="text-red-500 hover:text-red-700"
+                      className="text-red-500 hover:text-red-700 "
                     >
-                      <MdClose />
+                      {/* <MdClose /> */}
+                      <X color="red" className="bg-white rounded-full p-1 hover:translate-y-1 transition-all duration-100 ease-in" size={20} />
                     </button>
                   </li>
                 ))
@@ -217,7 +221,7 @@ const Dashboard = () => {
             </ul>
             <Link
               to={`/home/dashboard/notifications`}
-              className=" text-logo block text-base text-right p-2 rounded font-medium  hover:text-navBg2 transition-all duration-300 ease-in"
+              className=" bg-logo block text-white w-fit rounded-full text-right px-3 py-1 text-sm font-medium hover:scale-105 transition-all duration-100 ease-in mt-6"
             >
               See All
             </Link>

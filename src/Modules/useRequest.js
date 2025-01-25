@@ -17,6 +17,7 @@ export const useGetRequest = () => {
         "Content-Type": "application/json",
         "Access-control-allow-origin": "*",
         "Session_ID": getSessionStorage("session_id", ""),
+
       },
     };
     setLoading(true);
@@ -49,6 +50,7 @@ export const useRequest = () => {
       headers: {
         "Content-Type": "application/json",
         "Session_ID": getSessionStorage("session_id", ""),
+        "Authorization": `Bearer ${getSessionStorage("access_token", "")}`
       },
     };
 
