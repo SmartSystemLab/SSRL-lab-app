@@ -177,7 +177,6 @@ const CreateProject = () => {
               <DatePicker
                 selected={selectedDate}
                 onChange={(date) => setSelectedDate(date)}
-                dateFormat="dd/mm/yyyy"
                 className="w-full px-3 py-2 border border-gray-400 rounded-lg focus:outline-none"
                 placeholderText="Select a deadline"
               />

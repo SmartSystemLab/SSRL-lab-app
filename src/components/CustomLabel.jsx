@@ -13,6 +13,7 @@ const CustomLabel = ({
     inputClassName,
     labelCLassName,
     placeholder,
+
 }) => {
     return (
         <div>
@@ -22,6 +23,7 @@ const CustomLabel = ({
                 value={inputValue}
                 onChange={onChange}
                 onBlur={onBlur}
+                required
                 className={inputClassName}
                 placeholder={placeholder}
             />
