@@ -1303,7 +1303,7 @@ video {
 
 .border-gray-500 {
   --tw-border-opacity: 1;
-  border-color: rgb(107 114 128 / var(--tw-border-opacity));
+  border-color: rgb(107 114 128 / var(--tw-border-opacity))
 }
 
 .border-slate-300 {
@@ -2127,8 +2127,21 @@ video {
   background-color: rgb(133 77 14 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-yellow-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(202 138 4 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-yellow-800:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(133 77 14 / var(--tw-bg-opacity));
+}
+
 .hover\:text-navBg1:hover {
   color: rgba(116, 247, 105, 0.22);
+.hover\:text-navBg2:hover {
+  --tw-text-opacity: 1;
+  color: rgb(34 85 34 / var(--tw-text-opacity));
 }
 
 .hover\:text-red-700:hover {
