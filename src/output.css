@@ -1380,10 +1380,6 @@ video {
   background-color: rgb(255 165 0 / var(--tw-bg-opacity));
 }
 
-.bg-navBg1 {
-  background-color: rgba(116, 247, 105, 0.22);
-}
-
 .bg-navBg2 {
   --tw-bg-opacity: 1;
   background-color: rgb(34 85 34 / var(--tw-bg-opacity));
@@ -2188,9 +2184,9 @@ video {
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
-.focus\:ring-indigo-500:focus {
+.focus\:ring-navBg2:focus {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(34 85 34 / var(--tw-ring-opacity));
 }
 
 @media (min-width: 640px) {

@@ -10,9 +10,13 @@ import { useUserData } from "../../Modules/UserContext";
 import { BiArrowToTop } from "react-icons/bi";
 import { setSessionStorage } from "../../Modules/getSessionStorage";
 import { X } from "lucide-react";
+import { ArrowBigDown } from "lucide-react";
+import { ArrowDown } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 
 const Dashboard = () => {
   const [name, setName] = useState("");
+  const [data, setData] = useState()
   const [projects, setProjects] = useState([]);
   const [reports, setReports] = useState([]);
   const [requests, setRequests] = useState([]);
@@ -27,23 +31,31 @@ const Dashboard = () => {
     setProfileError,
   ] = useRequest();
 
-  const { userProfile } = useUserData();
+  const { userId } = useUserData();
 
   const getProfile = async () => {
     setProfileLoading(true);
     const res = await sendProfileRequest("home");
 
-    console.log(res)
+    console.log(res);
     const data = await res.json();
     if (res.ok) {
       if (data) {
-        const { firstname, user_role, notifications, projects, reports, requests, stack } = data;
-        setSessionStorage("userRole", user_role)
-        setSessionStorage("userStack", stack)
+        const {
+          firstname,
+          user_role,
+          notifications,
+          projects,
+          reports,
+          requests,
+          stack,
+        } = data;
+        setSessionStorage("userRole", user_role);
+        setSessionStorage("userStack", stack);
         setName(firstname);
         setNotifications(notifications);
         setProjects(projects);
-        // setReports(reports)
+        setReports(reports);
         setRequests(requests);
       }
       console.log(data);
@@ -54,12 +66,12 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    // getProfile();
+    getProfile();
   }, []);
 
   const dismissNotification = (id) => {
     setNotifications(
-      notifications.filter((notification) => notification._id !== id)
+      notifications.filter((notification) => notification._id !== id),
     );
   };
 
@@ -85,15 +97,19 @@ const Dashboard = () => {
 
   return (
     <div className="p-2">
-      {profileError.status && <p className="text-red-500">Couldn&apos;t load your dashboard. {profileError.msg}</p>}
-      <div className="flex flex-col md:flex-row gap-10 justify-start md:items-start items-center w-full overflow-y-auto">
-        <div className="space-y-6 py-2 px-6 min-w-[370px] lg:w-2/5 md:w-1/2 w-2/3">
-          <div className="space-y-2 bg-white shadow-lg border-1 p-6 rounded-2xl text-left">
-            <h2 className=" text-navBg2 font-semibold text-xl md:text-2xl lg:text-3xl">
+      {profileError.status && (
+        <p className="text-red-500">
+          Couldn&apos;t load your dashboard. {profileError.msg}
+        </p>
+      )}
+      <div className="flex w-full flex-col items-center justify-start gap-10 overflow-y-auto md:flex-row md:items-start">
+        <div className="w-2/3 min-w-[370px] space-y-6 px-6 py-2 md:w-1/2 lg:w-2/5">
+          <div className="border-1 space-y-2 rounded-2xl bg-white p-6 text-left shadow-lg">
+            <h2 className="text-xl font-semibold text-navBg2 md:text-2xl lg:text-3xl">
               Welcome {name || "Intern"}!
             </h2>
-            <p className=" text-navBg2 text-xl font-normal">{formattedDate}</p>
-            <p className=" text-[#357932] text-lg font-bold">
+            <p className="text-xl font-normal text-navBg2">{formattedDate}</p>
+            <p className="text-lg font-bold text-[#357932]">
               Let&apos;s do the best today
             </p>
           </div>
@@ -102,60 +118,106 @@ const Dashboard = () => {
           <Dashboxes header="Projects" nav="projects">
             <ul className="">
               {projects.length > 0 ? (
-                projects.map((data) => (
-                  <div key={data._id} className="my-2 border rounded-lg p-2">
-                    <li className="text-navBg2 text-base fade-in">{data.name}</li>
-                    <li className="text-xs truncate">{data.description}</li>
-                  </div>
+                projects.map((project) => (
+                  <Link
+                    key={project._id}
+                    to={`/home/projects/${project._id}`}
+                    state={project}
+                  >
+                    <div className="my-2 rounded-lg border p-2">
+                      <li className="fade-in text-base text-navBg2">
+                        {project.name}
+                      </li>
+                      <li className="truncate text-xs">
+                        {project.description}
+                      </li>
+                    </div>
+                  </Link>
                 ))
               ) : (
                 // Work on skeletons. They will only show loading states of the contents when it's fetching from the backend. I'll work on that.
-                <div className="space-y-2 ">
+                <div className="space-y-2">
                   <p>No items...</p>
                 </div>
               )}
             </ul>
           </Dashboxes>
+
           {/* reports */}
-          <Dashboxes header="Reports" boxData={reports} nav="submissions" />
+          <Dashboxes header="Reports" boxData={reports} nav="reports">
+            <ul>
+              {reports.length > 0 ? (
+                reports.map((report) => {
+                  return (
+                    <Link key={report._id}>
+                      <div className="my-2 rounded-lg border p-2">
+                        <p className="text-navBg2">{report.title}</p>
+                        <p className="text-xs capitalize">{report.report_type}</p>
+                      </div>
+                    </Link>
+                  );
+                })
+              ) : (
+                <div className="space-y-2">
+                  <p>No items...</p>
+                </div>
+              )}
+            </ul>
+          </Dashboxes>
+
           {/* requests */}
-          <Dashboxes header="Requests" nav="submissions">
+          <Dashboxes header="Requests" nav="requests">
             <ul className="">
-              {requests.length > 0 ? (
-                requests.map((data) => (
-                  <div key={data._id} className="my-2 border rounded-lg p-2">
-                    <li className="text-navBg2 text-base fade-in truncate">
-                      {data.title}
+              {requests.length > 0 ? 
+                requests.map((request) => { 
+                  const { _id, title, sender, type, status } = request
+                  
+                  return (
+                    <li
+                      key={_id}
+                      className="my-2 rounded-lg border p-2 hover:bg-navBg1"
+                    >
+                      <p className="fade-in truncate text-base text-navBg2">
+                        {title}
+                      </p>
+                      <div className="flex items-center gap-4">
+                        <span>
+                          {userId == sender ? (
+                            <ArrowDown
+                              color={status == "Pending" ? "red" : "green"}
+                            />
+                          ) : (
+                            <ArrowUp
+                              color={status == "Pending" ? "red" : "green"}
+                            />
+                          )}
+                        </span>
+                        <li className="capitalize">{type}</li>
+                      </div>
                     </li>
-                    <div className="flex items-center gap-4">
-                      <li>
-                        <BiArrowToTop size={32} />
-                      </li>{" "}
-                      {/* Tofunmi, kindly change this such that it shows a down arrow if the receiver is the current user or a up arrow if the sender is the current user. The color of the arrow will depend on the status of the request*/}
-                      <li className="capitalize">{data.type}</li>
-                    </div>
-                  </div>
-                ))
+                  );
+                  
+                }
               ) : (
                 // Work on skeletons
-                <div className="space-y-2 ">
+                <div className="space-y-2">
                   <p>No items...</p>
                 </div>
               )}
             </ul>
           </Dashboxes>
         </div>
-        <div className="py-2 flex-grow">
+        <div className="flex-grow py-2">
           {/* to dos */}
-          <div className="w-full border-2 p-2 shadow-md rounded-md">
-            <h2 className="text-2xl font-bold text-center mb-2">To-do list</h2>
-            <div className="flex space-x-2 mb-4">
+          <div className="w-full rounded-2xl border p-6 shadow-lg">
+            <h2 className="mb-4 text-2xl font-bold">To-do list</h2>
+            <div className="mb-4 flex space-x-2">
               <input
                 type="text"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-navBg2"
                 placeholder="Enter a new task"
               />
-              <button className="px-4 py-2 bg text-black bg-navBg1 rounded border font-medium">
+              <button className="rounded-lg border bg-navBg2 px-4 py-2 font-medium text-white">
                 Create
               </button>
             </div>
@@ -164,7 +226,7 @@ const Dashboard = () => {
                 todos.map((todo) => (
                   <li
                     key={todo.id}
-                    className="flex justify-between items-center bg-gray-100 px-4 py-2 rounded-md"
+                    className="flex items-center justify-between rounded-md bg-gray-100 px-4 py-2"
                   >
                     {" "}
                     <div className="flex justify-center gap-2">
@@ -188,30 +250,35 @@ const Dashboard = () => {
             </ul>
             <Link
               to={`/home/to-do`}
-              className=" text-logo block text-base text-right p-2 rounded font-medium  hover:text-navBg1 transition-all duration-300 ease-in"
+              className="block rounded p-2 text-right text-base font-medium text-logo transition-all duration-300 ease-in hover:text-navBg1"
             >
               See All
             </Link>
           </div>
           {/* notifications */}
           {/*Let's add a dot that shows whether the notification has been read or not, based on the status. The dot will only be there if the notification isn't read. */}
-          <h2 className="text-lg font-bold text mt-6">Notifications</h2>
-          <div className="p-4 shadow-md rounded-2xl bg-navBg2 text-white h-full">
-            <ul className="space-y-2 text-sm ">
+          <h2 className="text mt-6 text-lg font-bold">Notifications</h2>
+          <div className="h-full rounded-2xl bg-navBg2 p-4 text-white shadow-md">
+            <ul className="space-y-2 text-sm">
               {notifications.length > 0 ? (
                 notifications.map((notification) => (
                   <li
                     key={notification._id}
-                    className="flex justify-between items-end px-2 py-4 gap-4 border-b border-slate-300 "
+                    className="flex items-end justify-between gap-4 border-b border-slate-300 px-2 py-4"
                   >
                     <p>{notification.message}</p>
-                    <p></p> {/*Add date and time using the sent_at property in the notification object */}
+                    <p></p>{" "}
+                    {/*Add date and time using the sent_at property in the notification object */}
                     <button
                       onClick={() => dismissNotification(notification._id)}
-                      className="text-red-500 hover:text-red-700 "
+                      className="text-red-500 hover:text-red-700"
                     >
                       {/* <MdClose /> */}
-                      <X color="red" className="bg-white rounded-full p-1 hover:translate-y-1 transition-all duration-100 ease-in" size={20} />
+                      <X
+                        color="red"
+                        className="rounded-full bg-white p-1 transition-all duration-100 ease-in hover:translate-y-1"
+                        size={20}
+                      />
                     </button>
                   </li>
                 ))
@@ -221,7 +288,7 @@ const Dashboard = () => {
             </ul>
             <Link
               to={`/home/dashboard/notifications`}
-              className=" bg-logo block text-white w-fit rounded-full text-right px-3 py-1 text-sm font-medium hover:scale-105 transition-all duration-100 ease-in mt-6"
+              className="mt-6 block w-fit rounded-full bg-logo px-3 py-1 text-right text-sm font-medium text-white transition-all duration-100 ease-in hover:scale-105"
             >
               See All
             </Link>
