@@ -105,7 +105,7 @@ const Dashboard = () => {
       )}
       <div className="flex w-full flex-col items-center justify-start gap-10 overflow-y-auto md:flex-row md:items-start">
         <div className="w-2/3 min-w-[370px] space-y-6 px-6 py-2 md:w-1/2 lg:w-2/5">
-          <div className="border-1 space-y-2 rounded-2xl bg-white p-6 text-left shadow-lg">
+          <div className="border-1 space-y-2 rounded-2xl bg-white p-6 text-left shadow-lg border">
             <h2 className="text-xl font-semibold text-navBg2 md:text-2xl lg:text-3xl">
               Welcome {name || "Intern"}!
             </h2>

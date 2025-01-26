@@ -8,7 +8,7 @@ import { ArrowLeft } from "lucide-react";
 const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
   const navigate = useNavigate();
   return (
-    <div className="flex justify-between w-full items-center md:px-0 px-4 max-w-screen-2xl ">
+    <div className={`flex justify-between items-center md:px-8 px-4 border-b fixed top-0 left-0 right-0 bg-white h-[62px] lg:ml-64`}>
       <div className="text-logo lg:hidden">
         <button onClick={toggleSideNav} className="cursor-pointer">
           {!isSideNavOpen && <FaBars className="w-5 h-5" />}
