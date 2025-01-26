@@ -7,7 +7,6 @@ import Projects from "../assets/Projects.svg";
 import Settings from "../assets/Settings.svg";
 import LogOut from "../assets/LogOut.svg";
 import TeamChat from "../assets/TeamChat.svg"
-import SearchBar from '../components/SearchBar.jsx'
 import {X} from 'lucide-react'
 
 const navData = [
@@ -49,9 +48,6 @@ const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
         </button>
       </div>
 
-      <div className="lg:hidden block px-2">
-        <SearchBar />
-      </div>
 
       {/* Navigation Links */}
       <div className="flex-1 space-y-3 ml-3 px-0 py-4 text-white">
