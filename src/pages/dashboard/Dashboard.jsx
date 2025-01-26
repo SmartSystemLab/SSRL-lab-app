@@ -13,6 +13,7 @@ import { X } from "lucide-react";
 import { ArrowBigDown } from "lucide-react";
 import { ArrowDown } from "lucide-react";
 import { ArrowUp } from "lucide-react";
+import { Dot } from "lucide-react";
 
 const Dashboard = () => {
   const [name, setName] = useState("");
@@ -118,22 +119,28 @@ const Dashboard = () => {
           <Dashboxes header="Projects" nav="projects">
             <ul className="">
               {projects.length > 0 ? (
-                projects.map((project) => (
-                  <Link
-                    key={project._id}
-                    to={`/home/projects/${project._id}`}
-                    state={project}
-                  >
-                    <div className="my-2 rounded-lg border p-2">
-                      <li className="fade-in text-base text-navBg2">
-                        {project.name}
-                      </li>
-                      <li className="truncate text-xs">
-                        {project.description}
-                      </li>
-                    </div>
-                  </Link>
-                ))
+                projects.map((project) => {
+                  const { _id, name, project_type, description, status} = project
+                  return (
+                    <Link
+                      key={_id}
+                      to={`/home/projects/${_id}`}
+                      state={project}
+                    >
+                      <div className="my-2 rounded-lg border p-2 hover:bg-navBg1">
+                        <div className="flex items-center justify-between">
+                          <li className="fade-in text-base text-navBg2 truncate">
+                            {name}
+                          </li>
+                          {<Dot size={36} color={ status == "Completed" ? "green" : "red" } />}
+                        </div>
+                        <li className="truncate text-xs">
+                          {description}
+                        </li>
+                      </div>
+                    </Link>
+                  );
+                })
               ) : (
                 // Work on skeletons. They will only show loading states of the contents when it's fetching from the backend. I'll work on that.
                 <div className="space-y-2">
@@ -148,11 +155,25 @@ const Dashboard = () => {
             <ul>
               {reports.length > 0 ? (
                 reports.map((report) => {
+                  const {_id, title, report_type, sender} = report
                   return (
-                    <Link key={report._id}>
-                      <div className="my-2 rounded-lg border p-2">
-                        <p className="text-navBg2">{report.title}</p>
-                        <p className="text-xs capitalize">{report.report_type}</p>
+                    <Link key={_id}>
+                      <div className="my-2 rounded-lg border p-2 hover:bg-navBg1">
+                        <p className="text-navBg2 truncate">{title}</p>
+                        <div className="flex items-center gap-4">
+                          <span>
+                            {userId == sender ? (
+                              <ArrowDown
+                                className="text-logo"
+                              />
+                            ) : (
+                                <ArrowUp
+                                  className="text-logo"
+                              />
+                            )}
+                          </span>
+                          <p className="text-xs capitalize">{report_type}</p>
+                        </div>
                       </div>
                     </Link>
                   );
