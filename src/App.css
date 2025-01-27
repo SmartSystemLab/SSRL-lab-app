@@ -24,8 +24,12 @@
 }
 
 .activeText {
-  @apply bg-white text-black rounded-l-full transition-all duration-200 ease-in-out relative;
+  @apply bg-white text-navBg2 rounded-l-full transition-all duration-200 ease-in-out relative;
 }
+
+/* .activeImg {
+  @apply color
+} */
 
 .activeText::before {
   padding: 10px;

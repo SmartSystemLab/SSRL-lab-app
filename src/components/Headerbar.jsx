@@ -9,33 +9,30 @@ import { ArrowLeft } from "lucide-react";
 const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
   const navigate = useNavigate();
   return (
-    <div className={`flex justify-between items-center md:px-8 px-4 border-b fixed top-0 left-0 right-0 bg-white h-[62px] lg:ml-64`}>
+    <div
+      className={`fixed left-0 right-0 top-0 flex h-[62px] items-center justify-between border-b bg-white px-4 md:px-8 lg:ml-64`}
+    >
       <div className="text-logo lg:hidden">
         <button onClick={toggleSideNav} className="cursor-pointer">
-          {!isSideNavOpen && <FaBars className="w-5 h-5" />}
+          {!isSideNavOpen && <FaBars className="h-5 w-5" />}
         </button>
       </div>
-      <div className="lg:flex gap-2 items-center w-3/4 hidden">
-        {/* <img
-                    src={Navarrow} alt="back"
-
-                    className='w-7 h-7 hover:scale-125 transition-all duration-200 hover:transition-transform '
-                    
-                /> */}
-                <div className='p-1 rounded-full bg-logo hover:scale-125 transition-all duration-200 hover:transition-transform w-7 h-7 cursor-pointer flex justify-center items-center'>
-                    <ArrowLeft className=' ' color='white' onClick={() => navigate(-1)}/>
-                </div>
-                <SearchBar />
-            </div>
-            <div className='flex gap-2'>
-                <Link to={`/home/dashboard/notifications`}>
-                    <IoNotificationsOutline className='w-7 h-7 cursor-pointer hover:scale-125 transition-all duration-200 hover:transition-transform' />
-
-                </Link>
-                <Link to={`/home/dashboard/user-profile`}>
-                    <RxAvatar className='w-7 h-7 cursor-pointer hover:scale-125 transition-all duration-200 hover:transition-transform' />
-                </Link>
-            </div>
-            </div>)};
+      <div className="flex w-3/4 items-center gap-2">
+        <div className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-logo p-1 transition-all duration-200 hover:scale-125 hover:transition-transform">
+          <ArrowLeft className=" " color="white" onClick={() => navigate(-1)} />
+        </div>
+        <SearchBar />
+      </div>
+      <div className="flex gap-2">
+        <Link to={`/home/dashboard/notifications`}>
+          <IoNotificationsOutline className="h-7 w-7 cursor-pointer transition-all duration-200 hover:scale-125 hover:transition-transform" />
+        </Link>
+        <Link to={`/home/dashboard/user-profile`}>
+          <RxAvatar className="h-7 w-7 cursor-pointer transition-all duration-200 hover:scale-125 hover:transition-transform" />
+        </Link>
+      </div>
+    </div>
+  );
+};
 
 export default Headerbar;
