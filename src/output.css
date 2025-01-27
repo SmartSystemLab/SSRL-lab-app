@@ -623,6 +623,42 @@ video {
   bottom: 0.5rem;
 }
 
+.bottom-full {
+  bottom: 100%;
+}
+
+.right-full {
+  right: 100%;
+}
+
+.-bottom-full {
+  bottom: -100%;
+}
+
+.-right-full {
+  right: -100%;
+}
+
+.bottom-\[\] {
+  bottom: ;
+}
+
+.left-full {
+  left: 100%;
+}
+
+.left-\[\] {
+  left: ;
+}
+
+.left-\[80\%\] {
+  left: 80%;
+}
+
+.left-\[90\%\] {
+  left: 90%;
+}
+
 .z-10 {
   z-index: 10;
 }

@@ -42,9 +42,9 @@ const Profile = ({ user, userRole }) => {
             suspended={[suspend, setSuspend]}
             profile={profile}
           />
-          <div className="flex justify-center items-center border-1 border-slate-300 rounded-full w-28 h-28 bg-logo">
+          <div className="flex justify-center items-center border-1 border-slate-300 rounded-full w-28 h-28 bg-logo overflow-hidden">
             {avatar !== "NIL" ? (
-              <img src={avatar} alt="avatar" className="m-5" />
+              <img src={avatar.secure_url} alt="avatar" className="m-5" />
             ) : (
               <span className={`text-5xl font-medium`}>{initials}</span>
             )}

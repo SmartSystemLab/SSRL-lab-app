@@ -15,7 +15,7 @@ const PersonnelCard = ({ personnel }) => {
           style={{ backgroundColor: `${background}50` }}
         >
           {avatar !== "NIL" ? (
-            <img src={avatar} alt="" className="h-full w-full rounded-full" />
+            <img src={avatar.secure_url} alt="" className="h-full w-full rounded-full" />
           ) : (
             <span className={`text-2xl font-medium`}>{initials}</span>
           )}
