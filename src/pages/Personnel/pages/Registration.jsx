@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CustomLabel from "../../../components/CustomLabel";
-import Button from "../../../components/Button";
+// import Button from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
@@ -171,14 +171,14 @@ const Registration = () => {
                   />
                 </div>
               </div>
-              <div className="flex items-center justify-start gap-6">
+              {/* <div className="flex items-center justify-start gap-6">
                 <Button text="Save" handler={""} />
 
                 <Button text="Save & add" handler={""} />
               </div>
               <div className="text-right">
                 <Button text="Cancel" handler={handleCancel} />
-              </div>
+              </div> */}
             </form>
           </div>
         </div>

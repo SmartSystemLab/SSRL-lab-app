@@ -45,7 +45,7 @@ const Personnel = () => {
       <div>
         <div className="container">
           <div className="mt-8">
-            <div className="uppercase font-bold text-2xl">Personnels</div>
+            <div className="uppercase font-medium text-2xl">Personnels</div>
             <hr className="bg-black" />
 
             {personellsError.status && (

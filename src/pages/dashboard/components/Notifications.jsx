@@ -12,7 +12,7 @@ const Notifications = ({ notifications, setNotifications }) => {
 
   return (
     <div className="mb-6">
-      <h2 className="text mb-2 text-xl font-bold">Notifications</h2>
+      <h2 className="mb-2 text-2xl font-medium">Notifications</h2>
       <div className="h-full rounded-2xl bg-navBg2 p-4 text-white shadow-md">
         <ul className="space-y-2 text-sm">
           {notifications.length > 0 ? (
