@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import DatePickerComp from "../../../components/DatePickerComp";
 import { getInitials } from "../../../Modules/funcs";
 import { EditIcon } from "lucide-react";
+import BigGreenButton from "../../../components/BigGreenButton"
 
 const Edit = () => {
   const locate = useLocation();
@@ -152,14 +153,7 @@ const Edit = () => {
                   change={setSelectedDate}
                 />
               </div>
-              {/* <div className="flex items-center justify-start gap-6">
-                <Button text="Save" handler={handleSubmit} />
-
-                <Button text="Save & add" handler={handleSubmit} />
-              </div>
-              <div className="text-right">
-                <Button text="Cancel" handler={handleCancel} />
-              </div> */}
+              <BigGreenButton></BigGreenButton>
             </form>
           </div>
         </div>
