@@ -10,9 +10,9 @@ import {
 } from "lucide-react";
 import { useRequest } from "../../../Modules/useRequest";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-const Dropdown = ({ completed, id }) => {
+const Dropdown = ({ completed, id, project }) => {
     const [isDropOpen, setIsDropOpen] = useState(false);
     const { isCompleted, setIsCompleted } = completed;
     const [
@@ -83,10 +83,12 @@ const Dropdown = ({ completed, id }) => {
                 {isDropOpen && (
                     <div className="absolute top-6 right-0 mt-2 z-50 font-medium bg-white rounded-lg shadow-lg transition-all ease-in duration-300 w-max border">
                         <div>
-                            <button className="flex items-center gap-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b">
-                                <EditIcon />
-                                <span>Edit Project</span>
-                            </button>
+                            <Link to={`/home/projects/edit/${id}`} state={project}>
+                                <button className="flex items-center gap-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b">
+                                    <EditIcon />
+                                    <span>Edit Project</span>
+                                </button>
+                            </Link>
 
                             <div onClick={handleComplete}>
                                 {!isCompleted ? (
@@ -108,10 +110,12 @@ const Dropdown = ({ completed, id }) => {
                                 )}
                             </div>
 
-                            <button className="flex items-center w-full gap-2 px-4 py-2 text-sm text-black hover:bg-gray-100 border-b">
-                                <Bell />
-                                <span>Make announcement</span>
-                            </button>
+                            <Link to={`/home/projects/announcement/${id}`} state={project}>
+                                <button className="flex items-center w-full gap-2 px-4 py-2 text-sm text-black hover:bg-gray-100 border-b">
+                                    <Bell />
+                                    <span>Make announcement</span>
+                                </button>
+                            </Link>
 
                             <button
                                 className="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50"

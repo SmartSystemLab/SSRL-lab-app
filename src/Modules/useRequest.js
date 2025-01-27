@@ -17,6 +17,7 @@ export const useGetRequest = () => {
         "Content-Type": "application/json",
         "Access-control-allow-origin": "*",
         "Session_ID": getSessionStorage("session_id", ""),
+
       },
     };
     setLoading(true);
@@ -43,12 +44,13 @@ export const useRequest = () => {
   const sendRequest = async (path, method = 'GET', body = {}) => {
     setError({ status: false, msg: "" });
     console.log("Request sent in module");
-  
+
     let requestOptions = {
       method: method,
       headers: {
         "Content-Type": "application/json",
         "Session_ID": getSessionStorage("session_id", ""),
+        "Authorization": `Bearer ${getSessionStorage("access_token", "")}`
       },
     };
 

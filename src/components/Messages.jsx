@@ -30,4 +30,3 @@ const Messages = ({ info, to }) => {
   );
 };
 export default Messages;
-// { name, summary, images, duration }
