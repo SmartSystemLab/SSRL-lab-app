@@ -14,13 +14,12 @@ const PersonnelSection = ({ personnels, title, loading }) => {
       <div>
         <Header title={title} showAddButton={showAddButton} />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {!loading ? (
           personnels && personnels.length > 0 ? (
             personnels.map((personnel) => {
-              const { uid, fullname, avatar, niche } = personnel;
               return (
-                <div key={uid}>
+                <div key={personnel.uid}>
                   <PersonnelCard personnel={personnel} />
                 </div>
               );

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import CustomLabel from "../../../components/CustomLabel";
-import Button from "../component/Button";
+import Button from "../../../components/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Edit = () => {
@@ -51,10 +51,10 @@ const Edit = () => {
 
   return (
     <div>
-      <div className="container ">
+      <div className="container">
         {/* Header */}
-        <div className="mt-8 ">
-          <div className=" font-bold text-2xl">{uid} Edit Page</div>
+        <div className="mt-8">
+          <div className="text-2xl font-bold">{uid} Edit Page</div>
           <hr className="bg-black" />
 
           {/* Content */}
@@ -64,7 +64,7 @@ const Edit = () => {
               onSubmit={handleSubmit}
             >
               <div className="flex flex-col gap-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
+                <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-2">
                   {/* first name */}
 
                   <CustomLabel
@@ -111,7 +111,7 @@ const Edit = () => {
                     placeholder="Enter email "
                   />
                 </div>{" "}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
+                <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-2">
                   {/* phone */}
 
                   <CustomLabel
@@ -141,7 +141,7 @@ const Edit = () => {
                       onChange={(event) =>
                         setUser({ ...user, role: event.target.value })
                       }
-                      className=" relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
+                      className="relative block w-full rounded-lg border border-[#666666] px-3 py-1 text-[#111111] opacity-35 focus:text-black focus:opacity-100 focus:outline-none"
                     >
                       <option value="" disabled>
                         Select Role
@@ -152,7 +152,7 @@ const Edit = () => {
                     </select>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
+                <div className="grid w-full grid-cols-1 gap-12 md:grid-cols-2">
                   {/* Stack */}
                   <div>
                     <CustomLabel
@@ -166,7 +166,7 @@ const Edit = () => {
                       onChange={(event) =>
                         setUser({ ...user, stack: event.target.value })
                       }
-                      className=" relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
+                      className="relative block w-full rounded-lg border border-[#666666] px-3 py-1 text-[#111111] opacity-35 focus:text-black focus:opacity-100 focus:outline-none"
                     >
                       <option value="" disabled>
                         Select Stack
@@ -192,7 +192,7 @@ const Edit = () => {
                   />
                 </div>
               </div>
-              <div className=" flex justify-start items-center gap-6">
+              <div className="flex items-center justify-start gap-6">
                 <Button text="Save" handler={handleSubmit} />
 
                 <Button text="Save & add" handler={handleSubmit} />
