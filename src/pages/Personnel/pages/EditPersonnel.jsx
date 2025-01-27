@@ -3,15 +3,20 @@ import { useState } from "react";
 import CustomLabel from "../../../components/CustomLabel";
 // import Button from "../../../components/Button";
 import { useLocation, useNavigate } from "react-router-dom";
+import DatePickerComp from "../../../components/DatePickerComp";
+import { getInitials } from "../../../Modules/funcs";
+import { EditIcon } from "lucide-react";
 
 const Edit = () => {
+  const locate = useLocation();
+  const profile = locate.state;
   const {
-    surname,
     firstname,
+    surname,
+    fullname,
     avatar,
     email,
-    bday,
-    datetime_created,
+    bday, // Probably use for date picker
     niche,
     stack,
     uid,
@@ -21,16 +26,18 @@ const Edit = () => {
   } = profile;
 
   const [user, setUser] = useState({
-    firstname,
-    surname,
-    email,
-    phone_num,
-    role,
-    stack,
-    niche,
-    bio,
+    firstname: firstname,
+    surname: surname,
+    email: email,
+    phone_num: phone_num,
+    role: role,
+    stack: stack,
+    niche: niche,
+    bio: bio,
+    avatar: avatar,
   });
 
+  const  initials = getInitials(fullname)
   const navigate = useNavigate();
 
   const handleChange = (event, val) => {
@@ -41,10 +48,7 @@ const Edit = () => {
     e.preventDefault();
   };
 
-  const locate = useLocation();
-  const profile = locate.state;
-
-  console.log(surname, email);
+const [selectedDate, setSelectedDate] = useState(null);
 
   return (
     <div>
@@ -59,11 +63,21 @@ const Edit = () => {
           {/* Content */}
           <div>
             <form
-              className="form flex flex-col gap-2 border md:shadow-lg"
+              className="mx-auto my-12 flex flex-col gap-2 rounded-xl border px-10 py-8 shadow-lg"
               onSubmit={handleSubmit}
             >
               <div className="flex flex-col gap-6">
                 <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
+                  <div className="border-1 relative mx-auto mb-6 flex h-32 w-32 items-center justify-center rounded-full border-black bg-logo md:ml-12 hover:scale-105">
+                    {avatar !== "NIL" ? (
+                      <img src={avatar} alt="avatar" className="m-5" />
+                    ) : (
+                      <span className={`text-5xl font-medium`}>{initials}</span>
+                    )}
+                    <EditIcon className="absolute bottom-2 right-2" />
+                  </div>
+
+                  <p className="flex items-center ">Edit {firstname}&apos;s info and add an optional profile picture</p>
                   <CustomLabel
                     htmlFor="firstname"
                     labelText="First name"
@@ -71,6 +85,7 @@ const Edit = () => {
                     onChange={() => handleChange(firstname)}
                     placeholder="Enter first name"
                   />
+
                   <CustomLabel
                     htmlFor="lastname"
                     labelText="Last name"
@@ -108,8 +123,8 @@ const Edit = () => {
                       <option value="" disabled>
                         Select Stack
                       </option>
-                      <option value="software">Software</option>
-                      <option value="hardware">Hardware</option>
+                      <option value="Software">Software</option>
+                      <option value="Hardware">Hardware</option>
                     </select>
                   </div>
 
@@ -129,9 +144,16 @@ const Edit = () => {
                           ? "I'm just a boring person who hasn't set a bio yet."
                           : bio
                       }
-                      className="h-36 w-full appearance-none rounded-lg border border-slate-900 p-3 opacity-35 focus:opacity-100 md:col-span-2"
+                      className="h-36 w-full appearance-none rounded-lg border border-slate-900 p-3 opacity-35 focus:opacity-100 focus:outline-none md:col-span-2"
                     ></textarea>
                   </div>
+
+                  <DatePickerComp
+                    label="Date of Birth"
+                    placeholder="  Select your date of birth"
+                    selected={selectedDate}
+                    change={setSelectedDate}
+                  />
                 </div>
               </div>
               {/* <div className="flex items-center justify-start gap-6">
