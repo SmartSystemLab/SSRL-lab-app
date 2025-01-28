@@ -10,7 +10,7 @@ const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
   const navigate = useNavigate();
   return (
     <div
-      className={`fixed left-0 right-0 top-0 flex h-[62px] items-center justify-between border-b bg-white px-4 md:px-8 lg:ml-64`}
+      className={`fixed left-0 right-0 top-0 flex h-[62px] items-center justify-between bg-white px-4 md:px-8 lg:ml-64 z-50 shadow-md`}
     >
       <div className="text-logo lg:hidden">
         <button onClick={toggleSideNav} className="cursor-pointer">
@@ -25,7 +25,7 @@ const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
       </div>
       <div className="flex gap-2">
         <Link to={`/home/dashboard/notifications`}>
-          <IoNotificationsOutline className="h-7 w-7 cursor-pointer transition-all duration-200 hover:scale-125 hover:transition-transform" />
+          <IoNotificationsOutline className="h-7 w-7 cursor-pointer transition-all duration-200 hover:scale-125 hover:transition-transform hover:rotate-12" />
         </Link>
         <Link to={`/home/dashboard/user-profile`}>
           <RxAvatar className="h-7 w-7 cursor-pointer transition-all duration-200 hover:scale-125 hover:transition-transform" />

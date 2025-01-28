@@ -51,7 +51,7 @@ const Login = () => {
 
   const validateUser = async () => {
     const res = await sendLoginRequest("login", "POST", {
-      user_id: username.name,
+      user_uid: username.name,
       pwd: password.password,
     });
 

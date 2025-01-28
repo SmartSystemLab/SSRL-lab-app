@@ -1,31 +1,43 @@
 import { useState } from "react";
 import { FaEllipsisV } from "react-icons/fa";
 import { getSessionStorage } from "../../../Modules/getSessionStorage";
-import { Edit, Loader, Loader2, LoaderCircle, Trash2, TriangleAlert, UserRoundCog, UserRoundPlus } from "lucide-react";
+import {
+  Edit,
+  Loader,
+  Loader2,
+  LoaderCircle,
+  Trash2,
+  TriangleAlert,
+  UserRoundCog,
+  UserRoundPlus,
+} from "lucide-react";
 import { useRequest } from "../../../Modules/useRequest";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 const DropDownMenu = ({ uid, role, suspended, profile }) => {
-  const [setProfileRole, profileRole] = role
-  const [suspend, setSuspend] = suspended
+  const [setProfileRole, profileRole] = role;
+  const [suspend, setSuspend] = suspended;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const userRole = getSessionStorage("userRole", "");
-  const [useAdminRequest, adminLoading, setAdminLoading] = useRequest()
+  const [useAdminRequest, adminLoading, setAdminLoading] = useRequest();
   const [useLeadRequest, leadLoading, setLeadLoading] = useRequest();
   const [useDeleteRequest, deleteLoading, setDeleteLoading] = useRequest();
   const [useSuspendRequest, suspendLoading, setSuspendLoading] = useRequest();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLead = async () => {
     const lead = profileRole === "Lead";
     setLeadLoading(true);
-    const res = await useLeadRequest(`${profileRole !== "Lead" ? "add" : "remove"}_lead/${uid}`, "PATCH");
+    const res = await useLeadRequest(
+      `${profileRole !== "Lead" ? "add" : "remove"}_lead/${uid}`,
+      "PATCH",
+    );
     const data = await res.json();
 
     if (res.ok) {
-      setProfileRole(lead ? "Intern" : "Lead")
+      setProfileRole(lead ? "Intern" : "Lead");
       toast.success(data.message);
     } else {
       toast.error(data.message);
@@ -34,33 +46,32 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
   };
 
   const handleAdmin = async () => {
-    const admin = profileRole === "Admin"
-    setAdminLoading(true)
-    const res = await useAdminRequest(`${profileRole !== "Admin" ? "add" : "remove"}_admin/${uid}`, 'PATCH')
-    const data = await res.json()
+    const admin = profileRole === "Admin";
+    setAdminLoading(true);
+    const res = await useAdminRequest(
+      `${profileRole !== "Admin" ? "add" : "remove"}_admin/${uid}`,
+      "PATCH",
+    );
+    const data = await res.json();
 
     if (res.ok) {
-      setProfileRole(admin ? "Intern" : "Admin")
-      toast.success(data.message)
+      setProfileRole(admin ? "Intern" : "Admin");
+      toast.success(data.message);
+    } else {
+      toast.error(data.message);
     }
-    else {
-      toast.error(data.message)
-    }
-    setAdminLoading(false)
-  }
+    setAdminLoading(false);
+  };
 
   const handleDelete = async () => {
     setDeleteLoading(true);
-    const res = await useDeleteRequest(
-      `admin/delete_user/${uid}`,
-      "PATCH"
-    );
+    const res = await useDeleteRequest(`admin/delete_user/${uid}`, "PATCH");
     const data = await res.json();
 
     if (res.ok) {
       toast.success(data.message);
       setTimeout(() => {
-        navigate(-1)
+        navigate(-1);
       }, 2000);
     } else {
       toast.error(data.message);
@@ -70,12 +81,15 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
 
   const handleSuspend = async () => {
     setSuspendLoading(true);
-    console.log(suspend)
-    const res = await useSuspendRequest(`admin/${suspend === "True" ? "unsuspend" : "suspend"}_user/${uid}`, "PATCH");
+    console.log(suspend);
+    const res = await useSuspendRequest(
+      `admin/${suspend === "True" ? "unsuspend" : "suspend"}_user/${uid}`,
+      "PATCH",
+    );
     const data = await res.json();
 
     if (res.ok) {
-      setSuspend(suspend === "False" ? "True" : "False")
+      setSuspend(suspend === "False" ? "True" : "False");
       toast.success(data.message);
     } else {
       toast.error(data.message);
@@ -85,7 +99,7 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
 
   return (
     <div
-      className={`absolute top-10 right-10 ${
+      className={`absolute right-10 top-10 ${
         userRole !== "Intern" ? "block" : "hidden"
       }`}
     >
@@ -94,19 +108,19 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
           <FaEllipsisV color="white" size={20} />
         </button>
         {isMenuOpen && (
-          <div className="absolute top-6 right-0 mt-2 z-50 font-medium bg-white border rounded shadow-lg transition-all ease-in duration-300 w-max">
+          <div className="absolute right-0 top-6 z-50 mt-2 w-max rounded border bg-white font-medium shadow-lg transition-all duration-300 ease-in">
             <div>
-              <button
-                className={`items-center gap-2 w-full px-4 py-2 text-sm text-zinc-700 hover:bg-gray-100 border-b flex`}
+              <Link
+                className={`flex w-full items-center gap-2 border-b px-4 py-2 text-sm text-zinc-700 hover:bg-gray-100`}
+                to={`/home/personnel/edit/:id`}
+                state={profile}
               >
-                <Link to={`/home/personnel/edit/:id`} className="" state={profile}>
-                  <Edit />
-                  <p>Edit</p>
-                </Link>
-              </button>
+                <Edit />
+                <p>Edit</p>
+              </Link>
 
               <button
-                className="flex items-center w-full gap-2 px-4 py-2 text-sm text-zinc-700 hover:bg-green-50 border-b"
+                className="flex w-full items-center gap-2 border-b px-4 py-2 text-sm text-zinc-700 hover:bg-green-50"
                 onClick={handleLead}
               >
                 <UserRoundPlus />
@@ -121,7 +135,7 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
               {userRole !== "Lead" && (
                 <>
                   <button
-                    className="flex items-center w-full gap-2 px-4 py-2 text-sm hover:bg-green-50 border-b"
+                    className="flex w-full items-center gap-2 border-b px-4 py-2 text-sm hover:bg-green-50"
                     onClick={handleAdmin}
                   >
                     <UserRoundCog />
@@ -136,7 +150,7 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
                   </button>
 
                   <button
-                    className="flex items-center w-full gap-2 px-4 py-2 text-sm text-zinc-700 hover:bg-yellow-50 border-b"
+                    className="flex w-full items-center gap-2 border-b px-4 py-2 text-sm text-zinc-700 hover:bg-yellow-50"
                     onClick={handleSuspend}
                   >
                     <TriangleAlert color="gold" />
@@ -147,7 +161,7 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
                   </button>
 
                   <button
-                    className="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                    className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50"
                     onClick={handleDelete}
                   >
                     <Trash2 color="red" />
