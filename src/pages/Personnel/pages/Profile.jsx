@@ -1,9 +1,8 @@
 import DropDownMenu from "../component/DropDownMenu.jsx";
-import avatarPlaceholder from "../../../assets/Avatar.svg";
 import BgProfile from "../../../assets/bg_profile.jpeg";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
-import { getInitials, getRandomSoftHexColor } from "../../../Modules/funcs.js";
+import { getInitials } from "../../../Modules/funcs.js";
 
 const Profile = ({ user, userRole }) => {
   // const isOwnProfile = user.id === currentUserId;
@@ -27,7 +26,6 @@ const Profile = ({ user, userRole }) => {
   const [profileRole, setProfileRole] = useState(role);
   const [suspend, setSuspend] = useState(suspended);
   const initials = getInitials(fullname);
-  const background = getRandomSoftHexColor()
 
   return (
     <div className="mx-auto max-w-6xl rounded-[30px] p-4 md:p-12 overflow-hidden">
