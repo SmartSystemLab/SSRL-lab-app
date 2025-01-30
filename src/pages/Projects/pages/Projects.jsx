@@ -81,7 +81,11 @@ const Projects = () => {
               {!projectsError.status ? (
                 projectsLoading ? (
 
-                  <ProjectCardSkeleton />
+                  <div className="flex gap-6">
+                    <ProjectCardSkeleton />
+                    <ProjectCardSkeleton />
+                    <ProjectCardSkeleton />
+                  </div>
 
                 ) : (
                   projects.map((project) => (

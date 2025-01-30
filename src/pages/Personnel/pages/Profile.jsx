@@ -1,22 +1,38 @@
 import DropDownMenu from "../component/DropDownMenu.jsx";
-import avatarPlaceholder from "../../../assets/Avatar.svg";
 import BgProfile from "../../../assets/bg_profile.jpeg";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import { getInitials } from "../../../Modules/funcs.js";
 
-const Profile = ({ user, userRole, }) => {
+const Profile = ({ user, userRole }) => {
   // const isOwnProfile = user.id === currentUserId;
   const currentLocation = useLocation();
   const profile = currentLocation.state;
-  const { fullname, avatar, email, bday, datetime_created, niche, stack, uid, location, role, phone_num, bio, suspended } = profile;
-  const [profileRole, setProfileRole] = useState(role)
-  const [suspend, setSuspend] = useState(suspended)
+  const {
+    fullname,
+    avatar,
+    email,
+    bday,
+    datetime_created,
+    niche,
+    stack,
+    uid,
+    location,
+    role,
+    phone_num,
+    bio,
+    suspended,
+  } = profile;
+  const [profileRole, setProfileRole] = useState(role);
+  const [suspend, setSuspend] = useState(suspended);
+  const initials = getInitials(fullname);
 
   return (
-    <div className="p-4 md:p-12 mx-auto  max-w-6xl rounded-2xl">
-      <div className=" rounded-2xl shadow-2xl">
+    <div className="mx-auto max-w-6xl rounded-[30px] p-4 md:p-12 overflow-hidden">
+      <div className="rounded-[30px] shadow-2xl">
         <div
-          className="relative flex flex-col justify-center rounded-t-lg items-center p-6 md:p-12 gap-4 bg-no-repeat bg-center bg-cover"
+          className="relative flex flex-col items-center justify-center gap-4 bg-cover bg-center bg-no-repeat p-6 md:p-12 rounded-t-3xl
+          "
           style={{ backgroundImage: `url(${BgProfile})` }}
         >
           <DropDownMenu
@@ -24,26 +40,28 @@ const Profile = ({ user, userRole, }) => {
             suspended={[suspend, setSuspend]}
             profile={profile}
           />
-          <img
-            src={avatar !== "NIL" ? avatar : avatarPlaceholder}
-            alt="avatar"
-            className="m-5"
-          />
-          <p className="font-semibold text-2xl uppercase text-white/75 text-center">
+          <div className="flex justify-center items-center border-1 border-slate-300 rounded-full w-28 h-28 bg-logo overflow-hidden">
+            {avatar !== "NIL" ? (
+              <img src={avatar.secure_url} alt="avatar" className="m-5" />
+            ) : (
+              <span className={`text-5xl font-medium`}>{initials}</span>
+            )}
+          </div>
+          <p className="text-center text-2xl font-semibold uppercase text-white/75">
             {fullname}
           </p>
         </div>
-        <div className="flex flex-col md:flex-row justify-center mt-8 gap-4 p-6">
-          <div className="md:w-3/5 w-full space-y-4">
-            <p className=" text-xl font-semibold text-left">
+        <div className="mt-8 flex flex-col justify-center gap-4 p-6 md:flex-row">
+          <div className="w-full space-y-4 md:w-3/5">
+            <p className="text-left text-xl font-semibold">
               Intern Information
             </p>
-            <div className=" space-y-4 text-sm md:text-base">
+            <div className="space-y-4 text-sm md:text-base">
               <p className="flex gap-4">
-                <span className="font-semibold ">Unique ID:</span> {uid}
+                <span className="font-semibold">Unique ID:</span> {uid}
               </p>
               <p className="flex gap-4">
-                <span className="font-semibold ">Stack:</span> {stack}
+                <span className="font-semibold">Stack:</span> {stack}
               </p>
               <p className="flex gap-4">
                 <span className="font-semibold">Niche:</span> {niche}
@@ -67,15 +85,15 @@ const Profile = ({ user, userRole, }) => {
                 <span className="font-semibold">Contact:</span>
                 {phone_num}
               </p>
-              <p className="flex flex-wrap gap-2 md:gap-4 truncate">
+              <p className="flex flex-wrap gap-2 truncate md:gap-4">
                 <span className="font-semibold">Email:</span>
                 {email}
               </p>
             </div>
           </div>
-          <div className="md:w-2/5 w-full">
-            <p className="text-xl font-semibold text-center">Bio</p>
-            <div className="p-4 rounded-xl space-y-4 border min-h-[180px] text-sm prose">
+          <div className="w-full md:w-2/5">
+            <p className="text-center text-xl font-semibold">Bio</p>
+            <div className="prose min-h-[180px] space-y-4 rounded-xl border p-4 text-sm">
               {bio === "NIL"
                 ? "I'm just a boring person who hasn't set a bio yet."
                 : bio}

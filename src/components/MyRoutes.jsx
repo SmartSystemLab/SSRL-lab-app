@@ -9,13 +9,13 @@ import OTP from "../pages/onboarding/OTP";
 import SharedHomeLayout from "../sharedLayouts/SharedHomeLayout.jsx";
 
 import Dashboard from "../pages/dashboard/Dashboard";
-import Notifications from "../pages/dashboard/Notifications.jsx";
-import Userprofile from "../pages/dashboard/Userprofile.jsx";
-import NotificationCard from "../pages/dashboard/NotificationCard.jsx";
+// import Notifications from "../pages/dashboard/Notifications.jsx";
+// import Userprofile from "../pages/dashboard/Userprofile.jsx";
+// import NotificationCard from "../pages/dashboard/Notifications.jsx";
 
 import Personnel from "../pages/Personnel/pages/Personnel.jsx";
 import Registration from "../pages/Personnel/pages/Registration.jsx";
-import ProfileCard from "../pages/Personnel/component/ProfileCard.jsx";
+import Profile from "../pages/Personnel/pages/Profile.jsx";
 import EditPersonnel from "../pages/Personnel/pages/EditPersonnel.jsx";
 
 import Projects from "../pages/Projects/pages/Projects.jsx";
@@ -52,15 +52,12 @@ const MyRoutes = () => {
 
           <Route path="dashboard">
             <Route index element={<Dashboard />} />
-            <Route path="notifications" element={<Notifications />} />
-            <Route path="notifications/:id" element={<NotificationCard />} />
-            <Route path="user-profile" element={<Userprofile />} />
           </Route>
 
           <Route path="personnel">
             <Route index element={<Personnel />} />
             <Route path="registration" element={<Registration />} />
-            <Route path="profile/:id" element={<ProfileCard />} />
+            <Route path="profile/:id" element={<Profile />} />
             <Route path="edit/:id" element={<EditPersonnel />} />
           </Route>
 

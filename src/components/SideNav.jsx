@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import Dashboard from "../assets/Dashboard.svg";
 import Attendance from "../assets/Attendance.svg";
 import Calendar from "../assets/Calendar.svg";
@@ -7,7 +7,6 @@ import Projects from "../assets/Projects.svg";
 import Settings from "../assets/Settings.svg";
 import LogOut from "../assets/LogOut.svg";
 import TeamChat from "../assets/TeamChat.svg"
-import SearchBar from '../components/SearchBar.jsx'
 import {X} from 'lucide-react'
 
 const navData = [
@@ -34,7 +33,7 @@ const navData2 = [
 
 const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
   return (
-    <div className={`relative bg-navBg2 text-white min-h-screen py-4 pr-0 pl-2  w-64 max-w-[20rem] flex flex-col`}>
+    <div className={`relative bg-navBg2 text-white min-h-screen py-4 pr-0 pl-2 w-64 max-w-[20rem] flex flex-col`}>
       {/* Logo Section */}
       <div className="flex justify-end items-center gap-3 py-4 px-6 mt-2 mb-4 ">
         <img src="/vite.svg" alt="Logo" className="w-8 h-8 rounded-md text-lg" />
@@ -49,9 +48,6 @@ const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
         </button>
       </div>
 
-      <div className="lg:hidden block px-2">
-        <SearchBar />
-      </div>
 
       {/* Navigation Links */}
       <div className="flex-1 space-y-3 ml-3 px-0 py-4 text-white">
@@ -89,10 +85,10 @@ const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
 
       {/* Logout Button */}
       <div className="flex justify-end items-center py-4 px-2 mt-auto">
-        <button className="flex items-center gap-3 text-logo font-semibold p-2 md:p-3 rounded-md hover:bg-navBg1 transition-colors">
+        <Link className="flex items-center gap-3 text-logo font-semibold p-2 md:p-3 rounded-md hover:bg-navBg1 transition-colors" to={'/'}>
           <img src={LogOut} alt="Log Out" className="w-5 h-5 md:w-6 md:h-6" />
           <span className="text-sm md:text-base ">Log Out</span>
-        </button>
+        </Link>
       </div>
     </div>
   );

@@ -44,9 +44,8 @@ const Personnel = () => {
     <>
       <div>
         <div className="container">
-          {/* Header */}
           <div className="mt-8">
-            <div className="uppercase font-bold text-2xl">Personnels</div>
+            <div className="uppercase font-medium text-2xl">Personnels</div>
             <hr className="bg-black" />
 
             {personellsError.status && (
@@ -56,26 +55,21 @@ const Personnel = () => {
               </p>
             )}
 
-            {/* Content */}
             <div className="mt-8 flex flex-col gap-6">
-              {/* Admins Section*/}
               <PersonnelSection
                 title="Admin(s)"
                 personnels={admins}
                 loading={personnelsLoading}
               />
 
-              {/* Hardware/Software Button */}
               <Toggle setToggle={setToggle} toggle={toggle} />
 
-              {/* Leads Section */}
               <PersonnelSection
                 title="Lead(s)"
                 personnels={toggle === "software" ? softleads : hardleads}
                 loading={personnelsLoading}
               />
 
-              {/* Interns Section */}
               <PersonnelSection
                 title="Interns"
                 personnels={toggle === "software" ? softInterns : hardInterns}

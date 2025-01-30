@@ -17,6 +17,7 @@ export const useGetRequest = () => {
         "Content-Type": "application/json",
         "Access-control-allow-origin": "*",
         "Session_ID": getSessionStorage("session_id", ""),
+
       },
     };
     setLoading(true);
@@ -44,15 +45,21 @@ export const useRequest = () => {
     setError({ status: false, msg: "" });
     console.log("Request sent in module");
 
+    let headers = {
+        "Authorization": `Bearer ${getSessionStorage("access_token", "")}`
+    }
+    
+    if (!(body instanceof FormData)) {
+      headers["Content-Type"] = "application/json";
+      body = JSON.stringify(body);
+    }
+
     let requestOptions = {
-      method: method,
-      headers: {
-        "Content-Type": "application/json",
-        "Session_ID": getSessionStorage("session_id", ""),
-      },
+      method,
+      headers
     };
 
-    if (method !== 'GET') requestOptions = { ...requestOptions, body: JSON.stringify(body) };
+    if (method !== 'GET') requestOptions = { ...requestOptions, body };
 
     setLoading(true);
 
