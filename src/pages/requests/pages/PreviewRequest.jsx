@@ -44,7 +44,7 @@ const PreviewRequest = () => {
                 {activeOption === 'leave' && (
                     <>
                         <div className="mt-4">
-                            <h3 className="text-lg font-medium">Equipment Details</h3>
+                            <h3 className="text-lg font-medium">Leave Details</h3>
                             <table className="md:w-1/2 w-full table-auto border-separate border border-gray-500 rounded-md mt-4">
                                 <thead>
                                     <tr>

@@ -116,6 +116,7 @@ const CreateProject = () => {
             labelText="Project Name"
             inputType="text"
             inputValue={name}
+            required={true}
             onChange={(event) => setName(event.target.value)}
             //   onBlur={() => {}}
             labelCLassName="text-black inline-block font-medium text-lg  mb-1 "

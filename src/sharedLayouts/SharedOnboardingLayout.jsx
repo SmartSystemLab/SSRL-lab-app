@@ -5,7 +5,7 @@ import SignupImage from "../assets/Sgnup-image.jpg"; // Importing the image
 
 const SharedOnboardingLayout = () => {
   return (
-    <div className="flex justify-center min-h-screen bg-gray-200">
+    <div className="flex justify-center items-start min-h-screen bg-gray-200">
       {/* image block */}
       <div className="w-1/2 relative border border-black bg-cover bg-no-repeat bg-[url('./assets/Sgnup-image.jpg')]">
         {/* <img className="absolute w-full h-full min-h-screen" src={SignupImage} alt="Sign Up" /> */}

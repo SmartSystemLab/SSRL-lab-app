@@ -8,31 +8,58 @@ import img1 from "../pages../../../../assets/img1.jpg";
 const info = [
   {
     name: "Ogunjirin M. Boluwatife",
+    intern: "Ogunjirin M. Boluwatife",
     summary: "Sent you weekly report",
+    stack: "Embedded Systems",
     images: img1,
     duration: "10 mins",
     id: 1,
+    type: "activity",
+    period: "Weekly",
+    completed: [
+      "Completed login authentication feature",
+      "Implemented frontend for dashboard",
+      "Integrated API for user profiles"
+    ],
+    ongoing: [
+      "Working on real-time chat feature",
+      "Fixing UI bugs on mobile responsiveness"
+    ],
+    nextTask: [
+      "Deploy application to production",
+      "Write documentation for frontend components"
+    ]
   },
   {
     name: "Agboola Oluwatofunmi B.",
+    intern: "Agboola Oluwatofunmi B.",
     summary: "Sent you Lab App report",
+    stack: "Embedded System",
     images: img1,
     duration: "1 day",
     id: 2,
+    type: "project",
+    title: "Nexo Ai project",
+    Summary: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure architecto, obcaecati, eligendi consequatur laudantium ipsam quo ipsa eos dicta natus saepe sed odit necessitatibus placeat! Voluptatem a amet debitis labore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure architecto, obcaecati, eligendi consequatur laudantium ipsam quo ipsa eos dicta natus saepe sed odit necessitatibus placeat! Voluptatem a amet debitis labore."
   },
   {
     name: "Adeosun Covenant J",
+    intern: "Adeosun Covenant J",
     summary: "Sent you Hardware interns report",
+    stack: "Front End web development",
     images: img1,
     duration: "1 day",
     id: 3,
-
+    type: "activity",
+    completed: ["Fixed UI bugs", "Implemented search feature"],
+    ongoing: ["Testing new API"],
+    nextTask: ["Deploy to production"],
   },
 ];
 
 const Reports = () => {
   return (
-    <div className="mt-8 p-2">
+    <div className="mt-4 p-2">
 
       <h1 className="uppercase font-bold text-2xl">Reports</h1>
 

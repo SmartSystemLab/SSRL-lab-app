@@ -3,7 +3,7 @@ const Messages = ({ info, to }) => {
   return (
     <div className="space-y-3">
       {info.map((item) => (
-        <Link to={`${to}/${item.id}`} key={item.id} className="">
+        <Link to={`${to}/${item.id}`} key={item.id} state={item}>
           <section className="flex justify-between items-center hover:bg-gray-100 py-2">
             <div className="flex justify-between items-center px-1">
               <div className="bg-green-600 w-2 h-2 rounded-full"></div>

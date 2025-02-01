@@ -14,9 +14,10 @@ const CustomLabel = ({
     inputClassName,
     labelClassName,
     placeholder,
-    name
+    name,
+    required = false
 }) => {
-    
+
     return (
         <div>
             <label htmlFor={htmlFor} className={`${labelClassName}`}> {labelText} </label>
@@ -27,7 +28,7 @@ const CustomLabel = ({
                 defaultValue={defaultVal}
                 onChange={onChange}
                 onBlur={onBlur}
-                required
+                required={required}
                 className={`h-10 appearance-none w-full px-3 py-1 border border-slate-900 rounded-lg text-slate-900 opacity-35 focus:outline-none focus:opacity-100 focus:text-black ${inputClassName}`}
                 placeholder={placeholder}
                 name={htmlFor}
