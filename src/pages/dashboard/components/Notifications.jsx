@@ -20,22 +20,13 @@ const Notifications = ({ notifications, setNotifications }) => {
             notifications.map((notification) => (
               <li
                 key={notification._id}
-                className="flex items-end justify-between gap-4 border-b border-slate-300 px-2 py-4"
+                className="flex items-center justify-between gap-4 px-2 py-4 hover:bg-navBg1 rounded-xl"
               >
-                {notification.status == "unread" ? <Dot color={"#FFA500"} size={36} /> : <span className="w-9 h-9 "></span>}
+                {notification.status == "unread" ? <Dot color={"#FFA500"} size={36}  className="w-9 h-9 min-w-9" /> : <span className="w-9 h-9 min-w-9"></span>}
                 <p>{notification.message}</p>
                 <p></p>
                 {/*Add date and time using the sent_at property in the notification object */}
-                <p className="text-xs text-gray-400">
-                  {new Date(notification.sent_at).toLocaleString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                    hour: "numeric",
-                    minute: "numeric",
-                    hour12: true,
-                  })}
-                </p>
+                
                 <button
                   onClick={() => dismissNotification(notification._id)}
                   className="text-red-500 hover:text-red-700"
