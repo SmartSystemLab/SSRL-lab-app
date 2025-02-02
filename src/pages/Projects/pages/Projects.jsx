@@ -62,7 +62,7 @@ const Projects = () => {
 
         {/* Content */}
         <div className="mt-8 space-y-6">
-          <p className="text-lg font-medium">Projects you're on</p>
+          <p className="text-lg font-medium">Projects you are on</p>
 
           {projectsError.status && (
             <p className="text-red-500 mt-2">

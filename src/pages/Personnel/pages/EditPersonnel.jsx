@@ -53,6 +53,7 @@ const Edit = () => {
   const handleEdit = async () => {
     setEditLoading(true);
     const formData = new FormData();
+    
     formData.append("info", JSON.stringify(user));
 
     if (selectedImage) {
