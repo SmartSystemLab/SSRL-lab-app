@@ -20,7 +20,7 @@ const Equipment = ({
           <CustomLabel
             htmlFor="quantity"
             labelText="Quantity"
-            inputType="number"
+            inputType="nunpmber"
             inputValue={quantity || ""}
             onChange={(event) => setQuantity(event.target.value)}
             //   onBlur={() => {}}=[#

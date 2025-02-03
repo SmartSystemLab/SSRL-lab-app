@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CustomLabel from "../../../components/CustomLabel";
 import Button from "../component/Button";
 
@@ -16,7 +17,7 @@ const Registration = () => {
     setUser({ ...user, [e.target.firstname]: e.target.value });
     console.log(user);
   };
-  
+    const navigate = useNavigate();
   const handleCancel = () => {
     navigate(-1);
   };
