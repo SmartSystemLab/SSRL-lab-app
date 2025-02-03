@@ -1,6 +1,7 @@
 import { UserRound } from "lucide-react";
 import Pro_bg from "./../../../assets/Pro_bg.svg";
 import { Link } from "react-router-dom";
+import { getRandomSoftHexColor } from "../../../Modules/funcs";
 
 const ProjectCard = ({ project }) => {
   const { name, date_created, team_members, leads, team_avatars } = project;
@@ -30,11 +31,7 @@ const ProjectCard = ({ project }) => {
                   {avatar !== "NIL" ? (
                     <img src={avatar} alt="" className="w-full h-full" />
                   ) : (
-                    <UserRound
-                      className="m-1 w-full h-full"
-                      strokeWidth={1}
-                      color="black"
-                    />
+                      <span className={`text-xs text-black w-full h-full rounded-full flex items-center justify-center font-medium`} style={{ backgroundColor: `${getRandomSoftHexColor()}50` }}>{allMembers[index].slice(0,3)}</span>
                   )}
                 </div>
               ))}

@@ -59,9 +59,9 @@ const Edit = () => {
 
     if (res.ok) {
       toast.success(data.message);
-      // setTimeout(() => {
-      //   navigate(-1);
-      // }, 2000);
+      setTimeout(() => {
+        navigate(-1);
+      }, 2000);
     } else {
       toast.error(data.message);
     }
