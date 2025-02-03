@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomLabel from "../../../components/CustomLabel";
-import Button from "../component/Button";
+// import Button from "../../../components/Button";
+import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
@@ -17,7 +19,7 @@ const Registration = () => {
     setUser({ ...user, [e.target.firstname]: e.target.value });
     console.log(user);
   };
-    const navigate = useNavigate();
+
   const handleCancel = () => {
     navigate(-1);
   };
@@ -28,10 +30,10 @@ const Registration = () => {
 
   return (
     <div>
-      <div className="container ">
+      <div className="container">
         {/* Header */}
-        <div className="mt-8 ">
-          <div className="uppercase font-bold text-2xl">
+        <div className="mt-8">
+          <div className="text-2xl font-bold uppercase">
             Personnel Registration
           </div>
           <hr className="bg-black" />
@@ -43,7 +45,7 @@ const Registration = () => {
               onSubmit={handleSubmit}
             >
               <div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
                   {/* first name */}
 
                   <CustomLabel
@@ -89,7 +91,7 @@ const Registration = () => {
                     placeholder="Enter email "
                   />
                 </div>{" "}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
                   {/* phone */}
 
                   <CustomLabel
@@ -119,7 +121,7 @@ const Registration = () => {
                       onChange={(event) =>
                         setUser({ ...user, role: event.target.value })
                       }
-                      className=" relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
+                      className="relative block w-full rounded-lg border border-[#666666] px-3 py-1 text-[#111111] opacity-35 focus:text-black focus:opacity-100 focus:outline-none"
                     >
                       <option value="" disabled>
                         Select Role
@@ -130,7 +132,7 @@ const Registration = () => {
                     </select>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
                   {/* Stack */}
                   <div>
                     <CustomLabel
@@ -144,7 +146,7 @@ const Registration = () => {
                       onChange={(event) =>
                         setUser({ ...user, stack: event.target.value })
                       }
-                      className=" relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
+                      className="relative block w-full rounded-lg border border-[#666666] px-3 py-1 text-[#111111] opacity-35 focus:text-black focus:opacity-100 focus:outline-none"
                     >
                       <option value="" disabled>
                         Select Stack
@@ -170,22 +172,14 @@ const Registration = () => {
                   />
                 </div>
               </div>
-              <div className=" flex justify-start items-center gap-6">
-                
-                <Button
-                text="Save"
-                handler={""}/>
-                
-                <Button
-                text="Save & add"
-                handler={""}/>
-                
+              {/* <div className="flex items-center justify-start gap-6">
+                <Button text="Save" handler={""} />
+
+                <Button text="Save & add" handler={""} />
               </div>
               <div className="text-right">
-                <Button
-                text="Cancel"
-                handler={handleCancel}/>
-              </div>
+                <Button text="Cancel" handler={handleCancel} />
+              </div> */}
             </form>
           </div>
         </div>

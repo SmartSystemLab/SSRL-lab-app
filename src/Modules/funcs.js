@@ -18,3 +18,17 @@ const month = today.toLocaleString("default", { month: "long" });
 const year = today.getFullYear();
 
 export const formattedDate = `${day}${getOrdinalSuffix(day)}, ${month} ${year}`;
+
+export const getInitials = (fullname) => {
+    const names = fullname.split(" ");
+    const initials = names.map(name => name.charAt(0).toUpperCase()).join("");
+    return initials;
+};
+  
+  export const getRandomSoftHexColor = () => {
+    const randomChannel = () => Math.floor(Math.random() * 156 + 100); // 100-255 range for softer colors
+    const r = randomChannel().toString(16).padStart(2, '0').toUpperCase();
+    const g = randomChannel().toString(16).padStart(2, '0').toUpperCase();
+    const b = randomChannel().toString(16).padStart(2, '0').toUpperCase();
+    return `#${r}${g}${b}`;
+  };

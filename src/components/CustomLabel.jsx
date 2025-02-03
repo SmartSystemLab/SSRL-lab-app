@@ -6,26 +6,31 @@ const CustomLabel = ({
     labelText,
     inputType,
     inputValue,
+    defaultVal,
     onChange,
     onBlur,
     isError,
     errorMessage,
     inputClassName,
-    labelCLassName,
+    labelClassName,
     placeholder,
-
+    name
 }) => {
+    
     return (
         <div>
-            <label htmlFor={htmlFor} className={labelCLassName}> {labelText} </label>
+            <label htmlFor={htmlFor} className={`${labelClassName}`}> {labelText} </label>
             <input
-                type={inputType}
+                type={inputType || 'text'}
                 value={inputValue}
+                id={htmlFor}
+                defaultValue={defaultVal}
                 onChange={onChange}
                 onBlur={onBlur}
                 required
-                className={inputClassName}
+                className={`h-10 appearance-none w-full px-3 py-1 border border-slate-900 rounded-lg text-slate-900 opacity-35 focus:outline-none focus:opacity-100 focus:text-black ${inputClassName}`}
                 placeholder={placeholder}
+                name={htmlFor}
             />
             {isError && <InputError> {errorMessage} </InputError>}
         </div>

@@ -60,7 +60,7 @@ const Requests = () => {
               </span>
             </div>
 
-            <div className="flex gap-1 items-center">
+            <div className="flex gap-1 items-center cursor-pointer">
               <LiaCheckDoubleSolid className=" text-green-700" />
               <p>mark all as read</p>
             </div>
