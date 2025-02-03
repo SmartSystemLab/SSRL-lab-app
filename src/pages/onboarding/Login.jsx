@@ -79,7 +79,7 @@ const Login = () => {
               htmlFor="username"
               labelText="Username"
               inputType="text"
-              inputValue={username.name}
+              value={username.name}
               onChange={(event) =>
                 setUsername({ ...username, name: event.target.value })
               }
@@ -98,7 +98,7 @@ const Login = () => {
               htmlFor="password"
               labelText="Password"
               inputType="password"
-              inputValue={password.password}
+              value={password.password}
               onChange={(event) =>
                 setPassword({ ...password, password: event.target.value })
               }

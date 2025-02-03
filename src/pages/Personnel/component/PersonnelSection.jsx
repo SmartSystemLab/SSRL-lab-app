@@ -7,7 +7,7 @@ import PersonnelCardSkeleton from "../../../components/skeletons/personnelCardSk
 const PersonnelSection = ({ personnels, title, loading }) => {
   const userRole = getSessionStorage("userRole", "");
   const showAddButton =
-    userRole === "Admin" || (userRole === "Lead" && title !== "Admin(s)");
+    userRole === "Admin" || (userRole === "Lead" && title !== "Admin");
 
   return (
     <div className="flex flex-col gap-6">
