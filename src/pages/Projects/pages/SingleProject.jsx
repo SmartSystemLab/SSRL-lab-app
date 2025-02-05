@@ -3,6 +3,9 @@ import Dropdown from "../components/Dropdown";
 import Dot from "./../../../assets/Dot.svg";
 import { DotIcon, DownloadCloud, LinkIcon, Plus } from "lucide-react";
 import { useState } from "react";
+import { formatDate } from "../../../Modules/funcs";
+import { useRef } from "react";
+import AddDoc from "../components/AddDoc";
 
 const SingleProject = () => {
   const location = useLocation();
@@ -18,14 +21,19 @@ const SingleProject = () => {
     submissions,
     status,
     date_created,
-    deadline
+    deadline,
   } = project;
   const { docs, links } = submissions;
+  console.log(docs)
+  const [trackedSub, setTrackedSub] = useState(docs)
+  console.log(trackedSub)
 
-  const [isCompleted, setIsCompleted] = useState(status === "Completed")
+  const [isCompleted, setIsCompleted] = useState(status === "Completed");
+  const docRef = useRef(null);
+  const [selectedDoc, setSelectedDoc] = useState();
 
   return (
-    <div className="py-4 px-6 mt-4 border-2 shadow-sm w-11/12 mx-auto space-y-6 rounded-lg bg-white">
+    <div className="mx-auto mt-4 w-11/12 space-y-6 rounded-lg border-2 bg-white px-6 py-4 shadow-sm">
       {/* Project Header */}
       <div className="relative mt-4 flex flex-col md:flex-row md:gap-4">
         <h1 className="text-xl font-bold">{name}</h1>
@@ -37,40 +45,44 @@ const SingleProject = () => {
           {isCompleted ? "Completed" : "Uncompleted"}
         </span>
 
-        <Dropdown completed={{ isCompleted, setIsCompleted }} id={_id} project={project} />
+        <Dropdown
+          completed={{ isCompleted, setIsCompleted }}
+          id={_id}
+          project={project}
+        />
       </div>
 
       {/* Project Details */}
-      <div className="w-full mb-4">
+      <div className="mb-4 w-full">
         {/* Description */}
-        <h2 className="text-lg font-medium  border-b pb-2 border-1 mb-2">
+        <h2 className="border-1 mb-2 border-b pb-2 text-lg font-medium">
           Description
         </h2>
-        <p className="text-justify mb-4">{description}</p>
+        <p className="mb-4 text-justify">{description}</p>
 
         {/* Recipient and Deadline */}
-        <div className="flex flex-col md:flex-row md:justify-between md:items-center space-y-2 md:space-y-0 max-w-[900px] mx-auto">
+        <div className="mx-auto flex max-w-[900px] flex-col space-y-2 md:flex-row md:items-center md:justify-between md:space-y-0">
           <span className="font-medium">
             Created by:{" "}
-            <p className="font-normal cursor-pointer">{createdBy}</p>
+            <p className="cursor-pointer font-normal">{createdBy}</p>
           </span>
           <span className="font-medium">
-            Created: <p className="font-normal">{date_created}</p>
+            Created: <p className="font-normal">{formatDate(date_created)}</p>
           </span>
           <span className="font-medium">
-            Deadline: <p className="font-normal">{deadline}</p>
+            Deadline: <p className="font-normal">{formatDate(deadline)}</p>
           </span>
         </div>
       </div>
 
       {/* Objectives, Leads, and Team Members */}
-      <div className="flex flex-col md:flex-row gap-6 md:gap-16 p-2">
+      <div className="flex flex-col gap-6 p-2 md:flex-row md:gap-16">
         {/* Objectives */}
         <div className="md:w-3/5">
-          <h2 className="text-lg font-medium border-b pb-2 border-1">
+          <h2 className="border-1 border-b pb-2 text-lg font-medium">
             Objectives
           </h2>
-          <ul className="list-decimal list-outside space-y-2 mt-2 ml-6 sw-full break-words">
+          <ul className="sw-full ml-6 mt-2 list-outside list-decimal space-y-2 break-words">
             {objectives.map((objective, index) => (
               <li key={index} className="pl-2">
                 {objective}
@@ -80,17 +92,17 @@ const SingleProject = () => {
         </div>
 
         {/* Leads and Team Members */}
-        <div className="md:w-2/5 space-y-6">
+        <div className="space-y-6 md:w-2/5">
           {/* Leads */}
           <div>
-            <h2 className="text-lg font-medium border-b pb-2 border-1">
+            <h2 className="border-1 border-b pb-2 text-lg font-medium">
               Leads
             </h2>
-            <ul className="space-y-2 mt-2">
+            <ul className="mt-2 space-y-2">
               {leads.map((lead, index) => (
                 <li key={index} className="ml-4 flex items-center gap-2">
-                  <img src={Dot} alt="dot" className="w-2 h-2" />
-                  {lead}
+                  <img src={Dot} alt="dot" className="h-2 w-2" />
+                  {lead.id}
                 </li>
               ))}
             </ul>
@@ -98,13 +110,13 @@ const SingleProject = () => {
 
           {/* Team Members */}
           <div>
-            <h2 className="text-lg font-medium border-b">Team Members</h2>
-            <ul className=" space-y-2 mt-2">
+            <h2 className="border-b text-lg font-medium">Team Members</h2>
+            <ul className="mt-2 space-y-2">
               {team_members.length > 0 ? (
                 team_members.map((member, index) => (
                   <li key={index} className="ml-4 flex items-center gap-2">
-                    <img src={Dot} alt="dot" className="w-2 h-2" />
-                    {member}
+                    <img src={Dot} alt="dot" className="h-2 w-2" />
+                    {member.name}
                   </li>
                 ))
               ) : (
@@ -117,29 +129,23 @@ const SingleProject = () => {
 
       {/*Submissions */}
       <section className="p-2">
-        <h2 className="font-medium text-lg mb-4  border-b pb-2 border-1">
+        <h2 className="border-1 mb-4 border-b pb-2 text-lg font-medium">
           Submissions
         </h2>
-        <div className="flex flex-col md:flex-row gap-4 ">
+        <div className="flex flex-col gap-4 md:flex-row">
           <div className="w-1/2">
-            <div className="flex items-center justify-start mb-2 gap-6 border p-2 rounded-lg w-fit hover:opacity-70">
-              <h3 className="font-medium ml-2">Documents</h3>
-              <div className="p-[2px] bg-logo rounded-full w-fit">
-                <Plus color="white" />
-              </div>
-            </div>
+            <AddDoc id={_id} setSub={setTrackedSub} sub={trackedSub} />
             {docs.length > 0 ? (
               <div className="flex flex-col gap-4">
-                {docs.map((doc, index) => {
+                {trackedSub.map((doc, index) => {
                   const { download_link, filename } = doc;
                   return (
                     <Link
-                      className="border rounded-lg p-4 flex justify-between w-4/5 hover:bg-navBg1"
+                      className="flex w-4/5 justify-between rounded-lg border p-4 hover:bg-navBg1"
                       to={download_link}
                       key={download_link}
-
                     >
-                      <p className="truncate mr-2 text-sm">{filename}</p>
+                      <p className="mr-2 truncate text-sm">{filename}</p>
                       <DownloadCloud />
                     </Link>
                   );
@@ -150,9 +156,9 @@ const SingleProject = () => {
             )}
           </div>
           <div className="w-1/2">
-            <div className="flex items-center mb-2 gap-6 border p-2 rounded-lg w-fit hover:opacity-70">
-              <h3 className="font-medium  ml-2">Links</h3>
-              <div className="p-[2px] bg-logo rounded-full w-fit">
+            <div className="mb-2 flex w-fit items-center gap-6 rounded-lg border p-2 hover:opacity-70">
+              <h3 className="ml-2 font-medium">Links</h3>
+              <div className="w-fit rounded-full bg-logo p-[2px]">
                 <Plus color="white" />
               </div>
             </div>
@@ -162,19 +168,19 @@ const SingleProject = () => {
                   const { link, title } = flink;
                   return (
                     <Link
-                      className="border rounded-lg p-4 flex justify-between w-4/5 hover:bg-navBg1"
+                      className="flex w-4/5 justify-between rounded-lg border p-4 hover:bg-navBg1"
                       to={link}
                       target="_blank"
                       key={link}
                     >
-                      <p className="truncate mr-2 text-sm">{title}</p>
+                      <p className="mr-2 truncate text-sm">{title}</p>
                       <LinkIcon />
                     </Link>
                   );
                 })}
               </div>
             ) : (
-              <p>No documents found for this project</p>
+              <p>No links found for this project</p>
             )}
           </div>
         </div>

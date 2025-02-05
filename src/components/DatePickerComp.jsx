@@ -30,7 +30,7 @@ const calenderIcon = (
 const DatePickerComp = ({ label, placeholder, selected, change }) => {
   return (
     <div className="w-full md:w-1/2">
-      <h2 className="mb-2 text-lg font-medium">{label}</h2>
+      <h2 className="font-medium">{label}</h2>
       <DatePicker
         showIcon
         icon={calenderIcon}
@@ -38,7 +38,7 @@ const DatePickerComp = ({ label, placeholder, selected, change }) => {
         dropdownMode="select"
         selected={selected}
         onChange={change}
-        className="w-full rounded-lg border border-gray-400 px-3 py-2 focus:outline-none flex"
+        className="flex w-full rounded-lg border border-gray-400 px-3 py-2 focus:outline-none"
         placeholderText={placeholder}
         closeOnScroll
       />

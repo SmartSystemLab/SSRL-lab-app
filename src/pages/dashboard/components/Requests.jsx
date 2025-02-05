@@ -28,7 +28,7 @@ const Requests = ({ requests, userId }) => {
                       <ArrowUp color={status == "Pending" ? "red" : "green"} />
                     )}
                   </span>
-                  <li className="capitalize text-sm">{type}</li>
+                  <p className="capitalize text-sm">{type}</p>
                 </div>
               </li>
             );
