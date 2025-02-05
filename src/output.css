@@ -1,6 +1,5 @@
 /*
 ! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com
-! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -1041,22 +1040,6 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0.8,0,1,1);
-  }
-
-  50% {
-    transform: none;
-    animation-timing-function: cubic-bezier(0,0,0.2,1);
-  }
-}
-
-.animate-bounce {
-  animation: bounce 1s infinite;
-}
-
 @keyframes pulse {
   50% {
     opacity: .5;
@@ -1454,12 +1437,16 @@ video {
   background-color: rgb(22 163 74 / var(--tw-bg-opacity));
 }
 
-.bg-navBg2 {
+.bg-logo {
   --tw-bg-opacity: 1;
   background-color: rgb(255 165 0 / var(--tw-bg-opacity));
 }
 
-.bg-pink-500 {
+.bg-navBg1 {
+  background-color: rgba(116, 247, 105, 0.22);
+}
+
+.bg-navBg2 {
   --tw-bg-opacity: 1;
   background-color: rgb(34 85 34 / var(--tw-bg-opacity));
 }

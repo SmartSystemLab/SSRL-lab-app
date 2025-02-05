@@ -4,7 +4,6 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import { RxAvatar } from "react-icons/rx";
 import { FaBars } from "react-icons/fa6";
 import { ArrowLeft } from "lucide-react";
-import { ArrowLeft } from "lucide-react";
 
 const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
   const navigate = useNavigate();
@@ -35,5 +34,4 @@ const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
   );
 };
 
-export default Headerbar;
 export default Headerbar;

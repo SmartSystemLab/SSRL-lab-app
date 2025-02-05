@@ -122,7 +122,7 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
                   <Edit />
                   <p>Edit</p>
                 </Link>
-              </button>
+              </Link>
 
               <button
                 className="flex w-full items-center gap-2 border-b px-4 py-2 text-sm text-zinc-700 hover:bg-green-50"

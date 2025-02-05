@@ -1,6 +1,6 @@
 import ProjectCard from "../components/ProjectCard";
 import ProjectList from "../components/ProjectList";
-import ProjectCardSkeleton from "../../../components/skeletons/projectCardSkeleton";
+import ProjectSkeleton from "../../../components/skeletons/ProjectSkeleton";
 import { Plus } from "lucide-react";
 import { useRequest } from "../../../Modules/useRequest";
 import { useEffect, useState } from "react";
@@ -83,7 +83,11 @@ const Projects = () => {
             <div className="flex min-w-max gap-6 pb-4">
               {!projectsError.status ? (
                 projectsLoading ? (
-                  <p>Loading...</p> /*Please add better loading skeletons */
+                  <div className="flex gap-6">
+                    <ProjectSkeleton />
+                    <ProjectSkeleton />
+                    <ProjectSkeleton />
+                  </div>
                 ) : (
                   projects.map((project) => (
                     <ProjectCard key={project._id} project={project} />
