@@ -658,6 +658,11 @@ video {
   margin-bottom: 0.5rem;
 }
 
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 .-ml-4 {
   margin-left: -1rem;
 }
@@ -692,6 +697,10 @@ video {
 
 .ml-6 {
   margin-left: 1.5rem;
+}
+
+.ml-auto {
+  margin-left: auto;
 }
 
 .mr-2 {
@@ -1425,6 +1434,10 @@ video {
   background-color: rgb(255 165 0 / var(--tw-bg-opacity));
 }
 
+.bg-navBg1 {
+  background-color: rgba(116, 247, 105, 0.22);
+}
+
 .bg-navBg2 {
   --tw-bg-opacity: 1;
   background-color: rgb(34 85 34 / var(--tw-bg-opacity));
@@ -1438,10 +1451,6 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-navBg1 {
-  background-color: rgba(116, 247, 105, 0.22);
 }
 
 .bg-\[url\(\'\.\/assets\/Sgnup-image\.jpg\'\)\] {

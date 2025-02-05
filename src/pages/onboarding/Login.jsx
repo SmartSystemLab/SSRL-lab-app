@@ -11,6 +11,9 @@ import {
   getSessionStorage,
   setSessionStorage,
 } from "../../Modules/getSessionStorage.js";
+import { Loader2 } from "lucide-react";
+import BigGreenButton from "../../components/BigGreenButton.jsx"
+import { Loader } from "lucide-react";
 
 const Login = () => {
   const [username, setUsername] = useState({
@@ -133,14 +136,14 @@ const Login = () => {
             </p>
           </div>
 
-          <div className="text-right">
-            <button
+          <div className="flex w-fit gap-4 items-center ml-auto my-3">
+            {loginLoading && <Loader className="animate-spin text-navBg2" />}
+
+            <BigGreenButton
               type="submit"
-              className="bg-[#053F05F0] text-white mt-6 px-1 py-2 font-bold text-xl capitalize rounded-xl  w-32"
             >
               Sign in
-            </button>
-            {loginLoading && <p>Loading...</p>}
+            </BigGreenButton>
           </div>
         </form>
       </div>

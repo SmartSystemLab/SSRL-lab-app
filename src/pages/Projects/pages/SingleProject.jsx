@@ -94,7 +94,7 @@ const SingleProject = () => {
               {leads.map((lead, index) => (
                 <li key={index} className="ml-4 flex items-center gap-2">
                   <img src={Dot} alt="dot" className="h-2 w-2" />
-                  {lead}
+                  {lead.id}
                 </li>
               ))}
             </ul>
@@ -108,7 +108,7 @@ const SingleProject = () => {
                 team_members.map((member, index) => (
                   <li key={index} className="ml-4 flex items-center gap-2">
                     <img src={Dot} alt="dot" className="h-2 w-2" />
-                    {member}
+                    {member.name}
                   </li>
                 ))
               ) : (
@@ -177,7 +177,7 @@ const SingleProject = () => {
                 })}
               </div>
             ) : (
-              <p>No documents found for this project</p>
+              <p>No links found for this project</p>
             )}
           </div>
         </div>
