@@ -70,7 +70,7 @@ const Dashboard = () => {
     <div className="p-2">
       {profileError.status && (
         <p className="text-red-500">
-          Couldn&apos;t load your dashboard. {profileError.msg}
+          Couldn&apos;t load your dashboard. {profileError.msg} <span className="hover:underline" onClick={getProfile}>Retry?</span>
         </p>
       )}
       <div className="flex w-full flex-col items-center justify-start gap-10 overflow-y-auto md:flex-row md:items-start">

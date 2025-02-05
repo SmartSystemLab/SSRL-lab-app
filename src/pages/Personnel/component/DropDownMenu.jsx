@@ -17,8 +17,8 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 const DropDownMenu = ({ uid, role, suspended, profile }) => {
-  const [setProfileRole, profileRole] = role;
-  const [suspend, setSuspend] = suspended;
+  const [setProfileRole, profileRole] = role
+  const [suspend, setSuspend] = suspended
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const userRole = getSessionStorage("userRole", "");
   const [useAdminRequest, adminLoading, setAdminLoading] = useRequest();
@@ -65,7 +65,10 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
 
   const handleDelete = async () => {
     setDeleteLoading(true);
-    const res = await useDeleteRequest(`admin/delete_user/${uid}`, "PATCH");
+    const res = await useDeleteRequest(
+      `admin/delete_user/${uid}`,
+      "PATCH"
+    );
     const data = await res.json();
 
     if (res.ok) {
@@ -115,8 +118,10 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
                 to={`/home/personnel/edit/:id`}
                 state={profile}
               >
-                <Edit />
-                <p>Edit</p>
+                <Link to={`/home/personnel/edit/:id`} className="" state={profile}>
+                  <Edit />
+                  <p>Edit</p>
+                </Link>
               </Link>
 
               <button

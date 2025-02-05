@@ -1,6 +1,6 @@
 import ProjectCard from "../components/ProjectCard";
 import ProjectList from "../components/ProjectList";
-import ProjectCardSkeleton from '../../../components/skeletons/projectCardSkeleton'
+import ProjectSkeleton from "../../../components/skeletons/ProjectSkeleton";
 import { Plus } from "lucide-react";
 import { useRequest } from "../../../Modules/useRequest";
 import { useEffect, useState } from "react";
@@ -31,7 +31,7 @@ const Projects = () => {
       setProjects(data.projects);
       const total = data.projects.length;
       const completed = data.projects.filter(
-        (project) => project.status === "Completed"
+        (project) => project.status === "Completed",
       ).length;
       const inProgress = total - completed;
       setProjectsStats({ total, completed, inProgress });
@@ -47,28 +47,31 @@ const Projects = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="mt-4 py-2 px-4">
+      <div className="mt-4 px-4 py-2">
         {/* Header */}
-        <div className="flex justify-between items-center">
-          <h1 className="uppercase font-bold text-2xl">Projects</h1>
-          <Link className="flex items-center gap-2 text-lg font-medium hover:bg-neutral-100 p-2 hover:rounded-lg transition-all duration-300" to={'/home/projects/create'}>
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-bold uppercase">Projects</h1>
+          <Link
+            className="flex items-center gap-2 p-2 text-lg font-medium transition-all duration-300 hover:rounded-lg hover:bg-neutral-100"
+            to={"/home/projects/create"}
+          >
             <span>Add Project</span>
-            <div className="p-[2px] bg-logo rounded-full">
+            <div className="rounded-full bg-logo p-[2px]">
               <Plus color="white" />
             </div>
           </Link>
         </div>
-        <hr className="bg-black mt-1" />
+        <hr className="mt-1 bg-black" />
 
         {/* Content */}
         <div className="mt-8 space-y-6">
-          <p className="text-lg font-medium">Projects you're on</p>
+          <p className="text-lg font-medium">Projects you are on</p>
 
           {projectsError.status && (
-            <p className="text-red-500 mt-2">
+            <p className="mt-2 text-red-500">
               {projectsError.msg}
               <p
-                className="hover:underline hover:cursor-pointer"
+                className="hover:cursor-pointer hover:underline"
                 onClick={getProjects}
               >
                 Retry?
@@ -77,16 +80,14 @@ const Projects = () => {
           )}
 
           <div className="project overflow-x-auto px-4">
-            <div className="flex pb-4 min-w-max gap-6">
+            <div className="flex min-w-max gap-6 pb-4">
               {!projectsError.status ? (
                 projectsLoading ? (
-
                   <div className="flex gap-6">
-                    <ProjectCardSkeleton />
-                    <ProjectCardSkeleton />
-                    <ProjectCardSkeleton />
+                    <ProjectSkeleton />
+                    <ProjectSkeleton />
+                    <ProjectSkeleton />
                   </div>
-
                 ) : (
                   projects.map((project) => (
                     <ProjectCard key={project._id} project={project} />
@@ -99,7 +100,7 @@ const Projects = () => {
           </div>
         </div>
         <div className="mt-10">
-          <h1 className="uppercase font-medium text-xl">Projects Report</h1>
+          <h1 className="text-xl font-medium uppercase">Projects Report</h1>
           <ProjectList projectCounts={projectsStats} />
         </div>
       </div>

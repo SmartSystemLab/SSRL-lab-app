@@ -1,5 +1,4 @@
 import SearchBar from "../components/SearchBar.jsx";
-import Navarrow from "../assets/Navarrow.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { RxAvatar } from "react-icons/rx";

@@ -53,6 +53,7 @@ const Edit = () => {
   const handleEdit = async () => {
     setEditLoading(true);
     const formData = new FormData();
+    
     formData.append("info", JSON.stringify(user));
 
     if (selectedImage) {
@@ -141,7 +142,7 @@ const Edit = () => {
 
                 <CustomLabel
                   htmlFor="firstname"
-                  labelText="First name"
+                  labelText="Firstname"
                   defaultVal={firstname}
                   onChange={handleChange}
                   placeholder="Enter first name"
@@ -149,7 +150,7 @@ const Edit = () => {
 
                 <CustomLabel
                   htmlFor="lastname"
-                  labelText="Last name"
+                  labelText="Lastname"
                   defaultVal={surname}
                   onChange={handleChange}
                   placeholder="Enter last name"
@@ -158,6 +159,7 @@ const Edit = () => {
                 <CustomLabel
                   htmlFor="email"
                   labelText="Email"
+                  type="email"
                   inputType="email"
                   defaultVal={email}
                   onChange={handleChange}
