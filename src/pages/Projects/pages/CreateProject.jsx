@@ -2,11 +2,13 @@ import { useState, useRef, useEffect } from "react";
 import CustomLabel from "../../../components/CustomLabel";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { ChevronDown, Plus } from "lucide-react";
 import { getSessionStorage } from "../../../Modules/getSessionStorage";
 import { useRequest } from "../../../Modules/useRequest";
+import toast from "react-hot-toast";
+import BigGreenButton from "../../../components/BigGreenButton"
+import { Loader2 } from "lucide-react";
 
 const CreateProject = () => {
   const [name, setName] = useState("");
@@ -17,8 +19,8 @@ const CreateProject = () => {
   const [allMembers, setAllMembers] = useState([]);
   const [selectedMembers, setSelectedMembers] = useState([]);
   const [selectedLeads, setSelectedLeads] = useState([]);
-  const [showMembersDropdown, setShowMembersDropdown] = useState(false); //Use selec and options input instead of creating the dropdown manually
-  const [showLeadsDropdown, setShowLeadsDropdown] = useState(false); //Use selec and options input instead of creating the dropdown manually
+  const [showMembersDropdown, setShowMembersDropdown] = useState(false); //Use select and options input instead of creating the dropdown manually
+  const [showLeadsDropdown, setShowLeadsDropdown] = useState(false); //Use select and options input instead of creating the dropdown manually
   const navigate = useNavigate();
   const [
     membersRequest,
@@ -34,6 +36,7 @@ const CreateProject = () => {
     createError,
     setCreateError,
   ] = useRequest();
+  const userStack = getSessionStorage("userStack", "");
 
   const handleMemberSelect = (intern) => {
     if (!selectedMembers.find((member) => member.id === intern.id)) {
@@ -48,7 +51,7 @@ const CreateProject = () => {
   const handleLeadSelect = (member) => {
     if (!selectedLeads.find((lead) => lead.id === member.id)) {
       setSelectedLeads([...selectedLeads, member]);
-      setSelectedMembers(selectedMembers.filter((e)))
+      setSelectedMembers(selectedMembers.filter((member) => member))
     } else {
       setSelectedLeads(selectedLeads.filter((lead) => lead.id !== member.id));
     }
@@ -64,27 +67,31 @@ const CreateProject = () => {
   };
 
   const handleSubmit = async (e) => {
+    setCreateLoading(true)
     e.preventDefault();
     const res = await createRequest('project/create', 'POST', {
       name,
       description,
       objectives,
-
+      leads: selectedLeads,
+      team_members: selectedMembers,
+      deadline: selectedDate,
+      stack: userStack
     })
-    const newProject = [
-      name,
-      description,
-      objectives,
-      selectedDate,
-      selectedLeads,
-      selectedMembers,
-    ];
-    console.log(newProject);
-    // navigate(-1);
+
+    const data = await res.json()
+    if (res.ok) {
+      toast.success("Project created successfully")
+      setTimeout(() => navigate(-1), 2000)
+    }
+    else {
+      print(data)
+      toast.error(data.message)
+    }
+    setCreateLoading(false)
   };
 
   const getStackMembers = async () => {
-    const userStack = getSessionStorage("userStack", "");
     const res = await membersRequest(
       `get_${userStack === "Software" ? "soft" : "hard"}_members`
     );
@@ -239,12 +246,12 @@ const CreateProject = () => {
               )}
             </div>
           </div>
-          <button
-            type="submit"
-            className=" bg-navBg2 text-white px-4 py-2 text-lg rounded-xl cursor-pointer mx-auto mt-2 font-semibold"
-          >
-            Submit
-          </button>
+          <div className="flex items-center gap-4">
+            <BigGreenButton type={"submit"}>
+              Submit
+            </BigGreenButton>
+            {createLoading && <Loader2 className="animate-spin text-navBg2"/>}
+          </div>
         </div>
       </form>
     </div>

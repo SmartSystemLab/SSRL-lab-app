@@ -25,6 +25,7 @@
 
 .activeText {
   @apply bg-white text-navBg2 rounded-l-full transition-all duration-200 ease-in-out relative;
+  @apply bg-white text-navBg2 rounded-l-full transition-all duration-200 ease-in-out relative;
 }
 
 /* .activeImg {
@@ -65,27 +66,6 @@
 
 .button-passive {
   @apply bg-[#4d714c] p-3;
-}
-/* form */
-
-.form {
-  width: 70vw;
-  border-radius: 12px;
-  /* box-shadow: 5px 5px 10px #888888; */
-  padding: 2rem 2.5rem;
-  margin: 3rem auto;
-}
-.form-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  text-transform: capitalize;
-  letter-spacing: 1.2px;
-}
-.form-input,
-.form-textarea {
-  padding: 0.375rem 0.75rem;
-  border-radius: 12px;
-  border: 1px solid #d4d5d4; 
 }
 
 .form-row {

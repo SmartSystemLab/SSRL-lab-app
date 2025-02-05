@@ -22,7 +22,7 @@ const Reports = ({ reports, userId }) => {
                         <ArrowUp className="text-logo" />
                       )}
                     </span>
-                    <p className="text-xs capitalize">{report_type}</p>
+                    <p className="text-sm capitalize">{report_type}</p>
                   </div>
                 </div>
               </Link>

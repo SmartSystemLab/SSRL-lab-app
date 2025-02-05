@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { X } from "lucide-react";
+import { Dot } from "lucide-react";
 
 const Notifications = ({ notifications, setNotifications }) => {
   
@@ -12,28 +13,24 @@ const Notifications = ({ notifications, setNotifications }) => {
 
   return (
     <div className="mb-6">
-      <h2 className="text mb-2 text-xl font-bold">Notifications</h2>
+      <h2 className="mb-2 text-2xl font-medium">Notifications</h2>
       <div className="h-full rounded-2xl bg-navBg2 p-4 text-white shadow-md">
         <ul className="space-y-2 text-sm">
           {notifications.length > 0 ? (
             notifications.map((notification) => (
               <li
                 key={notification._id}
-                className="flex items-end justify-between gap-4 border-b border-slate-300 px-2 py-4"
+                className="flex items-center justify-between gap-4 px-2 py-4 hover:bg-navBg1 rounded-xl"
               >
+                {notification.status == "unread" ? <Dot color={"#FFA500"} size={36}  className="w-9 h-9 min-w-9" /> : <span className="w-9 h-9 min-w-9"></span>}
                 <p>{notification.message}</p>
-                <p></p>{" "}
+                <p></p>
                 {/*Add date and time using the sent_at property in the notification object */}
+                
                 <button
                   onClick={() => dismissNotification(notification._id)}
                   className="text-red-500 hover:text-red-700"
                 >
-                  {/* <MdClose /> */}
-                  <X
-                    color="red"
-                    className="rounded-full bg-white p-1 transition-all duration-100 ease-in hover:translate-y-1"
-                    size={20}
-                  />
                 </button>
               </li>
             ))

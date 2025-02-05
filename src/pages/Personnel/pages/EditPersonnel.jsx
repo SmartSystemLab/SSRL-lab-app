@@ -1,204 +1,231 @@
 import React from "react";
 import { useState } from "react";
 import CustomLabel from "../../../components/CustomLabel";
-import Button from "../component/Button";
 import { useLocation, useNavigate } from "react-router-dom";
+import DatePickerComp from "../../../components/DatePickerComp";
+import { getInitials } from "../../../Modules/funcs";
+import { EditIcon } from "lucide-react";
+import BigGreenButton from "../../../components/BigGreenButton";
+import { useRequest } from "../../../Modules/useRequest";
+import { Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
+import { useRef } from "react";
 
 const Edit = () => {
-  const [user, setUser] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    phone: "",
-    role: "",
-    stack: "",
-    niche: "",
-  });
-
-  const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setUser({ ...user, [e.target.firstname]: e.target.value });
-    console.log(user);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  const handleCancel = () => {
-    navigate(-1);
-  };
   const locate = useLocation();
   const profile = locate.state;
   const {
-    fullname,
-    surname,
     firstname,
+    surname,
+    fullname,
     avatar,
     email,
-    bday,
-    datetime_created,
+    bday, // Probably use for date picker
     niche,
     stack,
     uid,
-    location,
-    role,
     phone_num,
     bio,
-    suspended,
   } = profile;
+  const [user, setUser] = useState(() => ({
+    firstname: firstname || "",
+    surname: surname || "",
+    email: email || "",
+    phone_num: phone_num || "",
+    stack: stack || "",
+    niche: niche || "",
+    bio: bio || "",
+  }));
+  const initials = getInitials(fullname);
+  const navigate = useNavigate();
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null); 
+  const fileInputRef = useRef(null);
+  const [editRequest, editLoading, setEditLoading] =
+    useRequest();
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUser((prevUser) => ({ ...prevUser, [name]: value }));
+  };
+
+  const handleEdit = async () => {
+    setEditLoading(true);
+    const formData = new FormData();
+    
+    formData.append("info", JSON.stringify(user));
+
+    if (selectedImage) {
+      formData.append("avatar", selectedImage);
+    }
+
+    const res = await editRequest(
+      `personnel/admin_edit/${uid}`,
+      "PATCH",
+      formData,
+    );
+    const data = await res.json();
+
+    if (res.ok) {
+      toast.success(data.message);
+      setTimeout(() => {
+        navigate(-1);
+      }, 2000);
+    } else {
+      toast.error(data.message);
+    }
+    console.log(data);
+
+    setEditLoading(false);
+  };
+
+  const handleFileClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    console.log(file)
+    setSelectedImage(file);
+    setPreviewImage(URL.createObjectURL(file));
+    console.log(URL.createObjectURL(file));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    handleEdit();
+  };
 
   return (
     <div>
-      <div className="container ">
-        {/* Header */}
-        <div className="mt-8 ">
-          <div className=" font-bold text-2xl">{uid} Edit Page</div>
+      <div className="container">
+        <div className="mt-8">
+          <div className="text-2xl font-medium">
+            Edit <span className="text-navBg2">{uid}</span>
+          </div>
           <hr className="bg-black" />
 
-          {/* Content */}
           <div>
             <form
-              className="form flex flex-col gap-2 md:shadow-lg"
-              onSubmit={handleSubmit}
+              className="mx-auto my-12 flex flex-col gap-2 rounded-xl border px-10 py-8 shadow-lg"
+              // onSubmit={handleFormSubmit}
             >
-              <div className="flex flex-col gap-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
-                  {/* first name */}
-
-                  <CustomLabel
-                    htmlFor="firstname"
-                    labelText="First name"
-                    inputType="text"
-                    inputValue={firstname}
-                    // inputValue={ profile.firstname}
-                    onChange={(event) =>
-                      setUser({ ...user, firstname: event.target.value })
-                    }
-                    labelCLassName="text-[#666666] inline-block"
-                    inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
-                    placeholder="Enter first name"
-                  />
-
-                  {/* last name */}
-
-                  <CustomLabel
-                    htmlFor="lastname"
-                    labelText="Last name"
-                    inputType="text"
-                    inputValue={surname}
-                    onChange={(event) =>
-                      setUser({ ...user, lastname: event.target.value })
-                    }
-                    labelCLassName="text-[#666666] inline-block"
-                    inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
-                    placeholder="Enter last name"
+              <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
+                <div
+                  className="border-1 relative mx-auto mb-6 flex h-32 w-32 cursor-pointer items-center justify-center rounded-full border-black bg-logo hover:scale-105 md:ml-12"
+                  onClick={handleFileClick}
+                >
+                  {avatar !== "NIL" || previewImage ? (
+                    <img
+                      src={previewImage ? previewImage : avatar.secure_url}
+                      alt="avatar"
+                      className="m-5 rounded-full object-cover"
+                    />
+                  ) : (
+                    <span className={`text-5xl font-medium`}>{initials}</span>
+                  )}
+                  <EditIcon className="absolute bottom-0 left-[90%]" />
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleFileChange}
+                    accept="image/*"
+                    className="hidden"
                   />
                 </div>
+
+                <p className="flex items-center">
+                  Edit {firstname}&apos;s info and add an optional profile
+                  picture
+                </p>
+
+                <CustomLabel
+                  htmlFor="firstname"
+                  labelText="Firstname"
+                  defaultVal={firstname}
+                  onChange={handleChange}
+                  placeholder="Enter first name"
+                />
+
+                <CustomLabel
+                  htmlFor="lastname"
+                  labelText="Lastname"
+                  defaultVal={surname}
+                  onChange={handleChange}
+                  placeholder="Enter last name"
+                />
+
+                <CustomLabel
+                  htmlFor="email"
+                  labelText="Email"
+                  type="email"
+                  inputType="email"
+                  defaultVal={email}
+                  onChange={handleChange}
+                  placeholder="Enter email "
+                />
+
+                <CustomLabel
+                  htmlFor="phone_num"
+                  labelText="Phone"
+                  inputType="tel"
+                  defaultVal={phone_num}
+                  onChange={handleChange}
+                  placeholder="Enter phone number"
+                />
+
                 <div>
-                  {/* email */}
-                  <CustomLabel
-                    htmlFor="email"
-                    labelText="Email"
-                    inputType="email"
-                    inputValue={email}
-                    onChange={(event) =>
-                      setUser({ ...user, email: event.target.value })
-                    }
-                    labelCLassName="text-[#666666] inline-block"
-                    inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
-                    placeholder="Enter email "
-                  />
-                </div>{" "}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
-                  {/* phone */}
-
-                  <CustomLabel
-                    htmlFor="phone"
-                    labelText="Phone"
-                    inputType="tel"
-                    inputValue={phone_num}
-                    onChange={(event) =>
-                      setUser({ ...user, phone: event.target.value })
-                    }
-                    labelCLassName="text-[#666666] inline-block"
-                    inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
-                    placeholder="Enter phone no"
-                  />
-
-                  {/* Role */}
-
-                  <div className="gap-1">
-                    <CustomLabel
-                      htmlFor="role"
-                      labelText="Role"
-                      labelCLassName="text-[#666666] inline-block"
-                    />
-                    <select
-                      name=""
-                      value={role}
-                      onChange={(event) =>
-                        setUser({ ...user, role: event.target.value })
-                      }
-                      className=" relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
-                    >
-                      <option value="" disabled>
-                        Select Role
-                      </option>
-                      <option value="software">Admin</option>
-                      <option value="software">Lead</option>
-                      <option value="hardware">Member</option>
-                    </select>
-                  </div>
+                  <label htmlFor="stack">Stack</label>
+                  <select
+                    name="stack"
+                    defaultValue={stack}
+                    onChange={handleChange}
+                    className="h-10 w-full rounded-lg border border-slate-900 px-3 py-1 text-[#111111] opacity-35 focus:text-black focus:opacity-100 focus:outline-none"
+                  >
+                    <option value="" disabled>
+                      Select Stack
+                    </option>
+                    <option value="Software">Software</option>
+                    <option value="Hardware">Hardware</option>
+                  </select>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
-                  {/* Stack */}
-                  <div>
-                    <CustomLabel
-                      htmlFor="stack"
-                      labelText="Stack"
-                      labelCLassName="text-[#666666] inline-block"
-                    />
-                    <select
-                      name=""
-                      value={stack}
-                      onChange={(event) =>
-                        setUser({ ...user, stack: event.target.value })
-                      }
-                      className=" relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
-                    >
-                      <option value="" disabled>
-                        Select Stack
-                      </option>
-                      <option value="software">Software</option>
-                      <option value="hardware">Hardware</option>
-                    </select>
-                  </div>
 
-                  {/* Niche */}
+                <CustomLabel
+                  htmlFor="niche"
+                  labelText="Niche"
+                  defaultVal={niche}
+                  onChange={handleChange}
+                  placeholder="Enter niche"
+                />
 
-                  <CustomLabel
-                    htmlFor="niche"
-                    labelText="Niche"
-                    inputType="text"
-                    inputValue={niche}
-                    onChange={(event) =>
-                      setUser({ ...user, niche: event.target.value })
+                <div>
+                  <label htmlFor="bio">Bio</label>
+                  <textarea
+                    defaultValue={
+                      bio === "NIL"
+                        ? "I'm just a boring person who hasn't set a bio yet."
+                        : bio
                     }
-                    labelCLassName="text-[#666666] inline-block"
-                    inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
-                    placeholder="Enter niche"
-                  />
+                    className="h-36 w-full appearance-none rounded-lg border border-slate-900 p-3 opacity-35 focus:opacity-100 focus:outline-none md:col-span-2"
+                    onChange={handleChange}
+                    name="bio"
+                  ></textarea>
                 </div>
-              </div>
-              <div className=" flex justify-start items-center gap-6">
-                <Button text="Save" handler={handleSubmit} />
 
-                <Button text="Save & add" handler={handleSubmit} />
+                <DatePickerComp
+                  label="Date of Birth"
+                  placeholder="  Select your date of birth"
+                  selected={selectedDate}
+                  change={setSelectedDate}
+                />
               </div>
-              <div className="text-right">
-                <Button text="Cancel" handler={handleCancel} />
+
+              <div className="flex items-center gap-4">
+                <BigGreenButton action={handleFormSubmit}>Save</BigGreenButton>
+                {editLoading && (
+                  <Loader2 className="animate-spin" color="#225522" />
+                )}
               </div>
             </form>
           </div>
