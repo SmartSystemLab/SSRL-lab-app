@@ -57,7 +57,7 @@ const Personnel = () => {
 
             <div className="mt-8 flex flex-col gap-6">
               <PersonnelSection
-                title="Admin(s)"
+                title="Admin"
                 personnels={admins}
                 loading={personnelsLoading}
               />
@@ -65,13 +65,13 @@ const Personnel = () => {
               <Toggle setToggle={setToggle} toggle={toggle} />
 
               <PersonnelSection
-                title="Lead(s)"
+                title="Lead"
                 personnels={toggle === "software" ? softleads : hardleads}
                 loading={personnelsLoading}
               />
 
               <PersonnelSection
-                title="Interns"
+                title="Intern"
                 personnels={toggle === "software" ? softInterns : hardInterns}
                 loading={personnelsLoading}
               />
