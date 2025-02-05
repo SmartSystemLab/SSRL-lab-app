@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { getSessionStorage } from "./getSessionStorage";
 
-const url = "https://ssrl-lab-app-backend.onrender.com"
+// const url = "https://ssrl-lab-app-backend.onrender.com"
 // const url = "http://127.0.0.1:5000";
+const url = "https://r9w5bxjm-5000uks1.devtunnels.ms"
 
 export const useGetRequest = () => {
   const [loading, setLoading] = useState(false);
@@ -46,6 +47,7 @@ export const useRequest = () => {
     console.log("Request sent in module");
 
     let headers = {
+        "Access-Control-Allow-Origin": "*",
         "Authorization": `Bearer ${getSessionStorage("access_token", "")}`
     }
     

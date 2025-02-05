@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CustomLabel from "../../../components/CustomLabel";
 // import Button from "../../../components/Button";
-import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
   const navigate = useNavigate();
