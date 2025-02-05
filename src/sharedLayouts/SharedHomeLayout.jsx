@@ -14,7 +14,7 @@ const SharedHomeLayout = () => {
 
       {/* Sidebar */}
       <div
-        className={`min-h-dvh fixed  top-0 left-0  bg-navBg2 z-50 rounded-r-3xl transition-transform transform ${isSideNavOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:sticky lg:flex w-64`}>
+        className={`min-h-dvh fixed top-0 left-0  bg-navBg2 z-50 rounded-r-3xl transition-transform transform ${isSideNavOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:sticky lg:flex w-64`}>
         <SideNav isSideNavOpen={isSideNavOpen} toggleSideNav={toggleSideNav} />
       </div>
 

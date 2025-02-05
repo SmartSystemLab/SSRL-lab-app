@@ -62,7 +62,7 @@ const OTP = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center min-h-screen bg-white">
+    <div className="w-full flex justify-center items-center md:min-h-screen bg-white">
       <div className="w-full max-w-md space-y-5 p-6">
         {otpError.status && <p>{otpError.msg}</p>}
         <h2 className="text-center text-3xl font-semibold text-[#333333] leading-10">

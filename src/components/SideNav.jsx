@@ -7,7 +7,7 @@ import Projects from "../assets/Projects.svg";
 import Settings from "../assets/Settings.svg";
 import LogOut from "../assets/LogOut.svg";
 import TeamChat from "../assets/TeamChat.svg"
-import {X} from 'lucide-react'
+import { X } from 'lucide-react'
 
 const navData = [
   { img: Dashboard, text: "Dashboard", path: "/home/dashboard", id: 1 },
@@ -33,9 +33,9 @@ const navData2 = [
 
 const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
   return (
-    <div className={`relative bg-navBg2 text-white min-h-screen py-4 pr-0 pl-2 w-64 max-w-[20rem] flex flex-col`}>
+    <div className={`relative bg-navBg2 text-white min-h-screen py-4 pr-0 pl-2 w-64 max-w-[20rem] flex flex-col z-50`}>
       {/* Logo Section */}
-      <div className="flex justify-end items-center gap-3 py-4 px-6 mt-2 mb-4 ">
+      <div className="flex justify-end items-center gap-3 py-4 px-6 mt-2 ssss">
         <img src="/vite.svg" alt="Logo" className="w-8 h-8 rounded-md text-lg" />
         <h2 className="text-base md:text-2xl font-bold text-logo tracking-wider whitespace-nowrap nav-text">SSRL</h2>
       </div>
@@ -84,7 +84,7 @@ const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
       </div>
 
       {/* Logout Button */}
-      <div className="flex justify-end items-center py-4 px-2 mt-auto">
+      <div className="flex justify-end items-center py-4 px-2 ">
         <Link className="flex items-center gap-3 text-logo font-semibold p-2 md:p-3 rounded-md hover:bg-navBg1 transition-colors" to={'/'}>
           <img src={LogOut} alt="Log Out" className="w-5 h-5 md:w-6 md:h-6" />
           <span className="text-sm md:text-base ">Log Out</span>

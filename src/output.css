@@ -566,10 +566,6 @@ video {
   position: relative;
 }
 
-.inset-auto {
-  inset: auto;
-}
-
 .inset-0 {
   inset: 0px;
 }
@@ -585,10 +581,6 @@ video {
 
 .left-0 {
   left: 0px;
-}
-
-.left-14 {
-  left: 3.5rem;
 }
 
 .left-4 {
@@ -664,6 +656,11 @@ video {
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .-ml-4 {
@@ -754,8 +751,8 @@ video {
   margin-top: 64px;
 }
 
-.mt-auto {
-  margin-top: auto;
+.mt-20 {
+  margin-top: 5rem;
 }
 
 .block {
@@ -882,6 +879,10 @@ video {
   width: 2.5rem;
 }
 
+.w-10\/12 {
+  width: 83.333333%;
+}
+
 .w-11\/12 {
   width: 91.666667%;
 }
@@ -976,14 +977,6 @@ video {
   width: max-content;
 }
 
-.w-1\/3 {
-  width: 33.333333%;
-}
-
-.w-10\/12 {
-  width: 83.333333%;
-}
-
 .min-w-\[240px\] {
   min-width: 240px;
 }
@@ -995,10 +988,6 @@ video {
 .min-w-max {
   min-width: -moz-max-content;
   min-width: max-content;
-}
-
-.max-w-4xl {
-  max-width: 56rem;
 }
 
 .max-w-6xl {
@@ -1478,10 +1467,6 @@ video {
 
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
-}
-
-.bg-\[url\(\'\.\/assets\/Sgnup-image\.jpg\'\)\] {
-  background-image: url('./assets/Sgnup-image.jpg');
 }
 
 .bg-cover {
@@ -2133,32 +2118,8 @@ video {
   }
 }
 
-.marker\:text-blue-500 *::marker {
-  color: rgb(59 130 246 );
-}
-
-.marker\:text-green-500 *::marker {
-  color: rgb(34 197 94 );
-}
-
-.marker\:text-yellow-500 *::marker {
-  color: rgb(234 179 8 );
-}
-
 .marker\:text-navBg2 *::marker {
   color: rgb(34 85 34 );
-}
-
-.marker\:text-blue-500::marker {
-  color: rgb(59 130 246 );
-}
-
-.marker\:text-green-500::marker {
-  color: rgb(34 197 94 );
-}
-
-.marker\:text-yellow-500::marker {
-  color: rgb(234 179 8 );
 }
 
 .marker\:text-navBg2::marker {
@@ -2376,8 +2337,24 @@ video {
     margin-left: 3rem;
   }
 
+  .md\:block {
+    display: block;
+  }
+
+  .md\:flex {
+    display: flex;
+  }
+
+  .md\:hidden {
+    display: none;
+  }
+
   .md\:h-6 {
     height: 1.5rem;
+  }
+
+  .md\:min-h-screen {
+    min-height: 100vh;
   }
 
   .md\:w-1\/2 {
@@ -2462,11 +2439,6 @@ video {
     padding: 0.75rem;
   }
 
-  .md\:px-0 {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
   .md\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -2480,6 +2452,11 @@ video {
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 
   .md\:text-base {
