@@ -7,8 +7,9 @@ import { ChevronDown, Plus } from "lucide-react";
 import { getSessionStorage } from "../../../Modules/getSessionStorage";
 import { useRequest } from "../../../Modules/useRequest";
 import toast from "react-hot-toast";
-import BigGreenButton from "../../../components/BigGreenButton"
+import BigGreenButton from "../../../components/BigGreenButton";
 import { Loader2 } from "lucide-react";
+import DatePickerComp from "../../../components/DatePickerComp";
 
 const CreateProject = () => {
   const [name, setName] = useState("");
@@ -43,7 +44,7 @@ const CreateProject = () => {
       setSelectedMembers([...selectedMembers, intern]);
     } else {
       setSelectedMembers(
-        selectedMembers.filter((member) => member.id !== intern.id)
+        selectedMembers.filter((member) => member.id !== intern.id),
       );
     }
   };
@@ -51,7 +52,8 @@ const CreateProject = () => {
   const handleLeadSelect = (member) => {
     if (!selectedLeads.find((lead) => lead.id === member.id)) {
       setSelectedLeads([...selectedLeads, member]);
-      setSelectedMembers(selectedMembers.filter((member) => member))
+      console.log(selectedLeads);
+      setSelectedMembers(selectedMembers.filter((member) => member));
     } else {
       setSelectedLeads(selectedLeads.filter((lead) => lead.id !== member.id));
     }
@@ -67,33 +69,40 @@ const CreateProject = () => {
   };
 
   const handleSubmit = async (e) => {
-    setCreateLoading(true)
     e.preventDefault();
-    const res = await createRequest('project/create', 'POST', {
+    setCreateLoading(true);
+    if (!selectedDate || !selectedMembers[0] || !selectedLeads[0]) {
+      console.log(selectedLeads);
+      //Add validation
+      toast.error("Add all required info");
+      setCreateLoading(false);
+      return;
+    }
+
+    const res = await createRequest("project/create", "POST", {
       name,
       description,
       objectives,
       leads: selectedLeads,
       team_members: selectedMembers,
       deadline: selectedDate,
-      stack: userStack
-    })
+      stack: userStack,
+    });
 
-    const data = await res.json()
+    const data = await res.json();
     if (res.ok) {
-      toast.success("Project created successfully")
-      setTimeout(() => navigate(-1), 2000)
+      toast.success("Project created successfully");
+      setTimeout(() => navigate(-1), 2000);
+    } else {
+      print(data);
+      toast.error(data.message);
     }
-    else {
-      print(data)
-      toast.error(data.message)
-    }
-    setCreateLoading(false)
+    setCreateLoading(false);
   };
 
   const getStackMembers = async () => {
     const res = await membersRequest(
-      `get_${userStack === "Software" ? "soft" : "hard"}_members`
+      `get_${userStack === "Software" ? "soft" : "hard"}_members`,
     );
     const data = await res.json();
     if (res.ok) {
@@ -108,32 +117,32 @@ const CreateProject = () => {
   // console.log(members)
   // console.log(selectedLeads, selectedMembers)
   return (
-    <div className="mt-4 px-6 py-4 min-h-screen overflow-y-auto">
-      <button className="flex items-center gap-2 text-xl font-semibold tracking-wider mb-2">
+    <div className="mt-4 min-h-screen overflow-y-auto px-6 py-4">
+      <button className="mb-2 flex items-center gap-2 text-xl font-medium tracking-wider">
         <span>Add Project</span>
-        <div className="p-[2px] bg-logo rounded-full">
+        <div className="rounded-full bg-logo p-[2px]">
           <Plus color="white" />
         </div>
       </button>
-      <hr className="bg-black mt-1" />
+      <hr className="mt-1 bg-black" />
 
       <form onSubmit={handleSubmit}>
-        <div className="mt-4 space-y-4 ">
+        <div className="mt-4 space-y-6">
           <CustomLabel
             htmlFor="projectTitle"
             labelText="Project Name"
-            inputType="text"
-            inputValue={name}
+            value={name}
             onChange={(event) => setName(event.target.value)}
-            //   onBlur={() => {}}
-            labelCLassName="text-black inline-block font-medium text-lg  mb-1 "
-            inputClassName="appearance-none relative block w-full  px-3 py-2 border border-gray-400 rounded-lg focus:outline-none"
             placeholder="Add project name"
-          />
+            required
+          >
+            Title
+          </CustomLabel>
+
           <div>
             <label
               htmlFor="projectDescription"
-              className="text-black inline-block font-medium text-lg mb-1"
+              className="mb-1 inline-block font-medium text-black"
             >
               Project Description
             </label>
@@ -141,72 +150,69 @@ const CreateProject = () => {
               id="projectDescription"
               value={description}
               onChange={(event) => setDescription(event.target.value)}
-              className="appearance-none block w-full px-4 py-3 border border-gray-400 rounded-lg focus:outline-none resize-none h-32"
+              className="block h-32 w-full resize-none appearance-none rounded-lg border border-gray-400 px-4 py-3 focus:outline-black"
               placeholder="Add project description"
               rows={5}
+              required
             />
           </div>
-          <div className="flex flex-col md:flex-row gap-8 mt-8 items-start">
-            {/* Objectives  */}
-            <div className="w-full md:w-1/2">
-              <h2 className="font-medium text-lg mb-2">Objectives</h2>
-              <div className="flex gap-2 mb-2">
-                <input
-                  type="text"
-                  value={currentObjective}
-                  onChange={(e) => setCurrentObjective(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-400 rounded-lg focus:outline-none"
-                  placeholder="Add an objective"
-                />
-                <button
-                  type="button"
-                  onClick={addObjective}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg"
-                >
-                  Add
-                </button>
-              </div>
-              <ul className="list-decimal list-outside ml-2 space-y-1 italic">
-                {objectives.map((objective, index) => (
-                  <li key={index} className="break-words">
-                    {objective}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-2 text-gray-600">
-                Total Objectives: {objectives.length}
+
+          {/* Objectives  */}
+          <div className="w-full">
+            <h2 className="mb-2 font-medium">Objectives</h2>
+            <div className="mb-2 flex items-center gap-2">
+              <input
+                type="text"
+                value={currentObjective}
+                onChange={(e) => setCurrentObjective(e.target.value)}
+                className="w-full rounded-lg border border-gray-400 px-3 py-2 focus:outline-black"
+                placeholder="Add an objective"
+              />
+              <button
+                onClick={addObjective}
+                className="rounded-lg bg-navBg2 px-4 py-2 font-medium text-white"
+              >
+                Add
+              </button>
+              <p className="flex aspect-square h-8 w-8 flex-1 items-center justify-center rounded-full bg-logo p-2 font-medium text-black">
+                {objectives.length}
               </p>
             </div>
-
-            {/* Date Picker uses react date picker library */}
-            <div className="w-full md:w-1/2">
-              <h2 className="font-medium text-lg mb-2">Deadline</h2>
-              <DatePicker
-                selected={selectedDate}
-                onChange={(date) => setSelectedDate(date)}
-                className="w-full px-3 py-2 border border-gray-400 rounded-lg focus:outline-none"
-                placeholderText="Select a deadline"
-              />
-            </div>
+            <ul className="ml-6 list-outside space-y-1 text-sm">
+              {objectives.map((objective, index) => (
+                <li key={index} className="break-words">
+                  {objective}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-8 mt-8">
+          <DatePickerComp
+            selected={selectedDate}
+            change={(date) => {
+              console.log(date);
+              setSelectedDate(date);
+            }}
+            placeholder="  Select a deadline"
+            label="Deadline"
+          />
+          <div className="mt-8 flex flex-col gap-8 md:flex-row">
             <div className="relative w-full md:w-1/2">
               <button
                 type="button"
                 onClick={() => setShowMembersDropdown(!showMembersDropdown)}
-                className="px-4 py-2 bg-navBg2 text-white rounded-lg flex gap-2 items-center"
+                className="flex items-center gap-2 rounded-lg bg-navBg2 px-4 py-2 text-white"
               >
                 <span>Add Team Members</span> <ChevronDown />
               </button>
               {showMembersDropdown && (
-                <div className="absolute z-10 w-3/4 bg-white border border-gray-300 rounded-lg mt-2 max-h-48 overflow-y-auto">
+                <div className="absolute z-10 mt-2 max-h-48 w-3/4 overflow-y-auto rounded-lg border border-gray-300 bg-white">
                   {allMembers.map((intern) => (
                     <div key={intern.id} className="flex items-center p-1">
                       <input
                         type="checkbox"
                         checked={selectedMembers.some(
-                          (member) => member.id === intern.id
+                          (member) => member.id === intern.id,
                         )}
                         onChange={() => handleMemberSelect(intern)}
                         className="mr-2"
@@ -223,18 +229,18 @@ const CreateProject = () => {
               <button
                 type="button"
                 onClick={() => setShowLeadsDropdown(!showLeadsDropdown)}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg flex gap-2 items-center"
+                className="flex items-center gap-2 rounded-lg bg-navBg2 px-4 py-2 text-white"
               >
                 <span>Add Team Leads</span> <ChevronDown />
               </button>
               {showLeadsDropdown && selectedMembers.length > 0 && (
-                <div className="absolute z-10 w-3/4 bg-white border border-gray-300 rounded-lg mt-2 max-h-48 overflow-y-auto">
+                <div className="absolute z-10 mt-2 max-h-48 w-3/4 overflow-y-auto rounded-lg border border-gray-300 bg-white">
                   {selectedMembers.map((member) => (
                     <div key={member.id} className="flex items-center p-1">
                       <input
                         type="checkbox"
                         checked={selectedLeads.some(
-                          (lead) => lead.id === member.id
+                          (lead) => lead.id === member.id,
                         )}
                         onChange={() => handleLeadSelect(member)}
                         className="mr-2"
@@ -247,10 +253,8 @@ const CreateProject = () => {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <BigGreenButton type={"submit"}>
-              Submit
-            </BigGreenButton>
-            {createLoading && <Loader2 className="animate-spin text-navBg2"/>}
+            <BigGreenButton type="submit">Submit</BigGreenButton>
+            {createLoading && <Loader2 className="animate-spin text-navBg2" />}
           </div>
         </div>
       </form>

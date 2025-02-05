@@ -4,6 +4,9 @@ import { LiaCheckDoubleSolid } from "react-icons/lia";
 import { Plus } from "lucide-react";
 import Messages from "../pages../../../../components/Messages";
 import img1 from "../pages../../../../assets/img1.jpg";
+import { useRequest } from '../../../Modules/useRequest';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const info = [
   {
@@ -31,6 +34,26 @@ const info = [
 ];
 
 const Reports = () => {
+  const [reports, setReports] = useState(null)
+  const [getReports, reportsLoading, setReportsLoading, reportsError, setReportsError] = useRequest()
+
+  const getAllReports = async () => {
+    setReportsLoading(true)
+    const res = await getReports("reports/get_all")
+    const data = await res.json()
+    if (res.ok) {
+      setReports(data.reports)
+    }
+    else {
+      setReportsError({status: true, msg: data.message})
+    }
+    setReportsLoading(false)
+  }
+
+  useEffect(() => {
+    getAllReports()
+  }, [])
+
   return (
     <div className="mt-8 p-2">
 

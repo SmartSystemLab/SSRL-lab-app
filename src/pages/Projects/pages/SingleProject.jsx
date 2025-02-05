@@ -3,6 +3,9 @@ import Dropdown from "../components/Dropdown";
 import Dot from "./../../../assets/Dot.svg";
 import { DotIcon, DownloadCloud, LinkIcon, Plus } from "lucide-react";
 import { useState } from "react";
+import { formatDate } from "../../../Modules/funcs";
+import { useRef } from "react";
+import AddDoc from "../components/AddDoc";
 
 const SingleProject = () => {
   const location = useLocation();
@@ -18,11 +21,16 @@ const SingleProject = () => {
     submissions,
     status,
     date_created,
-    deadline
+    deadline,
   } = project;
   const { docs, links } = submissions;
+  console.log(docs)
+  const [trackedSub, setTrackedSub] = useState(docs)
+  console.log(trackedSub)
 
-  const [isCompleted, setIsCompleted] = useState(status === "Completed")
+  const [isCompleted, setIsCompleted] = useState(status === "Completed");
+  const docRef = useRef(null);
+  const [selectedDoc, setSelectedDoc] = useState();
 
   return (
     <div className="mx-auto mt-4 w-11/12 space-y-6 rounded-lg border-2 bg-white px-6 py-4 shadow-sm">
@@ -37,7 +45,11 @@ const SingleProject = () => {
           {isCompleted ? "Completed" : "Uncompleted"}
         </span>
 
-        <Dropdown completed={{ isCompleted, setIsCompleted }} id={_id} project={project} />
+        <Dropdown
+          completed={{ isCompleted, setIsCompleted }}
+          id={_id}
+          project={project}
+        />
       </div>
 
       {/* Project Details */}
@@ -55,10 +67,10 @@ const SingleProject = () => {
             <p className="cursor-pointer font-normal">{createdBy}</p>
           </span>
           <span className="font-medium">
-            Created: <p className="font-normal">{date_created}</p>
+            Created: <p className="font-normal">{formatDate(date_created)}</p>
           </span>
           <span className="font-medium">
-            Deadline: <p className="font-normal">{deadline}</p>
+            Deadline: <p className="font-normal">{formatDate(deadline)}</p>
           </span>
         </div>
       </div>
@@ -122,15 +134,10 @@ const SingleProject = () => {
         </h2>
         <div className="flex flex-col gap-4 md:flex-row">
           <div className="w-1/2">
-            <div className="group mb-2 flex w-fit items-center justify-start gap-6 rounded-lg border p-2 hover:opacity-70">
-              <h3 className="ml-2 font-medium">Documents</h3>
-              <div className="w-fit rounded-full bg-logo p-[2px] group-hover:rotate-90">
-                <Plus color="white" className="group-hover:rotate-90" />
-              </div>
-            </div>
+            <AddDoc id={_id} setSub={setTrackedSub} sub={trackedSub} />
             {docs.length > 0 ? (
               <div className="flex flex-col gap-4">
-                {docs.map((doc, index) => {
+                {trackedSub.map((doc, index) => {
                   const { download_link, filename } = doc;
                   return (
                     <Link

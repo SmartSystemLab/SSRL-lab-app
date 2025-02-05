@@ -118,10 +118,8 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
                 to={`/home/personnel/edit/:id`}
                 state={profile}
               >
-                <Link to={`/home/personnel/edit/:id`} className="" state={profile}>
                   <Edit />
                   <p>Edit</p>
-                </Link>
               </Link>
 
               <button

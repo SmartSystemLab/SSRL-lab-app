@@ -25,9 +25,9 @@ const Projects = () => {
     setProjectsLoading(true);
     const res = await projectsRequest("project/get_all");
     const data = await res.json();
-
+    
     if (res.ok) {
-      console.log(data.projects);
+      console.log(data);
       setProjects(data.projects);
       const total = data.projects.length;
       const completed = data.projects.filter(
@@ -36,6 +36,7 @@ const Projects = () => {
       const inProgress = total - completed;
       setProjectsStats({ total, completed, inProgress });
     } else {
+      const data = await res.json()
       setProjectsError({ status: true, msg: data.message });
     }
     setProjectsLoading(false);
