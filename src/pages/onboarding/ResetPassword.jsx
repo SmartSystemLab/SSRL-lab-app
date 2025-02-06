@@ -65,7 +65,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center min-h-screen bg-white">
+    <div className="w-full flex justify-center items-center md:min-h-screen bg-white">
       {/* reset password tab */}
       <div className="w-full max-w-md space-y-5 p-6 mt-12 pt-4 ">
         {resetError.status && <p>{resetError.msg}</p>}

@@ -1,14 +1,15 @@
 import { UserRound } from "lucide-react";
 import Pro_bg from "./../../../assets/Pro_bg.svg";
 import { Link } from "react-router-dom";
-import { getRandomSoftHexColor } from "../../../Modules/funcs";
+import { getRandomSoftHexColor, formatDate } from "../../../Modules/funcs";
+import { format } from "date-fns"
 
 const ProjectCard = ({ project }) => {
-  console.log(project)
   const { name, deadline, team_members, leads, team_avatars } = project;
   const maxVisibleMembers = 3;
   const allMembers = [...leads, ...team_members]
   const extraMembers = allMembers.length - maxVisibleMembers;
+
   return (
     <Link
       to={`/home/projects/${project._id}`}
@@ -24,7 +25,7 @@ const ProjectCard = ({ project }) => {
       >
         <div className="px-1 py-2">
           <h3 className="text-xl font-medium">{name}</h3>
-          <p className="mt-1 text-base">{deadline}</p>
+          <p className="mt-1 text-base">{formatDate(deadline)}</p>
           <div className="mt-5 flex items-center">
             <div className="flex">
               {team_avatars.slice(0, maxVisibleMembers).map((avatar, index) => (

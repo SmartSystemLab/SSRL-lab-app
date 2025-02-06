@@ -3,14 +3,14 @@ import CustomLabel from "../../../components/CustomLabel"
 
 export default function Project({ projectSummary, setProjectSummary, projectTitle, setProjectTitle }) {
     return (
-        <div className=" space-y-4">
+        <div className=" space-y-4 mt-4">
             <CustomLabel
                 htmlFor="projectTitle"
                 labelText="Project Title:"
                 inputType="text"
                 inputValue={projectTitle || ''}
                 onChange={(event) => setProjectTitle(event.target.value)}
-                labelCLassName="text-black inline-block font-medium text-lg  mb-1 "
+                labelCLassName="'mt-1 font-medium text-lg mb-1 "
                 inputClassName="appearance-none relative block w-full  px-3 py-2 border  rounded-lg focus:outline-none"
                 placeholder="Add request title"
             />

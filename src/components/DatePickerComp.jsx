@@ -30,7 +30,7 @@ const calenderIcon = (
 const DatePickerComp = ({ label, placeholder, selected, change }) => {
   return (
     <div className="w-full md:w-1/2">
-      <h2>{label}</h2>
+      <h2 className="font-medium">{label}</h2>
       <DatePicker
         showIcon
         icon={calenderIcon}

@@ -14,13 +14,13 @@ const CustomLabel = ({
   errorMessage,
   inputClassName,
   labelClassName,
-    placeholder,
+  placeholder,
   required,
   name,
 }) => {
   return (
     <div>
-      <label htmlFor={htmlFor} className={`${labelClassName} flex gap-2 items-center`}>
+      <label htmlFor={htmlFor} className={`${labelClassName} flex gap-2 items-center font-medium`}>
         {children}
       </label>
       <input

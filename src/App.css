@@ -25,7 +25,6 @@
 
 .activeText {
   @apply bg-white text-navBg2 rounded-l-full transition-all duration-200 ease-in-out relative;
-  @apply bg-white text-navBg2 rounded-l-full transition-all duration-200 ease-in-out relative;
 }
 
 /* .activeImg {
@@ -68,24 +67,21 @@
   @apply bg-[#4d714c] p-3;
 }
 
-.form-row {
-  margin-bottom: 1rem;
-}
-
-
 ::-webkit-scrollbar {
   /* display: none; */
   height: 8px;
-  width: 5px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
   background: transparent;
+  scroll-padding: 4px;
 }
+
 
 ::-webkit-scrollbar-thumb {
   background-color: #FFA500;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

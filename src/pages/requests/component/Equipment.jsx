@@ -24,7 +24,7 @@ const Equipment = ({
             inputValue={quantity || ""}
             onChange={(event) => setQuantity(event.target.value)}
             //   onBlur={() => {}}=[#
-
+            required={true}
             labelCLassName="text-black inline-block font-medium text-lg  mb-1 "
             inputClassName="appearance-none relative block w-20 px-3 py-2 border border-gray-400 rounded-lg focus:outline-none text-center"
             placeholder="Num"
@@ -39,6 +39,7 @@ const Equipment = ({
             inputValue={eqpName || ""}
             onChange={(event) => setEqpName(event.target.value)}
             //   onBlur={() => {}}
+            required={true}
             labelCLassName="text-black inline-block font-medium text-lg  mb-1"
             inputClassName="appearance-none w-full relative block px-3 py-2 border border-gray-400 rounded-lg focus:outline-none grow"
           />

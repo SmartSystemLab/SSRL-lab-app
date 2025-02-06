@@ -33,30 +33,38 @@ const CreateRequest = () => {
     }
     const handleLeaveDates = ({ from, to }) => {
         setLeaveDates({ from, to });
-        console.log('Selected Dates:', { from, to });
+        // console.log('Selected Dates:', { from, to });
     };
     const handleRecipientsChange = (e) => {
         const selectedOptions = Array.from(e.target.selectedOptions, option => option.value)
         setSelectedRecipients(selectedOptions)
-        console.log('Selected Recipients:', selectedOptions)
+        // console.log('Selected Recipients:', selectedOptions)
     }
     const toggleDown = () => {
         setShowDropdown((prevState) => !prevState);
     }
+
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log('Title:', title)
+        if (activeOption === 'equipment') {
+            console.log('Equipment Name:', eqpName)
+            console.log('purpose', purpose)
+            console.log('Quantity:', quantity)
+        } else if (activeOption === 'leave') {
+            console.log('Leave Dates:', leaveDates)
+            console.log('purpose', purpose)
+        } else if (activeOption === 'others') {
+            console.log('description:', description)
+        }
         console.log('Recipients:', selectedRecipients)
-        console.log('Equipment Name:', eqpName)
-        console.log('Quantity:', quantity)
-        console.log('description:', description)
-        console.log('purpose', purpose)
-        // console.log('Leave Dates:', leaveDates)
     }
+
     const handlePreview = () => {
         const requestData = { title, activeOption, eqpName, quantity, description, purpose, leaveDates, selectedRecipients };
         navigate('/home/requests/preview-request', { state: requestData });
-    };
+    }
+
     useEffect(() => {
         if (location.state) {
 
@@ -89,7 +97,7 @@ const CreateRequest = () => {
                     inputType="text"
                     inputValue={title}
                     onChange={(event) => setTitle(event.target.value)}
-
+                    required={true}
                     labelCLassName="text-black inline-block font-medium text-lg  mb-1 "
                     inputClassName="appearance-none relative block w-full  px-3 py-2 border border-black rounded-lg focus:outline-none"
                     placeholder="Add request title"

@@ -50,7 +50,8 @@ const Edit = () => {
     setUser((prevUser) => ({ ...prevUser, [name]: value }));
   };
 
-  const handleEdit = async () => {
+  const handleEdit = async (e) => {
+    e.preventDefault()
     setEditLoading(true);
     const formData = new FormData();
     
@@ -92,10 +93,10 @@ const Edit = () => {
     console.log(URL.createObjectURL(file));
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    handleEdit();
-  };
+  // const handleFormSubmit = (e) => {
+  //   e.preventDefault();
+  //   handleEdit();
+  // };
 
   return (
     <div>
@@ -109,7 +110,7 @@ const Edit = () => {
           <div>
             <form
               className="mx-auto my-12 flex flex-col gap-2 rounded-xl border px-10 py-8 shadow-lg"
-              // onSubmit={handleFormSubmit}
+              onSubmit={handleEdit}
             >
               <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
                 <div
@@ -146,7 +147,7 @@ const Edit = () => {
                   defaultVal={firstname}
                   onChange={handleChange}
                   placeholder="Enter first name"
-                />
+                >First name</CustomLabel>
 
                 <CustomLabel
                   htmlFor="lastname"
@@ -154,7 +155,7 @@ const Edit = () => {
                   defaultVal={surname}
                   onChange={handleChange}
                   placeholder="Enter last name"
-                />
+                >Last name</CustomLabel>
 
                 <CustomLabel
                   htmlFor="email"
@@ -164,7 +165,7 @@ const Edit = () => {
                   defaultVal={email}
                   onChange={handleChange}
                   placeholder="Enter email "
-                />
+                >Email</CustomLabel>
 
                 <CustomLabel
                   htmlFor="phone_num"
@@ -173,7 +174,7 @@ const Edit = () => {
                   defaultVal={phone_num}
                   onChange={handleChange}
                   placeholder="Enter phone number"
-                />
+                >Phone number</CustomLabel>
 
                 <div>
                   <label htmlFor="stack">Stack</label>
@@ -197,7 +198,7 @@ const Edit = () => {
                   defaultVal={niche}
                   onChange={handleChange}
                   placeholder="Enter niche"
-                />
+                >Niche</CustomLabel>
 
                 <div>
                   <label htmlFor="bio">Bio</label>
@@ -222,7 +223,7 @@ const Edit = () => {
               </div>
 
               <div className="flex items-center gap-4">
-                <BigGreenButton action={handleFormSubmit}>Save</BigGreenButton>
+                <BigGreenButton type="submit">Save</BigGreenButton>
                 {editLoading && (
                   <Loader2 className="animate-spin" color="#225522" />
                 )}

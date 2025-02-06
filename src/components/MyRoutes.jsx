@@ -32,9 +32,11 @@ import PreviewRequest from "../pages/requests/pages/PreviewRequest.jsx"
 import Todo from "../pages/Todo/Todo.jsx";
 import TeamChat from "../pages/TeamChat/TeamChat";
 import Settings from "../pages/Settings/Settings";
+
 import Reports from "../pages/reports/pages/Reports.jsx";
 import CreateReport from "../pages/reports/pages/CreateReport.jsx";
 import ViewReport from "../pages/reports/pages/ViewReport.jsx";
+import PreviewReport from "../pages/reports/pages/PreviewReport.jsx"
 
 const MyRoutes = () => {
   return (
@@ -79,7 +81,8 @@ const MyRoutes = () => {
           <Route path="reports" >
             <Route index element={<Reports />} />
             <Route path=":id" element={<ViewReport />} />
-            <Route path="create" element={<CreateReport/>} />
+            <Route path="create" element={<CreateReport />} />
+            <Route path="preview-report" element={<PreviewReport />} />
           </Route>
 
           <Route path="settings" element={<Settings />} />

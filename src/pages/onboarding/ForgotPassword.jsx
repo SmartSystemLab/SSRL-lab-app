@@ -55,7 +55,7 @@ const ForgotPassword = () => {
   }, []);
 
   return (
-    <div className="w-full flex justify-center items-center min-h-screen bg-white">
+    <div className="w-full flex justify-center items-center md:min-h-screen bg-white">
       {/* forgot password tab */}
       <div className="w-full max-w-md space-y-6 p-6 m ">
         {credError.status && <p>{credError.msg}</p>}
