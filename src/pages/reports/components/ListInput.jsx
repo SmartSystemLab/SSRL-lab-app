@@ -1,5 +1,5 @@
 import CustomLabel from "../../../components/CustomLabel"
-import {  Plus, Trash2 } from "lucide-react"
+import { Plus, Trash2 } from "lucide-react"
 import { useState } from "react"
 
 export default function ListInput({ title, items, setItems }) {
@@ -32,7 +32,7 @@ export default function ListInput({ title, items, setItems }) {
                         isError={error}
                         errorMessage="enter a input first"
                         required={inputValue.trim() === "" && items.length === 0}
-                    />
+                    >{title}</CustomLabel>
                 </div>
                 <span
                     onClick={handleAddItem}

@@ -61,9 +61,9 @@ const Requests = () => {
   return (
     <div >
       {/* Header */}
-      <div className="mt-8 p-2">
+      <div className="mt-4 md:px-4 px-1">
         <div className="flex justify-between items-center">
-          <h1 className="uppercase font-bold text-xl md:text-2xl">Requests</h1>
+          <h1 className="uppercase font-semibold text-xl md:text-2xl">Requests</h1>
           <div>
             <Link className="flex items-center gap-2 text-base md:text-lg font-medium hover:bg-neutral-100 p-2 hover:rounded-lg transition-all duration-300"
               to={'/home/requests/create'}>
@@ -78,7 +78,7 @@ const Requests = () => {
         <hr className="bg-black" />
 
         {/* Content */}
-        <div className="mt-6 p-2">
+        <div className="mt-4 md:px-4 px-0 py-2">
 
           {/* unread tag */}
           <div className="flex justify-between items-center">
@@ -104,6 +104,7 @@ const Requests = () => {
             ></Messages>
           </section>
         </div>
+
       </div>
 
     </div>

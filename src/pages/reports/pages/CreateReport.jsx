@@ -4,7 +4,8 @@ import { Plus } from "lucide-react";
 import Toggle from "../components/Toggle"
 import Activity from "../components/Activity";
 import Project from "../components/Project";
-
+import BigGreenButton from '../../../components/BigGreenButton'
+import MultipleSelect from "../../../components/MultipleSelect"
 
 const CreateReport = () => {
     const location = useLocation()
@@ -71,7 +72,8 @@ const CreateReport = () => {
     }, [location.state])
 
     return (
-        <div className="mt-4 px-6 py-4 min-h-screen overflow-y-auto">
+        <div className="mt-4 md:px-6 px-2 min-h-screen overflow-y-auto">
+
             <div className="flex items-center gap-2 text-xl font-semibold tracking-wider mb-2">
                 <span>Create Report</span>
                 <div className="p-[2px] bg-logo rounded-full">
@@ -79,10 +81,11 @@ const CreateReport = () => {
                 </div>
             </div>
             <hr className="bg-black mt-1" />
-            <form className='mt-4 p-2 space-y-4' onSubmit={handleSubmit} >
-                <div>
 
-                </div>
+            <form
+                className='mt-8 mx-auto my-12 flex flex-col gap-4 rounded-xl border px-10 py-8 shadow-lg'
+                onSubmit={handleSubmit} >
+
                 <Toggle handleOptionsChange={handleOptionsChange} activeOption={activeOption} />
 
                 {activeOption === 'activity' && <Activity
@@ -103,7 +106,7 @@ const CreateReport = () => {
                 />}
 
 
-                <section className="flex flex-col justify-between items-start md:items-center md:flex-row gap-4 items-cente mt-2r">
+                <section className="flex flex-col justify-between items-start md:items-center md:flex-row gap-4 mt-2">
                     {/* submissions do am yourself baby */}
                     <div className="flex gap-4">
 
@@ -119,22 +122,21 @@ const CreateReport = () => {
                                 <Plus color="white" />
                             </div>
                         </div>
-                    </div>
-                    <div>
 
+                    </div>
+
+                    <div>
                         <div className="flex  gap-4 mb-2">
-                            <button
+
+                            < button
+                                className="cursor-pointer rounded-full bg-navBg2 px-4 py-1 font-medium capitalize text-white hover:scale-105 w-fit"
                                 onClick={handlePreview}
-                                className={`bg-navBg2 text-white p-2 text-lg rounded-xl cursor-pointer mx-auto  font-semibold hover:opacity-70 hover:shadow-lg  transition-all duration-200 `}
-                            >
-                                Preview
-                            </button>
-                            <button
+                            >Preview</button>
+                            <BigGreenButton
                                 type="submit"
-                                className="bg-navBg2 text-white px-3 py-1 text-lg rounded-xl cursor-pointer mx-auto  font-semibold hover:opacity-70  hover:shadow-lg transition-all duration-200"
                             >
                                 Submit
-                            </button>
+                            </BigGreenButton>
                         </div>
                     </div>
 

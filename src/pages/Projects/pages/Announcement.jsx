@@ -1,30 +1,22 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { IoIosArrowDown } from "react-icons/io";
+import MultipleSelect from "../../../components/MultipleSelect"
+
 
 const Announcement = () => {
     const location = useLocation();
     const project = location.state;
 
     const [message, setMessage] = useState("");
-    const [showDropdown, setShowDropdown] = useState(false);
     const [selectedRecipients, setSelectedRecipients] = useState([]);
-    const teamMembers = project.teamMembers || [];
-
-    const toggleDropdown = () => setShowDropdown(!showDropdown);
-
-    const handleRecipientSelect = (member) => {
-        if (selectedRecipients.includes(member)) {
-            setSelectedRecipients(selectedRecipients.filter((recipient) => recipient !== member));
-        } else {
-            setSelectedRecipients([...selectedRecipients, member]);
-        }
-    };
+    const teamMembers = project.team_members || [];
 
     const handleSendMessage = (recipients) => {
         console.log("Sending message to:", recipients);
         console.log("Message:", message);
     };
+
 
     return (
         <div className="mt-4 py-6 px-6 mx-auto bg-white  overflow-y-auto min-h-screen">
@@ -44,7 +36,7 @@ const Announcement = () => {
                 <textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none   resize-none"
+                    className="block w-full px-4 py-3 border border-slate-900 opacity-35 focus:opacity-100 rounded-lg focus:outline-none   resize-none"
                     placeholder="Announcemnent details"
                     rows={5}
                 />
@@ -62,32 +54,13 @@ const Announcement = () => {
                     >
                         Send to Leads Only
                     </button>
-                    <div className="relative w-full sm:w-auto">
-                        <button
-                            onClick={toggleDropdown}
-                            className="px-6 py-2 bg-navBg2 text-white font-semibold rounded-lg shadow flex items-center justify-between gap-2 hover:bg-green-700 focus:outline-none w-full"
-                        >
-                            Select Recipients <IoIosArrowDown className="w-5 h-5" />
-                        </button>
-                        {showDropdown && (
-                            <div className="absolute z-10 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg w-full max-h-48 overflow-y-auto">
-                                {teamMembers.map((member) => (
-                                    <div
-                                        key={member.id}
-                                        className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                                    >
-                                        <input
-                                            type="checkbox"
-                                            checked={selectedRecipients.includes(member)}
-                                            onChange={() => handleRecipientSelect(member)}
-                                            className="mr-2"
-                                        />
-                                        {member.name}
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                    <MultipleSelect
+                        options={teamMembers}
+                        selectedOptions={selectedRecipients}
+                        onSelectionChange={setSelectedRecipients}
+                        buttonText="Select Recipients"
+                        className="w-full sm:w-auto"
+                    />
                 </div>
                 <button
                     onClick={() => handleSendMessage(selectedRecipients.map((recipient) => recipient.name))}

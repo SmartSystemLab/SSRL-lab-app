@@ -28,27 +28,27 @@ const Leave = ({ handleLeaveDates, purpose, setPurpose }) => {
                         selected={startDate}
                         onChange={handleStartDateChange}
                         placeholderText="Select start date"
-                        className="w-full px-3 py-2 border border-gray-400 rounded-lg focus:outline-none"
+                        className="w-full px-3 py-2 border border-slate-900 rounded-lg focus:outline-none opacity-35  focus:opacity-100 text-slate-900 focus:text-black"
                     />
                 </div>
                 <div>
-                    <label className=' block mb-2 font-medium'>To:</label>
+                    <label className='block mb-2 font-medium'>To:</label>
                     <DatePicker
                         selected={endDate}
                         onChange={handleEndDateChange}
                         minDate={startDate}
                         placeholderText="Select end date"
-                        className="w-full px-3 py-2 border border-gray-400 rounded-lg focus:outline-none"
+                        className="w-full px-3 py-2 border border-slate-900 rounded-lg focus:outline-none opacity-35  focus:opacity-100 text-slate-900 focus:text-black"
                     />
                 </div>
             </div>
             <div className=' mt-2'>
-                <h2 className='font-semibold mb-1'>Purpose</h2>
+                <h2 className='font-mediums mb-1'>Purpose</h2>
                 <textarea
                     id="purpose"
                     value={purpose || ''}
                     onChange={(event) => setPurpose(event.target.value)}
-                    className="appearance-none block w-full px-4 py-3 border border-black rounded-lg focus:outline-none resize-none h-32"
+                    className="appearance-none block w-full px-4 py-3 border border-slate-900 rounded-lg focus:outline-none resize-none h-32  text-slate-900 focus:text-black opacity-35 mt-l focus:opacity-100"
                     rows={5}
                     required
                 />

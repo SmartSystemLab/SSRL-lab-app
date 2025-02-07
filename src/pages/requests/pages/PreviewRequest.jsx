@@ -11,10 +11,10 @@ const PreviewRequest = () => {
     };
 
     return (
-        <div className="mt-8 px-6 py-4 min-h-screen overflow-y-auto">
+        <div className="mt-2 px-6 py-4 min-h-screen overflow-y-auto">
             <h2 className="text-2xl font-semibold">Preview Request</h2>
             <hr className="bg-black mt-1" />
-            <div className="mt-4">
+            <div className="mt-8 mx-auto my-12 flex flex-col gap-5 rounded-xl border px-10 py-8 shadow-lg">
                 <h2 className='font-medium text-xl'>Title: {title}</h2>
 
 
@@ -36,7 +36,7 @@ const PreviewRequest = () => {
                             </tbody>
                         </table>
                         <h2 className="text-lg font-medium mt-2">Purpose</h2>
-                        <p className="mt-2 text-gray-700 text-base p-4 border border-gray-300 rounded-md md:w-1/2 w-full break-words">
+                        <p className="mt-2 text-gray-700 text-base p-4 border border-gray-300 rounded-md  w-full break-words">
                             {purpose}
                         </p>
                     </div>
@@ -45,7 +45,7 @@ const PreviewRequest = () => {
                     <>
                         <div className="mt-4">
                             <h3 className="text-lg font-medium">Leave Details</h3>
-                            <table className="md:w-1/2 w-full table-auto border-separate border border-gray-500 rounded-md mt-4">
+                            <table className="w-full table-auto border-separate border border-gray-500 rounded-md mt-4">
                                 <thead>
                                     <tr>
                                         <th className="text-left py-2 px-4 border-r border-b border-gray-500 font-medium text-lg">From</th>
@@ -65,7 +65,7 @@ const PreviewRequest = () => {
                                 </tbody>
                             </table>
                             <h2 className="text-lg font-medium mt-2">Purpose</h2>
-                            <p className="mt-2 text-gray-700 text-base p-4 border border-gray-300 rounded-md md:w-1/2 w-full break-words">
+                            <p className="mt-2 text-gray-700 text-base p-4 border border-gray-300 rounded-md  w-full break-words">
                                 {purpose}
                             </p>
                         </div>
@@ -76,7 +76,7 @@ const PreviewRequest = () => {
                 {activeOption === 'others' && (
                     <>
                         <h2 className="text-lg font-medium mt-2">Description:</h2>
-                        <p className="mt-2 text-gray-700 text-base p-4 border border-gray-300 rounded-md md:w-1/2 w-full break-words">
+                        <p className="mt-2 text-gray-700 text-base p-4 border border-gray-300 rounded-md w-full break-words">
                             {description}
                         </p>
                     </>
@@ -84,12 +84,12 @@ const PreviewRequest = () => {
                 <ul className="list-decimal list-outside ml-2 space-y-1 pl-2">
                     <h2 className="text-lg font-medium mt-2"> Recipients</h2>
                     {selectedRecipients.map((recipient) => (
-                        <li key={recipient} className="break-words">
-                            {recipient}
+                        <li key={recipient.id} className="break-words">
+                            {recipient.name}
                         </li>
                     ))}
                 </ul>
-                <button onClick={handleEdit} className="bg-logo text-white px-3 py-1 rounded-xl mt-4">go back to edit</button>
+                <button onClick={handleEdit} className="bg-logo w-fit capitalize text-white px-3 py-1 rounded-xl mt-4">go back to edit</button>
             </div>
         </div>
     );

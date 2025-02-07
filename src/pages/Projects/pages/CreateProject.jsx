@@ -1,15 +1,16 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import CustomLabel from "../../../components/CustomLabel";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
-import { ChevronDown, Plus } from "lucide-react";
+import { ChevronDown, Plus, ChevronUp } from "lucide-react";
 import { getSessionStorage } from "../../../Modules/getSessionStorage";
 import { useRequest } from "../../../Modules/useRequest";
 import toast from "react-hot-toast";
 import BigGreenButton from "../../../components/BigGreenButton";
 import { Loader2 } from "lucide-react";
 import DatePickerComp from "../../../components/DatePickerComp";
+import MultipleSelect from "../../../components/MultipleSelect"
 
 const CreateProject = () => {
   const [name, setName] = useState("");
@@ -20,8 +21,7 @@ const CreateProject = () => {
   const [allMembers, setAllMembers] = useState([]);
   const [selectedMembers, setSelectedMembers] = useState([]);
   const [selectedLeads, setSelectedLeads] = useState([]);
-  const [showMembersDropdown, setShowMembersDropdown] = useState(false); //Use select and options input instead of creating the dropdown manually
-  const [showLeadsDropdown, setShowLeadsDropdown] = useState(false); //Use select and options input instead of creating the dropdown manually
+
   const navigate = useNavigate();
   const [
     membersRequest,
@@ -37,27 +37,19 @@ const CreateProject = () => {
     createError,
     setCreateError,
   ] = useRequest();
-  const userStack = getSessionStorage("userStack", "");
+  const userStack = getSessionStorage("userStack", "")
 
-  const handleMemberSelect = (intern) => {
-    if (!selectedMembers.find((member) => member.id === intern.id)) {
-      setSelectedMembers([...selectedMembers, intern]);
-    } else {
-      setSelectedMembers(
-        selectedMembers.filter((member) => member.id !== intern.id),
-      );
-    }
-  };
+  const handleMemberChange = (newSelectedMembers) => {
+    setSelectedMembers(newSelectedMembers)
 
-  const handleLeadSelect = (member) => {
-    if (!selectedLeads.find((lead) => lead.id === member.id)) {
-      setSelectedLeads([...selectedLeads, member]);
-      console.log(selectedLeads);
-      setSelectedMembers(selectedMembers.filter((member) => member));
-    } else {
-      setSelectedLeads(selectedLeads.filter((lead) => lead.id !== member.id));
-    }
-  };
+    setSelectedLeads(prev =>
+      prev.filter(lead =>
+        newSelectedMembers.some(member => member.id === lead.id)
+      )
+    )
+  }
+
+  console.log(selectedMembers, selectedLeads)
 
   const addObjective = (event) => {
     if (currentObjective.trim() !== "") {
@@ -114,8 +106,7 @@ const CreateProject = () => {
     getStackMembers();
   }, []);
 
-  // console.log(members)
-  // console.log(selectedLeads, selectedMembers)
+
   return (
     <div className="mt-4 min-h-screen overflow-y-auto px-6 py-4">
       <button className="mb-2 flex items-center gap-2 text-xl font-medium tracking-wider">
@@ -126,7 +117,10 @@ const CreateProject = () => {
       </button>
       <hr className="mt-1 bg-black" />
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}
+        className='mt-8 mx-auto my-12 flex flex-col gap-5 rounded-xl border px-10 py-8 shadow-lg'
+
+      >
         <div className="mt-4 space-y-6">
           <CustomLabel
             htmlFor="projectTitle"
@@ -165,7 +159,7 @@ const CreateProject = () => {
                 type="text"
                 value={currentObjective}
                 onChange={(e) => setCurrentObjective(e.target.value)}
-                className="w-full rounded-lg border border-gray-400 px-3 py-2 focus:outline-black"
+                className="w-full rounded-lg border border-gray-400 px-3 py-2 focus:outline-slate-600"
                 placeholder="Add an objective"
               />
               <button
@@ -193,72 +187,42 @@ const CreateProject = () => {
               console.log(date);
               setSelectedDate(date);
             }}
-            placeholder="  Select a deadline"
+            placeholder="Select a deadline"
             label="Deadline"
           />
+
           <div className="mt-8 flex flex-col gap-8 md:flex-row">
-            <div className="relative w-full md:w-1/2">
-              <button
-                type="button"
-                onClick={() => setShowMembersDropdown(!showMembersDropdown)}
-                className="flex items-center gap-2 rounded-lg bg-navBg2 px-4 py-2 text-white"
-              >
-                <span>Add Team Members</span> <ChevronDown />
-              </button>
-              {showMembersDropdown && (
-                <div className="absolute z-10 mt-2 max-h-48 w-3/4 overflow-y-auto rounded-lg border border-gray-300 bg-white">
-                  {allMembers.map((intern) => (
-                    <div key={intern.id} className="flex items-center p-1">
-                      <input
-                        type="checkbox"
-                        checked={selectedMembers.some(
-                          (member) => member.id === intern.id,
-                        )}
-                        onChange={() => handleMemberSelect(intern)}
-                        className="mr-2"
-                      />
-                      {intern.name}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+
+            {/* selected members */}
+            <MultipleSelect
+              options={allMembers}
+              selectedOptions={selectedMembers}
+              onSelectionChange={handleMemberChange}
+              buttonText="Add Team Members"
+              className="w-full md:w-1/2"
+            />
 
             {/* Select Leads */}
-            <div className="relative w-full md:w-1/2">
-              <button
-                type="button"
-                onClick={() => setShowLeadsDropdown(!showLeadsDropdown)}
-                className="flex items-center gap-2 rounded-lg bg-navBg2 px-4 py-2 text-white"
-              >
-                <span>Add Team Leads</span> <ChevronDown />
-              </button>
-              {showLeadsDropdown && selectedMembers.length > 0 && (
-                <div className="absolute z-10 mt-2 max-h-48 w-3/4 overflow-y-auto rounded-lg border border-gray-300 bg-white">
-                  {selectedMembers.map((member) => (
-                    <div key={member.id} className="flex items-center p-1">
-                      <input
-                        type="checkbox"
-                        checked={selectedLeads.some(
-                          (lead) => lead.id === member.id,
-                        )}
-                        onChange={() => handleLeadSelect(member)}
-                        className="mr-2"
-                      />
-                      {member.name}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            <MultipleSelect
+              options={selectedMembers}
+              selectedOptions={selectedLeads}
+              onSelectionChange={setSelectedLeads}
+              buttonText="Add Team leads"
+              className="w-full md:w-1/2"
+              disabled={selectedMembers.length === 0}
+            />
+
+
           </div>
-          <div className="flex items-center gap-4">
+
+          <div className="flex items-center justify-end gap-4">
             <BigGreenButton type="submit">Submit</BigGreenButton>
             {createLoading && <Loader2 className="animate-spin text-navBg2" />}
           </div>
         </div>
-      </form>
-    </div>
+
+      </form >
+    </div >
   );
 };
 
