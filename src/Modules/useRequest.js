@@ -48,7 +48,7 @@ export const useRequest = () => {
     let headers = {
         "Authorization": `Bearer ${getSessionStorage("access_token", "")}`
     }
-    
+
     if (!(body instanceof FormData)) {
       headers["Content-Type"] = "application/json";
       body = JSON.stringify(body);

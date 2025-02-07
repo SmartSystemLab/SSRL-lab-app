@@ -23,6 +23,7 @@ const Profile = ({ user, userRole }) => {
     bio,
     suspended,
   } = profile;
+  console.log(profile)
   const [profileRole, setProfileRole] = useState(role);
   const [suspend, setSuspend] = useState(suspended);
   const initials = getInitials(fullname);

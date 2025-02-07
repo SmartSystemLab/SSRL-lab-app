@@ -65,7 +65,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center min-h-screen bg-white">
+    <div className="w-full flex justify-center items-center md:min-h-screen bg-white">
       {/* reset password tab */}
       <div className="w-full max-w-md space-y-5 p-6 mt-12 pt-4 ">
         {resetError.status && <p>{resetError.msg}</p>}
@@ -95,7 +95,7 @@ const ResetPassword = () => {
               labelCLassName="text-[#666666] inline-block"
               inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
               placeholder='Enter new password'
-            />
+            >Enter New Password:</CustomLabel>
             <CustomLabel
               htmlFor="password"
               labelText="Confirm password"
@@ -120,12 +120,12 @@ const ResetPassword = () => {
               labelCLassName="text-[#666666] inline-block"
               inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
               placeholder='Confirm new password'
-            />
+            >Confirm new password</CustomLabel>
           </div>
 
           <button
             type="submit"
-            className="bg-[#053F05F0] text-white mt-6 px-1 py-2 font-bold text-xl capitalize rounded-xl w-full block"
+            className="bg-[#053F05F0] text-white mt-6 px-1 py-2 font-bold text-xl capitalize rounded-xl w-full block cursor-pointer"
           >
             Reset Password
           </button>

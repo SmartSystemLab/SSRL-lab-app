@@ -55,7 +55,7 @@ const ForgotPassword = () => {
   }, []);
 
   return (
-    <div className="w-full flex justify-center items-center min-h-screen bg-white">
+    <div className="w-full flex justify-center items-center md:min-h-screen bg-white">
       {/* forgot password tab */}
       <div className="w-full max-w-md space-y-6 p-6 m ">
         {credError.status && <p>{credError.msg}</p>}
@@ -86,7 +86,7 @@ const ForgotPassword = () => {
               labelCLassName="text-[#666666] inline-block"
               inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
               placeholder='Enter email address'
-            />
+            >Email Address</CustomLabel>
           </div>
 
           <div className="text-center mt-2">

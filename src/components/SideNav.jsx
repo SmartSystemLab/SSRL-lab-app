@@ -7,35 +7,35 @@ import Projects from "../assets/Projects.svg";
 import Settings from "../assets/Settings.svg";
 import LogOut from "../assets/LogOut.svg";
 import TeamChat from "../assets/TeamChat.svg"
-import {X} from 'lucide-react'
+import { X } from 'lucide-react'
 
 const navData = [
   { img: Dashboard, text: "Dashboard", path: "/home/dashboard", id: 1 },
   { img: Interns, text: "Personnel", path: "/home/personnel", id: 2 },
   { img: Projects, text: "Projects", path: "/home/projects", id: 3 },
-  { img: Calendar, text: "To-do", path: "/home/to-do", id: 4 },
-  { img: TeamChat, text: "Team Chat", path: "/home/teamchat", id: 5 },
-  { img: Attendance, text: "Reports", path: "/home/reports", id: 6 },
-  { img: Attendance, text: "Requests", path: "/home/requests", id: 7 },
+  { img: TeamChat, text: "Team Chat", path: "/home/teamchat", id: 4 },
+  { img: Attendance, text: "Reports", path: "/home/reports", id: 5 },
+  { img: Attendance, text: "Requests", path: "/home/requests", id: 6 },
+  { img: Calendar, text: "To-do", path: "/home/to-do", id: 7 },
   { img: Settings, text: "Settings", path: "/home/settings", id: 8 },
 ];
 
-const navData2 = [
-  { icon: Dashboard, text: "Dashboard", path: "/home/dashboard", id: 1 },
-  { icon: Interns, text: "Personnel", path: "/home/personnel", id: 2 },
-  { icon: Projects, text: "Projects", path: "/home/projects", id: 3 },
-  { icon: Calendar, text: "To-do", path: "/home/to-do", id: 4 },
-  { icon: TeamChat, text: "Team Chat", path: "/home/teamchat", id: 5 },
-  { icon: Attendance, text: "Reports", path: "/home/reports", id: 6 },
-  { icon: Attendance, text: "Requests", path: "/home/requests", id: 7 },
-  { icon: Settings, text: "Settings", path: "/home/settings", id: 8 },
-];
+// const navData2 = [
+//   { icon: Dashboard, text: "Dashboard", path: "/home/dashboard", id: 1 },
+//   { icon: Interns, text: "Personnel", path: "/home/personnel", id: 2 },
+//   { icon: Projects, text: "Projects", path: "/home/projects", id: 3 },
+//   { icon: Calendar, text: "To-do", path: "/home/to-do", id: 4 },
+//   { icon: TeamChat, text: "Team Chat", path: "/home/teamchat", id: 5 },
+//   { icon: Attendance, text: "Reports", path: "/home/reports", id: 6 },
+//   { icon: Attendance, text: "Requests", path: "/home/requests", id: 7 },
+//   { icon: Settings, text: "Settings", path: "/home/settings", id: 8 },
+// ];
 
 const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
   return (
-    <div className={`relative bg-navBg2 text-white min-h-screen py-4 pr-0 pl-2 w-64 max-w-[20rem] flex flex-col`}>
+    <div className={`relative bg-navBg2 text-white min-h-screen py-4 pr-0 pl-2 w-64 max-w-[20rem] flex flex-col z-50`}>
       {/* Logo Section */}
-      <div className="flex justify-end items-center gap-3 py-4 px-6 mt-2 mb-4 ">
+      <div className="flex justify-end items-center gap-3 py-4 px-6 mt-2 ssss">
         <img src="/vite.svg" alt="Logo" className="w-8 h-8 rounded-md text-lg" />
         <h2 className="text-base md:text-2xl font-bold text-logo tracking-wider whitespace-nowrap nav-text">SSRL</h2>
       </div>
@@ -84,7 +84,7 @@ const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
       </div>
 
       {/* Logout Button */}
-      <div className="flex justify-end items-center py-4 px-2 mt-auto">
+      <div className="flex justify-end items-center py-4 px-2 ">
         <Link className="flex items-center gap-3 text-logo font-semibold p-2 md:p-3 rounded-md hover:bg-navBg1 transition-colors" to={'/'}>
           <img src={LogOut} alt="Log Out" className="w-5 h-5 md:w-6 md:h-6" />
           <span className="text-sm md:text-base ">Log Out</span>

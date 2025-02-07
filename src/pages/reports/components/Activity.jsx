@@ -1,14 +1,15 @@
 import { ChevronDown } from 'lucide-react'
+import ListInput from "./ListInput"
 
-export default function Activity({ period, setPeriod }) {
+export default function Activity({ period, setPeriod, completed, setCompleted, ongoing, setOngoing, nextTasks, setNextTasks }) {
   return (
     <div>
-      <div className='relative w-fit cursor-pointer' style={{ marginLeft: 'auto' }}>
+
+      <div className='relative w-fit cursor-pointer ml-auto mt-4'>
         <select
           value={period || ''}
           onChange={(e) => setPeriod(e.target.value)}
-          style={{ width: '120px' }}
-          className="appearance-none block  px-3 py-2 border border-black rounded-lg focus:outline-none text-blue-600"
+          className="appearance-none block w-44 md:w-48 px-3 py-2 border border-black rounded-lg focus:outline-none"
         >
           <option value="Daily">Daily</option>
           <option value="Weekly">Weekly</option>
@@ -18,6 +19,31 @@ export default function Activity({ period, setPeriod }) {
           <ChevronDown />
         </div>
       </div>
+      <div className='mt-4 space-y-4'>
+
+        {/* completed */}
+        <ListInput
+          title="Completed"
+          items={completed || ''}
+          setItems={setCompleted}
+        />
+
+        {/* Ongoing Section */}
+        <ListInput
+          title="Ongoing"
+          items={ongoing || ''}
+          setItems={setOngoing}
+        />
+
+        {/* Next Tasks Section */}
+        <ListInput
+          title="Tasks for Next Duration"
+          items={nextTasks || ''}
+          setItems={setNextTasks}
+        />
+      </div>
+
+
     </div>
   )
 }

@@ -69,10 +69,10 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center min-h-screen bg-white">
+    <div className="w-full flex justify-center items-center md:min-h-screen bg-white">
       <div className="w-full max-w-md space-y-5 p-6">
         {loginError.status && <p>{loginError.msg}</p>}
-        <h2 className="text-center text-3xl font-semibold text-[#333333] leading-10">
+        <h2 className="text-center text-2xl md:text-3xl font-semibold text-[#333333] leading-10">
           Welcome Back!
         </h2>
 
@@ -96,7 +96,7 @@ const Login = () => {
               labelCLassName="text-[#666666] inline-block"
               inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
               placeholder='Enter userId'
-            />
+            >Username</CustomLabel>
             <CustomLabel
               htmlFor="password"
               labelText="Password"
@@ -113,7 +113,7 @@ const Login = () => {
               labelCLassName="text-[#666666] inline-block"
               inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
               placeholder='Enter password'
-            />
+            >Password</CustomLabel>
           </div>
 
           <div className="flex items-center mt-3 gap-2">
@@ -130,7 +130,7 @@ const Login = () => {
           <div className=" mt-6">
             <p
               onClick={() => navigate("/forgotpassword")}
-              className="underline text-[#111111] font-medium text-sm"
+              className="underline text-[#111111] font-medium text-sm cursor-pointer"
             >
               Forgot your password?
             </p>
