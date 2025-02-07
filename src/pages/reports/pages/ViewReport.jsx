@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useLocation } from "react-router-dom"
 import Feedback from "../components/Feedback"
+import BigGreenButton from '../../../components/BigGreenButton'
+import ListDisplay from "../components/ListDisplay"
 
 
 const ViewReport = () => {
@@ -15,7 +17,7 @@ const ViewReport = () => {
         <div className="px-6 py-4 min-h-screen overflow-y-auto relative">
             <h2 className="text-2xl font-semibold capitalize">{report.type} Report</h2>
             <hr className="bg-black mt-1" />
-            <div className="mt-4 p-2">
+            <div className="mx-auto mt-10 flex flex-col gap-5 rounded-xl border px-10 py-8 shadow-lg">
                 <div className=" flex flex-col md:flex-row md:justify-between items-start">
                     <div className="space-y-3">
                         <p className="flex gap-2">
@@ -35,7 +37,7 @@ const ViewReport = () => {
                     </div>
 
                     <button
-                        className=" bg-navBg2 text-white px-3 py-1 text-lg rounded-xl cursor-pointer font-semibold hover:opacity-70  hover:shadow-lg transition-all duration-200"
+                        className="cursor-pointer rounded-full bg-navBg2 px-4 py-1 font-medium capitalize text-white hover:scale-105 w-fit"
                         onClick={() => setShowPopup(true)}
                     >give feeback</button>
                 </div>
@@ -47,29 +49,12 @@ const ViewReport = () => {
                 )}
 
                 {report.type === "activity" && (
-                    <div className="mt-4">
+                    <div className="mt-4 space-y-5">
 
+                        <ListDisplay Text="Completed Tasks" content={report.completed} />
+                        <ListDisplay Text="Ongoing Tasks" content={report.ongoing} />
+                        <ListDisplay Text={ `Tasks for next ${report.period.slice(0, -2)}`} content={report.nextTask} />
 
-                        <div className="bg-[#347831] rounded-xl p-2 text-white text-lg">Completed Tasks</div>
-                        <ul className="list-disc list-outside ml-2 space-y-2 px-4 mt-2 marker:text-navBg2">
-                            {report.completed.map((task, index) => (
-                                <li key={index} className="break-words">{task}</li>
-                            ))}
-                        </ul>
-
-                        <div className="bg-[#347831] rounded-xl p-2 text-white mt-2 text-lg">Ongoing Tasks</div>
-                        <ul className="list-disc list-outside ml-2 space-y-2 px-4 mt-2 marker:text-navBg2">
-                            {report.ongoing.map((task, index) => (
-                                <li key={index} className="break-words">{task}</li>
-                            ))}
-                        </ul>
-
-                        <div className="bg-[#347831] rounded-xl p-2 text-white mt-2 text-lg">Tasks for Next Duration</div>
-                        <ul className="list-disc list-outside ml-2 space-y-2 px-4 mt-2 marker:text-navBg2">
-                            {report.nextTask.map((task, index) => (
-                                <li key={index} className="break-words">{task}</li>
-                            ))}
-                        </ul>
                     </div>
                 )}
 
@@ -77,12 +62,12 @@ const ViewReport = () => {
                 {report.type === "project" && (
                     <div className="mt-4">
                         <h2 className="text-2xl font-semibold capitalize">{report.title} Report</h2>
-                        <p className="mt-2 text-gray-700 text-base p-4 border border-gray-300 rounded-md whitespace-normal w-full break-words">
+                        <p className="mt-2 text-gray-700 text-base p-4  rounded-md whitespace-normal w-full break-words">
                             {report.Summary}
                         </p>
                     </div>
                 )}
-{/* add submissions ceejay */}
+                {/* add submissions ceejay */}
             </div>
         </div>
     )

@@ -9,7 +9,7 @@ export default function Activity({ period, setPeriod, completed, setCompleted, o
         <select
           value={period || ''}
           onChange={(e) => setPeriod(e.target.value)}
-          className="appearance-none block w-44 md:w-48 px-3 py-2 border border-black rounded-lg focus:outline-none text-blue-600"
+          className="appearance-none block w-44 md:w-48 px-3 py-2 border border-black rounded-lg focus:outline-none"
         >
           <option value="Daily">Daily</option>
           <option value="Weekly">Weekly</option>
@@ -19,7 +19,7 @@ export default function Activity({ period, setPeriod, completed, setCompleted, o
           <ChevronDown />
         </div>
       </div>
-      <div className=' space-y-4'>
+      <div className='mt-4 space-y-4'>
 
         {/* completed */}
         <ListInput

@@ -86,7 +86,7 @@ const ForgotPassword = () => {
               labelCLassName="text-[#666666] inline-block"
               inputClassName="appearance-none relative block w-full px-3 py-1 border border-[#666666] rounded-lg text-[#111111] opacity-35 focus:outline-none focus:opacity-100 focus:text-black"
               placeholder='Enter email address'
-            />
+            >Email Address</CustomLabel>
           </div>
 
           <div className="text-center mt-2">

@@ -90,7 +90,7 @@ const Edit = () => {
   return (
     <div>
       <div className="container">
-        <div className="mt-8">
+        <div className="mt-4">
           <div className="text-2xl font-medium">Create new personnel</div>
           <hr className="bg-black" />
 
@@ -142,7 +142,7 @@ const Edit = () => {
                   placeholder="Enter first name"
                   required={true}
                 >
-                  First name <Asterisk color={"red"} size={16}/>
+                  First name <Asterisk color={"red"} size={16} />
                 </CustomLabel>
 
                 <CustomLabel
@@ -153,7 +153,7 @@ const Edit = () => {
                   placeholder="Enter last name"
                   required={true}
                 >
-                  Last name <Asterisk color={"red"} size={16}/>
+                  Last name <Asterisk color={"red"} size={16} />
                 </CustomLabel>
 
                 <CustomLabel
@@ -165,7 +165,7 @@ const Edit = () => {
                   placeholder="Enter email "
                   required={true}
                 >
-                  Email <Asterisk color={"red"} size={16}/>
+                  Email <Asterisk color={"red"} size={16} />
                 </CustomLabel>
 
                 <CustomLabel
@@ -177,13 +177,13 @@ const Edit = () => {
                   placeholder="Enter phone number"
                   required={true}
                 >
-                  Phone number <Asterisk color={"red"} size={16}/>
+                  Phone number <Asterisk color={"red"} size={16} />
                 </CustomLabel>
 
                 <div>
                   <label htmlFor="stack" className="flex gap-2 items-center">
                     Stack
-                    <Asterisk color={"red"} size={16}/>
+                    <Asterisk color={"red"} size={16} />
                   </label>
                   <select
                     name="stack"

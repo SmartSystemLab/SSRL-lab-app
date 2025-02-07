@@ -1,4 +1,3 @@
-import { useState } from "react";
 import CustomLabel from "../../../components/CustomLabel";
 
 const Equipment = ({
@@ -9,13 +8,10 @@ const Equipment = ({
   purpose,
   setPurpose,
 }) => {
-  if (quantity < 0) {
-    quantity = 0;
-  }
 
   return (
     <>
-      <div className="flex flex-col md:flex-row items-start justify-center gap-10">
+      <div className="flex flex-col md:flex-row items-start justify-center gap-10 ">
         <div className="w-32">
           <CustomLabel
             htmlFor="quantity"
@@ -28,7 +24,7 @@ const Equipment = ({
             labelCLassName="text-black inline-block font-medium text-lg  mb-1 "
             inputClassName="appearance-none relative block w-20 px-3 py-2 border border-gray-400 rounded-lg focus:outline-none text-center"
             placeholder="Num"
-          />
+          >Quantity</CustomLabel>
         </div>
 
         <div className="flex-1">
@@ -42,16 +38,16 @@ const Equipment = ({
             required={true}
             labelCLassName="text-black inline-block font-medium text-lg  mb-1"
             inputClassName="appearance-none w-full relative block px-3 py-2 border border-gray-400 rounded-lg focus:outline-none grow"
-          />
+          >Equipment Name:</CustomLabel>
         </div>
       </div>
       <div className=" mt-2">
-        <h2 className="font-semibold mb-1">Purpose</h2>
+        <h2 className="font-medium mb-1">Purpose</h2>
         <textarea
           id="purpose"
           value={purpose || ""}
           onChange={(event) => setPurpose(event.target.value)}
-          className="appearance-none block w-full px-4 py-3 border border-black rounded-lg focus:outline-none resize-none h-32"
+          className="appearance-none block w-full px-4 py-3 border border-slate-900 rounded-lg focus:outline-none resize-none h-32  text-slate-900 opacity-35 focus:text-black mt-l focus:opacity-100"
           rows={5}
           required
         />

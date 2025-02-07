@@ -2,7 +2,7 @@ import React from "react";
 import InputError from "./InputError.jsx";
 
 const CustomLabel = ({
-    children,
+  children,
   htmlFor,
   labelText,
   inputType,
@@ -20,7 +20,7 @@ const CustomLabel = ({
 }) => {
   return (
     <div>
-      <label htmlFor={htmlFor} className={`${labelClassName} flex gap-2 items-center font-medium`}>
+      <label htmlFor={htmlFor} className={`${labelClassName} flex gap-2 items-center font-medium mb-1`}>
         {children}
       </label>
       <input
@@ -31,7 +31,7 @@ const CustomLabel = ({
         onChange={onChange}
         onBlur={onBlur}
         required={required}
-        className={`h-10 w-full appearance-none rounded-lg border border-slate-900 px-3 py-1 text-slate-900 opacity-35 focus:text-black focus:opacity-100 focus:outline-none ${inputClassName}`}
+        className={`h-10 w-full appearance-none rounded-lg border border-slate-900 px-3 py-1 text-slate-900 opacity-35 focus:text-black mt-l focus:opacity-100 focus:outline-none ${inputClassName}`}
         placeholder={placeholder}
         name={htmlFor}
       />

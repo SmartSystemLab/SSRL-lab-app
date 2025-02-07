@@ -2,10 +2,11 @@ import { useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { IoIosArrowDown } from "react-icons/io";
-import { Edit } from "lucide-react";
-import { Trash2 } from "lucide-react";
+
+import { ChevronDown, Plus, ChevronUp, Edit, Trash2 } from "lucide-react";
+import BigGreenButton from "../../../components/BigGreenButton";
 import DatePickerComp from "../../../components/DatePickerComp";
+import MultipleSelect from "../../../components/MultipleSelect"
 
 const EditProject = () => {
   const location = useLocation();
@@ -19,11 +20,11 @@ const EditProject = () => {
   const [selectedMembers, setSelectedMembers] = useState([]);
   const [selectedLeads, setSelectedLeads] = useState([]);
 
-  const [showMembersDropdown, setShowMembersDropdown] = useState(false);
-  const [showLeadsDropdown, setShowLeadsDropdown] = useState(false);
-  const toggleMembersDropdown = () =>
-    setShowMembersDropdown(!showMembersDropdown);
-  const toggleLeadsDropdown = () => setShowLeadsDropdown(!showLeadsDropdown);
+  // const [showMembersDropdown, setShowMembersDropdown] = useState(false);
+  // const [showLeadsDropdown, setShowLeadsDropdown] = useState(false);
+  // const toggleMembersDropdown = () =>
+  //   setShowMembersDropdown(!showMembersDropdown);
+  // const toggleLeadsDropdown = () => setShowLeadsDropdown(!showLeadsDropdown);
 
   useEffect(() => {
     if (projectData) {
@@ -31,11 +32,20 @@ const EditProject = () => {
       setProjectDescription(projectData.description || "");
       setObjectives(projectData.objectives || []);
       setSelectedDate(new Date(projectData.deadline));
-      setSelectedMembers(projectData.teamMembers || []);
+      setSelectedMembers(projectData.team_members || []);
       setSelectedLeads(projectData.leads || []);
     }
   }, [projectData]);
 
+  const handleMemberChange = (newSelectedMembers) => {
+    setSelectedMembers(newSelectedMembers)
+
+    setSelectedLeads(prev =>
+      prev.filter(lead =>
+        newSelectedMembers.some(member => member.id === lead.id)
+      )
+    )
+  }
   const handleAddOrUpdateObjective = () => {
     if (currentObjective.trim() !== "") {
       if (editingIndex !== null) {
@@ -62,21 +72,7 @@ const EditProject = () => {
       setEditingIndex(null);
     }
   };
-  // const handleMemberSelect = (intern) => {
-  //     if (!selectedMembers.find((member) => member.id === intern.id)) {
-  //         setSelectedMembers([...selectedMembers, intern])
-  //     } else {
-  //         setSelectedMembers(selectedMembers.filter((member) => member.id !== intern.id))
-  //     }
-  // };
 
-  // const handleLeadSelect = (member) => {
-  //     if (!selectedLeads.find((lead) => lead.id === member.id)) {
-  //         setSelectedLeads([...selectedLeads, member])
-  //     } else {
-  //         setSelectedLeads(selectedLeads.filter((lead) => lead.id !== member.id))
-  //     }
-  // };
   return (
     <div className="mt-4 min-h-screen overflow-y-auto px-6 py-4">
       <button className="mb-2 flex items-center gap-2 text-xl font-semibold tracking-wider">
@@ -85,7 +81,7 @@ const EditProject = () => {
       </button>
       <hr className="mt-1 bg-black" />
 
-      <form>
+      <form className='mt-8 mx-auto my-12 flex flex-col gap-5 rounded-xl border px-10 py-8 shadow-lg'>
         <div className="mt-4 space-y-6">
           {/* Project Title */}
           <div>
@@ -180,70 +176,30 @@ const EditProject = () => {
               className="w-full rounded-lg border border-gray-400 px-3 py-2 focus:outline-none"
             />
           </div>
-          <div className="mt-8 flex flex-col gap-8 md:flex-row">
-            <div className="relative w-full md:w-1/2">
-              <button
-                type="button"
-                onClick={toggleMembersDropdown}
-                className="flex items-center gap-2 rounded-lg bg-navBg2 px-4 py-2 text-white"
-              >
-                <span>Add Team Members</span>{" "}
-                <IoIosArrowDown className="h-4 w-4" />
-              </button>
-              {showMembersDropdown && (
-                <div className="absolute z-10 mt-2 max-h-48 w-3/4 overflow-y-auto rounded-lg border border-gray-300 bg-white">
-                  {selectedMembers.map((intern) => (
-                    <div key={intern.id} className="flex items-center p-1">
-                      <input
-                        type="checkbox"
-                        checked={selectedMembers.some(
-                          (member) => member.id === intern.id,
-                        )}
-                        // onChange={() => handleMemberSelect(intern)}
-                        className="mr-2"
-                      />
-                      {intern.name}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
 
-            <div className="relative w-full md:w-1/2">
-              <button
-                type="button"
-                onClick={toggleLeadsDropdown}
-                className="flex items-center gap-2 rounded-lg bg-navBg2 px-4 py-2 text-white"
-              >
-                <span>Add Team Leads</span>{" "}
-                <IoIosArrowDown className="h-4 w-4" />
-              </button>
-              {showLeadsDropdown && selectedMembers.length > 0 && (
-                <div className="absolute z-10 mt-2 max-h-48 w-3/4 overflow-y-auto rounded-lg border border-gray-300 bg-white">
-                  {selectedLeads.map((member) => (
-                    <div key={member.id} className="flex items-center p-1">
-                      <input
-                        type="checkbox"
-                        checked={selectedLeads.some(
-                          (lead) => lead.id === member.id,
-                        )}
-                        // onChange={() => handleLeadSelect(member)}
-                        className="mr-2"
-                      />
-                      {member.name}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+
+          <div className="mt-8 flex flex-col gap-8 md:flex-row">
+            <MultipleSelect
+              options={selectedMembers}
+              selectedOptions={selectedMembers}
+              onSelectionChange={handleMemberChange}
+              buttonText="Add Team Members"
+              className="w-full md:w-1/2"
+            />
+
+            {/* Select Leads */}
+            <MultipleSelect
+              options={selectedLeads}
+              selectedOptions={selectedLeads}
+              onSelectionChange={setSelectedLeads}
+              buttonText="Add Team leads"
+              className="w-full md:w-1/2"
+              disabled={selectedMembers.length === 0}
+            />
+
           </div>
           {/* Submit Button */}
-          <button
-            type="submit"
-            className="mt-4 rounded-xl bg-logo px-4 py-2 text-lg text-white"
-          >
-            Save Changes
-          </button>
+          <BigGreenButton type="submit">Save Changes</BigGreenButton>
         </div>
       </form>
     </div>

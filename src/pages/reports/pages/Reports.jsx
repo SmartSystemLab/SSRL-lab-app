@@ -51,6 +51,7 @@ const info = [
     summary: "Sent you Hardware interns report",
     stack: "Front End web development",
     images: img1,
+    period: "Monthly",
     duration: "1 day",
     id: 3,
     type: "activity",
@@ -72,7 +73,7 @@ const Reports = () => {
       setReports(data.reports)
     }
     else {
-      setReportsError({status: true, msg: data.message})
+      setReportsError({ status: true, msg: data.message })
     }
     setReportsLoading(false)
   }
@@ -82,30 +83,55 @@ const Reports = () => {
   }, [])
 
   return (
-    <div className="mt-4 p-2">
+    <div className="mt-4 md:px-4 px-1">
 
-      <h1 className="uppercase font-bold text-2xl">Reports</h1>
+      <div className="flex justify-between items-center">
+
+        <h1 className="uppercase font-semibold text-2xl">Reports</h1>
+
+        <div className="">
+          <Link className="flex items-center gap-2 text-lg  rounded-lg font-medium p-2 hover:bg-neutral-100 hover:rounded-lg transition-all duration-300 cursor-pointer"
+            to={'/home/reports/create'}>
+            <div className="p-[2px] bg-logo rounded-full">
+              <Plus color="white" />
+            </div>
+            <span>Write Report</span>
+          </Link>
+        </div>
+      </div>
 
       <hr className="bg-black" />
 
-      <div className="flex gap-2 font-semibold bg-gray-100 w-fit mt-4 rounded-lg">
-        <Link className="flex items-center gap-2 text-lg  rounded-lg font-medium p-2  transition-all duration-300 ease-in hover:opacity-80 cursor-pointer"
-          to={'/home/reports/create'}>
-          <div className="p-[2px] bg-logo rounded-full">
-            <Plus color="white" />
-          </div>
-          <span>Write Report</span>
-        </Link>
-      </div>
-
       {/* Content */}
-      {/* Messages */}
-      <section className="mt-1 p-2">
-        <Messages
-          info={info}
-          to='/home/reports'
-        ></Messages>
-      </section>
+      <div className="mt-4 px-0 md:px-4 py-2">
+
+        {/* unread tag */}
+        <div className="flex justify-between items-center">
+
+          <div className="flex gap-2 font-semibold">
+            <span className="underline ">Unread</span>{" "}
+            <span className="bg-logo text-white rounded-full w-6 h-6 text-center">
+              6
+            </span>
+          </div>
+
+          <div className="flex gap-1 items-center cursor-pointer">
+            <LiaCheckDoubleSolid className=" text-green-700" />
+            <p>mark all as read</p>
+          </div>
+        </div>
+
+
+
+        {/* Messages */}
+        <section className="mt-4">
+          <Messages
+            info={info}
+            to='/home/reports'
+          ></Messages>
+        </section>
+
+      </div>
 
 
 
