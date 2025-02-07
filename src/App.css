@@ -24,7 +24,7 @@
 }
 
 .activeText {
-  @apply bg-white text-navBg2 rounded-l-full transition-all duration-200 ease-in-out relative;
+  @apply relative rounded-l-full bg-white text-navBg2 transition-all duration-200 ease-in-out;
 }
 
 /* .activeImg {
@@ -60,7 +60,7 @@
 }
 
 .button-active {
-  @apply bg-[#347832] p-[0.85rem] text-white scale-105;
+  @apply scale-105 bg-[#347832] p-[0.85rem] text-white;
 }
 
 .button-passive {
@@ -78,9 +78,8 @@
   scroll-padding: 4px;
 }
 
-
 ::-webkit-scrollbar-thumb {
-  background-color: #FFA500;
+  background-color: #ffa500;
   border-radius: 3px;
 }
 
@@ -103,4 +102,46 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+@keyframes Dropping {
+  0% {
+    transform: translate(0px, -64px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+.dropit {
+  animation: Dropping;
+  animation-duration: 0.7s;
+  animation-iteration-count: 1;
+}
+
+@keyframes Appear {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.showit {
+  animation: Appear;
+  animation-duration: 0.7s;
+  animation-iteration-count: 1;
 }

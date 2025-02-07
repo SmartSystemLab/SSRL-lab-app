@@ -46,7 +46,7 @@ export const useRequest = () => {
     console.log("Request sent in module");
 
     let headers = {
-      "Authorization": `Bearer ${getSessionStorage("access_token", "")}`
+        "Authorization": `Bearer ${getSessionStorage("access_token", "")}`
     }
 
     if (!(body instanceof FormData)) {
