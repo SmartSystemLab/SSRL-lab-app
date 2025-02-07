@@ -6,9 +6,18 @@ import { Plus } from "lucide-react";
 const ToDo = () => {
   const [tasks, setTasks] = useState(data);
   const [newTaskTab, setNewTaskTab] = useState(false);
+  const [name, setName] = useState("");
 
-  const handleNewTaskTab = () => {
-    setNewTaskTab(!newTaskTab);
+  const handleCreate = (e) => {
+    // if (!name) return;
+
+    const createdAt = Date.now();
+
+    const newTask = { id: createdAt, name };
+    const updatedTasks = { ...tasks, newTask };
+    setTasks(updatedTasks);
+    setName("");
+    console.log("name, newTask")
   };
 
   return (
@@ -17,7 +26,7 @@ const ToDo = () => {
         <div className="mt-4 px-4 py-2">
           {/* Header */}
           <div>
-            <div className="relative z-50 flex items-center justify-between">
+            <div className="relative z-10 flex items-center justify-between">
               <h1 className="text-2xl font-bold uppercase">To-Do Lists</h1>
               <button
                 className={`flex items-center gap-2 p-2 text-lg font-medium transition-all duration-300 hover:rounded-lg hover:bg-neutral-100`}
@@ -38,14 +47,14 @@ const ToDo = () => {
           >
             {/* Create New Task */}
             <div
-              className={`mb-6 flex space-x-2 opacity-100 ${newTaskTab || "opacity-0"} transition-opacity duration-400 ease-in`}
+              className={`mb-6 flex space-x-2 opacity-0 ${newTaskTab && "opacity-100"} duration-400 transition-opacity ease-in`}
             >
               <input
                 type="text"
                 className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-navBg2"
                 placeholder="Enter a new task"
               />
-              <button className="rounded-lg border bg-navBg2 px-4 py-2 font-medium text-white">
+              <button className="rounded-lg border bg-navBg2 px-4 py-2 font-medium text-white" onClick= {handleCreate}>
                 Create
               </button>
             </div>

@@ -28,15 +28,15 @@ const TaskCard = ({ name, id, tasks, task, setTasks }) => {
   return (
     <>
       <div className="item-center m-2 flex justify-between" key={id}>
-        <div className="item-center flex justify-center gap-4">
-          <input
+        <div className={`item-center flex justify-center gap-4 ${edit && "translate-x-9"} transition-transform duration-500 ease-in-out`}>
+          {!edit && <input
             type="checkbox"
             name=""
             checked={status}
             id={id}
             className="w-5"
             onChange={handleStatus}
-          />
+          />}
           <TaskLabel
             htmlFor={id}
             defaultVal={name}
