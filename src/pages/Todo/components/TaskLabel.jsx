@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import InputError from "../../../components/InputError";
-import { Check } from "lucide-react";
+import Button from "../../../components/Button";
+import { Check, Strikethrough } from "lucide-react";
 
 const TaskLabel = ({
   children,
@@ -18,10 +19,14 @@ const TaskLabel = ({
   placeholder,
   required,
   name,
-}) => {
+  status,
+  edit,
+  handleEdit,
 
+}) => {
+ 
   const handleSubmit = () => {
-    console.log(value);
+    // console.log(value);
   };
   return (
     <div className="relative flex items-center">
@@ -33,16 +38,21 @@ const TaskLabel = ({
         onChange={onChange}
         onBlur={onBlur}
         required={required}
-        className={`h-10 w-full appearance-none rounded-lg border border-black px-3 py-1 capitalize text-slate-900 opacity-100 focus:text-black focus:opacity-100 focus:outline-none ${inputClassName}`}
+        className={`h-10 w-full appearance-none rounded-lg px-3 py-1 capitalize text-slate-900 opacity-100 focus:text-black focus:opacity-100 focus:outline-none ${inputClassName} ${status && "line-through italic"} ${(edit && "border border-black") || "pointer-events-none select-none"}`}
         placeholder={placeholder}
         name={htmlFor}
       />
       <button
-        className="absolute inset-y-0 right-0 cursor-pointer pr-3 text-center"
-        onClick={handleSubmit}
+        className={`hover:scale-105 p-1 right-0 mx-2 px-3 py-1 cursor-pointer rounded-full bg-[#053F05F0] text-center text-white ${edit || "hidden"}`}
+        onClick={(handleSubmit, handleEdit)}
       >
-        <Check color="green" />
+        Save
       </button>
+      {/* <Button
+        className={`right-0 mx-2 cursor-pointer rounded-full bg-green-600 p-1 text-center text-white scale-50 ${edit || "hidden"}`}
+        text="save"
+        onClick={ handleEdit}
+      /> */}
       {isError && <InputError> {errorMessage} </InputError>}
     </div>
   );
