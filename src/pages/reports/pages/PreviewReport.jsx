@@ -1,8 +1,9 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import BigGreenButton from '../../../components/BigGreenButton';
 export default function PreviewReport() {
     const location = useLocation()
     const navigate = useNavigate()
-    const { projectTitle, projectSummary, activeOption, period, completed, ongoing, nextTask } = location.state || {}
+    const { projectTitle, projectSummary, activeOption, period, completed, ongoing, next } = location.state || {}
 
     const handleEdit = () => {
         navigate('/home/reports/create', { state: location.state })
@@ -32,39 +33,45 @@ export default function PreviewReport() {
 
 
                 {activeOption === 'activity' && (
-                    <div className="mt-4">
+                    <div className="mt-4 flex flex-col gap-8">
 
-                        <div className="bg-[#347831] rounded-xl p-2 text-white text-lg "  >Completed Tasks</div>
-                        <ul className="list-disc list-outside ml-2 space-y-2 px-4 mt-2 marker:text-navBg2">
-                            {completed.map((completed, index) => (
-                                <li key={index} className="break-words">
-                                    {completed}
-                                </li>
-                            ))}
-                        </ul>
+                        <div>
+                            <div className="bg-[#347831] rounded-xl p-2 text-white text-lg "  >Completed Tasks</div>
+                            <ul className="list-disc list-outside ml-2 space-y-2 px-4 mt-2 marker:text-navBg2">
+                                {completed.map((completed, index) => (
+                                    <li key={index} className="break-words">
+                                        {completed}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                        <div className="bg-[#347831] rounded-xl p-2 text-white mt-2 text-lg "  >Ongoing Tasks</div>
-                        <ul className="list-disc  list-outside ml-2 space-y-2 px-4 mt-2 marker:text-navBg2">
-                            {ongoing.map((ongoing, index) => (
-                                <li key={index} className="break-words">
-                                    {ongoing}
-                                </li>
-                            ))}
-                        </ul>
+                        <div>
+                            <div className="bg-[#347831] rounded-xl p-2 text-white mt-2 text-lg "  >Ongoing Tasks</div>
+                            <ul className="list-disc  list-outside ml-2 space-y-2 px-4 mt-2 marker:text-navBg2">
+                                {ongoing.map((ongoing, index) => (
+                                    <li key={index} className="break-words">
+                                        {ongoing}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                        <div className="bg-[#347831] rounded-xl p-2 text-white mt-2 text-lg "  >Tasks for next duration </div>
-                        <ul className="list-disc list-outside ml-2 space-y-2 px-4 mt-2 marker:text-navBg2">
-                            {nextTask.map((task, index) => (
-                                <li key={index} className="break-words">
-                                    {task}
-                                </li>
-                            ))}
-                        </ul>
+                        <div>
+                            <div className="bg-[#347831] rounded-xl p-2 text-white mt-2 text-lg "  >Tasks for next duration </div>
+                            <ul className="list-disc list-outside ml-2 space-y-2 px-4 mt-2 marker:text-navBg2">
+                                {next.map((task, index) => (
+                                    <li key={index} className="break-words">
+                                        {task}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 )}
 
                 {activeOption === 'project' && (
-                    <div className="mt-4">
+                    <div className="my-4">
                         <h2 className="text-2xl font-semibold capitalize">{projectTitle} Report</h2>
                         <p className="mt-2 text-gray-700 text-base p-4 border border-gray-300 rounded-md whitespace-normal w-full break-words">
                             {projectSummary}
@@ -72,7 +79,9 @@ export default function PreviewReport() {
                     </div>
                 )}
 
-                <button onClick={handleEdit} className="bg-navBg2 text-white px-3 py-1 rounded-xl mt-4">go back to edit</button>
+                <div className='mt-8'>
+                    <BigGreenButton onClick={handleEdit}>Go back to edit</BigGreenButton>
+                </div>
             </div>
         </div>
     )

@@ -22,7 +22,7 @@ const Feedback = () => {
 
   const handleFeedback = async () => {
     if (!message) {
-      toast.error("Enter an announcement");
+      toast.error("Enter a feeedback");
       return;
     }
 

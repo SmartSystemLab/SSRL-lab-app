@@ -93,7 +93,7 @@ const Reports = () => {
 
       <div className="flex justify-between items-center">
 
-        <h1 className="uppercase font-semibold text-2xl">Reports</h1>
+        <h1 className="uppercase font-medium text-2xl">Reports</h1>
 
         <div className="">
           <Link className="flex items-center gap-2 text-lg  rounded-lg font-medium p-2 hover:bg-neutral-100 hover:rounded-lg transition-all duration-300 cursor-pointer"
@@ -126,8 +126,6 @@ const Reports = () => {
             <p>mark all as read</p>
           </div>
         </div>
-
-
 
         {/* Messages */}
         <section className="mt-4">
