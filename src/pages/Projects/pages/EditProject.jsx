@@ -93,11 +93,14 @@ const EditProject = () => {
 
   const getStackMembers = async () => {
     const res = await membersRequest(
-      `get_${userStack === "Software" ? "soft" : "hard"}_members`,
+      `get_all_members`,
     );
     const data = await res.json();
     if (res.ok) {
       setAllMembers(data.members);
+    }
+    else {
+      console.log(data)
     }
   };
 

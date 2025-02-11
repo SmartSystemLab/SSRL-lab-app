@@ -46,6 +46,7 @@ export const useRequest = () => {
     console.log("Request sent in module");
 
     let headers = {
+        'Access-Control-Allow-Credentials': 'true',
         "Authorization": `Bearer ${getSessionStorage("access_token", "")}`
     }
 
@@ -55,6 +56,7 @@ export const useRequest = () => {
     }
 
     let requestOptions = {
+      credentials: 'include',
       method,
       headers
     };

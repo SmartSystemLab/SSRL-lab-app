@@ -94,7 +94,7 @@ const CreateProject = () => {
 
   const getStackMembers = async () => {
     const res = await membersRequest(
-      `get_${userStack === "Software" ? "soft" : "hard"}_members`,
+      `get_all_members`,
     );
     const data = await res.json();
     if (res.ok) {
@@ -164,6 +164,7 @@ const CreateProject = () => {
               />
               <button
                 onClick={addObjective}
+                type="button"
                 className="rounded-lg bg-navBg2 px-4 py-2 font-medium text-white"
               >
                 Add

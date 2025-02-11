@@ -34,7 +34,7 @@ const ProjectCard = ({ project }) => {
                   key={index}
                 >
                   {avatar !== "NIL" ? (
-                    <img src={avatar} alt="" className="h-full w-full" />
+                    <img src={avatar} alt="" className="h-full w-full rounded-full" />
                   ) : (
                     <span
                       className={`flex h-full w-full items-center justify-center rounded-full text-xs font-medium text-black`}
