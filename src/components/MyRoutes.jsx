@@ -38,6 +38,7 @@ import Reports from "../pages/reports/pages/Reports.jsx";
 import CreateReport from "../pages/reports/pages/CreateReport.jsx";
 import ViewReport from "../pages/reports/pages/ViewReport.jsx";
 import PreviewReport from "../pages/reports/pages/PreviewReport.jsx"
+import Feedbacks from "../pages/Projects/pages/Feedbacks.jsx";
 
 const MyRoutes = () => {
   return (
@@ -70,7 +71,8 @@ const MyRoutes = () => {
             <Route path="create" element={<CreateProject />} />
             <Route path="edit/:id" element={<EditProject />} />
             <Route path="announcement/:id" element={<Announcement />} />
-            <Route path="feedback/:id" element={<Feedback />} />
+            <Route path="give_feedback/:id" element={<Feedback />} />
+            <Route path="feedbacks/:id" element={<Feedbacks />} />
           </Route>
 
           <Route path="requests">

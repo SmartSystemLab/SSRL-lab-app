@@ -38,7 +38,7 @@ const Feedback = () => {
     const data = await res.json();
 
     if (res.ok) {
-      toast.success("Announcement sent successfully!");
+      toast.success("Feedback sent successfully!");
       setMessage("");
     } else {
       console.log(data)

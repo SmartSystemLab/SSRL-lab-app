@@ -128,7 +128,7 @@ const Dropdown = ({ completed, id, project}) => {
               )}
 
               {authorized && (
-                <Link to={`/home/projects/feedback/${id}`} state={{name:project.name, id:project._id}}>
+                <Link to={`/home/projects/give_feedback/${id}`} state={{name:project.name, id:project._id}}>
                   <button className="flex w-full items-center gap-2 border-b px-4 py-2 text-sm text-black hover:bg-gray-100">
                     <Pen />
                     <span>Give Feeback</span>

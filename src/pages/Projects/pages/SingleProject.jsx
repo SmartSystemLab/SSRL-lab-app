@@ -23,6 +23,7 @@ const SingleProject = () => {
     status,
     date_created,
     deadline,
+    feedback,
   } = project;
   const { docs, links } = submissions;
   console.log(docs);
@@ -30,16 +31,15 @@ const SingleProject = () => {
   console.log(trackedSub);
 
   const [isCompleted, setIsCompleted] = useState(status === "Completed");
-  const [announcementOpen, setAnnouncementOpen] = useState(false);
 
   const docRef = useRef(null);
   const [selectedDoc, setSelectedDoc] = useState();
 
   return (
     <div className="relative">
-      <div className="mx-auto mt-4 w-11/12 rounded-lg border-2 bg-white px-6 py-4 shadow-sm space-y-6">
+      <div className="mx-auto mt-4 w-11/12 rounded-lg border-2 bg-white px-6 py-4 shadow-sm">
         {/* Project Header */}
-        <div className="relative mt-4 flex flex-col md:flex-row md:gap-4" >
+        <div className="relative mb-6 mt-4 flex flex-col md:flex-row md:gap-4">
           <h1 className="text-xl font-bold">{name}</h1>
           <span
             className={`text-sm font-normal ${
@@ -50,23 +50,19 @@ const SingleProject = () => {
           </span>
           <Dropdown
             completed={{ isCompleted, setIsCompleted }}
-            announcement={{
-              announcementOpen,
-              setAnnouncementOpen,
-            }}
             id={_id}
             project={project}
           />
         </div>
         {/* Project Details */}
-        <div className="mb-4 w-full">
+        <div className="mb-6 w-full">
           {/* Description */}
           <h2 className="border-1 mb-2 border-b pb-2 text-lg font-medium">
             Description
           </h2>
           <p className="mb-4 text-justify">{description}</p>
           {/* Recipient and Deadline */}
-          <div className="mx-auto flex max-w-[900px] flex-col space-y-2 md:flex-row md:items-center md:justify-between md:space-y-0">
+          <div className="flex max-w-[900px] flex-col md:flex-row md:items-center md:justify-between">
             <span className="font-medium">
               Created by:{" "}
               <p className="cursor-pointer font-normal">{createdBy}</p>
@@ -79,31 +75,42 @@ const SingleProject = () => {
             </span>
           </div>
         </div>
+        <div className="mb-6 mt-6">
+          {feedback && (
+            <Link
+              className="rounded-full border-2 border-logo p-2 px-4 font-medium hover:bg-logo hover:text-white"
+              to={`/home/projects/feedbacks/${_id}`}
+              state={{feedback, name}}
+            >
+              See all feedback
+            </Link>
+          )}
+        </div>
         {/* Objectives, Leads, and Team Members */}
-        <div className="flex flex-col gap-6 p-2 md:flex-row md:gap-16">
+        <div className="mb-6 flex flex-col gap-6 p-2 md:flex-row md:gap-16">
           {/* Objectives */}
           <div className="md:w-3/5">
             <h2 className="border-1 border-b pb-2 text-lg font-medium">
               Objectives
             </h2>
-            <ul className="sw-full ml-6 mt-2 list-outside list-decimal space-y-2 break-words">
+            <ul className="sw-full ml-6 mt-2 list-outside list-decimal break-words">
               {objectives.map((objective, index) => (
-                <li key={index} className="pl-2">
+                <li key={index} className="my-2 pl-2">
                   {objective}
                 </li>
               ))}
             </ul>
           </div>
           {/* Leads and Team Members */}
-          <div className="space-y-6 md:w-2/5">
+          <div className="md:w-2/5">
             {/* Leads */}
             <div>
               <h2 className="border-1 border-b pb-2 text-lg font-medium">
                 Leads
               </h2>
-              <ul className="mt-2 space-y-2">
+              <ul className="my-2">
                 {leads.map((lead, index) => (
-                  <li key={index} className="ml-4 flex items-center gap-2">
+                  <li key={index} className="my-2 ml-4 flex items-center gap-2">
                     <img src={Dot} alt="dot" className="h-2 w-2" />
                     {lead.id}
                   </li>
@@ -113,10 +120,13 @@ const SingleProject = () => {
             {/* Team Members */}
             <div>
               <h2 className="border-b text-lg font-medium">Team Members</h2>
-              <ul className="mt-2 space-y-2">
+              <ul className="mt-2">
                 {team_members.length > 0 ? (
                   team_members.map((member, index) => (
-                    <li key={index} className="ml-4 flex items-center gap-2">
+                    <li
+                      key={index}
+                      className="my-2 ml-4 flex items-center gap-2"
+                    >
                       <img src={Dot} alt="dot" className="h-2 w-2" />
                       {member.name}
                     </li>
@@ -186,9 +196,6 @@ const SingleProject = () => {
             </div>
           </div>
         </section>
-        {announcementOpen && (
-          <Announcement name={project.name} id={project._id} setAnnouncementOpen={setAnnouncementOpen}/>
-        )}
       </div>
     </div>
   );
