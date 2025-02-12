@@ -1022,6 +1022,10 @@ video {
   width: max-content;
 }
 
+.w-3 {
+  width: 0.75rem;
+}
+
 .min-w-9 {
   min-width: 2.25rem;
 }
@@ -2364,6 +2368,11 @@ video {
 .hover\:bg-yellow-50:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(254 252 232 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-zinc-100:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(244 244 245 / var(--tw-bg-opacity));
 }
 
 .hover\:text-navBg1:hover {
