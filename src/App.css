@@ -97,51 +97,34 @@
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
-
-@keyframes spin {
+@keyframes slideIn {
+  from {
+    transform: translateX(6%);
+    opacity: 0.5;
+  }
   to {
-    transform: rotate(360deg);
+    transform: translateX(0);
   }
 }
 
-.strikethrough {
-  text-decoration: line-through;
-}
-
-@keyframes Dropping {
-  0% {
-    transform: translate(0px, -64px);
-    opacity: 0;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    transform: translate(0px, 0px);
-    opacity: 1;
-  }
-}
-
-.dropit {
-  animation: Dropping;
+.fromLeft {
+  animation: slideIn;
   animation-duration: 0.7s;
   animation-iteration-count: 1;
 }
 
-@keyframes Appear {
-  0% {
-    opacity: 0;
+@keyframes slideOut {
+  from {
+    transform: translateX(-10%);;
+    opacity: 0.5;
   }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
+  to {
+    transform: translateX(0%);
   }
 }
 
-.showit {
-  animation: Appear;
+.fromRight {
+  animation: slideOut;
   animation-duration: 0.7s;
   animation-iteration-count: 1;
 }
