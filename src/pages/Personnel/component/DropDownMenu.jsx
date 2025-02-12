@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
-const DropDownMenu = ({ uid, role, suspended, profile }) => {
+const DropDownMenu = ({ role, suspended, profile }) => {
   const [setProfileRole, profileRole] = role
   const [suspend, setSuspend] = suspended
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,7 +31,7 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
     const lead = profileRole === "Lead";
     setLeadLoading(true);
     const res = await useLeadRequest(
-      `${profileRole !== "Lead" ? "add" : "remove"}_lead/${uid}`,
+      `${profileRole !== "Lead" ? "add" : "remove"}_lead/${profile.uid}`,
       "PATCH",
     );
     const data = await res.json();
@@ -49,7 +49,7 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
     const admin = profileRole === "Admin";
     setAdminLoading(true);
     const res = await useAdminRequest(
-      `${profileRole !== "Admin" ? "add" : "remove"}_admin/${uid}`,
+      `${profileRole !== "Admin" ? "add" : "remove"}_admin/${profile.uid}`,
       "PATCH",
     );
     const data = await res.json();
@@ -66,7 +66,7 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
   const handleDelete = async () => {
     setDeleteLoading(true);
     const res = await useDeleteRequest(
-      `admin/delete_user/${uid}`,
+      `admin/delete_user/${profile.uid}`,
       "PATCH"
     );
     const data = await res.json();
@@ -86,7 +86,7 @@ const DropDownMenu = ({ uid, role, suspended, profile }) => {
     setSuspendLoading(true);
     console.log(suspend);
     const res = await useSuspendRequest(
-      `admin/${suspend === "True" ? "unsuspend" : "suspend"}_user/${uid}`,
+      `admin/${suspend === "True" ? "unsuspend" : "suspend"}_user/${profile.uid}`,
       "PATCH",
     );
     const data = await res.json();

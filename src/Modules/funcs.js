@@ -1,3 +1,4 @@
+import { formatDistanceToNow } from "date-fns";
 import { format } from "date-fns";
 
 export const getOrdinalSuffix = (day) => {
@@ -34,7 +35,25 @@ export const getInitials = (fullname) => {
     const initials = names.map(name => name.charAt(0).toUpperCase()).join("");
     return initials;
 };
-  
+
+
+export function formatTimeAgo(date) {
+  const diff = Date.now() - date;
+  const seconds = Math.floor(diff / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const months = Math.floor(days / 30);
+  const years = Math.floor(days / 365);
+
+  if (seconds < 60) return `${seconds} secs ago`;
+  if (minutes < 60) return `${minutes} min${minutes > 1 ? "s" : ""} ago`;
+  if (hours < 24) return `${hours} hr${hours > 1 ? "s" : ""} ago`;
+  if (days < 30) return `${days} day${days > 1 ? "s" : ""} ago`;
+  if (months < 12) return `${months} month${months > 1 ? "s" : ""} ago`;
+  return `${years} year${years > 1 ? "s" : ""} ago`;
+}
+
   export const getRandomSoftHexColor = () => {
     const randomChannel = () => Math.floor(Math.random() * 156 + 100); // 100-255 range for softer colors
     const r = randomChannel().toString(16).padStart(2, '0').toUpperCase();

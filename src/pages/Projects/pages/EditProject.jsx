@@ -6,7 +6,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ChevronDown, Plus, ChevronUp, Edit, Trash2 } from "lucide-react";
 import BigGreenButton from "../../../components/BigGreenButton";
 import DatePickerComp from "../../../components/DatePickerComp";
-import MultipleSelect from "../../../components/MultipleSelect"
+import MultipleSelect from "../../../components/MultipleSelect";
+import { useRequest } from "../../../Modules/useRequest";
+import { getSessionStorage } from "../../../Modules/getSessionStorage";
+import toast from "react-hot-toast";
+import { Navigate } from "react-router-dom";
+import { Loader } from "lucide-react";
 
 const EditProject = () => {
   const location = useLocation();
@@ -19,6 +24,19 @@ const EditProject = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedMembers, setSelectedMembers] = useState([]);
   const [selectedLeads, setSelectedLeads] = useState([]);
+  const [allMembers, setAllMembers] = useState([]);
+  const userStack = getSessionStorage("userStack", "");
+
+  const [
+    membersRequest,
+    membersLoading,
+    setMembersLoading,
+    membersError,
+    setMembersError,
+  ] = useRequest();
+
+  const [editRequest, editLoading, setEditLoading, editError, setEditError] =
+    useRequest();
 
   // const [showMembersDropdown, setShowMembersDropdown] = useState(false);
   // const [showLeadsDropdown, setShowLeadsDropdown] = useState(false);
@@ -38,14 +56,14 @@ const EditProject = () => {
   }, [projectData]);
 
   const handleMemberChange = (newSelectedMembers) => {
-    setSelectedMembers(newSelectedMembers)
+    setSelectedMembers(newSelectedMembers);
 
-    setSelectedLeads(prev =>
-      prev.filter(lead =>
-        newSelectedMembers.some(member => member.id === lead.id)
-      )
-    )
-  }
+    setSelectedLeads((prev) =>
+      prev.filter((lead) =>
+        newSelectedMembers.some((member) => member.id === lead.id),
+      ),
+    );
+  };
   const handleAddOrUpdateObjective = () => {
     if (currentObjective.trim() !== "") {
       if (editingIndex !== null) {
@@ -73,6 +91,55 @@ const EditProject = () => {
     }
   };
 
+  const getStackMembers = async () => {
+    const res = await membersRequest(
+      `get_all_members`,
+    );
+    const data = await res.json();
+    if (res.ok) {
+      setAllMembers(data.members);
+    }
+    else {
+      console.log(data)
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setEditLoading(true);
+    if (!selectedDate || !selectedMembers[0] || !selectedLeads[0]) {
+      console.log(selectedLeads);
+      //Add validation
+      toast.error("Add all required info");
+      setEditLoading(false);
+      return;
+    }
+
+    const res = await editRequest(`project/edit/${projectData._id}`, "PATCH", {
+      name: projectTitle,
+      description: projectDescription,
+      objectives,
+      leads: selectedLeads,
+      team_members: selectedMembers,
+      deadline: selectedDate,
+      stack: userStack,
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      toast.success("Project created successfully");
+      setTimeout(() => Navigate(-1), 2000);
+    } else {
+      console.log(data);
+      toast.error(data.message);
+    }
+    setEditLoading(false);
+  };
+
+  useEffect(() => {
+    getStackMembers();
+  }, []);
+
   return (
     <div className="mt-4 min-h-screen overflow-y-auto px-6 py-4">
       <button className="mb-2 flex items-center gap-2 text-xl font-semibold tracking-wider">
@@ -81,7 +148,10 @@ const EditProject = () => {
       </button>
       <hr className="mt-1 bg-black" />
 
-      <form className='mt-8 mx-auto my-12 flex flex-col gap-5 rounded-xl border px-10 py-8 shadow-lg'>
+      <form
+        className="mx-auto my-12 mt-8 flex flex-col gap-5 rounded-xl border px-10 py-8 shadow-lg"
+        onSubmit={handleSubmit}
+      >
         <div className="mt-4 space-y-6">
           {/* Project Title */}
           <div>
@@ -177,10 +247,9 @@ const EditProject = () => {
             />
           </div>
 
-
           <div className="mt-8 flex flex-col gap-8 md:flex-row">
             <MultipleSelect
-              options={selectedMembers}
+              options={allMembers}
               selectedOptions={selectedMembers}
               onSelectionChange={handleMemberChange}
               buttonText="Add Team Members"
@@ -189,17 +258,19 @@ const EditProject = () => {
 
             {/* Select Leads */}
             <MultipleSelect
-              options={selectedLeads}
+              options={selectedMembers}
               selectedOptions={selectedLeads}
               onSelectionChange={setSelectedLeads}
               buttonText="Add Team leads"
               className="w-full md:w-1/2"
               disabled={selectedMembers.length === 0}
             />
-
           </div>
           {/* Submit Button */}
-          <BigGreenButton type="submit">Save Changes</BigGreenButton>
+          <div className="flex w-fit justify-center gap-6">
+            <BigGreenButton type="submit">Save Changes</BigGreenButton>
+            {editLoading && <Loader className="animate-spin text-navBg2" size={32} />}
+          </div>
         </div>
       </form>
     </div>
