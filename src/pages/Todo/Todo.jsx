@@ -71,7 +71,7 @@ const ToDo = () => {
             {/* Tasks */}
             <div>
               {tasks.map((task) => {
-                console.log(task)
+                // console.log(task)
                 return (
                   <TaskCard tasks={tasks} tasky={task} setTasks={setTasks} key={task.id}/>
                 );

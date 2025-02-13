@@ -2,20 +2,23 @@ import CustomLabel from "../../../components/CustomLabel"
 import { Dot } from "lucide-react"
 import { Plus, MinusCircle } from "lucide-react"
 import { useState } from "react"
-
+import InputError from "../../../components/InputError"
 export default function ListInput({ title, items, setItems }) {
     const [inputValue, setInputValue] = useState("")
 
     const [error, setError] = useState(false)
-    const handleAddItem = () => {
-        if (inputValue.trim() === "") {
-            setError(true)
-        } else {
+    const handleAddItem = (e) => {
+        if (inputValue.trim() !== "") {
             setItems([...items, inputValue])
             setError(false)
+            setInputValue("")
         }
-        setInputValue("");
-    };
+        else {
+            setError(true)
+        }
+        e.target.focus()
+        console.log(inputValue)
+    }
 
     return (
         <div>
@@ -24,13 +27,11 @@ export default function ListInput({ title, items, setItems }) {
                     <CustomLabel
                         htmlFor={title.replace(/\s+/g, "").toLowerCase()}
                         inputType="text"
-                        inputValue={inputValue}
+                        value={inputValue || ""}
                         onChange={(e) => setInputValue(e.target.value)}
                         labelCLassName="mt-1 font-medium text-lg mb-1"
                         placeholder={`Enter ${title.toLowerCase()}`}
-                        isError={error}
-                        errorMessage="enter a input first"
-                        required={inputValue.trim() === "" && items.length === 0}
+                    // required={inputValue.trim() === "" && items.length === 0}
                     >{`${title} tasks`}</CustomLabel>
                 </div>
                 <span
@@ -40,10 +41,12 @@ export default function ListInput({ title, items, setItems }) {
                     <Plus size={32} />
                 </span>
             </div>
+            {error && <InputError>enter a input first</InputError>}
+
             <ul className="mt-2">
                 {items.map((item, index) => (
                     <li key={index} className="flex justify-between gap-2 items-center px-2 rounded-md max-w-[75%]">
-                        <Dot className="text-navBg2" size={32}/>
+                        <Dot className="text-navBg2" size={32} />
                         <span className="w-full truncate text-sm">{item}</span>
                         <button
                             onClick={() => setItems(items.filter((_, i) => i !== index))}

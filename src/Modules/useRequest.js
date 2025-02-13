@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { getSessionStorage } from "./getSessionStorage";
 
-// const url = "https://ssrl-lab-app-backend.onrender.com"
-const url = "http://127.0.0.1:5000";
+const url = "https://ssrl-lab-app-backend.onrender.com"
+// const url = "http://127.0.0.1:5000";
 
 export const useGetRequest = () => {
   const [loading, setLoading] = useState(false);
@@ -46,8 +46,8 @@ export const useRequest = () => {
     console.log("Request sent in module");
 
     let headers = {
-        'Access-Control-Allow-Credentials': 'true',
-        "Authorization": `Bearer ${getSessionStorage("access_token", "")}`
+      'Access-Control-Allow-Credentials': 'true',
+      "Authorization": `Bearer ${getSessionStorage("access_token", "")}`
     }
 
     if (!(body instanceof FormData)) {
