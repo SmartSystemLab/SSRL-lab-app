@@ -38,8 +38,6 @@ const Feedback = ({ onClose, onSend, id }) => {
     setSendLoading(false);
   };
 
-  const handleSend = () => {};
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 backdrop-blur-sm">
       <div className="shadow-3xl w-10/12 rounded-lg border bg-white p-6 md:w-3/5">
@@ -60,7 +58,6 @@ const Feedback = ({ onClose, onSend, id }) => {
             Cancel
           </button>
           <BigGreenButton
-            onClick={handleSend}
             disabled={!feedback.trim()}
             action={handleFeedback}
           >

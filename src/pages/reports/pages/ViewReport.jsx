@@ -11,9 +11,9 @@ const ViewReport = () => {
   console.log(report);
   const [showPopup, setShowPopup] = useState(false);
 
-  const handleSendFeedback = (feedbackText) => {
-    console.log("Feedback sent:", feedbackText);
-  };
+  const handleDelete = () => {
+    console.log("Okay")
+  }
 
   return (
     <div className="relative min-h-screen overflow-y-auto px-6 py-4">
@@ -46,10 +46,17 @@ const ViewReport = () => {
           >
             Give feeback
           </button>
+          <div className="flex items-center gap-4">
+              <button
+                          className="w-fit cursor-pointer rounded-full bg-navBg2 px-4 py-1 font-medium capitalize text-white hover:scale-105"
+                          onClick={ handleDelete}
+              >
+               Delete
+              </button>
+          </div>
         </div>
         {showPopup && (
           <Feedback
-            onSend={handleSendFeedback}
             onClose={() => setShowPopup(false)}
             id={report._id}
           />
