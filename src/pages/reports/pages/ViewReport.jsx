@@ -7,11 +7,14 @@ import ListDisplay from "../components/ListDisplay";
 const ViewReport = () => {
   const location = useLocation();
   const report = location.state;
+
   console.log(report);
   const [showPopup, setShowPopup] = useState(false);
+
   const handleSendFeedback = (feedbackText) => {
     console.log("Feedback sent:", feedbackText);
   };
+
   return (
     <div className="relative min-h-screen overflow-y-auto px-6 py-4">
       <h2 className="text-2xl font-semibold capitalize">
@@ -41,13 +44,14 @@ const ViewReport = () => {
             className="w-fit cursor-pointer rounded-full bg-navBg2 px-4 py-1 font-medium capitalize text-white hover:scale-105"
             onClick={() => setShowPopup(true)}
           >
-            give feeback
+            Give feeback
           </button>
         </div>
         {showPopup && (
           <Feedback
             onSend={handleSendFeedback}
             onClose={() => setShowPopup(false)}
+            id={report._id}
           />
         )}
 

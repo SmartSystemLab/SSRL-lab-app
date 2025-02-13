@@ -1,46 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useRequest } from "../../../Modules/useRequest";
+import toast from "react-hot-toast";
+import BigGreenButton from "../../../components/BigGreenButton";
+import { Loader } from "lucide-react";
 
-const Feedback = ({ onClose, onSend }) => {
-    const [feedback, setFeedback] = useState('');
+const Feedback = ({ onClose, onSend, id }) => {
+  const [feedback, setFeedback] = useState("");
 
-    const handleSend = () => {
-        if (feedback.trim()) {
-            onSend(feedback);
-            onClose();
-        }
-    };
+  const [sendFeedback, sendLoading, setSendLoading, sendError, setSendError] =
+    useRequest();
 
-    return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center  bg-opacity-50 backdrop-blur-sm">
-            <div className="bg-white border p-6 rounded-lg md:w-3/5 w-10/12 shadow-3xl">
+  const handleFeedback = async () => {
+    if (!feedback) {
+      toast.error("Enter a feeedback");
+      return;
+    }
 
-                <textarea
-                    className="w-full h-40 p-3 border rounded-md mt-4 resize-none focus:outline-none "
-                    placeholder="Write your feedback here..."
-                    value={feedback}
-                    rows={5}
-                    onChange={(e) => setFeedback(e.target.value)}
-                />
+    setSendLoading(true);
+    const res = await sendFeedback(`report/send_feedback/${id}`, "POST", {
+      feedback: feedback,
+    });
 
+    const data = await res.json();
 
-                <div className="flex justify-end space-x-3 mt-2">
-                    <button
-                        className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 transition"
-                        onClick={onClose}
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        className="px-4 py-2 bg-navBg2 text-white rounded-md hover:bg-green-800 transition"
-                        onClick={handleSend}
-                        disabled={!feedback.trim()}
-                    >
-                        Submit
-                    </button>
-                </div>
-            </div>
+    if (res.ok) {
+      toast.success("Feedback sent successfully!");
+      setFeedback("");
+      if (feedback.trim()) {
+        onSend(feedback);
+        onClose();
+      }
+    } else {
+      console.log(data);
+      toast.error(sendError.msg);
+    }
+
+    setSendLoading(false);
+  };
+
+  const handleSend = () => {};
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 backdrop-blur-sm">
+      <div className="shadow-3xl w-10/12 rounded-lg border bg-white p-6 md:w-3/5">
+        <textarea
+          className="mt-4 h-40 w-full resize-none rounded-md border p-3 focus:outline-none"
+          placeholder="Write your feedback here..."
+          value={feedback}
+          rows={5}
+          onChange={(e) => setFeedback(e.target.value)}
+        />
+
+        <div className="mt-2 flex items-center justify-end gap-3">
+          {sendLoading && <Loader className="animate-spin text-navBg2" />}
+          <button
+            className="rounded-full bg-gray-200 px-3 py-1 font-medium transition hover:bg-gray-300"
+            onClick={onClose}
+          >
+            Cancel
+          </button>
+          <BigGreenButton
+            onClick={handleSend}
+            disabled={!feedback.trim()}
+            action={handleFeedback}
+          >
+            Submit
+          </BigGreenButton>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Feedback;

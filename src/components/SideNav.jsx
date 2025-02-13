@@ -19,7 +19,7 @@ const navData = [
   { icon: <FolderOpenDot />, text: "Projects", path: "/home/projects", id: 3 },
   { icon: <ClipboardList />, text: "Reports", path: "/home/reports", id: 5 },
   { icon: <HandHelping />, text: "Requests", path: "/home/requests", id: 6 },
-  { icon: <UserRoundCheck />, text: "Attendance", path: "/home/requests", id: 9 },
+  { icon: <UserRoundCheck />, text: "Attendance", path: "/home/attendance", id: 9 },
   { icon: <LayoutList />, text: "To-do", path: "/home/to-do", id: 7 },
   { icon: <MessageCircleDashed />, text: "Team Chat", path: "/home/teamchat", id: 4 },
   { icon: <Settings />, text: "Settings", path: "/home/settings", id: 8 },
