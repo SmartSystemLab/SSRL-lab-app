@@ -34,8 +34,8 @@ const CreateReport = () => {
   const [ongoing, setOngoing] = useState([]);
   const [next, setNext] = useState([]);
 
-  const [membersRequest] = useRequest();
   const [submitRequest, submitLoading, setSubmitloading] = useRequest();
+  const [membersRequest] = useRequest();
 
   const getReceivers = async () => {
     const res = await membersRequest(`get_all_members`);

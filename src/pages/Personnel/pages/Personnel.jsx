@@ -5,10 +5,8 @@ import PersonnelSection from "../component/PersonnelSection";
 
 const Personnel = () => {
   const [toggle, setToggle] = useState("software");
-  const handleOptionsChange = (selectedOption) => {
-    setToggle(selectedOption)
-  }
-  const ToggleItems = ['software', 'hardware']
+
+
   const [admins, setAdmins] = useState([]);
   const [hardleads, setHardleads] = useState([]);
   const [hardInterns, setHardInterns] = useState([]);
@@ -66,7 +64,8 @@ const Personnel = () => {
                 loading={personnelsLoading}
               />
 
-              <Toggle handleOptionsChange={handleOptionsChange} activeOption={toggle} ToggleItems={ToggleItems} />
+              <Toggle activeOptions={{ toggle, setToggle }}
+                ToggleItems={["hardware", "software"]} />
 
               <PersonnelSection
                 title="Lead"
