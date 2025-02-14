@@ -943,6 +943,10 @@ video {
   width: 5rem;
 }
 
+.w-24 {
+  width: 6rem;
+}
+
 .w-28 {
   width: 7rem;
 }
@@ -1505,6 +1509,11 @@ video {
 .bg-navBg2 {
   --tw-bg-opacity: 1;
   background-color: rgb(34 85 34 / var(--tw-bg-opacity));
+}
+
+.bg-red-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
 }
 
 .bg-slate-200 {
@@ -2202,6 +2211,38 @@ video {
   animation: slideOut;
   animation-duration: 0.7s;
   animation-iteration-count: 1;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-10%);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fromTop {
+  animation: slideDown 0.7s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(10%);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fromBottom {
+  animation: slideUp 0.7s ease-out forwards;
 }
 
 .marker\:text-navBg2 *::marker {

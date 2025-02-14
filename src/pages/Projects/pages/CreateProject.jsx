@@ -108,7 +108,7 @@ const CreateProject = () => {
 
 
   return (
-    <div className="mt-4 min-h-screen overflow-y-auto px-6 py-4">
+    <div className="mt-4 min-h-screen overflow-y-auto px-6 py-4 fromLeft">
       <button className="mb-2 flex items-center gap-2 text-xl font-medium tracking-wider">
         <span>Add Project</span>
         <div className="rounded-full bg-logo p-[2px]">

@@ -20,7 +20,7 @@ const ToDo = () => {
     setTasks(updatedTasks);
     setName("");
     console.log(updatedTasks);
-  };
+  }
 
   return (
     <>

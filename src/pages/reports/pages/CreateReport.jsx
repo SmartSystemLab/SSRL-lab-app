@@ -127,7 +127,7 @@ const CreateReport = () => {
   }, [location.state]);
 
   return (
-    <div className="mt-4 min-h-screen overflow-y-auto px-2 md:px-6">
+    <div className="mt-4 min-h-screen overflow-y-auto px-2 md:px-6 fromLeft">
       <div className="mb-2 flex items-center gap-2 text-xl font-medium tracking-wider">
         <span>Create Report</span>
         <div className="rounded-full bg-logo p-[2px]">

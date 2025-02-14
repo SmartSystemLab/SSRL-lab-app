@@ -75,7 +75,7 @@ const Reports = () => {
         </div>
 
         {/* Messages */}
-        <section className="mt-4">
+        <section className="mt-4 fromTop">
           {reports &&
             reports.map((report) => {
               const { created_at, avatar, sender, title, _id } = report;
@@ -94,14 +94,14 @@ const Reports = () => {
                         style={{
                           backgroundColor: `${getRandomSoftHexColor()}50`,
                         }}
-                        >{ getInitials(sender.name)}</span>
+                      >{getInitials(sender.name)}</span>
                     )}
                   </div>
                   <div className="flex-grow">
                     <p className="truncate font-medium">{title}</p>
-                    <p className="text-sm">{ sender.name}</p>
+                    <p className="text-sm">{sender.name}</p>
                   </div>
-                  <p className="text-sm italic">{formatDistanceToNow(created_at, {addSuffix: true})}</p>
+                  <p className="text-sm italic">{formatDistanceToNow(created_at, { addSuffix: true })}</p>
                 </Link>
               );
             })}

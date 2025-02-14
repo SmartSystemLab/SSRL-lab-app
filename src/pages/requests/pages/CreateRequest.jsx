@@ -83,7 +83,7 @@ const CreateRequest = () => {
         }
     }, [location.state])
     return (
-        <div className="mt-4 md:px-6 px-2 min-h-screen overflow-y-auto">
+        <div className="mt-4 md:px-6 px-2 min-h-screen overflow-y-auto fromLeft">
 
             <div className="flex items-center gap-2 text-xl font-semibold tracking-wider mb-2">
                 <span>Create New Request</span>

@@ -10,7 +10,7 @@ export default function Activity({ period, setPeriod, completed, setCompleted, o
     setDropdown(!dropdown)
   }
   return (
-    <div>
+    <div className=''>
 
       <div className="relative ml-auto mt-4 w-fit cursor-pointer" >
         <button

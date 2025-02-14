@@ -67,14 +67,14 @@ const Dashboard = () => {
   // set the date
 
   return (
-    <div className="p-2">
+    <div className="p-2 fromRight">
       {profileError.status && (
         <p className="text-red-500">
           Couldn&apos;t load your dashboard. {profileError.msg} <span className="hover:underline" onClick={getProfile}>Retry?</span>
         </p>
       )}
-      <div className="flex w-full flex-col items-center justify-start gap-10 overflow-y-auto md:flex-row md:items-start">
-        <div className="w-2/3 min-w-[370px] space-y-6 px-6 py-2 md:w-1/2 lg:w-2/5">
+      <div className="flex w-full flex-col items-center justify-start gap-10 overflow-y-auto md:flex-row md:items-start ">
+        <div className="w-2/3 min-w-[370px] space-y-6 px-6 py-2 md:w-1/2 lg:w-2/5 ">
           <Welcome name={name} />
           <Projects projects={projects} />
           <Reports reports={reports} userId={userId} />

@@ -63,7 +63,7 @@ const Requests = () => {
       {/* Header */}
       <div className="mt-4 md:px-4 px-1">
         <div className="flex justify-between items-center">
-          <h1 className="uppercase font-semibold text-xl md:text-2xl">Requests</h1>
+          <h1 className="uppercase font-medium text-xl md:text-2xl">Requests</h1>
           <div>
             <Link className="flex items-center gap-2 text-base md:text-lg font-medium hover:bg-neutral-100 p-2 hover:rounded-lg transition-all duration-300"
               to={'/home/requests/create'}>
@@ -97,7 +97,7 @@ const Requests = () => {
           </div>
 
           {/* Messages */}
-          <section className="mt-4">
+          <section className="mt-4 fromTop">
             <Messages
               info={info}
               to='/home/requests'
