@@ -10,7 +10,7 @@ const SingleRequests = () => {
     <div className=" px-6 py-4 min-h-screen overflow-y-auto">
       <h2 className="text-2xl font-semibold capitalize">{request.type} Request</h2>
       <hr className="bg-black mt-1" />
-      <div className="mt-8 mx-auto my-12 flex flex-col gap-4 rounded-xl border px-10 py-8 shadow-lg">
+      <div className="mt-8 mx-auto my-12 flex flex-col gap-3 rounded-xl border px-10 py-8 shadow-lg fromLeft">
 
         <h2 className='font-medium text-xl'>{request.Title}</h2>
 
