@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Plus } from "lucide-react";
-import Toggle from "../components/Toggle";
+import Toggle from "../../../components/Toggle"
 import Activity from "../components/Activity";
 import Project from "../components/Project";
 import BigGreenButton from "../../../components/BigGreenButton";
@@ -25,9 +25,11 @@ const CreateReport = () => {
   // project report
   const [title, settitle] = useState("");
   const [summary, setSummary] = useState("");
+  const ToggleItems = ['activity', 'project']
 
   // activity report
-  const [period, setPeriod] = useState("Daily");
+  const [period, setPeriod] = useState("Daily")
+
   const [completed, setCompleted] = useState([]);
   const [ongoing, setOngoing] = useState([]);
   const [next, setNext] = useState([]);
@@ -125,7 +127,7 @@ const CreateReport = () => {
   }, [location.state]);
 
   return (
-    <div className="mt-4 min-h-screen overflow-y-auto px-2 md:px-6">
+    <div className="mt-4 min-h-screen overflow-y-auto px-2 md:px-6 fromLeft">
       <div className="mb-2 flex items-center gap-2 text-xl font-medium tracking-wider">
         <span>Create Report</span>
         <div className="rounded-full bg-logo p-[2px]">
@@ -140,6 +142,7 @@ const CreateReport = () => {
       >
         <Toggle
           handleOptionsChange={handleOptionsChange}
+          ToggleItems={ToggleItems}
           activeOption={activeOption}
         />
 

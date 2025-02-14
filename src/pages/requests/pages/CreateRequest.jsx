@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Plus, ChevronDown, ChevronUp } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom"
 import CustomLabel from '../../../components/CustomLabel';
-import Toggle from "../component/Toggle"
+import Toggle from "../../../components/Toggle"
 import Equipment from "../component/Equipment"
 import Leave from "../component/Leave"
 import Others from "../component/Others"
@@ -21,6 +21,8 @@ const CreateRequest = () => {
     const [quantity, setQuantity] = useState('')
     const [description, setDescription] = useState('')
     const [purpose, setPurpose] = useState('')
+
+    const ToggleItems = ['equipment', 'leave', 'others']
 
     const recipients = [
         { name: 'ceejay', id: 1 },
@@ -81,7 +83,7 @@ const CreateRequest = () => {
         }
     }, [location.state])
     return (
-        <div className="mt-4 md:px-6 px-2 min-h-screen overflow-y-auto">
+        <div className="mt-4 md:px-6 px-2 min-h-screen overflow-y-auto fromLeft">
 
             <div className="flex items-center gap-2 text-xl font-semibold tracking-wider mb-2">
                 <span>Create New Request</span>
@@ -107,7 +109,7 @@ const CreateRequest = () => {
                     placeholder="Add request title"
                 >Title</CustomLabel>
 
-                <Toggle handleOptionsChange={handleOptionsChange} activeOption={activeOption} />
+                <Toggle handleOptionsChange={handleOptionsChange} activeOption={activeOption} ToggleItems={ToggleItems} className="sm:mx-auto" />
 
                 {activeOption === 'equipment' && <Equipment
                     eqpName={eqpName}

@@ -40,6 +40,8 @@ import ViewReport from "../pages/reports/pages/ViewReport.jsx";
 import PreviewReport from "../pages/reports/pages/PreviewReport.jsx"
 import Feedbacks from "../pages/Projects/pages/Feedbacks.jsx";
 
+import Attendance from "../pages/Attendance/Attendance.jsx"
+
 const MyRoutes = () => {
   return (
     <Router>
@@ -92,6 +94,7 @@ const MyRoutes = () => {
           <Route path="settings" element={<Settings />} />
           <Route path="teamchat" element={<TeamChat />} />
           <Route path="to-do" element={<Todo />} />
+          <Route path="attendance" element={<Attendance />} />
 
         </Route>
       </Routes>

@@ -84,11 +84,9 @@ const Requests = () => {
   return (
     <div>
       {/* Header */}
-      <div className="mt-4 px-1 md:px-4">
-        <div className="flex items-center justify-between">
-          <h1 className="text-xl font-semibold uppercase md:text-2xl">
-            Requests
-          </h1>
+      <div className="mt-4 md:px-4 px-1">
+        <div className="flex justify-between items-center">
+          <h1 className="uppercase font-medium text-xl md:text-2xl">Requests</h1>
           <div>
             <Link
               className="flex items-center gap-2 p-2 text-base font-medium transition-all duration-300 hover:rounded-lg hover:bg-neutral-100 md:text-lg"

@@ -1,8 +1,8 @@
 
-export default function Toggle({ handleOptionsChange, activeOption }) {
-    const ToggleItems = ['activity', 'project']
+export default function Toggle({ handleOptionsChange, activeOption, ToggleItems, className }) {
+    
     return (
-        <div className={` flex gap-1 justify-center items-start w-fit rounded-full shadow-lg mb-4 border`}>
+        <div className={`${className} flex gap-1 justify-center items-start w-fit rounded-full shadow-lg mb-4 border`}>
             {ToggleItems.map((item) => (
                 <div
                     key={item}

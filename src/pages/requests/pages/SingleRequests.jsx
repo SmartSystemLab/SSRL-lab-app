@@ -54,9 +54,9 @@ const SingleRequests = () => {
         )}
         {request.type === "leave" && (
           <>
-            <div className="mt-4">
+            <div className="">
               <h3 className="text-lg font-medium">Leave Details</h3>
-              <table className="mt-4 w-full table-auto border-separate rounded-md border border-gray-500">
+              <table className="w-full table-auto border-separate border border-gray-500 rounded-md mt-2">
                 <thead>
                   <tr>
                     <th className="border-b border-r border-gray-500 px-4 py-2 text-left text-lg font-medium">

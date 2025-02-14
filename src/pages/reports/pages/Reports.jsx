@@ -2,67 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { LiaCheckDoubleSolid } from "react-icons/lia";
 import { Plus } from "lucide-react";
-import Messages from "../components/Messages";
-import img1 from "../pages../../../../assets/img1.jpg";
+// import Messages from "../components/Messages";
+// import img1 from "../pages../../../../assets/img1.jpg";
 import { useRequest } from "../../../Modules/useRequest";
 import { useState } from "react";
 import { useEffect } from "react";
 import { formatTimeAgo, getInitials, getRandomSoftHexColor } from "../../../Modules/funcs";
 import { formatDistanceToNow } from "date-fns";
 
-const info = [
-  {
-    name: "Ogunjirin M. Boluwatife",
-    intern: "Ogunjirin M. Boluwatife",
-    summary: "Sent you weekly report",
-    stack: "Embedded Systems",
-    images: img1,
-    duration: "10 mins",
-    id: 1,
-    type: "activity",
-    period: "Weekly",
-    completed: [
-      "Completed login authentication feature",
-      "Implemented frontend for dashboard",
-      "Integrated API for user profiles",
-    ],
-    ongoing: [
-      "Working on real-time chat feature",
-      "Fixing UI bugs on mobile responsiveness",
-    ],
-    nextTask: [
-      "Deploy application to production",
-      "Write documentation for frontend components",
-    ],
-  },
-  {
-    name: "Agboola Oluwatofunmi B.",
-    intern: "Agboola Oluwatofunmi B.",
-    summary: "Sent you Lab App report",
-    stack: "Embedded System",
-    images: img1,
-    duration: "1 day",
-    id: 2,
-    type: "project",
-    title: "Nexo Ai project",
-    Summary:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure architecto, obcaecati, eligendi consequatur laudantium ipsam quo ipsa eos dicta natus saepe sed odit necessitatibus placeat! Voluptatem a amet debitis labore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure architecto, obcaecati, eligendi consequatur laudantium ipsam quo ipsa eos dicta natus saepe sed odit necessitatibus placeat! Voluptatem a amet debitis labore.",
-  },
-  {
-    name: "Adeosun Covenant J",
-    intern: "Adeosun Covenant J",
-    summary: "Sent you Hardware interns report",
-    stack: "Front End web development",
-    images: img1,
-    period: "Monthly",
-    duration: "1 day",
-    id: 3,
-    type: "activity",
-    completed: ["Fixed UI bugs", "Implemented search feature"],
-    ongoing: ["Testing new API"],
-    nextTask: ["Deploy to production"],
-  },
-];
 
 const Reports = () => {
   const [reports, setReports] = useState(null);
@@ -128,7 +75,7 @@ const Reports = () => {
         </div>
 
         {/* Messages */}
-        <section className="mt-4">
+        <section className="mt-4 fromTop">
           {reports &&
             reports.map((report) => {
               const { created_at, avatar, sender, title, _id } = report;
@@ -147,7 +94,7 @@ const Reports = () => {
                         style={{
                           backgroundColor: `${getRandomSoftHexColor()}50`,
                         }}
-                        >{ getInitials(sender.name)}</span>
+                      >{getInitials(sender.name)}</span>
                     )}
                   </div>
                   <div className="flex-grow">

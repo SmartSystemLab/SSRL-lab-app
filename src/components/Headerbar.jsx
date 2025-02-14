@@ -9,7 +9,7 @@ const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
   const navigate = useNavigate();
   return (
     <div
-      className={`fixed left-0 right-0 top-0 flex h-[62px] items-center justify-between bg-white px-4 md:px-8 lg:ml-64 shadow-md z-50`}
+      className={`fixed left-0 right-0 top-0 flex h-[62px] max-w-screen-2xl items-center justify-between bg-white px-4 md:px-8 lg:ml-64 shadow-md z-50`}
     >
       <div className="text-logo lg:hidden">
         <button onClick={toggleSideNav} className="cursor-pointer">
