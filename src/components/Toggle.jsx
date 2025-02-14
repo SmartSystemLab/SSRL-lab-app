@@ -1,5 +1,10 @@
 
-export default function Toggle({ handleOptionsChange, activeOption, ToggleItems, className }) {
+export default function Toggle({ activeOptions, ToggleItems, className }) {
+    const {activeOption, setActiveOption} = activeOptions;
+
+    const handleOptionsChange = (selectedOption) => {
+      setActiveOption(selectedOption);
+    }
     
     return (
         <div className={`${className} flex gap-1 justify-center items-start w-fit rounded-full shadow-lg mb-4 border`}>

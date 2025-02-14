@@ -41,7 +41,7 @@ const Equipment = ({
           >Equipment Name:</CustomLabel>
         </div>
       </div>
-      <div className=" mt-2">
+      {/* <div className=" mt-2">
         <h2 className="font-medium mb-1">Purpose</h2>
         <textarea
           id="purpose"
@@ -51,7 +51,7 @@ const Equipment = ({
           rows={5}
           required
         />
-      </div>
+      </div> */}
     </>
   );
 };

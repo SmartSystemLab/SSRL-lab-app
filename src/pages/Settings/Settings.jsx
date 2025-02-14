@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const Settings = () => {
-    return (
-        <div>Settings</div>
-    )
-}
+  return (
+    <div className="flex min-h-screen w-full items-center justify-center text-4xl font-medium">
+      Coming Soon ...
+    </div>
+  );
+};
 
-export default Settings
+export default Settings;
