@@ -9,48 +9,6 @@ import { useEffect } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { getInitials, getRandomSoftHexColor } from "../../../Modules/funcs";
 
-const info = [
-  {
-    name: "Ogunjirin M. Boluwatife",
-    summary: "Sent you requests for Personal Business",
-    images: img1,
-    duration: "10 mins",
-    id: 1,
-    Title: "Requests for Personal Business",
-    type: "others",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure architecto, obcaecati, eligendi consequatur laudantium ipsam quo ipsa eos dicta natus saepe sed odit necessitatibus placeat! Voluptatem a amet debitis labore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure architecto, obcaecati, eligendi consequatur laudantium ipsam quo ipsa eos dicta natus saepe sed odit necessitatibus placeat! Voluptatem a amet debitis labore.",
-    receipients: ["cejay", "Prof Mrs", "Jayeola", "Nunsi shaki"],
-  },
-  {
-    name: "Agboola Oluwatofunmi B.",
-    summary: "Sent you requests for equipments",
-    images: img1,
-    duration: "1 day",
-    id: 2,
-    Title: "Requests for equipments",
-    type: "equipment",
-    equipmentName: "3d printer BiBO",
-    equipmentQuantity: 5,
-    purpose:
-      "3d printing and simulation of ssrl backyard famring kit and poultry",
-    receipients: ["cejay", "Prof Mrs", "Nunsi shaki"],
-  },
-  {
-    name: "Adeosun Covenant J",
-    summary: "Sent you requests for leave",
-    images: img1,
-    duration: "1 day",
-    id: 3,
-    Title: "Request for leave",
-    type: "leave",
-    leaveDatesfrom: "31/01/2025",
-    leaveDatesto: "28/02/2025",
-    purpose: "Exam and grandpa died back in taraba state",
-    receipients: ["cejay", "Prof Mrs", "Jayeola", "Nunsi shaki"],
-  },
-];
-
 const Requests = () => {
   const [requests, setRequests] = useState([]);
 
