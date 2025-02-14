@@ -75,12 +75,12 @@ const Reports = () => {
         </div>
 
         {/* Messages */}
-        <section className="mt-4 fromTop">
+        <section className="mt-4 ">
           {reports &&
             reports.map((report) => {
               const { created_at, avatar, sender, title, _id } = report;
               return (
-                <Link className="border-b flex gap-4 items-center hover:bg-zinc-100" key={created_at} to={`/home/reports/${_id}`} state={report}>
+                <Link className="border-b flex gap-4 items-center hover:bg-zinc-100 fromTop" key={created_at} to={`/home/reports/${_id}`} state={report}>
                   <div className="w-12 h-12 rounded-full m-2 mt-4">
                     {avatar !== "NIL" ? (
                       <img
