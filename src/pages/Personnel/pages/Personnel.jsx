@@ -4,8 +4,8 @@ import { useRequest } from "../../../Modules/useRequest";
 import PersonnelSection from "../component/PersonnelSection";
 
 const Personnel = () => {
-  const [toggle, setToggle] = useState("software");
-
+  const [toggle, setToggle] = useState("software")
+  const ToggleItems = ["software", "hardware"]
 
   const [admins, setAdmins] = useState([]);
   const [hardleads, setHardleads] = useState([]);
@@ -64,8 +64,7 @@ const Personnel = () => {
                 loading={personnelsLoading}
               />
 
-              <Toggle activeOptions={{ toggle, setToggle }}
-                ToggleItems={["hardware", "software"]} />
+              <Toggle activeOptions={[toggle, setToggle]} ToggleItems={ToggleItems} />
 
               <PersonnelSection
                 title="Lead"

@@ -171,7 +171,7 @@ const CreateRequest = () => {
         </CustomLabel>
 
         <Toggle
-          activeOptions={{ activeOption, setActiveOption }}
+          activeOptions={[activeOption, setActiveOption]}
           ToggleItems={["equipment", "leave", "other"]}
         />
 

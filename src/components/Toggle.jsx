@@ -1,6 +1,6 @@
 
 export default function Toggle({ activeOptions, ToggleItems, className }) {
-    const { activeOption, setActiveOption } = activeOptions;
+    const [activeOption, setActiveOption] = activeOptions;
 
     const handleOptionsChange = (selectedOption) => {
         setActiveOption(selectedOption);

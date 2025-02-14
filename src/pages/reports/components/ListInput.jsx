@@ -30,7 +30,7 @@ export default function ListInput({ title, items, setItems }) {
                         value={inputValue || ""}
                         onChange={(e) => setInputValue(e.target.value)}
                         labelCLassName="mt-1 font-medium text-lg mb-1"
-                        placeholder={`Enter ${title.toLowerCase()}`}
+                        placeholder={`Enter ${title.toLowerCase()} task`}
                     // required={inputValue.trim() === "" && items.length === 0}
                     >{`${title} tasks`}</CustomLabel>
                 </div>

@@ -141,9 +141,8 @@ const CreateReport = () => {
         onSubmit={handleSubmit}
       >
         <Toggle
-          handleOptionsChange={handleOptionsChange}
           ToggleItems={ToggleItems}
-          activeOption={activeOption}
+          activeOptions={[activeOption, setActiveOption]}
         />
 
         <CustomLabel
