@@ -151,10 +151,10 @@ const Reports = () => {
                     )}
                   </div>
                   <div className="flex-grow">
-                    <p className="truncate font-medium">{title}</p>
+                    <p className="truncate font-semibold">{title}</p>
                     <p className="text-sm">{ sender.name}</p>
                   </div>
-                  <p className="text-sm italic">{formatDistanceToNow(created_at, {addSuffix: true})}</p>
+                  <p className="text-xs font-light italic">{formatDistanceToNow(created_at, {addSuffix: true})}</p>
                 </Link>
               );
             })}
