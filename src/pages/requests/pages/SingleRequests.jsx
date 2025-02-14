@@ -61,7 +61,7 @@ const SingleRequests = () => {
     <div className="mt-2 min-h-screen overflow-y-auto px-6 py-4">
       <h2 className="text-2xl font-medium capitalize">{type} Request</h2>
       <hr className="mt-1 bg-black" />
-      <div className="mx-auto my-12 mt-8 flex flex-col gap-5 rounded-xl border px-10 py-8 shadow-lg">
+      <div className="mx-auto my-12 mt-8 flex flex-col gap-5 rounded-xl border px-10 py-8 shadow-lg fromLeft">
         <div className="w-full items-end justify-between md:flex">
           <div className="flex items-center">
             <Dot
@@ -76,7 +76,7 @@ const SingleRequests = () => {
           <p className="text-sm">{formatDate(created_at)}</p>
         </div>
         {type === "eqpt" && (
-          <div className="mt-4">
+          <div className="">
             <h3 className="text-lg font-medium">Equipment Details</h3>
             <table className="mt-4 w-full table-auto border-separate rounded-md border border-gray-500 md:w-1/2">
               <thead>
@@ -98,17 +98,20 @@ const SingleRequests = () => {
                 </tr>
               </tbody>
             </table>
-            <h2 className="mt-2 text-lg font-medium">Purpose</h2>
-            <p className="mt-2 w-full break-words rounded-md border border-gray-300 p-4 text-base text-gray-700">
-              {request_dtls.purpose}
-            </p>
+
+            <div className="mt-2">
+              <h2 className=" text-lg font-medium">Purpose</h2>
+              <p className="w-full break-words rounded-md  px-4 py-1 text-base text-gray-700">
+                {request_dtls.purpose}
+              </p>
+            </div>
           </div>
         )}
         {request.type === "leave" && (
           <>
             <div className="">
               <h3 className="text-lg font-medium">Leave Details</h3>
-              <table className="mt-2 w-full table-auto border-separate rounded-md border border-gray-500">
+              <table className="w-full table-auto border-separate border border-gray-500 rounded-md mt-2  md:w-1/2">
                 <thead>
                   <tr>
                     <th className="border-b border-r border-gray-500 px-4 py-2 text-left text-lg font-medium">
@@ -139,8 +142,8 @@ const SingleRequests = () => {
         )}
         {request.type === "other" && (
           <div>
-            <h2 className="mt-2 text-lg font-medium">Description:</h2>
-            <p className="mt-2 w-full break-words rounded-md p-4 text-base text-gray-700">
+            <h2 className=" text-lg font-medium">Description:</h2>
+            <p className=" w-full break-words rounded-md px-4 py-1 text-base text-gray-700">
               {request_dtls.purpose}
             </p>
           </div>

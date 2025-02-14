@@ -67,7 +67,7 @@ const Dashboard = () => {
   // set the date
 
   return (
-    <div className="p-2 fromRight">
+    <div className="p-2 fromLeft">
       {profileError.status && (
         <p className="text-red-500">
           Couldn&apos;t load your dashboard. {profileError.msg} <span className="hover:underline" onClick={getProfile}>Retry?</span>

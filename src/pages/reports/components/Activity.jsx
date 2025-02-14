@@ -21,7 +21,7 @@ export default function Activity({ period, setPeriod, completed, setCompleted, o
           <span>{period}</span> {dropdown ? <ChevronUp /> : <ChevronDown />}
         </button>
         {dropdown && (
-          <div className="absolute z-50 mt-2 max-h-48 w-44 overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg">
+          <div className="absolute z-50 mt-2 max-h-48 w-44 overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg fromTop">
             {periodDurations.map((duration) => (
               <div
                 key={duration}

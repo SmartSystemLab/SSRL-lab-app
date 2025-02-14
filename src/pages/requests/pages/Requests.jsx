@@ -8,6 +8,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { formatDistanceToNow } from "date-fns";
 import { getInitials, getRandomSoftHexColor } from "../../../Modules/funcs";
+import RequestsSkeleton from "../../../components/skeletons/RequestsSkeleton";
+
 
 const Requests = () => {
   const [requests, setRequests] = useState([]);
@@ -77,6 +79,7 @@ const Requests = () => {
             </div>
           </div>
 
+        <RequestsSkeleton/>
           {/* Messages */}
           <section className="mt-4">
             {requests &&
@@ -84,7 +87,7 @@ const Requests = () => {
                 const { created_at, avatar, sender, title, _id } = request;
                 return (
                   <Link
-                    className="flex items-center gap-4 border-b hover:bg-zinc-100"
+                    className="flex items-center gap-4 border-b hover:bg-zinc-100 fromTop"
                     key={created_at}
                     to={`/home/requests/${_id}`}
                     state={request}

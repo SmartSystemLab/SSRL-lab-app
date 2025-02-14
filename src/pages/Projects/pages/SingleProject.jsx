@@ -37,14 +37,13 @@ const SingleProject = () => {
 
   return (
     <div className="relative">
-      <div className="mx-auto mt-4 w-11/12 rounded-lg border-2 bg-white px-6 py-4 shadow-sm">
+      <div className="mx-auto mt-4 w-11/12 rounded-lg border-2 bg-white px-6 py-4 shadow-sm fromLeft">
         {/* Project Header */}
         <div className="relative mb-6 mt-4 flex flex-col md:flex-row md:gap-4">
           <h1 className="text-xl font-bold">{name}</h1>
           <span
-            className={`text-sm font-normal ${
-              isCompleted ? "text-green-600" : "text-red-500"
-            } md:self-end`}
+            className={`text-sm font-normal ${isCompleted ? "text-green-600" : "text-red-500"
+              } md:self-end`}
           >
             {isCompleted ? "Completed" : "Uncompleted"}
           </span>
@@ -80,7 +79,7 @@ const SingleProject = () => {
             <Link
               className="rounded-full border-2 border-logo p-2 px-4 font-medium hover:bg-logo hover:text-white"
               to={`/home/projects/feedbacks/${_id}`}
-              state={{feedback, name}}
+              state={{ feedback, name }}
             >
               See all feedback
             </Link>
