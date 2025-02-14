@@ -66,7 +66,7 @@ const Personnel = () => {
                 loading={personnelsLoading}
               />
 
-              <Toggle handleOptionsChange={handleOptionsChange} activeOption={toggle} ToggleItems={ToggleItems} />
+              <Toggle activeOptions={[toggle, setToggle]} ToggleItems={ToggleItems} />
 
               <PersonnelSection
                 title="Lead"

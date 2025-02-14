@@ -7,7 +7,6 @@ const SearchBar = () => {
     const handleInputChange = (e) => {
         setQuery(e.target.value)
     }
-    // console.log(query)
 
     return (
         <div className="relative w-full sm:max-w-xs md:max-w-md lg:max-w-lg ">
