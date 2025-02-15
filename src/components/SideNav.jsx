@@ -19,22 +19,13 @@ const navData = [
   { icon: <FolderOpenDot />, text: "Projects", path: "/home/projects", id: 3 },
   { icon: <ClipboardList />, text: "Reports", path: "/home/reports", id: 5 },
   { icon: <HandHelping />, text: "Requests", path: "/home/requests", id: 6 },
-  { icon: <UserRoundCheck />, text: "Attendance", path: "/home/requests", id: 9 },
+  { icon: <UserRoundCheck />, text: "Attendance", path: "/home/attendance", id: 9 },
   { icon: <LayoutList />, text: "To-do", path: "/home/to-do", id: 7 },
   { icon: <MessageCircleDashed />, text: "Team Chat", path: "/home/teamchat", id: 4 },
   { icon: <Settings />, text: "Settings", path: "/home/settings", id: 8 },
 ];
 
-// const navData2 = [
-//   { icon: Dashboard, text: "Dashboard", path: "/home/dashboard", id: 1 },
-//   { icon: Interns, text: "Personnel", path: "/home/personnel", id: 2 },
-//   { icon: Projects, text: "Projects", path: "/home/projects", id: 3 },
-//   { icon: Calendar, text: "To-do", path: "/home/to-do", id: 4 },
-//   { icon: TeamChat, text: "Team Chat", path: "/home/teamchat", id: 5 },
-//   { icon: Attendance, text: "Reports", path: "/home/reports", id: 6 },
-//   { icon: Attendance, text: "Requests", path: "/home/requests", id: 7 },
-//   { icon: Settings, text: "Settings", path: "/home/settings", id: 8 },
-// ];
+
 
 const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
   return (
@@ -55,7 +46,7 @@ const SideNav = ({ toggleSideNav, isSideNavOpen }) => {
 
       <div className="absolute left-4 top-4 text-logo lg:hidden">
         <button onClick={toggleSideNav} className="cursor-pointer">
-          {isSideNavOpen && <X />}
+          {isSideNavOpen && <X size={30} />}
         </button>
       </div>
 

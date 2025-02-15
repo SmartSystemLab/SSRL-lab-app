@@ -2,67 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { LiaCheckDoubleSolid } from "react-icons/lia";
 import { Plus } from "lucide-react";
-import Messages from "../components/Messages";
-import img1 from "../pages../../../../assets/img1.jpg";
+// import Messages from "../components/Messages";
+// import img1 from "../pages../../../../assets/img1.jpg";
 import { useRequest } from "../../../Modules/useRequest";
 import { useState } from "react";
 import { useEffect } from "react";
 import { formatTimeAgo, getInitials, getRandomSoftHexColor } from "../../../Modules/funcs";
 import { formatDistanceToNow } from "date-fns";
 
-const info = [
-  {
-    name: "Ogunjirin M. Boluwatife",
-    intern: "Ogunjirin M. Boluwatife",
-    summary: "Sent you weekly report",
-    stack: "Embedded Systems",
-    images: img1,
-    duration: "10 mins",
-    id: 1,
-    type: "activity",
-    period: "Weekly",
-    completed: [
-      "Completed login authentication feature",
-      "Implemented frontend for dashboard",
-      "Integrated API for user profiles",
-    ],
-    ongoing: [
-      "Working on real-time chat feature",
-      "Fixing UI bugs on mobile responsiveness",
-    ],
-    nextTask: [
-      "Deploy application to production",
-      "Write documentation for frontend components",
-    ],
-  },
-  {
-    name: "Agboola Oluwatofunmi B.",
-    intern: "Agboola Oluwatofunmi B.",
-    summary: "Sent you Lab App report",
-    stack: "Embedded System",
-    images: img1,
-    duration: "1 day",
-    id: 2,
-    type: "project",
-    title: "Nexo Ai project",
-    Summary:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure architecto, obcaecati, eligendi consequatur laudantium ipsam quo ipsa eos dicta natus saepe sed odit necessitatibus placeat! Voluptatem a amet debitis labore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure architecto, obcaecati, eligendi consequatur laudantium ipsam quo ipsa eos dicta natus saepe sed odit necessitatibus placeat! Voluptatem a amet debitis labore.",
-  },
-  {
-    name: "Adeosun Covenant J",
-    intern: "Adeosun Covenant J",
-    summary: "Sent you Hardware interns report",
-    stack: "Front End web development",
-    images: img1,
-    period: "Monthly",
-    duration: "1 day",
-    id: 3,
-    type: "activity",
-    completed: ["Fixed UI bugs", "Implemented search feature"],
-    ongoing: ["Testing new API"],
-    nextTask: ["Deploy to production"],
-  },
-];
 
 const Reports = () => {
   const [reports, setReports] = useState(null);
@@ -128,13 +75,13 @@ const Reports = () => {
         </div>
 
         {/* Messages */}
-        <section className="mt-4">
+        <section className="mt-4 ">
           {reports &&
             reports.map((report) => {
               const { created_at, avatar, sender, title, _id } = report;
               return (
-                <Link className="border-b p-2 flex gap-4 items-center hover:bg-zinc-100" key={created_at} to={`/home/reports/${_id}`} state={report}>
-                  <div className="w-12 h-12 rounded-full">
+                <Link className="border-b flex gap-4 items-center hover:bg-zinc-100 fromTop" key={created_at} to={`/home/reports/${_id}`} state={report}>
+                  <div className="w-12 h-12 rounded-full m-2 mt-4">
                     {avatar !== "NIL" ? (
                       <img
                         src={avatar}
@@ -147,14 +94,14 @@ const Reports = () => {
                         style={{
                           backgroundColor: `${getRandomSoftHexColor()}50`,
                         }}
-                        >{ getInitials(sender.name)}</span>
+                      >{getInitials(sender.name)}</span>
                     )}
                   </div>
                   <div className="flex-grow">
-                    <p className="truncate font-medium">{title}</p>
+                    <p className="truncate font-semibold">{title}</p>
                     <p className="text-sm">{ sender.name}</p>
                   </div>
-                  <p className="text-sm italic">{formatDistanceToNow(created_at, {addSuffix: true})}</p>
+                  <p className="text-xs font-light italic">{formatDistanceToNow(created_at, {addSuffix: true})}</p>
                 </Link>
               );
             })}

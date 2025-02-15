@@ -1,158 +1,252 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 import { Plus, ChevronDown, ChevronUp } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom"
-import CustomLabel from '../../../components/CustomLabel';
-import Toggle from "../component/Toggle"
-import Equipment from "../component/Equipment"
-import Leave from "../component/Leave"
-import Others from "../component/Others"
-import MultipleSelect from "../../../components/MultipleSelect"
-import BigGreenButton from '../../../components/BigGreenButton'
+import { useNavigate, useLocation } from "react-router-dom";
+import CustomLabel from "../../../components/CustomLabel";
+import Toggle from "../../../components/Toggle";
+import Equipment from "../component/Equipment";
+import MultipleSelect from "../../../components/MultipleSelect";
+import BigGreenButton from "../../../components/BigGreenButton";
+import DatePicker from "react-datepicker";
+import { useRequest } from "../../../Modules/useRequest";
+import toast from "react-hot-toast";
+import { Loader } from "lucide-react";
 
 const CreateRequest = () => {
-    const location = useLocation()
-    const navigate = useNavigate()
-    const [title, setTitle] = useState('')
-    const [activeOption, setActiveOption] = useState("equipment")
-    const [leaveDates, setLeaveDates] = useState({ from: null, to: null })
-    const [selectedRecipients, setSelectedRecipients] = useState([])
+  const location = useLocation();
+  const navigate = useNavigate();
+  const request = location.state;
+  const [title, setTitle] = useState("");
+  const [activeOption, setActiveOption] = useState("equipment");
+  const [leaveDates, setLeaveDates] = useState({ from: null, to: null });
+  const [selectedRecipients, setSelectedRecipients] = useState([]);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(null);
+  const [eqpName, setEqpName] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [purpose, setPurpose] = useState("");
+  const [recipients, setRecipients] = useState([]);
 
-    const [eqpName, setEqpName] = useState('')
-    const [quantity, setQuantity] = useState('')
-    const [description, setDescription] = useState('')
-    const [purpose, setPurpose] = useState('')
+  const handleStartDateChange = (date) => {
+    setStartDate(date);
+    if (handleLeaveDates) handleLeaveDates({ from: date, to: endDate });
+  };
 
-    const recipients = [
-        { name: 'ceejay', id: 1 },
-        { name: 'nunsi', id: 2 },
-        { name: 'mama', id: 3 },
-        { name: 'jay', id: 4 },
-        { name: 'jae', id: 5 },
-        { name: 'jyeaa', id: 6 },
-        { name: 'aye', id: 7 },
-        { name: 'jye', id: 8 },
-        { name: 'jy', id: 9 },
-    ]
+  const handleEndDateChange = (date) => {
+    setEndDate(date);
+    if (handleLeaveDates) handleLeaveDates({ from: startDate, to: date });
+  };
 
+  const handleLeaveDates = ({ from, to }) => {
+    setLeaveDates({ from, to });
+  };
+  const [
+    createRequest,
+    createLoading,
+    setCreateLoading,
+    createError,
+    setCreateError,
+  ] = useRequest();
 
-    const handleOptionsChange = (selectedOption) => {
-        setActiveOption(selectedOption)
-    }
-    const handleLeaveDates = ({ from, to }) => {
-        setLeaveDates({ from, to });
-        // console.log('Selected Dates:', { from, to });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setCreateLoading(true);
+
+    const base = {
+      title,
+      type: activeOption,
+      receipient: selectedRecipients[0],
     };
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log('Title:', title)
-        if (activeOption === 'equipment') {
-            console.log('Equipment Name:', eqpName)
-            console.log('purpose', purpose)
-            console.log('Quantity:', quantity)
-        } else if (activeOption === 'leave') {
-            console.log('Leave Dates:', leaveDates)
-            console.log('purpose', purpose)
-        } else if (activeOption === 'others') {
-            console.log('description:', description)
-        }
-        console.log('Recipients:', selectedRecipients)
+    let request_dtls = {};
+    if (activeOption === "equipment") {
+      request_dtls = {
+        name: eqpName,
+        quantity,
+        from: leaveDates.from,
+        to: leaveDates.to,
+        purpose,
+      };
+    } else if (activeOption === "leave") {
+      request_dtls = {
+        from: leaveDates.from,
+        to: leaveDates.to,
+        purpose,
+      };
+    } else if (activeOption === "other") {
+      request_dtls = {
+        purpose,
+      };
     }
+    const body = { ...base, request_dtls };
 
-    const handlePreview = () => {
-        const requestData = { title, activeOption, eqpName, quantity, description, purpose, leaveDates, selectedRecipients };
-        navigate('/home/requests/preview-request', { state: requestData });
+    const res = await createRequest("request/create", "POST", body);
+    const data = await res.json();
+
+    if (res.status === 200) {
+      toast.success("Request created successfully");
+    } else {
+      setCreateError({
+        status: true,
+        msg: data.message,
+      });
+      toast.error(createError.msg);
     }
+    setCreateLoading(false);
+    console.log(body);
+  };
 
-    useEffect(() => {
-        if (location.state) {
+  const handlePreview = () => {
+    const requestData = {
+      title,
+      activeOption,
+      eqpName,
+      quantity,
+      purpose,
+      leaveDates,
+      selectedRecipients,
+    };
+    navigate("/home/requests/preview-request", { state: requestData });
+  };
 
-            const { title, activeOption, eqpName, quantity, description, purpose, leaveDates, selectedRecipients } = location.state;
-            setTitle(title)
-            setActiveOption(activeOption)
-            setEqpName(eqpName)
-            setQuantity(quantity)
-            setDescription(description)
-            setPurpose(purpose)
-            setLeaveDates({ from: leaveDates.from, to: leaveDates.to })
-            // setLeaveDates({ leaveDates.from, to })
-            setSelectedRecipients(selectedRecipients)
-        }
-    }, [location.state])
-    return (
-        <div className="mt-4 md:px-6 px-2 min-h-screen overflow-y-auto">
+  useEffect(() => {
+    if (request) {
+      const {
+        title,
+        activeOption,
+        eqpName,
+        quantity,
+        purpose,
+        leaveDates,
+        selectedRecipients,
+      } = request;
+      setTitle(title);
+      setActiveOption(activeOption);
+      setEqpName(eqpName);
+      setQuantity(quantity);
+      setPurpose(purpose);
+      setLeaveDates({ from: leaveDates.from, to: leaveDates.to });
+      setSelectedRecipients(selectedRecipients);
+    }
+  }, [request]);
 
-            <div className="flex items-center gap-2 text-xl font-semibold tracking-wider mb-2">
-                <span>Create New Request</span>
-                <div className="p-[2px] bg-logo rounded-full">
-                    <Plus color="white" />
-                </div>
-            </div>
-            <hr className="bg-black mt-1" />
+  const [membersRequest] = useRequest();
 
-            <form
-                className='mt-8 mx-auto my-12 flex flex-col gap-5 rounded-xl border px-10 py-8 shadow-lg'
-                onSubmit={handleSubmit}>
+  const getReceivers = async () => {
+    const res = await membersRequest(`get_all_members`);
+    const data = await res.json();
+    if (res.ok) {
+      setRecipients(data.members);
+    }
+  };
 
-                <CustomLabel
-                    htmlFor="title"
-                    labelText="Title:"
-                    inputType="text"
-                    inputValue={title}
-                    onChange={(event) => setTitle(event.target.value)}
-                    required={true}
-                    labelCLassName="text-black inline-block font-medium text-lg  mb-1 "
-                    inputClassName="appearance-none relative block w-full  px-3 py-2 border border-black rounded-lg focus:outline-none"
-                    placeholder="Add request title"
-                >Title</CustomLabel>
+  useEffect(() => {
+    getReceivers();
+  }, []);
 
-                <Toggle handleOptionsChange={handleOptionsChange} activeOption={activeOption} />
-
-                {activeOption === 'equipment' && <Equipment
-                    eqpName={eqpName}
-                    setEqpName={setEqpName}
-                    quantity={quantity}
-                    setQuantity={setQuantity}
-                    purpose={purpose}
-                    setPurpose={setPurpose}
-                />
-                }
-                {activeOption === 'leave' && <Leave handleLeaveDates={handleLeaveDates} purpose={purpose} setPurpose={setPurpose} />}
-                {activeOption === 'others' && <Others description={description} setDescription={setDescription} />}
-
-
-                <div className="mt-3">
-                    <label className="text-black font-medium  mb-1 block">Recipients:</label>
-                    <MultipleSelect
-                        options={recipients}
-                        selectedOptions={selectedRecipients}
-                        onSelectionChange={setSelectedRecipients}
-                        buttonText="  Select Recipients"
-                        className="w-full md:w-1/2"
-
-                    />
-
-                </div>
-
-                <div className='space-x-3 mt-3 flex justify-end'>
-                    < button
-                        className="cursor-pointer rounded-full bg-navBg2 px-4 py-1 font-medium capitalize text-white hover:scale-105 w-fit"
-                        onClick={handlePreview}
-                    >Preview</button>
-
-                    <BigGreenButton
-                        type="submit"
-                    >
-                        Submit
-                    </BigGreenButton>
-                </div>
-
-
-            </form>
-
+  return (
+    <div className="fromLeft mt-4 min-h-screen overflow-y-auto px-2 md:px-6">
+      <div className="mb-2 flex items-center gap-2 text-xl font-semibold tracking-wider">
+        <span>Create New Request</span>
+        <div className="rounded-full bg-logo p-[2px]">
+          <Plus color="white" />
         </div>
-    )
-}
+      </div>
+      <hr className="mt-1 bg-black" />
 
-export default CreateRequest
+      <form
+        className="mx-auto my-12 mt-8 flex flex-col gap-5 rounded-xl border px-10 py-8 shadow-lg"
+        onSubmit={handleSubmit}
+      >
+        <CustomLabel
+          htmlFor="title"
+          labelText="Title:"
+          inputType="text"
+          inputValue={title}
+          onChange={(event) => setTitle(event.target.value)}
+          required={true}
+          labelCLassName="text-black inline-block font-medium text-lg  mb-1 "
+          inputClassName="appearance-none relative block w-full  px-3 py-2 border border-black rounded-lg focus:outline-none"
+          placeholder="Add request title"
+        >
+          Title
+        </CustomLabel>
+
+        <Toggle
+          activeOptions={[activeOption, setActiveOption]}
+          ToggleItems={["equipment", "leave", "other"]}
+        />
+
+        {activeOption === "equipment" && (
+          <Equipment
+            eqpName={eqpName}
+            setEqpName={setEqpName}
+            quantity={quantity}
+            setQuantity={setQuantity}
+            purpose={purpose}
+            setPurpose={setPurpose}
+          />
+        )}
+
+        {(activeOption == "equipment" || activeOption == "leave") && (
+          <div>
+            <div className="mt-2 flex flex-col items-center gap-5 sm:flex-row">
+              <div>
+                <label className="mb-2 block font-medium">From:</label>
+                <DatePicker
+                  selected={startDate}
+                  onChange={handleStartDateChange}
+                  placeholderText="Select start date"
+                  className="w-full rounded-lg border border-slate-900 px-3 py-2 text-slate-900 opacity-35 focus:text-black focus:opacity-100 focus:outline-none"
+                />
+              </div>
+              <div>
+                <label className="mb-2 block font-medium">To:</label>
+                <DatePicker
+                  selected={endDate}
+                  onChange={handleEndDateChange}
+                  minDate={startDate}
+                  placeholderText="Select end date"
+                  className="w-full rounded-lg border border-slate-900 px-3 py-2 text-slate-900 opacity-35 focus:text-black focus:opacity-100 focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="mt-2">
+          <h2 className="mb-1 font-medium">
+            {activeOption == "others" ? "Give detailed description" : "Purpose"}
+          </h2>
+          <textarea
+            id="purpose"
+            value={purpose || ""}
+            onChange={(event) => setPurpose(event.target.value)}
+            className="mt-l block h-32 w-full resize-none appearance-none rounded-lg border border-slate-900 px-4 py-3 text-slate-900 opacity-35 focus:text-black focus:opacity-100 focus:outline-none"
+            rows={5}
+            required
+          />
+        </div>
+
+        <div className="mt-3">
+          <label className="mb-1 block font-medium text-black">
+            Recipients:
+          </label>
+          <MultipleSelect
+            options={recipients}
+            selectedOptions={selectedRecipients}
+            onSelectionChange={setSelectedRecipients}
+            buttonText="Select Recipients"
+            className="w-full md:w-1/2"
+          />
+        </div>
+
+        <div className="mt-3 flex items-center justify-end gap-3">
+          {createLoading && <Loader className="animate-spin text-navBg2" />}
+          <BigGreenButton action={handlePreview}>Preview</BigGreenButton>
+          <BigGreenButton type="submit">Submit</BigGreenButton>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default CreateRequest;

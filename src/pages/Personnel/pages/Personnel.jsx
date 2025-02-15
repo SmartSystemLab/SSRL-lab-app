@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import Toggle from "../component/Toggle";
+import Toggle from "../../../components/Toggle";
 import { useRequest } from "../../../Modules/useRequest";
 import PersonnelSection from "../component/PersonnelSection";
 
 const Personnel = () => {
-  const [toggle, setToggle] = useState("software");
+  const [toggle, setToggle] = useState("software")
+  const ToggleItems = ["software", "hardware"]
+
   const [admins, setAdmins] = useState([]);
   const [hardleads, setHardleads] = useState([]);
   const [hardInterns, setHardInterns] = useState([]);
@@ -51,7 +53,7 @@ const Personnel = () => {
             {personellsError.status && (
               <p className="text-red-500 mt-2">
                 {personellsError.msg}
-                <p className="hover:underline cursor-pointer" onClick={getPersonnels}>Retry?</p> 
+                <p className="hover:underline cursor-pointer" onClick={getPersonnels}>Retry?</p>
               </p>
             )}
 
@@ -62,7 +64,7 @@ const Personnel = () => {
                 loading={personnelsLoading}
               />
 
-              <Toggle setToggle={setToggle} toggle={toggle} />
+              <Toggle activeOptions={[toggle, setToggle]} ToggleItems={ToggleItems} />
 
               <PersonnelSection
                 title="Lead"

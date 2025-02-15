@@ -15,8 +15,8 @@ const TaskLabel = ({
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(event.target)
-    console.log(value);
+    // console.log(event.target)
+    // console.log(value);
     handleEdit()
   };
 

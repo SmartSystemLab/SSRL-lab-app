@@ -40,7 +40,7 @@ const MultipleSelect = ({
   // })
 
   return (
-    <div className={`relative ${className} `} ref={DropdownRef}>
+    <div className={`relative ${className}`} ref={DropdownRef}>
       <button
         type="button"
         onClick={() => setDropdown(!dropdown)}
@@ -49,11 +49,11 @@ const MultipleSelect = ({
         <span>{buttonText}</span> {dropdown ? <ChevronUp /> : <ChevronDown />}
       </button>
       {dropdown && !disabled && (
-        <div className="absolute bottom-10 z-50 mb-1 max-h-48 w-44 overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg md:w-64">
+        <div className="absolute bottom-10 z-50 mb-1 max-h-48 w-44 overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg md:w-64 fromBottom">
           {options.map((option) => (
             <label
               key={option.id}
-              className="flex w-full cursor-pointer items-center gap-2 border-b px-2 py-3 hover:bg-navBg1"
+              className="flex w-full cursor-pointer items-center gap-2 border-b px-2 py-3 hover:bg-navBg1 fromBottom"
             >
               <input
                 type="checkbox"

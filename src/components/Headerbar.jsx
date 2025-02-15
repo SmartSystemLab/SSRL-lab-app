@@ -4,16 +4,17 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import { RxAvatar } from "react-icons/rx";
 import { FaBars } from "react-icons/fa6";
 import { ArrowLeft } from "lucide-react";
+import { AlignJustify } from "lucide-react";
 
 const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
   const navigate = useNavigate();
   return (
     <div
-      className={`fixed left-0 right-0 top-0 flex h-[62px] items-center justify-between bg-white px-4 md:px-8 lg:ml-64 shadow-md z-50`}
+      className={`fixed left-0 right-0 top-0 z-50 flex h-[62px] max-w-screen-2xl items-center justify-between bg-white px-4 shadow-md md:px-8 lg:ml-64 ${isSideNavOpen && "translate-x-64"} transition-transform duration-300 ease-in-out lg:translate-x-0`}
     >
       <div className="text-logo lg:hidden">
         <button onClick={toggleSideNav} className="cursor-pointer">
-          {!isSideNavOpen && <FaBars className="h-5 w-5" />}
+          {!isSideNavOpen && <AlignJustify className="" strokeWidth={3} size={28} />}
         </button>
       </div>
       <div className="flex w-3/4 items-center gap-2">
@@ -24,7 +25,7 @@ const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
       </div>
       <div className="flex gap-2">
         <Link to={`/home/dashboard/notifications`}>
-          <IoNotificationsOutline className="h-7 w-7 cursor-pointer transition-all duration-200 hover:scale-125 hover:transition-transform hover:rotate-12" />
+          <IoNotificationsOutline className="h-7 w-7 cursor-pointer transition-all duration-200 hover:rotate-12 hover:scale-125 hover:transition-transform" />
         </Link>
         <Link to={`/home/dashboard/user-profile`}>
           <RxAvatar className="h-7 w-7 cursor-pointer transition-all duration-200 hover:scale-125 hover:transition-transform" />

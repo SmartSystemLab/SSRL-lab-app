@@ -11,12 +11,12 @@ const Equipment = ({
 
   return (
     <>
-      <div className="flex flex-col md:flex-row items-start justify-center gap-10 ">
-        <div className="w-32">
+      <div className="flex flex-col md:flex-row items-start gap-10 ">
+        <div className="w-24">
           <CustomLabel
             htmlFor="quantity"
             labelText="Quantity"
-            inputType="nunpmber"
+            inputType="number"
             inputValue={quantity || ""}
             onChange={(event) => setQuantity(event.target.value)}
             //   onBlur={() => {}}=[#
@@ -27,7 +27,7 @@ const Equipment = ({
           >Quantity</CustomLabel>
         </div>
 
-        <div className="flex-1">
+        <div className="md:w-1/2 w-full">
           <CustomLabel
             htmlFor="eqpName"
             labelText="Equipment Name:"
@@ -41,7 +41,7 @@ const Equipment = ({
           >Equipment Name:</CustomLabel>
         </div>
       </div>
-      <div className=" mt-2">
+      {/* <div className=" mt-2">
         <h2 className="font-medium mb-1">Purpose</h2>
         <textarea
           id="purpose"
@@ -51,7 +51,7 @@ const Equipment = ({
           rows={5}
           required
         />
-      </div>
+      </div> */}
     </>
   );
 };

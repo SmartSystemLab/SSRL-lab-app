@@ -38,11 +38,7 @@ const EditProject = () => {
   const [editRequest, editLoading, setEditLoading, editError, setEditError] =
     useRequest();
 
-  // const [showMembersDropdown, setShowMembersDropdown] = useState(false);
-  // const [showLeadsDropdown, setShowLeadsDropdown] = useState(false);
-  // const toggleMembersDropdown = () =>
-  //   setShowMembersDropdown(!showMembersDropdown);
-  // const toggleLeadsDropdown = () => setShowLeadsDropdown(!showLeadsDropdown);
+
 
   useEffect(() => {
     if (projectData) {
@@ -141,7 +137,7 @@ const EditProject = () => {
   }, []);
 
   return (
-    <div className="mt-4 min-h-screen overflow-y-auto px-6 py-4">
+    <div className="mt-4 min-h-screen overflow-y-auto px-6 py-4 fromLeft">
       <button className="mb-2 flex items-center gap-2 text-xl font-semibold tracking-wider">
         <span>Edit</span>{" "}
         <span className="text-navBg2">{projectData.name}</span>

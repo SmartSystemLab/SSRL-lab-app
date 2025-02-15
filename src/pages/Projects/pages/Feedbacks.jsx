@@ -12,7 +12,7 @@ const Feedbacks = () => {
         Feedbacks on <span className="text-navBg2">{name}</span>
       </h1>
 
-      <div className="mx-4 my-6 flex flex-col gap-6">
+      <div className="mx-4 my-6 flex flex-col gap-6 fromLeft">
         {feedback.sort().map((feed) => {
           const { feedback, sender, created_at } = feed;
           return (
