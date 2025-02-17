@@ -38,12 +38,16 @@ const TaskCard = ({ tasks, tasky, setTasks }) => {
     });
     const data = await res.json();
 
+    // if (res.ok) {
+
+    // }
+
     console.log(data);
     setChecked(checked);
     setCheckLoading(false);
   };
 
-  const handleEdit = () => {
+  const handleEdit = (e) => {
     setEdit(!edit);
   };
 
@@ -72,7 +76,7 @@ const TaskCard = ({ tasks, tasky, setTasks }) => {
           )}
 
           <TaskLabel
-            htmlFor={id}
+            id={id}
             value={todo}
             onChange={(e) => setTask({ ...task, todo: e.target.value })}
             placeholder="Enter task"

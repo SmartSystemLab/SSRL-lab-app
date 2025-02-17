@@ -5,6 +5,7 @@ import { Plus } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRequest } from "../../Modules/useRequest";
 import { useEffect } from "react";
+import { Loader } from "lucide-react";
 
 const ToDo = () => {
   const [tasks, setTasks] = useState([]);
@@ -40,6 +41,7 @@ const ToDo = () => {
     setCreateLoading(true);
     if (!todo) {
       toast.error("Enter a new to-do");
+      setCreateLoading(false);
       return;
     }
 
@@ -103,10 +105,14 @@ const ToDo = () => {
                   onChange={(e) => setTodo(e.target.value)}
                 />
                 <button
-                  className="rounded-lg border bg-navBg2 px-4 py-2 font-medium text-white"
+                  className="flex min-w-[90px] justify-center rounded-xl border bg-navBg2 px-4 py-2 font-medium text-white"
                   type="submit"
                 >
-                  Create
+                  {createLoading ? (
+                    <Loader className="animate-spin text-white" />
+                  ) : (
+                    "Create"
+                  )}
                 </button>
               </form>
             </div>

@@ -1041,6 +1041,10 @@ video {
   min-width: 370px;
 }
 
+.min-w-\[90px\] {
+  min-width: 90px;
+}
+
 .min-w-max {
   min-width: -moz-max-content;
   min-width: max-content;
