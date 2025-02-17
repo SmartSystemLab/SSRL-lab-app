@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TaskLabel from "./TaskLabel";
-import { Edit, Trash2 } from "lucide-react";
+import { Edit } from "lucide-react";
 import { MinusCircle } from "lucide-react";
 import { useRequest } from "../../../Modules/useRequest";
 import toast from "react-hot-toast";
@@ -26,7 +26,7 @@ const TaskCard = ({ tasks, tasky, setTasks }) => {
     } else {
       toast.error(data.message);
     }
-    setDeleteLoading(true);
+    setDeleteLoading(false);
   };
 
   const handleChecked = async (e) => {
@@ -37,10 +37,6 @@ const TaskCard = ({ tasks, tasky, setTasks }) => {
       status: checked,
     });
     const data = await res.json();
-
-    // if (res.ok) {
-
-    // }
 
     console.log(data);
     setChecked(checked);

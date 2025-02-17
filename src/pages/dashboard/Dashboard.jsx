@@ -44,6 +44,7 @@ const Dashboard = () => {
           reports,
           requests,
           stack,
+          todos
         } = data;
         setSessionStorage("userRole", user_role);
         setSessionStorage("userStack", stack);
@@ -52,6 +53,7 @@ const Dashboard = () => {
         setProjects(projects);
         setReports(reports);
         setRequests(requests);
+        setTodos(todos);
       }
       console.log(data);
     } else {
