@@ -28,15 +28,14 @@ const TaskLabel = ({
       <input
         value={value}
         onChange={onChange}
-        className={`h-10 w-full appearance-none rounded-lg px-3 py-1 capitalize text-slate-900 opacity-100 focus:text-black focus:opacity-100 focus:outline-none ${inputClassName} ${checked && "italic line-through"} ${edit ? " border border-black" : "pointer-events-none select-none"} `}
+        className={`h-10 w-full appearance-none rounded-lg px-3 py-1 capitalize text-slate-900 opacity-100 focus:text-black focus:opacity-100 focus:outline-none ${inputClassName} ${checked && "italic line-through"} ${edit ? " border border-zinc-500" : "pointer-events-none select-none"} `}
         placeholder={placeholder}
       />
 
       <BigGreenButton
-        children="save"
         className={`mx-3 ${edit || "hidden"}`}
         type={"submit"}
-      />
+      >Save</BigGreenButton>
     </form>
   );
 };
