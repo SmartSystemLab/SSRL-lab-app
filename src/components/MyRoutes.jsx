@@ -9,7 +9,7 @@ import OTP from "../pages/onboarding/OTP";
 import SharedHomeLayout from "../sharedLayouts/SharedHomeLayout.jsx";
 
 import Dashboard from "../pages/dashboard/Dashboard";
-// import Notifications from "../pages/dashboard/Notifications.jsx";
+import Notifications from "../pages/dashboard/Notifications.jsx";
 // import Userprofile from "../pages/dashboard/Userprofile.jsx";
 // import NotificationCard from "../pages/dashboard/Notifications.jsx";
 
@@ -58,6 +58,7 @@ const MyRoutes = () => {
 
           <Route path="dashboard">
             <Route index element={<Dashboard />} />
+            <Route path="notifications" element={<Notifications />} />
           </Route>
 
           <Route path="personnel">
