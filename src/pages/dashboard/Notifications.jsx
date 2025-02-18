@@ -11,6 +11,8 @@ import { formatDistanceToNow } from "date-fns";
 import { CheckCheck } from "lucide-react";
 import RequestsSkeleton from "../../components/skeletons/RequestsSkeleton";
 import { Dot } from "lucide-react";
+import toast from "react-hot-toast";
+import Spinner from "../../components/Spinner";
 
 const info = [
   {
@@ -64,6 +66,8 @@ const Notifications = () => {
   const [noteRequest, noteLoading, setNoteLoading, noteError, setNoteError] =
     useRequest();
 
+  const [markallRequest, markallLoading, setMarkallLoading] = useRequest();
+
   const getAllNotifications = async () => {
     setNoteLoading(true);
     const res = await noteRequest(`notification/get_all`);
@@ -86,8 +90,29 @@ const Notifications = () => {
     getAllNotifications();
   }, []);
 
+  const markAllAsRead = async () => {
+    setMarkallLoading(true);
+    const res = await markallRequest(
+      `notification/mark_all_as_read`,
+      "POST",
+      {},
+    );
+    const data = await res.json();
+    if (res.ok) {
+      setUnread(0);
+      setNotifications((notifications) => notifications.map((note) => ({
+        ...note,
+        status: "read",
+      })));
+      toast.success(data.message);
+    } else {
+      toast.error(data.message);
+    }
+    setMarkallLoading(false);
+  };
+
   return (
-    <div>
+    <div className="fromLeft mx-auto my-12 mt-8 flex flex-col gap-5 rounded-xl border py-8 shadow-lg">
       <div className="container">
         {/* Header */}
         <div className="mt-8">
@@ -97,37 +122,53 @@ const Notifications = () => {
           {/* Content */}
           <div className="mt-6">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 font-semibold">
+              <div className="mx-6 flex items-center gap-2 font-semibold">
                 <div className="underline">Unread</div>
-                <div className="flex p-1 aspect-square items-center justify-center rounded-full bg-[#FFa500] text-center text-sm text-white">
+                <div className="flex aspect-square items-center justify-center rounded-full bg-[#FFa500] p-1 text-center text-sm text-white min-w-6 min-h-6">
                   {unread}
                 </div>
               </div>
-              <div className="flex cursor-pointer items-center gap-2 hover:underline">
-                <CheckCheck className="text-green-700" />
+              <div
+                className="flex cursor-pointer items-center gap-2 hover:underline"
+                onClick={markAllAsRead}
+              >
+                {markallLoading ? (
+                  <Spinner />
+                ) : (
+                  <CheckCheck className="text-green-700" />
+                )}
                 <p>mark all as read</p>
               </div>
             </div>
 
+            {noteError.status && <p>{noteError.msg}</p>}
+
             {/* Messages */}
             <section className="mt-4">
-              {noteLoading ? <div>
-                <RequestsSkeleton />
-                <RequestsSkeleton />
-                <RequestsSkeleton />
-              </div> :
-                (notifications.length > 0 ? (
+              {noteLoading ? (
+                <div className="fromTop">
+                  <RequestsSkeleton />
+                  <RequestsSkeleton />
+                  <RequestsSkeleton />
+                </div>
+              ) : notifications.length > 0 ? (
                 notifications.map((note) => {
                   const { _id, title, status, sentAt, message } = note;
                   return (
-                    // <Link to={`/home/dashboard/notifications/${_id}`} key={_id} state={note}>
-                    <Link key={_id} state={note}>
+                    <Link
+                      to={`/home/dashboard/notifications/${_id}`}
+                      key={_id}
+                      state={note}
+                    >
+                      {/* // <Link key={_id} state={note}> */}
                       <div className="fromTop flex items-center gap-4 border-b p-2 hover:bg-zinc-100">
-                        <div className="w-8 h-8 flex items-center justify-center">
-                          {status == "unread" && <Dot className="text-navBg2" strokeWidth={ 6} />}
+                        <div className="flex h-8 w-8 items-center justify-center">
+                          {status == "unread" && (
+                            <Dot className="text-navBg2" strokeWidth={6} />
+                          )}
                         </div>
                         <div className="flex-grow">
-                          <p className="truncate font-semibold">{title}</p>
+                          <p className="mb-1 truncate font-semibold">{title}</p>
                           <p className="max-w-[520px] truncate text-sm">
                             {message}
                           </p>
@@ -141,7 +182,7 @@ const Notifications = () => {
                 })
               ) : (
                 <div className="text-center">No notifications</div>
-              ))}
+              )}
             </section>
           </div>
         </div>

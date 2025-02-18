@@ -579,6 +579,10 @@ video {
   bottom: 0px;
 }
 
+.-top-1\/2 {
+  top: -50%;
+}
+
 .bottom-0 {
   bottom: 0px;
 }
@@ -663,6 +667,11 @@ video {
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
+}
+
+.mx-6 {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .mx-auto {
@@ -903,6 +912,10 @@ video {
   max-height: 100vh;
 }
 
+.min-h-6 {
+  min-height: 1.5rem;
+}
+
 .min-h-\[180px\] {
   min-height: 180px;
 }
@@ -1029,6 +1042,10 @@ video {
   width: max-content;
 }
 
+.min-w-6 {
+  min-width: 1.5rem;
+}
+
 .min-w-9 {
   min-width: 2.25rem;
 }
@@ -1062,6 +1079,10 @@ video {
   max-width: 360px;
 }
 
+.max-w-\[520px\] {
+  max-width: 520px;
+}
+
 .max-w-\[560px\] {
   max-width: 560px;
 }
@@ -1080,10 +1101,6 @@ video {
 
 .max-w-screen-2xl {
   max-width: 1536px;
-}
-
-.max-w-\[520px\] {
-  max-width: 520px;
 }
 
 .flex-1 {
@@ -2297,6 +2314,14 @@ video {
 
 .fromBottom {
   animation: slideUp 0.7s ease-out forwards;
+}
+
+.left-scroll {
+  direction: rtl;
+}
+
+.left-scroll div {
+  direction: ltr;
 }
 
 .marker\:text-navBg2 *::marker {
