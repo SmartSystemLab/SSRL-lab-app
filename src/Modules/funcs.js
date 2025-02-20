@@ -36,6 +36,9 @@ export const getInitials = (fullname) => {
     return initials;
 };
 
+export const okay = () => {
+    return "Okay"
+}
 
 export function formatTimeAgo(date) {
   const diff = Date.now() - date;
