@@ -3,7 +3,6 @@ import { getSessionStorage } from "./getSessionStorage";
 // 
 const url = "https://ssrl-lab-app-backend.onrender.com"
 // const url = "http://127.0.0.1:5000";
-// Base URL is
 
 export const useGetRequest = () => {
   const [loading, setLoading] = useState(false);
