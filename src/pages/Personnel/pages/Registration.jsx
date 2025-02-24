@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { useRef } from "react";
 import { Plus } from "lucide-react";
 import { Asterisk } from "lucide-react";
+import Spinner from "../../../components/Spinner";
 
 const Edit = () => {
   const location = useLocation();
@@ -245,7 +246,7 @@ const Edit = () => {
               <div className="flex items-center gap-4">
                 <BigGreenButton type="submit">Create User</BigGreenButton>
                 {createLoading && (
-                  <Loader2 className="animate-spin" color="#225522" />
+                  <Spinner />
                 )}
               </div>
             </form>
