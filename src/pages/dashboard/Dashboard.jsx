@@ -30,7 +30,6 @@ const Dashboard = () => {
     setProfileLoading(true);
     const res = await sendProfileRequest("home");
 
-    console.log(res);
     const data = await res.json();
     if (res.ok) {
       if (data) {
