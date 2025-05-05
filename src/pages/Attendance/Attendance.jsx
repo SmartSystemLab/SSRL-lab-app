@@ -35,6 +35,7 @@ const Attendance = () => {
                   <div className="w-12">In</div>
                 </BigGreenButton>
                 <BigGreenButton>
+                  
                   <div className="w-12">Out</div>
                 </BigGreenButton>
               </div>
