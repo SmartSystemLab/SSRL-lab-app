@@ -1,4 +1,6 @@
 import BigGreenButton from "../../components/BigGreenButton";
+import LogTable from "./LogTable";
+import LogTable2 from "./LogTable2";
 
 const Attendance = () => {
   return (
@@ -8,7 +10,7 @@ const Attendance = () => {
           <div className="mt-8">
             <div className="flex justify-between">
               <div className="text-2xl font-medium uppercase">Attendance</div>
-              <div className="text-xl font-bold">02:00:00</div>
+              <div className="text-xl font-bold">12:00:00</div>
             </div>
             <hr className="bg-black" />
 
@@ -39,6 +41,9 @@ const Attendance = () => {
                   <div className="w-12">Out</div>
                 </BigGreenButton>
               </div>
+
+              {/* Log table */}
+              <LogTable2/>
             </div>
           </div>
         </div>
