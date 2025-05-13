@@ -2,7 +2,6 @@ import React, { useMemo } from "react";
 import { useTable } from "react-table";
 import { header } from "./header";
 import SampleData from "./SampleData.json";
-import "./table.css";
 
 
 const LogTable = () => {

@@ -23,3 +23,7 @@ table th, tfoot td {
 
 .tableRow:nth-child(even){background-color: #f2f2f2;}
 .tableRow:hover {background-color: #ddd;}
+.active {
+  @apply p-2 rounded-xl bg-navBg2 text-white font-semibold;
+
+}

@@ -1,4 +1,5 @@
 export const header = [
+  { Header: "S/N", accessor: "id" },
   { Header: "Date", accessor: "date" },
   { Header: "In", accessor: "in" },
   { Header: "Out", accessor: "out" },

@@ -1,8 +1,20 @@
 import BigGreenButton from "../../components/BigGreenButton";
 import LogTable from "./LogTable";
+
+import SampleData from "./SampleData.json";
 import LogTable2 from "./LogTable2";
+import { useState } from "react";
+import Pagination from "./Pagination";
+import "./table.css";
 
 const Attendance = () => {
+  const DescendingData = [...SampleData].sort((a, b) => b.id - a.id);
+  const [currentLog, setCurrentLog] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(14);
+  const last = currentPage * postsPerPage;
+  const first = last - postsPerPage;
+  const currentPosts = DescendingData.slice(first, last);
   return (
     <>
       <div>
@@ -37,13 +49,19 @@ const Attendance = () => {
                   <div className="w-12">In</div>
                 </BigGreenButton>
                 <BigGreenButton>
-                  
                   <div className="w-12">Out</div>
                 </BigGreenButton>
               </div>
 
               {/* Log table */}
-              <LogTable2/>
+              <LogTable2 data={currentPosts} />
+              <Pagination
+                totalPosts={SampleData.length}
+                postsPerPage={postsPerPage}
+                setCurrentPage={setCurrentPage}
+                currentPage={currentPage}
+            
+              />
             </div>
           </div>
         </div>
