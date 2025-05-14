@@ -9,8 +9,19 @@ const Pagination = ({
 }) => {
   let pages = [];
   const noOfPages = Math.ceil(totalPosts / postsPerPage);
-  for (let i = 1; i <= noOfPages; i++) {
-    pages.push(i);
+  if (noOfPages > 1) {
+    for (let i = 2; i <= noOfPages - 1; i++) {
+      pages.push(i);
+    }
+  }
+  if (currentPage >= 4 && currentPage <= noOfPages - 3) {
+    pages = [currentPage - 1, currentPage, currentPage + 1];
+  }
+  if (currentPage < 4) {
+    pages = [2, 3, 4];
+  }
+  if (currentPage > noOfPages - 3) {
+    pages = [noOfPages - 3, noOfPages - 2, noOfPages - 1];
   }
 
   if (currentPage < 1) {
@@ -42,19 +53,53 @@ const Pagination = ({
         &lt;
       </button>
 
-      {/* pages */}
       <div className="flex gap-6">
-        {pages.map((page, index) => {
-          return (
+        {/* 1 */}
+        <button
+          className=""
+          onClick={() => {
+            setCurrentPage(1);
+          }}
+        >
+          1
+        </button>
+
+        {/* ... */}
+        {currentPage > 3 ? <button>...</button> : ""}
+
+        {/* pages */}
+        <div className="flex gap-6">
+          {pages.map((page, index) => {
+            return (
+              <button
+                key={index}
+                onClick={() => setCurrentPage(page)}
+                className={page == currentPage ? "active" : ""}
+              >
+                {page}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* ... */}
+        {currentPage <= noOfPages - 3 ? <button>...</button> : ""}
+
+        {/* last */}
+        <div>
+          {noOfPages > 1 ? (
             <button
-              key={index}
-              onClick={() => setCurrentPage(page)}
-              className={page == currentPage ? "active" : ""}
+              className="p-3"
+              onClick={() => {
+                setCurrentPage(noOfPages);
+              }}
             >
-              {page}
+              {noOfPages}
             </button>
-          );
-        })}
+          ) : (
+            ""
+          )}
+        </div>
       </div>
 
       {/* > */}
