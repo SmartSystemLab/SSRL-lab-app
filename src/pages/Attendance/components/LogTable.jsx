@@ -1,12 +1,11 @@
 import React, { useMemo } from "react";
 import { useTable } from "react-table";
-import { header } from "./header";
+import { header } from "./components/header";
 import SampleData from "./SampleData.json";
 
-
 const LogTable = () => {
-    const headerData = useMemo(() => header, [])
-    const sdata = useMemo(() => SampleData, []);
+  const headerData = useMemo(() => header, []);
+  const sdata = useMemo(() => SampleData, []);
 
   const tableInstance = useTable({ columns: headerData, data: sdata });
 
@@ -31,8 +30,10 @@ const LogTable = () => {
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
-                    console.log(cell.render('Cell'))
-                  return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                  console.log(cell.render("Cell"));
+                  return (
+                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                  );
                 })}
               </tr>
             );

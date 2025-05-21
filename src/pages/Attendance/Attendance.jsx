@@ -1,10 +1,11 @@
 import BigGreenButton from "../../components/BigGreenButton";
-import LogTable from "./LogTable";
+// import LogTable from "./LogTable";
 
 import SampleData from "./SampleData.json";
-import LogTable2 from "./LogTable2";
+import LogTable2 from "./components/LogTable2";
 import { useState } from "react";
-import Pagination from "./Pagination";
+import Pagination from "./components/Pagination";
+import Countdown from "./components/Countdown";
 import "./table.css";
 
 const Attendance = () => {
@@ -22,7 +23,7 @@ const Attendance = () => {
           <div className="mt-8">
             <div className="flex justify-between">
               <div className="text-2xl font-medium uppercase">Attendance</div>
-              <div className="text-xl font-bold">12:00:00</div>
+              <Countdown />
             </div>
             <hr className="bg-black" />
 
@@ -46,10 +47,10 @@ const Attendance = () => {
               {/*In / Out Buttons */}
               <div className="mt-10 flex justify-center gap-8">
                 <BigGreenButton extraStyles="">
-                  <div className="w-12">In</div>
+                  <button className="w-12">In</button>
                 </BigGreenButton>
                 <BigGreenButton>
-                  <div className="w-12">Out</div>
+                  <button className="w-12">Out</button>
                 </BigGreenButton>
               </div>
 
@@ -60,7 +61,6 @@ const Attendance = () => {
                 postsPerPage={postsPerPage}
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}
-            
               />
             </div>
           </div>
