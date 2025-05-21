@@ -8,7 +8,6 @@ import { useRequest } from "../../Modules/useRequest.js";
 import CustomLabel from "../../components/CustomLabel.jsx";
 import { useNavigate } from "react-router-dom";
 import {
-  getSessionStorage,
   setSessionStorage,
 } from "../../Modules/getSessionStorage.js";
 import { Loader2 } from "lucide-react";
@@ -53,9 +52,9 @@ const Login = () => {
   };
 
   const validateUser = async () => {
-    const res = await sendLoginRequest("login", "POST", {
+    const res = await sendLoginRequest("auth/login", "POST", {
       user_uid: username.name,
-      pwd: password.password,
+      password: password.password,
     });
 
     const data = await res.json();

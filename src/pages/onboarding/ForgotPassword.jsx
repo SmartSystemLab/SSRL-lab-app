@@ -36,7 +36,7 @@ const ForgotPassword = () => {
 
   const confirmCredentials = async () => {
     // console.log(userId);
-    const res = await sendCredRequest("forgot_password", "POST", {
+    const res = await sendCredRequest("auth/forgot_password", "POST", {
       uid: userId,
       email: email.email,
     });

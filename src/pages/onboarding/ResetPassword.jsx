@@ -60,8 +60,8 @@ const ResetPassword = () => {
   };
 
   const resetPassword = async () => {
-    const res = await sendResetRequest("change_password", "PATCH", {
-      new_pwd: passwordRef.current,
+    const res = await sendResetRequest("auth/change_password", "PATCH", {
+      new_password: passwordRef.current,
       uid: userId,
     });
 

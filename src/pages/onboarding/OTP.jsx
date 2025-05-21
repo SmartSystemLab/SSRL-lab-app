@@ -59,7 +59,7 @@ const OTP = () => {
     const strOtp = otp.otp.join("");
 
     console.log(strOtp);
-    const res = await sendOTPRequest("confirm/otp", "POST", {
+    const res = await sendOTPRequest("auth/confirm_otp", "POST", {
       otp: strOtp,
       uid: userId,
     });
