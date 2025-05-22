@@ -12,16 +12,16 @@ const SingleProject = () => {
   const location = useLocation();
   const project = location.state;
   const {
-    _id,
+    project_id,
     name,
     description,
     objectives,
     leads,
     team_members,
-    createdBy,
+    created_by,
     submissions,
     status,
-    date_created,
+    created_at,
     deadline,
     feedback,
   } = project;
@@ -30,7 +30,7 @@ const SingleProject = () => {
   const [trackedSub, setTrackedSub] = useState(docs);
   console.log(trackedSub);
 
-  const [isCompleted, setIsCompleted] = useState(status === "Completed");
+  const [isCompleted, setIsCompleted] = useState(status === "completed");
 
   const docRef = useRef(null);
   const [selectedDoc, setSelectedDoc] = useState();
@@ -49,7 +49,7 @@ const SingleProject = () => {
           </span>
           <Dropdown
             completed={{ isCompleted, setIsCompleted }}
-            id={_id}
+            id={project_id}
             project={project}
           />
         </div>
@@ -64,10 +64,10 @@ const SingleProject = () => {
           <div className="flex max-w-[900px] flex-col md:flex-row md:items-center md:justify-between">
             <span className="font-medium">
               Created by:{" "}
-              <p className="cursor-pointer font-normal">{createdBy}</p>
+              <p className="cursor-pointer font-normal">{created_by}</p>
             </span>
             <span className="font-medium">
-              Created: <p className="font-normal">{formatDate(date_created)}</p>
+              Created: <p className="font-normal">{formatDate(created_at)}</p>
             </span>
             <span className="font-medium">
               Deadline: <p className="font-normal">{formatDate(deadline)}</p>
@@ -78,7 +78,7 @@ const SingleProject = () => {
           {feedback && (
             <Link
               className="rounded-full border-2 border-logo p-2 px-4 font-medium hover:bg-logo hover:text-white"
-              to={`/home/projects/feedbacks/${_id}`}
+              to={`/home/projects/feedbacks/${project_id}`}
               state={{ feedback, name }}
             >
               See all feedback
@@ -144,7 +144,7 @@ const SingleProject = () => {
           </h2>
           <div className="flex flex-col gap-4 md:flex-row">
             <div className="w-1/2">
-              <AddDoc id={_id} setSub={setTrackedSub} sub={trackedSub} />
+              <AddDoc id={project_id} setSub={setTrackedSub} sub={trackedSub} />
               {docs.length > 0 ? (
                 <div className="flex flex-col gap-4">
                   {trackedSub.map((doc, index) => {

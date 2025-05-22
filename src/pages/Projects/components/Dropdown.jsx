@@ -43,7 +43,7 @@ const Dropdown = ({ completed, id, project}) => {
     setCompleteLoading(true);
     try {
       const res = await completeRequest(
-        `project/${isCompleted ? "incomplete" : "completed"}/${id}`,
+        `project/${isCompleted ? "mark_as_incompleted" : "mark_as_completed"}/${id}`,
         "PATCH",
       );
       const data = await res.json();

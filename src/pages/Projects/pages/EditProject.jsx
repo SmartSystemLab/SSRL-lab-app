@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -37,8 +37,6 @@ const EditProject = () => {
 
   const [editRequest, editLoading, setEditLoading, editError, setEditError] =
     useRequest();
-
-
 
   useEffect(() => {
     if (projectData) {
@@ -87,9 +85,9 @@ const EditProject = () => {
     }
   };
 
-  const getStackMembers = async () => {
+  const getStackMembers = useCallback(async () => {
     const res = await membersRequest(
-      `get_all_members`,
+      `get_members_identity/`,
     );
     const data = await res.json();
     if (res.ok) {
@@ -98,7 +96,7 @@ const EditProject = () => {
     else {
       console.log(data)
     }
-  };
+  }, [membersRequest]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -134,7 +132,7 @@ const EditProject = () => {
 
   useEffect(() => {
     getStackMembers();
-  }, []);
+  }, [getStackMembers]);
 
   return (
     <div className="mt-4 min-h-screen overflow-y-auto px-6 py-4 fromLeft">
