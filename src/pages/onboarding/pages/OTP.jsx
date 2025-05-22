@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import InputError from "../../components/InputError";
-import { validateOTP } from "../../Modules/verifyForm";
-import { useRequest } from "../../Modules/useRequest";
+import InputError from "../../../components/UI/InputError";
+import { validateOTP } from "../../../utils/verifyForm";
+import { useRequest } from "../../../hooks/useRequest";
 import toast from "react-hot-toast";
-import { useUserData } from "../../Modules/UserContext";
+import { useUserData } from "../../../context/UserContext";
 import { useNavigate } from "react-router-dom";
-import Spinner from "../../components/Spinner";
-import BigGreenButton from "../../components/BigGreenButton";
+import Spinner from "../../../components/UI/Spinner";
+import BigGreenButton from "../../../components/UI/BigGreenButton";
 
 const OTPPage = () => {
   const [otp, setOtp] = useState({

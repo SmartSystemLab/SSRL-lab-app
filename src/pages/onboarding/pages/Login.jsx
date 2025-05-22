@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { useUserData } from "../../Modules/UserContext.jsx";
+import { useUserData } from "../../../context/UserContext.jsx";
 import {
   validateUsername,
   validatePassword,
-} from "../../Modules/verifyForm.js";
-import { useRequest } from "../../Modules/useRequest.js";
-import CustomLabel from "../../components/CustomLabel.jsx";
+} from "../../../utils/verifyForm.js";
+import { useRequest } from "../../../hooks/useRequest.js";
+import CustomLabel from "../../../components/UI/CustomLabel.jsx";
 import { useNavigate } from "react-router-dom";
 import {
   setSessionStorage,
-} from "../../Modules/getSessionStorage.js";
+} from "../../../utils/getSessionStorage.js";
 import { Loader2 } from "lucide-react";
-import BigGreenButton from "../../components/BigGreenButton.jsx"
+import BigGreenButton from "../../../components/UI/BigGreenButton.jsx"
 import { Loader } from "lucide-react";
 
 const Login = () => {

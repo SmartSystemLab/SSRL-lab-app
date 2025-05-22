@@ -1,8 +1,8 @@
 import { Dot } from "lucide-react";
 import React, { useCallback } from "react";
 import { useLocation } from "react-router-dom";
-import { formatDate } from "../../Modules/funcs";
-import { useRequest } from "../../Modules/useRequest";
+import { formatDate } from "../../../utils/funcs";
+import { useRequest } from "../../../hooks/useRequest";
 import { useEffect } from "react";
 
 const SingleNotification = () => {

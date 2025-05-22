@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { UserRound } from "lucide-react";
-import { getInitials, getRandomSoftHexColor } from "../../../Modules/funcs";
+import { getInitials, getRandomSoftHexColor } from "../../../utils/funcs";
 
 const PersonnelCard = ({ personnel }) => {
   console.log(personnel);

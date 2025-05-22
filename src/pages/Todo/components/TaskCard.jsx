@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TaskLabel from "./TaskLabel";
 import { Edit } from "lucide-react";
 import { MinusCircle } from "lucide-react";
-import { useRequest } from "../../../Modules/useRequest";
+import { useRequest } from "../../../hooks/useRequest";
 import toast from "react-hot-toast";
 import { Loader } from "lucide-react";
 

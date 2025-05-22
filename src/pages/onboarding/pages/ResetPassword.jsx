@@ -1,13 +1,13 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import CustomLabel from "../../components/CustomLabel";
-import { validatePassword } from "../../Modules/verifyForm";
-import { useRequest } from "../../Modules/useRequest";
+import CustomLabel from "../../../components/UI/CustomLabel";
+import { validatePassword } from "../../../utils/verifyForm";
+import { useRequest } from "../../../hooks/useRequest";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import BigGreenButton from "../../components/BigGreenButton";
-import Spinner from "../../components/Spinner";
-import { useUserData } from "../../Modules/UserContext";
+import BigGreenButton from "../../../components/UI/BigGreenButton";
+import Spinner from "../../../components/UI/Spinner";
+import { useUserData } from "../../../context/UserContext";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState({

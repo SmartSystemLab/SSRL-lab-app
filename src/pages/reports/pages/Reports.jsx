@@ -4,10 +4,10 @@ import { LiaCheckDoubleSolid } from "react-icons/lia";
 import { Plus } from "lucide-react";
 // import Messages from "../components/Messages";
 // import img1 from "../pages../../../../assets/img1.jpg";
-import { useRequest } from "../../../Modules/useRequest";
+import { useRequest } from "../../../hooks/useRequest";
 import { useState } from "react";
 import { useEffect } from "react";
-import { formatTimeAgo, getInitials, getRandomSoftHexColor } from "../../../Modules/funcs";
+import { formatTimeAgo, getInitials, getRandomSoftHexColor } from "../../../utils/funcs";
 import { formatDistanceToNow } from "date-fns";
 
 

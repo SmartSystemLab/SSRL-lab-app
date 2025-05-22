@@ -8,11 +8,11 @@ import {
   Trash2,
   XCircle,
 } from "lucide-react";
-import { useRequest } from "../../../Modules/useRequest";
+import { useRequest } from "../../../hooks/useRequest";
 import toast from "react-hot-toast";
 import { useNavigate, Link } from "react-router-dom";
-import { useUserData } from "../../../Modules/UserContext";
-import { getSessionStorage } from "../../../Modules/getSessionStorage";
+import { useUserData } from "../../../context/UserContext";
+import { getSessionStorage } from "../../../utils/getSessionStorage";
 import Announcement from "../pages/Announcement";
 import { Speech } from "lucide-react";
 import { Pen } from "lucide-react";

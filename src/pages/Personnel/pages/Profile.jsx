@@ -2,7 +2,7 @@ import DropDownMenu from "../component/DropDownMenu.jsx";
 import BgProfile from "../../../assets/bg_profile.jpeg";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
-import { formatDate, getInitials } from "../../../Modules/funcs.js";
+import { formatDate, getInitials } from "../../../utils/funcs.js";
 
 const Profile = ({ user, userRole }) => {
   // const isOwnProfile = user.id === currentUserId;

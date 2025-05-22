@@ -1,5 +1,5 @@
 import React from "react";
-import { formattedDateNow } from "../../../Modules/funcs";
+import { formattedDateNow } from "../../../utils/funcs";
 
 const Welcome = ({name}) => {
   return (

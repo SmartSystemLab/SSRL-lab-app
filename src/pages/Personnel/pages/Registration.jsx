@@ -1,16 +1,16 @@
 import React from "react";
 import { useState } from "react";
-import CustomLabel from "../../../components/CustomLabel";
+import CustomLabel from "../../../components/UI/CustomLabel";
 import { useLocation, useNavigate } from "react-router-dom";
-import DatePickerComp from "../../../components/DatePickerComp";
-import BigGreenButton from "../../../components/BigGreenButton";
-import { useRequest } from "../../../Modules/useRequest";
+import DatePickerComp from "../../../components/UI/DatePickerComp";
+import BigGreenButton from "../../../components/UI/BigGreenButton";
+import { useRequest } from "../../../hooks/useRequest";
 import { Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRef } from "react";
 import { Plus } from "lucide-react";
 import { Asterisk } from "lucide-react";
-import Spinner from "../../../components/Spinner";
+import Spinner from "../../../components/UI/Spinner";
 
 const Edit = () => {
   const location = useLocation();

@@ -2,7 +2,7 @@ import ProjectCard from "../components/ProjectCard";
 import ProjectList from "../components/ProjectList";
 import ProjectSkeleton from "../../../components/skeletons/ProjectSkeleton";
 import { Plus } from "lucide-react";
-import { useRequest } from "../../../Modules/useRequest";
+import { useRequest } from "../../../hooks/useRequest";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 

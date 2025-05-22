@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import forgotPassword from "../../assets/ForgotPassword.svg"; // Importing the image
-import Backtosignin from "../../assets/Backtosignin.svg"; // Importing the image
-import CustomLabel from "../../components/CustomLabel.jsx";
-import { validateEmail } from "../../Modules/verifyForm.js";
-import { useRequest } from "../../Modules/useRequest.js";
-import { useUserData } from "../../Modules/UserContext.jsx";
+import forgotPassword from "../../../assets/ForgotPassword.svg"; // Importing the image
+import Backtosignin from "../../../assets/Backtosignin.svg"; // Importing the image
+import CustomLabel from "../../../components/UI/CustomLabel.jsx";
+import { validateEmail } from "../../../utils/verifyForm.js";
+import { useRequest } from "../../../hooks/useRequest.js";
+import { useUserData } from "../../../context/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
-import Spinner from "../../components/Spinner.jsx";
-import BigGreenButton from "../../components/BigGreenButton.jsx";
+import Spinner from "../../../components/UI/Spinner.jsx";
+import BigGreenButton from "../../../components/UI/BigGreenButton.jsx";
 import toast from "react-hot-toast";
 
 const ForgotPassword = () => {

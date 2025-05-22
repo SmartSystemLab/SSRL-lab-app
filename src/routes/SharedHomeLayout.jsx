@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import SideNav from "../components/SideNav.jsx";
-import Headerbar from '../components/Headerbar.jsx'
+import SideNav from "../components/layout/SideNav.jsx";
+import Headerbar from '../components/layout/Headerbar.jsx'
 import { Outlet } from 'react-router-dom';
 
 

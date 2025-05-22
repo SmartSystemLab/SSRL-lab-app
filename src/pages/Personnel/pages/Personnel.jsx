@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import Toggle from "../../../components/Toggle";
-import { useRequest } from "../../../Modules/useRequest";
+import Toggle from "../../../components/UI/Toggle";
+import { useRequest } from "../../../hooks/useRequest";
 import PersonnelSection from "../component/PersonnelSection";
 
 const Personnel = () => {

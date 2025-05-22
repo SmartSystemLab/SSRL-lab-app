@@ -1,8 +1,8 @@
-import CustomLabel from "../../../components/CustomLabel"
+import CustomLabel from "../../../components/UI/CustomLabel"
 import { Dot } from "lucide-react"
 import { Plus, MinusCircle } from "lucide-react"
 import { useState } from "react"
-import InputError from "../../../components/InputError"
+import InputError from "../../../components/UI/InputError"
 export default function ListInput({ title, items, setItems }) {
     const [inputValue, setInputValue] = useState("")
 

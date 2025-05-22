@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import PersonnelCard from "./PersonnelCard";
-import { getSessionStorage } from "../../../Modules/getSessionStorage";
+import { getSessionStorage } from "../../../utils/getSessionStorage";
 import PersonnelCardSkeleton from "../../../components/skeletons/personnelCardSkeleton";
 
 const PersonnelSection = ({ personnels, title, loading }) => {
@@ -32,8 +32,7 @@ const PersonnelSection = ({ personnels, title, loading }) => {
             <PersonnelCardSkeleton />
             <PersonnelCardSkeleton />
             <PersonnelCardSkeleton />
-          </> // is this okay?
-          // Yes, it's very good, thanks a lot. I just made a few changes to make things simpler and I moved the whole component to another folder in components called skeletons because we will be creating other skeletons too, basically for almost every page, so those skeletons will just be there. I don't know if we should add the skeletons on each page inside a skeletons folder for each page or leave it like tjis. Let's leave it like this for now. If things get too complex, then we can make the changes.
+          </> 
         )}
       </div>
     </div>

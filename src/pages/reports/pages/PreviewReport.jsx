@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import BigGreenButton from '../../../components/BigGreenButton';
+import BigGreenButton from '../../../components/UI/BigGreenButton';
 export default function PreviewReport() {
     const location = useLocation()
     const navigate = useNavigate()

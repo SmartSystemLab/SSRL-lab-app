@@ -4,11 +4,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { ChevronDown, Plus, ChevronUp, Edit, Trash2 } from "lucide-react";
-import BigGreenButton from "../../../components/BigGreenButton";
-import DatePickerComp from "../../../components/DatePickerComp";
-import MultipleSelect from "../../../components/MultipleSelect";
-import { useRequest } from "../../../Modules/useRequest";
-import { getSessionStorage } from "../../../Modules/getSessionStorage";
+import BigGreenButton from "../../../components/UI/BigGreenButton";
+import DatePickerComp from "../../../components/UI/DatePickerComp";
+import MultipleSelect from "../../../components/UI/MultipleSelect";
+import { useRequest } from "../../../hooks/useRequest";
+import { getSessionStorage } from "../../../utils/getSessionStorage";
 import toast from "react-hot-toast";
 import { Navigate } from "react-router-dom";
 import { Loader } from "lucide-react";

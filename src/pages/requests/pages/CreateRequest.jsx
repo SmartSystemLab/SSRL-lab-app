@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { Plus, ChevronDown, ChevronUp } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
-import CustomLabel from "../../../components/CustomLabel";
-import Toggle from "../../../components/Toggle";
+import CustomLabel from "../../../components/UI/CustomLabel";
+import Toggle from "../../../components/UI/Toggle";
 import Equipment from "../component/Equipment";
-import MultipleSelect from "../../../components/MultipleSelect";
-import BigGreenButton from "../../../components/BigGreenButton";
+import MultipleSelect from "../../../components/UI/MultipleSelect";
+import BigGreenButton from "../../../components/UI/BigGreenButton";
 import DatePicker from "react-datepicker";
-import { useRequest } from "../../../Modules/useRequest";
+import { useRequest } from "../../../hooks/useRequest";
 import toast from "react-hot-toast";
 import { Loader } from "lucide-react";
 

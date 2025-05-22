@@ -1,13 +1,13 @@
 import { useState, useEffect, useCallback } from "react";
-import { useRequest } from "../../Modules/useRequest";
-import { useUserData } from "../../Modules/UserContext";
-import { setSessionStorage } from "../../Modules/getSessionStorage";
-import Welcome from "./components/Welcome";
-import Projects from "./components/Projects";
-import Reports from "./components/Reports";
-import Requests from "./components/Requests";
-import Todo from "./components/Todo";
-import Notifications from "./components/Notifications";
+import { useRequest } from "@hooks/useRequest";
+import { useUserData } from "../../../context/UserContext";
+import { setSessionStorage } from "../../../utils/getSessionStorage";
+import Welcome from "../components/Welcome";
+import Projects from "../components/Projects";
+import Reports from "../components/Reports";
+import Requests from "../components/Requests";
+import Todo from "../components/Todo";
+import Notifications from "../components/Notifications";
 
 const Dashboard = () => {
   const [name, setName] = useState("");

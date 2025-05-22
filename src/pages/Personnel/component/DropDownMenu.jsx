@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaEllipsisV } from "react-icons/fa";
-import { getSessionStorage } from "../../../Modules/getSessionStorage";
+import { getSessionStorage } from "../../../utils/getSessionStorage";
 import {
   Edit,
   Loader,
@@ -11,7 +11,7 @@ import {
   UserRoundCog,
   UserRoundPlus,
 } from "lucide-react";
-import { useRequest } from "../../../Modules/useRequest";
+import { useRequest } from "../../../hooks/useRequest";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";

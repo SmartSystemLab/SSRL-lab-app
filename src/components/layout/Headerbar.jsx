@@ -1,4 +1,4 @@
-import SearchBar from "../components/SearchBar.jsx";
+import SearchBar from "../UI/SearchBar";
 import { Link, useNavigate } from "react-router-dom";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { RxAvatar } from "react-icons/rx";
@@ -8,7 +8,7 @@ import { AlignJustify } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import { Bell } from "lucide-react";
 import { UserRound } from "lucide-react";
-import { useUserData } from "../Modules/UserContext.jsx";
+import { useUserData } from "../../context/UserContext.jsx";
 
 const Headerbar = ({ toggleSideNav, isSideNavOpen }) => {
   const navigate = useNavigate();

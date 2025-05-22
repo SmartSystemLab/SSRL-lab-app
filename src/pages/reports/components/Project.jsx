@@ -1,4 +1,4 @@
-import CustomLabel from "../../../components/CustomLabel";
+import CustomLabel from "../../../components/UI/CustomLabel";
 
 export default function Project({ summary, setSummary }) {
   return (

@@ -3,7 +3,7 @@ import Dropdown from "../components/Dropdown";
 import Dot from "./../../../assets/Dot.svg";
 import { DotIcon, DownloadCloud, LinkIcon, Plus } from "lucide-react";
 import { useState } from "react";
-import { formatDate } from "../../../Modules/funcs";
+import { formatDate } from "../../../utils/funcs";
 import { useRef } from "react";
 import AddDoc from "../components/AddDoc";
 import Announcement from "./Announcement";

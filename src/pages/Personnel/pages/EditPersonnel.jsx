@@ -1,17 +1,17 @@
 import React from "react";
 import { useState } from "react";
-import CustomLabel from "../../../components/CustomLabel";
+import CustomLabel from "../../../components/UI/CustomLabel";
 import { useLocation, useNavigate } from "react-router-dom";
-import DatePickerComp from "../../../components/DatePickerComp";
-import { getInitials } from "../../../Modules/funcs";
+import DatePickerComp from "../../../components/UI/DatePickerComp";
+import { getInitials } from "../../../utils/funcs";
 import { EditIcon } from "lucide-react";
-import BigGreenButton from "../../../components/BigGreenButton";
-import { useRequest } from "../../../Modules/useRequest";
+import BigGreenButton from "../../../components/UI/BigGreenButton";
+import { useRequest } from "../../../hooks/useRequest";
 import { Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRef } from "react";
 
-const Edit = () => {
+const EditPersonnel = () => {
   const locate = useLocation();
   const profile = locate.state;
   const {
@@ -236,4 +236,4 @@ const Edit = () => {
   );
 };
 
-export default Edit;
+export default EditPersonnel;

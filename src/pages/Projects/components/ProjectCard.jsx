@@ -1,7 +1,7 @@
 import { UserRound } from "lucide-react";
 import Pro_bg from "./../../../assets/Pro_bg.svg";
 import { Link } from "react-router-dom";
-import { getRandomSoftHexColor, formatDate } from "../../../Modules/funcs";
+import { getRandomSoftHexColor, formatDate } from "../../../utils/funcs";
 import { format } from "date-fns"
 
 const ProjectCard = ({ project }) => {
