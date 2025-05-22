@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import BigGreenButton from "../../components/BigGreenButton";
 
-const OTP = () => {
+const OTPPage = () => {
   const [otp, setOtp] = useState({
     otp: new Array(6).fill(""),
     isError: false,
@@ -120,4 +120,4 @@ const OTP = () => {
   );
 };
 
-export default OTP;
+export default OTPPage;

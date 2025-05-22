@@ -1,5 +1,5 @@
 import { Dot } from "lucide-react";
-import React from "react";
+import React, { useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { formatDate } from "../../Modules/funcs";
 import { useRequest } from "../../Modules/useRequest";
@@ -8,11 +8,11 @@ import { useEffect } from "react";
 const SingleNotification = () => {
   const location = useLocation();
   const note = location.state;
-  const { _id, title, message, sentAt, type, status } = note;
+  const { _id, title, message, created_at, type, status } = note;
 
   const [markRequest] = useRequest();
 
-  const markAsRead = async () => {
+  const markAsRead = useCallback(async () => {
     if (status === "unread") {
       const res = await markRequest(`notification/mark_as_read/${_id}`, "POST");
       const data = await res.json();
@@ -22,11 +22,11 @@ const SingleNotification = () => {
         console.log(data.message);
       }
     }
-  };
+  }, [markRequest, _id, status]);
 
   useEffect(() => {
     markAsRead();
-  }, []);
+  }, [markAsRead]);
 
   return (
     <div className="mt-2 min-h-screen overflow-y-auto px-6 py-4">
@@ -39,7 +39,7 @@ const SingleNotification = () => {
               {title}
             </h2>
           </div>
-          <p className="text-sm">{formatDate(sentAt)}</p>
+          <p className="text-sm">{formatDate(created_at)}</p>
         </div>
         <div>
           <h2 className="text-lg font-medium">Message:</h2>

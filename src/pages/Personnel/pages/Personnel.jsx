@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Toggle from "../../../components/Toggle";
 import { useRequest } from "../../../Modules/useRequest";
 import PersonnelSection from "../component/PersonnelSection";
@@ -21,9 +21,9 @@ const Personnel = () => {
     setPersonnelsError,
   ] = useRequest();
 
-  const getPersonnels = async () => {
+  const getPersonnels = useCallback(async () => {
     setPersonnelsLoading(true);
-    const res = await getAllPersonnels("view/members");
+    const res = await getAllPersonnels("personnel/view_members");
     const personnels = await res.json();
 
     if (res.ok) {
@@ -36,11 +36,11 @@ const Personnel = () => {
       setPersonnelsError({ status: true, msg: personnels.message });
     }
     setPersonnelsLoading(false);
-  };
+  }, [setPersonnelsLoading, getAllPersonnels, setPersonnelsError]);
 
   useEffect(() => {
     getPersonnels();
-  }, []);
+  }, [getPersonnels]);
 
   return (
     <>

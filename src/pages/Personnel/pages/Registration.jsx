@@ -99,14 +99,14 @@ const Edit = () => {
             >
               <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
                 <div
-                  className="border-1 relative mx-auto mb-6 flex h-32 w-32 cursor-pointer items-center justify-center rounded-full border-black bg-navBg2 hover:scale-105 md:ml-12"
+                  className="relative overflow-hidden mx-auto mb-6 flex h-32 w-32 cursor-pointer items-center justify-center rounded-full bg-navBg2 hover:scale-105 md:ml-12"
                   onClick={handleFileClick}
                 >
                   {previewImage ? (
                     <img
                       src={previewImage}
                       alt="avatar"
-                      className="m-5 rounded-full object-cover"
+                      className="object-cover w-full h-full"
                     />
                   ) : (
                     <span className={`text-2xl font-medium text-white`}>
@@ -193,8 +193,8 @@ const Edit = () => {
                     <option value="" disabled>
                       Select Stack
                     </option>
-                    <option value="Software">Software</option>
-                    <option value="Hardware">Hardware</option>
+                    <option value="software">Software</option>
+                    <option value="hardware">Hardware</option>
                   </select>
                 </div>
 

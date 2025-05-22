@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRequest } from "../../Modules/useRequest";
 import { useUserData } from "../../Modules/UserContext";
 import { setSessionStorage } from "../../Modules/getSessionStorage";
@@ -26,9 +26,9 @@ const Dashboard = () => {
 
   const { userId, setUnread } = useUserData();
 
-  const getProfile = async () => {
+  const getProfile = useCallback(async () => {
     setProfileLoading(true);
-    const res = await sendProfileRequest("home");
+    const res = await sendProfileRequest("personnel/home");
 
     const data = await res.json();
     if (res.ok) {
@@ -59,11 +59,11 @@ const Dashboard = () => {
       setProfileError({ status: "true", msg: data.message });
     }
     setProfileLoading(false);
-  };
+  }, [setProfileLoading, setProfileError, setUnread, sendProfileRequest]);
 
   useEffect(() => {
     getProfile();
-  }, []);
+  }, [getProfile]);
 
   // set the date
 

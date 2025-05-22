@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { LiaCheckDoubleSolid } from "react-icons/lia";
 import Messages from "../../components/Messages";
 
@@ -14,51 +14,6 @@ import { Dot } from "lucide-react";
 import toast from "react-hot-toast";
 import Spinner from "../../components/Spinner";
 
-const info = [
-  {
-    name: "Ogunjirin M. Boluwatife",
-    summary: "Sent you reports for week 2",
-    images: img1,
-    duration: "10 mins",
-    id: 1,
-  },
-  {
-    name: "Ogunjirin M. Boluwatife",
-    summary: "Sent you reports for week 2",
-    images: img1,
-    duration: "1 day",
-    id: 2,
-  },
-  {
-    name: "Ogunjirin M. Boluwatife",
-    summary: "Sent you reports for week 2",
-    images: img1,
-    duration: "1 day",
-    id: 3,
-  },
-  {
-    name: "Ogunjirin M. Boluwatife",
-    summary: "Sent you reports for week 2",
-    images: img1,
-    duration: "1 day",
-    id: 4,
-  },
-  {
-    name: "Ogunjirin M. Boluwatife",
-    summary: "Sent you reports for week 2",
-    images: img1,
-    duration: "1 day",
-    id: 5,
-  },
-  {
-    name: "Ogunjirin M. Boluwatife",
-    summary: "Sent you reports for week 2",
-    images: img1,
-    duration: "1 day",
-    id: 6,
-  },
-];
-
 const Notifications = () => {
   const [notifications, setNotifications] = useState([]);
   const [total, setTotal] = useState();
@@ -68,7 +23,7 @@ const Notifications = () => {
 
   const [markallRequest, markallLoading, setMarkallLoading] = useRequest();
 
-  const getAllNotifications = async () => {
+  const getAllNotifications = useCallback(async () => {
     setNoteLoading(true);
     const res = await noteRequest(`notification/get_all`);
     const data = await res.json();
@@ -84,11 +39,11 @@ const Notifications = () => {
 
     console.log(data);
     setNoteLoading(false);
-  };
+  }, [noteRequest, setNotifications, setNoteError, setNoteLoading, setTotal, setUnread]);
 
   useEffect(() => {
     getAllNotifications();
-  }, []);
+  }, [getAllNotifications]);
 
   const markAllAsRead = async () => {
     setMarkallLoading(true);
@@ -153,7 +108,7 @@ const Notifications = () => {
                 </div>
               ) : notifications.length > 0 ? (
                 notifications.map((note) => {
-                  const { _id, title, status, sentAt, message } = note;
+                  const { _id, title, status, created_at, message } = note;
                   return (
                     <Link
                       to={`/home/dashboard/notifications/${_id}`}
@@ -174,7 +129,7 @@ const Notifications = () => {
                           </p>
                         </div>
                         <p className="text-xs font-light italic">
-                          {formatDistanceToNow(sentAt, { addSuffix: true })}
+                          {formatDistanceToNow(created_at, { addSuffix: true })}
                         </p>
                       </div>
                     </Link>
