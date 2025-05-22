@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef, useCallback } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -26,6 +26,8 @@ const EditProject = () => {
   const [selectedLeads, setSelectedLeads] = useState([]);
   const [allMembers, setAllMembers] = useState([]);
   const userStack = getSessionStorage("userStack", "");
+
+  const navigate = useNavigate();
 
   const [
     membersRequest,
@@ -87,7 +89,7 @@ const EditProject = () => {
 
   const getStackMembers = useCallback(async () => {
     const res = await membersRequest(
-      `get_members_identity/`,
+      `personnel/get_members_identity/allmembers`,
     );
     const data = await res.json();
     if (res.ok) {
@@ -109,7 +111,7 @@ const EditProject = () => {
       return;
     }
 
-    const res = await editRequest(`project/edit/${projectData._id}`, "PATCH", {
+    const res = await editRequest(`project/edit/${projectData.project_id}`, "PATCH", {
       name: projectTitle,
       description: projectDescription,
       objectives,
@@ -121,8 +123,9 @@ const EditProject = () => {
 
     const data = await res.json();
     if (res.ok) {
-      toast.success("Project created successfully");
-      setTimeout(() => Navigate(-1), 2000);
+      console.log(data)
+      toast.success("Project edited successfully");
+      setTimeout(() => navigate(-1), 2000);
     } else {
       console.log(data);
       toast.error(data.message);

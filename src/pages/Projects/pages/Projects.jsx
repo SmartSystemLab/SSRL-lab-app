@@ -3,7 +3,7 @@ import ProjectList from "../components/ProjectList";
 import ProjectSkeleton from "../../../components/skeletons/ProjectSkeleton";
 import { Plus } from "lucide-react";
 import { useRequest } from "../../../hooks/useRequest";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Projects = () => {
@@ -21,7 +21,7 @@ const Projects = () => {
     setProjectsError,
   ] = useRequest();
 
-  const getProjects = async () => {
+  const getProjects = useCallback(async () => {
     setProjectsLoading(true);
     const res = await projectsRequest("project/get_all");
     const data = await res.json();
@@ -40,11 +40,11 @@ const Projects = () => {
       setProjectsError({ status: true, msg: data.message });
     }
     setProjectsLoading(false);
-  };
+  }, [projectsRequest, setProjectsLoading, setProjectsError]);
 
   useEffect(() => {
     getProjects();
-  }, []);
+  }, [getProjects]);
 
   return (
     <div className="flex flex-col">

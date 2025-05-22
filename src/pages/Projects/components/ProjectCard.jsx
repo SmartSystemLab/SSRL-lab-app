@@ -5,14 +5,14 @@ import { getRandomSoftHexColor, formatDate } from "../../../utils/funcs";
 import { format } from "date-fns"
 
 const ProjectCard = ({ project }) => {
-  const { name, deadline, team_members, leads } = project;
+  const { name, deadline, team_members, leads, project_id } = project;
   const maxVisibleMembers = 3;
   const allMembers = [...leads, ...team_members]
   const extraMembers = allMembers.length - maxVisibleMembers;
 
   return (
     <Link
-      to={`/home/projects/${project._id}`}
+      to={`/home/projects/${project_id}`}
       state={project}
     >
       <div
