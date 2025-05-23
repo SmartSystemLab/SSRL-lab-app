@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Searchbar from '../assets/Searchbar.svg';
+import Searchbar from '../../assets/Searchbar.svg';
 
 const SearchBar = () => {
     const [query, setQuery] = useState('')

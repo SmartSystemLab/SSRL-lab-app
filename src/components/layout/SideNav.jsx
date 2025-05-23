@@ -1,5 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
-import LogOut from "../assets/LogOut.svg";
+import LogOut from "../../assets/LogOut.svg";
 import {
   LayoutDashboard,
   UsersRound,

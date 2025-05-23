@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { formatDate } from "../../../Modules/funcs";
+import { formatDate } from "../../../utils/funcs";
 
 const Feedbacks = () => {
   const location = useLocation();

@@ -1,10 +1,10 @@
 import { useLocation } from "react-router-dom";
-import BigGreenButton from "../../../components/BigGreenButton";
-import { formatDate } from "../../../Modules/funcs";
+import BigGreenButton from "../../../components/UI/BigGreenButton";
+import { formatDate } from "../../../utils/funcs";
 import { Dot } from "lucide-react";
-import { useRequest } from "../../../Modules/useRequest";
+import { useRequest } from "../../../hooks/useRequest";
 import toast from "react-hot-toast";
-import Spinner from "../../../components/Spinner";
+import Spinner from "../../../components/UI/Spinner";
 
 const SingleRequests = () => {
   const location = useLocation();

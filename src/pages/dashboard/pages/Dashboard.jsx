@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
-import { useRequest } from "../../Modules/useRequest";
-import { useUserData } from "../../Modules/UserContext";
-import { setSessionStorage } from "../../Modules/getSessionStorage";
-import Welcome from "./components/Welcome";
-import Projects from "./components/Projects";
-import Reports from "./components/Reports";
-import Requests from "./components/Requests";
-import Todo from "./components/Todo";
-import Notifications from "./components/Notifications";
+import { useState, useEffect, useCallback } from "react";
+import { useRequest } from "@hooks/useRequest";
+import { useUserData } from "../../../context/UserContext";
+import { setSessionStorage } from "../../../utils/getSessionStorage";
+import Welcome from "../components/Welcome";
+import Projects from "../components/Projects";
+import Reports from "../components/Reports";
+import Requests from "../components/Requests";
+import Todo from "../components/Todo";
+import Notifications from "../components/Notifications";
 
 const Dashboard = () => {
   const [name, setName] = useState("");
@@ -26,9 +26,9 @@ const Dashboard = () => {
 
   const { userId, setUnread } = useUserData();
 
-  const getProfile = async () => {
+  const getProfile = useCallback(async () => {
     setProfileLoading(true);
-    const res = await sendProfileRequest("home");
+    const res = await sendProfileRequest("personnel/home");
 
     const data = await res.json();
     if (res.ok) {
@@ -59,11 +59,11 @@ const Dashboard = () => {
       setProfileError({ status: "true", msg: data.message });
     }
     setProfileLoading(false);
-  };
+  }, [setProfileLoading, setProfileError, setUnread, sendProfileRequest]);
 
   useEffect(() => {
     getProfile();
-  }, []);
+  }, [getProfile]);
 
   // set the date
 

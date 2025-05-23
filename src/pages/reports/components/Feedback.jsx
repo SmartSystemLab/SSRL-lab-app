@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useRequest } from "../../../Modules/useRequest";
+import { useRequest } from "../../../hooks/useRequest";
 import toast from "react-hot-toast";
-import BigGreenButton from "../../../components/BigGreenButton";
+import BigGreenButton from "../../../components/UI/BigGreenButton";
 import { Loader } from "lucide-react";
 
 const Feedback = ({ onClose, onSend, id }) => {

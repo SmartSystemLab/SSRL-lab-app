@@ -2,18 +2,19 @@ import DropDownMenu from "../component/DropDownMenu.jsx";
 import BgProfile from "../../../assets/bg_profile.jpeg";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
-import { getInitials } from "../../../Modules/funcs.js";
+import { formatDate, getInitials } from "../../../utils/funcs.js";
 
 const Profile = ({ user, userRole }) => {
   // const isOwnProfile = user.id === currentUserId;
   const currentLocation = useLocation();
   const profile = currentLocation.state;
   const {
-    fullname,
+    firstname,
+    surname,
     avatar,
     email,
     bday,
-    datetime_created,
+    created_at,
     niche,
     stack,
     uid,
@@ -23,6 +24,7 @@ const Profile = ({ user, userRole }) => {
     bio,
     suspended,
   } = profile;
+  const fullname = `${surname} ${firstname}`;
   console.log(profile)
   const [profileRole, setProfileRole] = useState(role);
   const [suspend, setSuspend] = useState(suspended);
@@ -42,8 +44,8 @@ const Profile = ({ user, userRole }) => {
             profile={profile}
           />
           <div className="flex justify-center items-center border-1 border-slate-300 rounded-full w-28 h-28 bg-logo overflow-hidden">
-            {avatar !== "NIL" ? (
-              <img src={avatar.secure_url} alt="avatar" className="m-5" />
+            {avatar ? (
+              <img src={avatar.secure_url} alt="avatar" className="object-cover w-full h-full" />
             ) : (
               <span className={`text-5xl font-medium`}>{initials}</span>
             )}
@@ -62,21 +64,21 @@ const Profile = ({ user, userRole }) => {
                 <span className="font-semibold">Unique ID:</span> {uid}
               </p>
               <p className="flex gap-4">
-                <span className="font-semibold">Stack:</span> {stack}
+                <span className="font-semibold ">Stack:</span> <span className="capitalize">{stack}</span>
               </p>
               <p className="flex gap-4">
-                <span className="font-semibold">Niche:</span> {niche}
+                <span className="font-semibold">Niche:</span> <span className="capitalize">{niche}</span>
               </p>
               <p className="flex gap-4">
                 <span className="font-semibold">Role:</span> {profileRole}
               </p>
               <p className="flex gap-4">
                 <span className="font-semibold">Date Joined:</span>{" "}
-                {datetime_created}
+                {formatDate(created_at)}
               </p>
               <p className="flex gap-4">
                 <span className="font-semibold">Date Of Birth:</span>
-                {bday}
+                {bday ? formatDate(bday) : "N/A"}
               </p>
               <p className="flex gap-4">
                 <span className="font-semibold">Location: </span>

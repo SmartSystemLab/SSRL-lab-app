@@ -1,18 +1,18 @@
 import { UserRound } from "lucide-react";
 import Pro_bg from "./../../../assets/Pro_bg.svg";
 import { Link } from "react-router-dom";
-import { getRandomSoftHexColor, formatDate } from "../../../Modules/funcs";
+import { getRandomSoftHexColor, formatDate } from "../../../utils/funcs";
 import { format } from "date-fns"
 
 const ProjectCard = ({ project }) => {
-  const { name, deadline, team_members, leads, team_avatars } = project;
+  const { name, deadline, team_members, leads, project_id } = project;
   const maxVisibleMembers = 3;
   const allMembers = [...leads, ...team_members]
   const extraMembers = allMembers.length - maxVisibleMembers;
 
   return (
     <Link
-      to={`/home/projects/${project._id}`}
+      to={`/home/projects/${project_id}`}
       state={project}
     >
       <div
@@ -28,13 +28,13 @@ const ProjectCard = ({ project }) => {
           <p className="mt-1 text-base">{formatDate(deadline)}</p>
           <div className="mt-5 flex items-center">
             <div className="flex">
-              {team_avatars.slice(0, maxVisibleMembers).map((avatar, index) => (
+              {allMembers.slice(0, maxVisibleMembers).map((member, index) => (
                 <div
                   className="m-2 -ml-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border bg-white first-of-type:ml-0"
                   key={index}
                 >
-                  {avatar !== "NIL" ? (
-                    <img src={avatar} alt="" className="h-full w-full rounded-full" />
+                  {member.avatar ? (
+                    <img src={member.avatar} alt="" className="h-full w-full rounded-full" />
                   ) : (
                     <span
                       className={`flex h-full w-full items-center justify-center rounded-full text-xs font-medium text-black`}

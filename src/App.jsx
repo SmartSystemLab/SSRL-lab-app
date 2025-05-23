@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import MyRoutes from './components/MyRoutes'
-import { useGetRequest } from './Modules/useRequest';
-import { setSessionStorage } from './Modules/getSessionStorage';
+import MyRoutes from './routes/MyRoutes'
+import { useGetRequest } from './hooks/useRequest';
+import { setSessionStorage } from './utils/getSessionStorage';
 import { Toaster } from 'react-hot-toast';
 // import {Analytics} from '@vercel/analytics/react'
 

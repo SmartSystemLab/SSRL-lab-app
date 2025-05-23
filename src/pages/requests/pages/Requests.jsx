@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { LiaCheckDoubleSolid } from "react-icons/lia";
 import { Plus } from "lucide-react";
-import Messages from "../pages../../../../components/Messages";
+import Messages from "../../../components/UI/Messages";
 import img1 from "../pages../../../../assets/img1.jpg";
-import { useRequest } from "../../../Modules/useRequest";
+import { useRequest } from "../../../hooks/useRequest";
 import { useState } from "react";
 import { useEffect } from "react";
 import { formatDistanceToNow } from "date-fns";
-import { getInitials, getRandomSoftHexColor } from "../../../Modules/funcs";
+import { getInitials, getRandomSoftHexColor } from "../../../utils/funcs";
 import RequestsSkeleton from "../../../components/skeletons/RequestsSkeleton";
 
 const Requests = () => {

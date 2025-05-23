@@ -1,23 +1,22 @@
 import React from "react";
 import { useState } from "react";
-import CustomLabel from "../../../components/CustomLabel";
+import CustomLabel from "../../../components/UI/CustomLabel";
 import { useLocation, useNavigate } from "react-router-dom";
-import DatePickerComp from "../../../components/DatePickerComp";
-import { getInitials } from "../../../Modules/funcs";
+import DatePickerComp from "../../../components/UI/DatePickerComp";
+import { getInitials } from "../../../utils/funcs";
 import { EditIcon } from "lucide-react";
-import BigGreenButton from "../../../components/BigGreenButton";
-import { useRequest } from "../../../Modules/useRequest";
+import BigGreenButton from "../../../components/UI/BigGreenButton";
+import { useRequest } from "../../../hooks/useRequest";
 import { Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRef } from "react";
 
-const Edit = () => {
+const EditPersonnel = () => {
   const locate = useLocation();
   const profile = locate.state;
   const {
     firstname,
     surname,
-    fullname,
     avatar,
     email,
     bday, // Probably use for date picker
@@ -27,6 +26,7 @@ const Edit = () => {
     phone_num,
     bio,
   } = profile;
+  const fullname = `${surname} ${firstname}`;
   const [user, setUser] = useState(() => ({
     firstname: firstname || "",
     surname: surname || "",
@@ -62,7 +62,7 @@ const Edit = () => {
     }
 
     const res = await editRequest(
-      `personnel/admin_edit/${uid}`,
+      `personnel/admin_edit_profile/${uid}`,
       "PATCH",
       formData,
     );
@@ -114,14 +114,14 @@ const Edit = () => {
             >
               <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
                 <div
-                  className="border-1 relative mx-auto mb-6 flex h-32 w-32 cursor-pointer items-center justify-center rounded-full border-black bg-logo hover:scale-105 md:ml-12"
+                  className="border-1 overflow-hidden relative mx-auto mb-6 flex h-32 w-32 cursor-pointer items-center justify-center rounded-full border-black bg-logo hover:scale-105 md:ml-12"
                   onClick={handleFileClick}
                 >
-                  {avatar !== "NIL" || previewImage ? (
+                  {avatar || previewImage ? (
                     <img
                       src={previewImage ? previewImage : avatar.secure_url}
                       alt="avatar"
-                      className="m-5 rounded-full object-cover"
+                      className="object-cover w-full h-full"
                     />
                   ) : (
                     <span className={`text-5xl font-medium`}>{initials}</span>
@@ -236,4 +236,4 @@ const Edit = () => {
   );
 };
 
-export default Edit;
+export default EditPersonnel;

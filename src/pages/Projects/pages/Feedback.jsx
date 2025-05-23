@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import BigGreenButton from "../../../components/BigGreenButton";
-import { useRequest } from "../../../Modules/useRequest";
+import BigGreenButton from "../../../components/UI/BigGreenButton";
+import { useRequest } from "../../../hooks/useRequest";
 import toast from "react-hot-toast";
 import { Loader } from "lucide-react";
 import { X } from "lucide-react";

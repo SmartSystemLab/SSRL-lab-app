@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { getSessionStorage } from "./getSessionStorage";
+import { useCallback, useState } from "react";
+import { getSessionStorage } from "../utils/getSessionStorage";
 // 
-const url = "https://ssrl-lab-app-backend.onrender.com"
-// const url = "http://127.0.0.1:5000";
+// const url = "https://ssrl-lab-app-backend.onrender.com"
+const url = "http://127.0.0.1:5000";
 
 export const useGetRequest = () => {
   const [loading, setLoading] = useState(false);
@@ -41,7 +41,7 @@ export const useRequest = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ status: false, msg: undefined });
 
-  const sendRequest = async (path, method = 'GET', body = {}) => {
+  const sendRequest = useCallback(async (path, method = 'GET', body = {}) => {
     setError({ status: false, msg: "" });
     console.log("Request sent in module");
 
@@ -76,6 +76,6 @@ export const useRequest = () => {
     });
     setLoading(false);
     return res;
-  };
+  }, []);
   return [sendRequest, loading, setLoading, error, setError];
 };

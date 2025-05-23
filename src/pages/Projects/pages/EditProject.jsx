@@ -1,14 +1,14 @@
-import { useLocation } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef, useCallback } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { ChevronDown, Plus, ChevronUp, Edit, Trash2 } from "lucide-react";
-import BigGreenButton from "../../../components/BigGreenButton";
-import DatePickerComp from "../../../components/DatePickerComp";
-import MultipleSelect from "../../../components/MultipleSelect";
-import { useRequest } from "../../../Modules/useRequest";
-import { getSessionStorage } from "../../../Modules/getSessionStorage";
+import BigGreenButton from "../../../components/UI/BigGreenButton";
+import DatePickerComp from "../../../components/UI/DatePickerComp";
+import MultipleSelect from "../../../components/UI/MultipleSelect";
+import { useRequest } from "../../../hooks/useRequest";
+import { getSessionStorage } from "../../../utils/getSessionStorage";
 import toast from "react-hot-toast";
 import { Navigate } from "react-router-dom";
 import { Loader } from "lucide-react";
@@ -27,6 +27,8 @@ const EditProject = () => {
   const [allMembers, setAllMembers] = useState([]);
   const userStack = getSessionStorage("userStack", "");
 
+  const navigate = useNavigate();
+
   const [
     membersRequest,
     membersLoading,
@@ -37,8 +39,6 @@ const EditProject = () => {
 
   const [editRequest, editLoading, setEditLoading, editError, setEditError] =
     useRequest();
-
-
 
   useEffect(() => {
     if (projectData) {
@@ -87,9 +87,9 @@ const EditProject = () => {
     }
   };
 
-  const getStackMembers = async () => {
+  const getStackMembers = useCallback(async () => {
     const res = await membersRequest(
-      `get_all_members`,
+      `personnel/get_members_identity/allmembers`,
     );
     const data = await res.json();
     if (res.ok) {
@@ -98,7 +98,7 @@ const EditProject = () => {
     else {
       console.log(data)
     }
-  };
+  }, [membersRequest]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -111,7 +111,7 @@ const EditProject = () => {
       return;
     }
 
-    const res = await editRequest(`project/edit/${projectData._id}`, "PATCH", {
+    const res = await editRequest(`project/edit/${projectData.project_id}`, "PATCH", {
       name: projectTitle,
       description: projectDescription,
       objectives,
@@ -123,8 +123,9 @@ const EditProject = () => {
 
     const data = await res.json();
     if (res.ok) {
-      toast.success("Project created successfully");
-      setTimeout(() => Navigate(-1), 2000);
+      console.log(data)
+      toast.success("Project edited successfully");
+      setTimeout(() => navigate(-1), 2000);
     } else {
       console.log(data);
       toast.error(data.message);
@@ -134,7 +135,7 @@ const EditProject = () => {
 
   useEffect(() => {
     getStackMembers();
-  }, []);
+  }, [getStackMembers]);
 
   return (
     <div className="mt-4 min-h-screen overflow-y-auto px-6 py-4 fromLeft">

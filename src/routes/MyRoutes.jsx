@@ -1,16 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import SharedOnboardingLayout from "../sharedLayouts/SharedOnboardingLayout.jsx";
-import Login from "../pages/onboarding/Login";
-import ResetPassword from "../pages/onboarding/ResetPassword";
-import ForgotPassword from "../pages/onboarding/ForgotPassword";
-import OTP from "../pages/onboarding/OTP";
+import SharedOnboardingLayout from "./SharedOnboardingLayout.jsx";
+import Login from "../pages/onboarding/pages/Login.jsx";
+import ResetPassword from "../pages/onboarding/pages/ResetPassword.jsx";
+import ForgotPassword from "../pages/onboarding/pages/ForgotPassword.jsx";
+import OTP from "../pages/onboarding/pages/OTP.jsx";
 
-import SharedHomeLayout from "../sharedLayouts/SharedHomeLayout.jsx";
+import SharedHomeLayout from "./SharedHomeLayout.jsx";
 
-import Dashboard from "../pages/dashboard/Dashboard";
-import Notifications from "../pages/dashboard/Notifications.jsx";
-import SingleNotification from "../pages/dashboard/SingleNotification.jsx";
+import Dashboard from "../pages/dashboard/pages/Dashboard.jsx";
+import Notifications from "../pages/dashboard/pages/Notifications.jsx";
+import SingleNotification from "../pages/dashboard/pages/SingleNotification.jsx";
 // import Userprofile from "../pages/dashboard/Userprofile.jsx";
 // import NotificationCard from "../pages/dashboard/Notifications.jsx";
 
@@ -32,8 +32,8 @@ import CreateRequest from "../pages/requests/pages/CreateRequest.jsx"
 import PreviewRequest from "../pages/requests/pages/PreviewRequest.jsx"
 
 import Todo from "../pages/Todo/Todo.jsx";
-import TeamChat from "../pages/TeamChat/TeamChat";
-import Settings from "../pages/Settings/Settings";
+import TeamChat from "../pages/TeamChat/TeamChat.jsx";
+import Settings from "../pages/Settings/Settings.jsx";
 
 import Reports from "../pages/reports/pages/Reports.jsx";
 import CreateReport from "../pages/reports/pages/CreateReport.jsx";

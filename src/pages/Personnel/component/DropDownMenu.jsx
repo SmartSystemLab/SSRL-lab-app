@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaEllipsisV } from "react-icons/fa";
-import { getSessionStorage } from "../../../Modules/getSessionStorage";
+import { getSessionStorage } from "../../../utils/getSessionStorage";
 import {
   Edit,
   Loader,
@@ -11,7 +11,7 @@ import {
   UserRoundCog,
   UserRoundPlus,
 } from "lucide-react";
-import { useRequest } from "../../../Modules/useRequest";
+import { useRequest } from "../../../hooks/useRequest";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
@@ -31,7 +31,7 @@ const DropDownMenu = ({ role, suspended, profile }) => {
     const lead = profileRole === "Lead";
     setLeadLoading(true);
     const res = await useLeadRequest(
-      `${profileRole !== "Lead" ? "add" : "remove"}_lead/${profile.uid}`,
+      `personnel/${profileRole !== "Lead" ? "add" : "remove"}_lead/${profile.uid}`,
       "PATCH",
     );
     const data = await res.json();
@@ -49,7 +49,7 @@ const DropDownMenu = ({ role, suspended, profile }) => {
     const admin = profileRole === "Admin";
     setAdminLoading(true);
     const res = await useAdminRequest(
-      `${profileRole !== "Admin" ? "add" : "remove"}_admin/${profile.uid}`,
+      `personnel/${profileRole !== "Admin" ? "add" : "remove"}_admin/${profile.uid}`,
       "PATCH",
     );
     const data = await res.json();
@@ -66,7 +66,7 @@ const DropDownMenu = ({ role, suspended, profile }) => {
   const handleDelete = async () => {
     setDeleteLoading(true);
     const res = await useDeleteRequest(
-      `admin/delete_user/${profile.uid}`,
+      `personnel/delete_user/${profile.uid}`,
       "PATCH"
     );
     const data = await res.json();
@@ -86,13 +86,13 @@ const DropDownMenu = ({ role, suspended, profile }) => {
     setSuspendLoading(true);
     console.log(suspend);
     const res = await useSuspendRequest(
-      `admin/${suspend === "True" ? "unsuspend" : "suspend"}_user/${profile.uid}`,
+      `personnel/${suspend  ? "unsuspend" : "suspend"}_user/${profile.uid}`,
       "PATCH",
     );
     const data = await res.json();
 
     if (res.ok) {
-      setSuspend(suspend === "False" ? "True" : "False");
+      setSuspend(!suspend);
       toast.success(data.message);
     } else {
       toast.error(data.message);
@@ -157,7 +157,7 @@ const DropDownMenu = ({ role, suspended, profile }) => {
                     onClick={handleSuspend}
                   >
                     <TriangleAlert color="gold" />
-                    <span>{suspend === "True" ? "Unsuspend" : "Suspend"}</span>
+                    <span>{suspend ? "Unsuspend" : "Suspend"}</span>
                     {suspendLoading && (
                       <Loader2 className="animate-spin" size={16} />
                     )}

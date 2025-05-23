@@ -1,4 +1,4 @@
-import CustomLabel from "../../../components/CustomLabel";
+import CustomLabel from "../../../components/UI/CustomLabel";
 
 const Equipment = ({
   eqpName,

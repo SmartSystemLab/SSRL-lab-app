@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-import CustomLabel from "../../../components/CustomLabel";
+import CustomLabel from "../../../components/UI/CustomLabel";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { ChevronDown, Plus, ChevronUp } from "lucide-react";
-import { getSessionStorage } from "../../../Modules/getSessionStorage";
-import { useRequest } from "../../../Modules/useRequest";
+import { getSessionStorage } from "../../../utils/getSessionStorage";
+import { useRequest } from "../../../hooks/useRequest";
 import toast from "react-hot-toast";
-import BigGreenButton from "../../../components/BigGreenButton";
+import BigGreenButton from "../../../components/UI/BigGreenButton";
 import { Loader2 } from "lucide-react";
-import DatePickerComp from "../../../components/DatePickerComp";
-import MultipleSelect from "../../../components/MultipleSelect"
+import DatePickerComp from "../../../components/UI/DatePickerComp";
+import MultipleSelect from "../../../components/UI/MultipleSelect"
 
 const CreateProject = () => {
   const [name, setName] = useState("");

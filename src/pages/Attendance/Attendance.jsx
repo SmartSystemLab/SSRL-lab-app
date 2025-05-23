@@ -1,4 +1,4 @@
-import BigGreenButton from "../../components/BigGreenButton";
+import BigGreenButton from "../../components/UI/BigGreenButton";
 // import LogTable from "./LogTable";
 
 import SampleData from "./SampleData.json";

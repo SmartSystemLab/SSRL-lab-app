@@ -1,16 +1,16 @@
 import React from "react";
 import { useState } from "react";
-import CustomLabel from "../../../components/CustomLabel";
+import CustomLabel from "../../../components/UI/CustomLabel";
 import { useLocation, useNavigate } from "react-router-dom";
-import DatePickerComp from "../../../components/DatePickerComp";
-import BigGreenButton from "../../../components/BigGreenButton";
-import { useRequest } from "../../../Modules/useRequest";
+import DatePickerComp from "../../../components/UI/DatePickerComp";
+import BigGreenButton from "../../../components/UI/BigGreenButton";
+import { useRequest } from "../../../hooks/useRequest";
 import { Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRef } from "react";
 import { Plus } from "lucide-react";
 import { Asterisk } from "lucide-react";
-import Spinner from "../../../components/Spinner";
+import Spinner from "../../../components/UI/Spinner";
 
 const Edit = () => {
   const location = useLocation();
@@ -99,14 +99,14 @@ const Edit = () => {
             >
               <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
                 <div
-                  className="border-1 relative mx-auto mb-6 flex h-32 w-32 cursor-pointer items-center justify-center rounded-full border-black bg-navBg2 hover:scale-105 md:ml-12"
+                  className="relative overflow-hidden mx-auto mb-6 flex h-32 w-32 cursor-pointer items-center justify-center rounded-full bg-navBg2 hover:scale-105 md:ml-12"
                   onClick={handleFileClick}
                 >
                   {previewImage ? (
                     <img
                       src={previewImage}
                       alt="avatar"
-                      className="m-5 rounded-full object-cover"
+                      className="object-cover w-full h-full"
                     />
                   ) : (
                     <span className={`text-2xl font-medium text-white`}>
@@ -193,8 +193,8 @@ const Edit = () => {
                     <option value="" disabled>
                       Select Stack
                     </option>
-                    <option value="Software">Software</option>
-                    <option value="Hardware">Hardware</option>
+                    <option value="software">Software</option>
+                    <option value="hardware">Hardware</option>
                   </select>
                 </div>
 
