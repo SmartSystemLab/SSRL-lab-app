@@ -29,7 +29,7 @@ const Feedback = () => {
     setSendLoading(true);
     const res = await sendFeedback(
       `project/send_feedback/${id}`,
-      "POST",
+      "PATCH",
       {
         feedback: message,
       },

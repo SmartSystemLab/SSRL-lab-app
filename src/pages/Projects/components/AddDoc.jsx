@@ -12,24 +12,22 @@ const AddDoc = ({ id, sub, setSub }) => {
     useRequest();
 
   const handleFileAdd = async (event) => {
-    toast("Coming soon")
-    // console.log("Okay");
-    // setAddLoading(true);
-    // const file = event.target.files[0];
-    // console.log(file);
-    // const formData = new FormData();
+    setAddLoading(true);
+    const file = event.target.files[0];
+    console.log(file);
+    const formData = new FormData();
 
-    // formData.append("file", file);
+    formData.append("doc", file);
 
-    // const res = await addRequest(`project/submit_doc/${id}`, "PATCH", formData);
-    // const data = await res.json();
-    // if (res.ok) {
-    //   toast.success("Doc uploaded successfully");
-    //   setSub([...sub, data.submission])
-    // } else {
-    //   toast.error(data.message);
-    // }
-    // setAddLoading(false);
+    const res = await addRequest(`project/submit_doc/${id}`, "PATCH", formData);
+    const data = await res.json();
+    if (res.ok) {
+      toast.success("Doc uploaded successfully");
+      setSub([...sub, data.submission])
+    } else {
+      toast.error(data.message);
+    }
+    setAddLoading(false);
   };
 
   return (

@@ -1,6 +1,6 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getSessionStorage } from "../utils/getSessionStorage";
-// 
+//
 // const url = "https://ssrl-lab-app-backend.onrender.com"
 const url = "http://127.0.0.1:5000";
 
@@ -16,8 +16,7 @@ export const useGetRequest = () => {
       headers: {
         "Content-Type": "application/json",
         "Access-control-allow-origin": "*",
-        "Session_ID": getSessionStorage("session_id", ""),
-
+        Session_ID: getSessionStorage("session_id", ""),
       },
     };
     setLoading(true);
@@ -41,14 +40,14 @@ export const useRequest = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({ status: false, msg: undefined });
 
-  const sendRequest = useCallback(async (path, method = 'GET', body = {}) => {
+  const sendRequest = useCallback(async (path, method = "GET", body = {}) => {
     setError({ status: false, msg: "" });
     console.log("Request sent in module");
 
     let headers = {
-      'Access-Control-Allow-Credentials': 'true',
-      "Authorization": `Bearer ${getSessionStorage("access_token", "")}`
-    }
+      "Access-Control-Allow-Credentials": "true",
+      Authorization: `Bearer ${getSessionStorage("access_token", "")}`,
+    };
 
     if (!(body instanceof FormData)) {
       headers["Content-Type"] = "application/json";
@@ -56,12 +55,12 @@ export const useRequest = () => {
     }
 
     let requestOptions = {
-      credentials: 'include',
+      credentials: "include",
       method,
-      headers
+      headers,
     };
 
-    if (method !== 'GET') requestOptions = { ...requestOptions, body };
+    if (method !== "GET") requestOptions = { ...requestOptions, body };
 
     setLoading(true);
 
@@ -78,4 +77,34 @@ export const useRequest = () => {
     return res;
   }, []);
   return [sendRequest, loading, setLoading, error, setError];
+};
+
+export const useGetMembers = (role) => {
+  const [
+    membersRequest,
+    membersLoading,
+    setMembersLoading,
+    membersError,
+    setMembersError,
+  ] = useRequest();
+  const [members, setMembers] = useState([]);
+
+  useEffect(() => {
+    const fetchMembers = async () => {
+      const res = await membersRequest(
+        `personnel/get_members_identity/${role}`,
+      );
+      const data = await res.json();
+
+      if (res.ok) {
+        setMembers(data.members);
+      } else {
+        setMembersError({ status: true, msg: "Failed to fetch members" });
+      }
+    };
+
+    fetchMembers();
+  }, [role, membersRequest, setMembersError]);
+
+  return {members, membersLoading, membersError}
 };

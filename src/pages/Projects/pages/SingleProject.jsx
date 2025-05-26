@@ -7,6 +7,7 @@ import { formatDate } from "../../../utils/funcs";
 import { useRef } from "react";
 import AddDoc from "../components/AddDoc";
 import Announcement from "./Announcement";
+import AddLink from "../components/AddLink";
 
 const SingleProject = () => {
   const location = useLocation();
@@ -28,6 +29,7 @@ const SingleProject = () => {
   const { docs, links } = submissions;
   console.log(docs);
   const [trackedSub, setTrackedSub] = useState(docs);
+  const [trackedLink, setTrackedLink] = useState(links)
   console.log(trackedSub);
 
   const [isCompleted, setIsCompleted] = useState(status === "completed");
@@ -56,10 +58,10 @@ const SingleProject = () => {
         {/* Project Details */}
         <div className="mb-6 w-full">
           {/* Description */}
-          <h2 className="border-1 mb-2 border-b pb-2 text-lg font-medium">
+          <h2 className="border-1 mb- border-b pb-2 text-lg font-medium">
             Description
           </h2>
-          <p className="mb-4 text-justify">{description}</p>
+          <p className="mb-6 text-justify">{description}</p>
           {/* Recipient and Deadline */}
           <div className="flex max-w-[900px] flex-col md:flex-row md:items-center md:justify-between">
             <span className="font-medium">
@@ -74,7 +76,7 @@ const SingleProject = () => {
             </span>
           </div>
         </div>
-        <div className="mb-6 mt-6">
+        <div className="mb-8 mt-8">
           {feedback && (
             <Link
               className="rounded-full border-2 border-logo p-2 px-4 font-medium hover:bg-logo hover:text-white"
@@ -154,6 +156,7 @@ const SingleProject = () => {
                         className="flex w-4/5 justify-between rounded-lg border p-4 hover:bg-navBg1"
                         to={download_link}
                         key={download_link}
+                        
                       >
                         <p className="mr-2 truncate text-sm">{filename}</p>
                         <DownloadCloud />
@@ -166,12 +169,7 @@ const SingleProject = () => {
               )}
             </div>
             <div className="w-1/2">
-              <div className="mb-2 flex w-fit items-center gap-6 rounded-lg border p-2 hover:opacity-70">
-                <h3 className="ml-2 font-medium">Links</h3>
-                <div className="w-fit rounded-full bg-logo p-[2px]">
-                  <Plus color="white" />
-                </div>
-              </div>
+              <AddLink id={project_id} setLink={setTrackedLink} link={trackedLink}/>
               {links.length > 0 ? (
                 <div className="flex flex-col gap-4">
                   {links.map((flink, index) => {

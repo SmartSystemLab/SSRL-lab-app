@@ -7,49 +7,39 @@ import { ChevronDown, Plus, ChevronUp, Edit, Trash2 } from "lucide-react";
 import BigGreenButton from "../../../components/UI/BigGreenButton";
 import DatePickerComp from "../../../components/UI/DatePickerComp";
 import MemberSelect from "../../../components/UI/MemberSelect";
-import { useRequest } from "../../../hooks/useRequest";
-import { getSessionStorage } from "../../../utils/getSessionStorage";
+import { useGetMembers, useRequest } from "../../../hooks/useRequest";
 import toast from "react-hot-toast";
 import { Navigate } from "react-router-dom";
 import { Loader } from "lucide-react";
+import Spinner from "@components/UI/Spinner";
 
 const EditProject = () => {
   const location = useLocation();
   const projectData = location.state;
-  const [projectTitle, setProjectTitle] = useState("");
-  const [projectDescription, setProjectDescription] = useState("");
-  const [objectives, setObjectives] = useState([]);
+  const {
+    project_id,
+    name,
+    description,
+    objectives,
+    deadline,
+    team_members,
+    leads,
+  } = projectData;
+
+  const [projectTitle, setProjectTitle] = useState(name);
+  const [projectDescription, setProjectDescription] = useState(description);
+  const [newObjectives, setNewObjectives] = useState(objectives);
+  const [selectedDate, setSelectedDate] = useState(new Date(deadline));
+  const [selectedMembers, setSelectedMembers] = useState(team_members);
+  const [selectedLeads, setSelectedLeads] = useState(leads);
+  const [allMembers, setAllMembers] = useState([]);
   const [currentObjective, setCurrentObjective] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedMembers, setSelectedMembers] = useState([]);
-  const [selectedLeads, setSelectedLeads] = useState([]);
-  const [allMembers, setAllMembers] = useState([]);
-  const userStack = getSessionStorage("userStack", "");
 
   const navigate = useNavigate();
-
-  const [
-    membersRequest,
-    membersLoading,
-    setMembersLoading,
-    membersError,
-    setMembersError,
-  ] = useRequest();
-
+  const { members, membersLoading, membersError } = useGetMembers("allmembers");
   const [editRequest, editLoading, setEditLoading, editError, setEditError] =
     useRequest();
-
-  useEffect(() => {
-    if (projectData) {
-      setProjectTitle(projectData.name || "");
-      setProjectDescription(projectData.description || "");
-      setObjectives(projectData.objectives || []);
-      setSelectedDate(new Date(projectData.deadline));
-      setSelectedMembers(projectData.team_members || []);
-      setSelectedLeads(projectData.leads || []);
-    }
-  }, [projectData]);
 
   const handleMemberChange = (newSelectedMembers) => {
     setSelectedMembers(newSelectedMembers);
@@ -65,84 +55,82 @@ const EditProject = () => {
     if (currentObjective.trim() !== "") {
       if (editingIndex !== null) {
         // Update selected objective
-        const updatedObjectives = [...objectives];
+        const updatedObjectives = [...newObjectives];
         updatedObjectives[editingIndex] = currentObjective;
-        setObjectives(updatedObjectives);
+        setNewObjectives(updatedObjectives);
         setEditingIndex(null);
       } else {
-        setObjectives([...objectives, currentObjective]);
+        setNewObjectives([...newObjectives, currentObjective]);
       }
       setCurrentObjective("");
     }
   };
 
   const handleEditObjective = (index) => {
-    setCurrentObjective(objectives[index]);
+    setCurrentObjective(newObjectives[index]);
     setEditingIndex(index);
   };
+
   const handleDeleteObjective = (index) => {
-    const updatedObjectives = objectives.filter((_, i) => i !== index);
-    setObjectives(updatedObjectives);
+    const updatedObjectives = newObjectives.filter((_, i) => i !== index);
+    setNewObjectives(updatedObjectives);
     if (editingIndex === index) {
       setEditingIndex(null);
     }
   };
 
-  const getStackMembers = useCallback(async () => {
-    const res = await membersRequest(
-      `personnel/get_members_identity/allmembers`,
-    );
-    const data = await res.json();
-    if (res.ok) {
-      setAllMembers(data.members);
-    }
-    else {
-      console.log(data)
-    }
-  }, [membersRequest]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setEditLoading(true);
     if (!selectedDate || !selectedMembers[0] || !selectedLeads[0]) {
-      console.log(selectedLeads);
-      //Add validation
       toast.error("Add all required info");
       setEditLoading(false);
       return;
     }
 
-    const res = await editRequest(`project/edit/${projectData.project_id}`, "PATCH", {
-      name: projectTitle,
-      description: projectDescription,
-      objectives,
-      leads: selectedLeads,
-      team_members: selectedMembers,
-      deadline: selectedDate,
-      stack: userStack,
-    });
+    const payload = {};
 
+    if (projectTitle !== name) payload.name = projectTitle;
+    if (projectDescription !== description)
+      payload.description = projectDescription;
+    if (JSON.stringify(newObjectives) !== JSON.stringify(objectives))
+      payload.objectives = newObjectives;
+    if (JSON.stringify(selectedLeads) !== JSON.stringify(leads))
+      payload.leads = selectedLeads;
+    if (JSON.stringify(selectedMembers) !== JSON.stringify(team_members))
+      payload.team_members = selectedMembers;
+    if (
+      new Date(selectedDate).toISOString() !== new Date(deadline).toISOString()
+    )
+      payload.deadline = selectedDate;
+
+    if (Object.keys(payload).length === 0) {
+      toast("No changes made");
+      setEditLoading(false);
+      return;
+    }
+
+    const res = await editRequest(`project/edit/${project_id}`, "PATCH", payload);
     const data = await res.json();
+
     if (res.ok) {
-      console.log(data)
       toast.success("Project edited successfully");
       setTimeout(() => navigate(-1), 2000);
     } else {
-      console.log(data);
       toast.error(data.message);
     }
+    
     setEditLoading(false);
   };
 
   useEffect(() => {
-    getStackMembers();
-  }, [getStackMembers]);
+    setAllMembers(members);
+  }, [members]);
 
   return (
-    <div className="mt-4 min-h-screen overflow-y-auto px-6 py-4 fromLeft">
+    <div className="fromLeft mt-4 min-h-screen overflow-y-auto px-6 py-4">
       <button className="mb-2 flex items-center gap-2 text-xl font-semibold tracking-wider">
-        <span>Edit</span>{" "}
-        <span className="text-navBg2">{projectData.name}</span>
+        <span>Edit</span> <span className="text-navBg2">{name}</span>
       </button>
       <hr className="mt-1 bg-black" />
 
@@ -206,7 +194,7 @@ const EditProject = () => {
               </button>
             </div>
             <ul className="mt-2 flex w-3/4 max-w-[560px] list-outside list-decimal flex-col gap-2 text-sm">
-              {objectives.map((objective, index) => (
+              {newObjectives.map((objective, index) => (
                 <li
                   key={index}
                   className="mb-1 flex items-center justify-between gap-2 rounded-md border-2 p-2 hover:border-black"
@@ -252,6 +240,7 @@ const EditProject = () => {
               onSelectionChange={handleMemberChange}
               buttonText="Add Team Members"
               className="w-full md:w-1/2"
+              loading={membersLoading}
             />
 
             {/* Select Leads */}
@@ -262,12 +251,13 @@ const EditProject = () => {
               buttonText="Add Team leads"
               className="w-full md:w-1/2"
               disabled={selectedMembers.length === 0}
+              loading={membersLoading}
             />
           </div>
           {/* Submit Button */}
           <div className="flex w-fit justify-center gap-6">
             <BigGreenButton type="submit">Save Changes</BigGreenButton>
-            {editLoading && <Loader className="animate-spin text-navBg2" size={32} />}
+            {editLoading && <Spinner />}
           </div>
         </div>
       </form>
