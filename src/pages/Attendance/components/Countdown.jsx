@@ -1,13 +1,26 @@
 import { milliseconds } from "date-fns";
 import React, { useEffect, useState } from "react";
 
-const Countdown = ({time, setTime}) => {
+const Countdown = ({time, setTime, on, setOn}) => {
 
   useEffect(() => {
-    setTimeout(() => {
-      setTime(time - 1000);
-    }, 1000);
-  }, [time]);
+    let interval;
+
+    if (on && time > 0) {
+      interval = setInterval(() => {
+        setTime((prevTime) => {
+          if (prevTime <= 1000) {
+            clearInterval(interval);
+            setOn(false);
+            return 0;
+          }
+          return prevTime - 1000;
+        });
+      }, 1000);
+    }
+
+    return () => clearInterval(interval);
+  }, [on]);
 
   const getFormattedTime = (milliseconds) => {
     if (milliseconds <= 0) {
