@@ -113,7 +113,7 @@ const SingleProject = () => {
                 {leads.map((lead, index) => (
                   <li key={index} className="my-2 ml-4 flex items-center gap-2">
                     <img src={Dot} alt="dot" className="h-2 w-2" />
-                    {lead.id}
+                    {lead.name}
                   </li>
                 ))}
               </ul>
@@ -156,7 +156,7 @@ const SingleProject = () => {
                         className="flex w-4/5 justify-between rounded-lg border p-4 hover:bg-navBg1"
                         to={download_link}
                         key={download_link}
-                        
+                        target="_blank"
                       >
                         <p className="mr-2 truncate text-sm">{filename}</p>
                         <DownloadCloud />
@@ -170,9 +170,9 @@ const SingleProject = () => {
             </div>
             <div className="w-1/2">
               <AddLink id={project_id} setLink={setTrackedLink} link={trackedLink}/>
-              {links.length > 0 ? (
+              {trackedLink.length > 0 ? (
                 <div className="flex flex-col gap-4">
-                  {links.map((flink, index) => {
+                  {trackedLink.map((flink, index) => {
                     const { link, title } = flink;
                     return (
                       <Link

@@ -5,12 +5,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { ChevronDown, Plus, ChevronUp } from "lucide-react";
 import { getSessionStorage } from "../../../utils/getSessionStorage";
-import { useRequest } from "../../../hooks/useRequest";
+import { useGetMembers, useRequest } from "../../../hooks/useRequest";
 import toast from "react-hot-toast";
 import BigGreenButton from "../../../components/UI/BigGreenButton";
 import { Loader2 } from "lucide-react";
 import DatePickerComp from "../../../components/UI/DatePickerComp";
 import MultipleSelect from "../../../components/UI/MemberSelect"
+import Spinner from "@components/UI/Spinner";
 
 const CreateProject = () => {
   const [name, setName] = useState("");
@@ -23,13 +24,8 @@ const CreateProject = () => {
   const [selectedLeads, setSelectedLeads] = useState([]);
 
   const navigate = useNavigate();
-  const [
-    membersRequest,
-    membersLoading,
-    setMembersLoading,
-    membersError,
-    setMembersError,
-  ] = useRequest();
+  
+  const {members, membersError, membersLoading} = useGetMembers('allmembers')
   const [
     createRequest,
     createLoading,
@@ -92,19 +88,10 @@ const CreateProject = () => {
     setCreateLoading(false);
   };
 
-  const getStackMembers = async () => {
-    const res = await membersRequest(
-      `get_all_members`,
-    );
-    const data = await res.json();
-    if (res.ok) {
-      setAllMembers(data.members);
-    }
-  };
 
   useEffect(() => {
-    getStackMembers();
-  }, []);
+    setAllMembers(members);
+  }, [members]);
 
 
   return (
@@ -196,21 +183,23 @@ const CreateProject = () => {
 
             {/* selected members */}
             <MultipleSelect
-              options={allMembers}
+              allOptions={allMembers}
               selectedOptions={selectedMembers}
               onSelectionChange={handleMemberChange}
               buttonText="Add Team Members"
               className="w-full md:w-1/2"
+              loading={membersLoading}
             />
 
             {/* Select Leads */}
             <MultipleSelect
-              options={selectedMembers}
+              allOptions={selectedMembers}
               selectedOptions={selectedLeads}
               onSelectionChange={setSelectedLeads}
               buttonText="Add Team leads"
               className="w-full md:w-1/2"
               disabled={selectedMembers.length === 0}
+              loading={membersLoading}
             />
 
 
@@ -218,7 +207,7 @@ const CreateProject = () => {
 
           <div className="flex items-center justify-end gap-4">
             <BigGreenButton type="submit">Submit</BigGreenButton>
-            {createLoading && <Loader2 className="animate-spin text-navBg2" />}
+            {createLoading && <Spinner />}
           </div>
         </div>
 

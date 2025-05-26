@@ -21,6 +21,7 @@ const AddDoc = ({ id, sub, setSub }) => {
 
     const res = await addRequest(`project/submit_doc/${id}`, "PATCH", formData);
     const data = await res.json();
+    
     if (res.ok) {
       toast.success("Doc uploaded successfully");
       setSub([...sub, data.submission])
