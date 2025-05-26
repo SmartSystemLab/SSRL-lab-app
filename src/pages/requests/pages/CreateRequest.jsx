@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import CustomLabel from "../../../components/UI/CustomLabel";
 import Toggle from "../../../components/UI/Toggle";
 import Equipment from "../component/Equipment";
-import MultipleSelect from "../../../components/UI/MultipleSelect";
+import MultipleSelect from "../../../components/UI/MemberSelect";
 import BigGreenButton from "../../../components/UI/BigGreenButton";
 import DatePicker from "react-datepicker";
 import { useRequest } from "../../../hooks/useRequest";

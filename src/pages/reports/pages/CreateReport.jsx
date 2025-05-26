@@ -5,7 +5,7 @@ import Toggle from "../../../components/UI/Toggle"
 import Activity from "../components/Activity";
 import Project from "../components/Project";
 import BigGreenButton from "../../../components/UI/BigGreenButton";
-import MultipleSelect from "../../../components/UI/MultipleSelect";
+import MultipleSelect from "../../../components/UI/MemberSelect";
 import toast from "react-hot-toast";
 import CustomLabel from "../../../components/UI/CustomLabel";
 import { useRequest } from "../../../hooks/useRequest";

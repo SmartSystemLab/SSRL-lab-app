@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ChevronDown, Plus, ChevronUp, Edit, Trash2 } from "lucide-react";
 import BigGreenButton from "../../../components/UI/BigGreenButton";
 import DatePickerComp from "../../../components/UI/DatePickerComp";
-import MultipleSelect from "../../../components/UI/MultipleSelect";
+import MemberSelect from "../../../components/UI/MemberSelect";
 import { useRequest } from "../../../hooks/useRequest";
 import { getSessionStorage } from "../../../utils/getSessionStorage";
 import toast from "react-hot-toast";
@@ -60,6 +60,7 @@ const EditProject = () => {
       ),
     );
   };
+
   const handleAddOrUpdateObjective = () => {
     if (currentObjective.trim() !== "") {
       if (editingIndex !== null) {
@@ -245,8 +246,8 @@ const EditProject = () => {
           </div>
 
           <div className="mt-8 flex flex-col gap-8 md:flex-row">
-            <MultipleSelect
-              options={allMembers}
+            <MemberSelect
+              allOptions={allMembers}
               selectedOptions={selectedMembers}
               onSelectionChange={handleMemberChange}
               buttonText="Add Team Members"
@@ -254,8 +255,8 @@ const EditProject = () => {
             />
 
             {/* Select Leads */}
-            <MultipleSelect
-              options={selectedMembers}
+            <MemberSelect
+              allOptions={selectedMembers}
               selectedOptions={selectedLeads}
               onSelectionChange={setSelectedLeads}
               buttonText="Add Team leads"
