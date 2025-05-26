@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-const MultipleSelect = ({
+const MemberSelect = ({
   className,
-  options,
+  allOptions,
   selectedOptions,
   onSelectionChange,
   disabled = false,
@@ -35,10 +35,6 @@ const MultipleSelect = ({
     }
   };
 
-  // useEffect(() => {
-  //     allOptions.forEach()
-  // })
-
   return (
     <div className={`relative ${className}`} ref={DropdownRef}>
       <button
@@ -50,7 +46,7 @@ const MultipleSelect = ({
       </button>
       {dropdown && !disabled && (
         <div className="absolute bottom-10 z-50 mb-1 max-h-48 w-44 overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg md:w-64 fromBottom">
-          {options.map((option) => (
+          {allOptions.map((option) => (
             <label
               key={option.id}
               className="flex w-full cursor-pointer items-center gap-2 border-b px-2 py-3 hover:bg-navBg1 fromBottom"
@@ -71,4 +67,4 @@ const MultipleSelect = ({
   );
 };
 
-export default MultipleSelect;
+export default MemberSelect;

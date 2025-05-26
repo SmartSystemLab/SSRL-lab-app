@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 import BigGreenButton from "../../../components/UI/BigGreenButton";
 import { Loader2 } from "lucide-react";
 import DatePickerComp from "../../../components/UI/DatePickerComp";
-import MultipleSelect from "../../../components/UI/MultipleSelect"
+import MultipleSelect from "../../../components/UI/MemberSelect"
 
 const CreateProject = () => {
   const [name, setName] = useState("");
