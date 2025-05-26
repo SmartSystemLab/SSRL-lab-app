@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useTable } from "react-table";
-import { header } from "./components/header";
+import { header } from "./header";
 import SampleData from "./SampleData.json";
 
 const LogTable = () => {
