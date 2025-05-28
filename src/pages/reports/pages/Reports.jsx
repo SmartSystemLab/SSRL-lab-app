@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 import { LiaCheckDoubleSolid } from "react-icons/lia";
 import { Plus } from "lucide-react";
@@ -21,9 +21,9 @@ const Reports = () => {
     setReportsError,
   ] = useRequest();
 
-  const getAllReports = async () => {
+  const getAllReports = useCallback(async () => {
     setReportsLoading(true);
-    const res = await getReports("reports/get_all");
+    const res = await getReports("report/get_all");
     const data = await res.json();
     if (res.ok) {
       setReports(data.reports);
@@ -31,11 +31,11 @@ const Reports = () => {
       setReportsError({ status: true, msg: data.message });
     }
     setReportsLoading(false);
-  };
+  }, [setReportsLoading, setReportsError, getReports]);
 
   useEffect(() => {
     getAllReports();
-  }, []);
+  }, [getAllReports]);
 
   return (
     <div className="mt-4 px-1 md:px-4">
@@ -78,11 +78,11 @@ const Reports = () => {
         <section className="mt-4 ">
           {reports &&
             reports.map((report) => {
-              const { created_at, avatar, sender, title, _id } = report;
+              const { created_at, avatar, sender, title, report_id } = report;
               return (
-                <Link className="border-b flex gap-4 items-center hover:bg-zinc-100 fromTop" key={created_at} to={`/home/reports/${_id}`} state={report}>
+                <Link className="border-b flex gap-4 items-center hover:bg-zinc-100 fromTop" key={created_at} to={`/home/reports/${report_id}`} state={report}>
                   <div className="w-12 h-12 rounded-full m-2 mt-4">
-                    {avatar !== "NIL" ? (
+                    {avatar ? (
                       <img
                         src={avatar}
                         alt=""

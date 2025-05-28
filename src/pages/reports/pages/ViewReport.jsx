@@ -13,17 +13,13 @@ const ViewReport = () => {
   const navigate = useNavigate();
   const report = location.state;
   const {
-    _id,
+    report_id,
     sender,
-    type,
     stack,
-    duration,
+    report_details,
     report_type,
-    completed,
-    ongoing,
-    next,
-    summary,
     title,
+    submissions
   } = report;
 
   const [
@@ -39,7 +35,7 @@ const ViewReport = () => {
   const handleDelete = async () => {
     setDeleteLoading(true);
     try {
-      const res = await deleteRequest(`report/delete/${_id}`, "DELETE");
+      const res = await deleteRequest(`report/delete/${report_id}`, "DELETE");
       const data = await res.json();
 
       if (res.ok) {
@@ -58,7 +54,7 @@ const ViewReport = () => {
 
   return (
     <div className="relative min-h-screen overflow-y-auto px-6 py-4">
-      <h2 className="text-2xl font-semibold capitalize">{type} Report</h2>
+      <h2 className="text-2xl font-semibold capitalize">{report_type} Report</h2>
       <hr className="mt-1 bg-black" />
       <div className="mx-auto mt-10 flex flex-col gap-5 rounded-xl border px-10 py-8 shadow-lg">
         <div className="flex flex-col items-start md:flex-row md:justify-between">
@@ -74,7 +70,7 @@ const ViewReport = () => {
             {report_type === "activity" && (
               <p className="flex gap-2">
                 <span className="font-medium">Duration:</span>
-                {duration}
+                {report_details.duration}
               </p>
             )}
           </div>
@@ -95,15 +91,15 @@ const ViewReport = () => {
             </button>
           </div>
         </div>
-        {showPopup && <Feedback onClose={() => setShowPopup(false)} id={_id} />}
+        {showPopup && <Feedback onClose={() => setShowPopup(false)} id={report_id} />}
 
         {report_type === "activity" && (
           <div className="mt-4 space-y-5">
-            <ListDisplay Text="Completed Tasks" content={completed} />
-            <ListDisplay Text="Ongoing Tasks" content={ongoing} />
+            <ListDisplay Text="Completed Tasks" content={report_details.completed} />
+            <ListDisplay Text="Ongoing Tasks" content={report_details.ongoing} />
             <ListDisplay
-              Text={`Tasks for next ${duration.slice(0, -2)}`}
-              content={next}
+              Text={`Tasks for next ${report_details.duration.slice(0, -2)}`}
+              content={report_details.next}
             />
           </div>
         )}
@@ -112,7 +108,7 @@ const ViewReport = () => {
           <div className="mt-4">
             <h2 className="text-xl font-semibold capitalize">{title}</h2>
             <p className="mt-2 w-full whitespace-normal break-words rounded-md p-4 text-base text-gray-700">
-              {summary}
+              {report_details.summary}
             </p>
           </div>
         )}
