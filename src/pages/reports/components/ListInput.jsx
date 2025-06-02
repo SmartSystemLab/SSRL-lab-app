@@ -3,12 +3,13 @@ import { Dot } from "lucide-react"
 import { Plus, MinusCircle } from "lucide-react"
 import { useState } from "react"
 import InputError from "../../../components/UI/InputError"
+
 export default function ListInput({ title, items, setItems }) {
     const [inputValue, setInputValue] = useState("")
-
     const [error, setError] = useState(false)
+
     const handleAddItem = (e) => {
-        if (inputValue.trim() !== "") {
+        if (inputValue.trim()) {
             setItems([...items, inputValue])
             setError(false)
             setInputValue("")
@@ -29,6 +30,12 @@ export default function ListInput({ title, items, setItems }) {
                         inputType="text"
                         value={inputValue || ""}
                         onChange={(e) => setInputValue(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                                e.preventDefault();
+                                handleAddItem()
+                            }
+                        }}
                         labelCLassName="mt-1 font-medium text-lg mb-1"
                         placeholder={`Enter ${title.toLowerCase()} task`}
                     // required={inputValue.trim() === "" && items.length === 0}
@@ -41,7 +48,7 @@ export default function ListInput({ title, items, setItems }) {
                     <Plus size={32} />
                 </span>
             </div>
-            {error && <InputError>enter a input first</InputError>}
+            {error && <InputError>Enter an input first</InputError>}
 
             <ul className="mt-2">
                 {items.map((item, index) => (

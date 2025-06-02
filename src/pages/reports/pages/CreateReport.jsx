@@ -11,6 +11,7 @@ import CustomLabel from "../../../components/UI/CustomLabel";
 import { useGetMembers, useRequest } from "../../../hooks/useRequest";
 import { Loader } from "lucide-react";
 import MemberSelect from "../../../components/UI/MemberSelect";
+import Spinner from "@components/UI/Spinner";
 
 const CreateReport = () => {
   const location = useLocation();
@@ -21,41 +22,32 @@ const CreateReport = () => {
     setActiveOption(selectedOption);
   };
 
-  const {receivers, receiversLoading, receiversError} = useGetMembers('admins_and_all_members')
+  const {members, membersLoading, membersError} = useGetMembers('admins_and_all_members')
   const [allReceivers, setAllReceivers] = useState([]);
-
   const [receiver, setReceiver] = useState([]);
+
   // project report
   const [title, settitle] = useState("");
   const [summary, setSummary] = useState("");
   const ToggleItems = ['activity', 'project']
 
   // activity report
-  const [period, setPeriod] = useState("Daily")
+  const [period, setPeriod] = useState("Weekly")
 
   const [completed, setCompleted] = useState([]);
   const [ongoing, setOngoing] = useState([]);
   const [next, setNext] = useState([]);
 
   const [submitRequest, submitLoading, setSubmitloading] = useRequest();
-  const [membersRequest] = useRequest();
-
-  // const getReceivers = async () => {
-  //   const res = await membersRequest(`get_all_members`);
-  //   const data = await res.json();
-  //   if (res.ok) {
-  //     setReceivers(data.members);
-  //   }
-  // };
 
   useEffect(() => {
-    setAllReceivers(receivers);
-  }, [receivers]);
+    setAllReceivers(members);
+  }, [members]);
 
   //preview
   const handlePreview = () => {
     if (activeOption === "project") {
-      if (!title || !summary) {
+      if (!title || !summary ) {
         toast.error("Please fill all required fields before previewing.");
         return;
       }
@@ -86,29 +78,40 @@ const CreateReport = () => {
   // submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const body = {
-      report_type: activeOption,
-      title,
-      receiver,
-    };
+    if (!title.trim() || !activeOption || receiver.length === 0) {
+      toast.error('Please all required fields and choose at least one receiver')
+      return
+    }
+
+    const body = {report_type: activeOption, title, receivers: receiver}
     let fullBody = {};
     setSubmitloading(true);
 
     if (activeOption === "activity") {
+      if (completed.length === 0) {
+        toast.error('Enter at least one completed tasks')
+        setSubmitloading(false)
+        return
+      }
+
       fullBody = { ...body, duration: period, completed, ongoing, next };
-      console.log(fullBody);
     } else if (activeOption === "project") {
+      if(!summary.trim()) {
+        toast.error('Enter project report summary')
+        setSubmitloading(false)
+        return
+      }
+
       fullBody = { ...body, summary };
-      console.log(fullBody);
     }
 
     const res = await submitRequest("report/create", "POST", fullBody);
-    // const data = await res.json();
+    const data = await res.json();
 
     if (res.ok) {
       toast.success("Request sent successfully");
     } else {
-      toast.error("Request not sent. Something went wrong");
+      toast.error(data.message);
     }
 
     setSubmitloading(false);
@@ -190,8 +193,9 @@ const CreateReport = () => {
             onSelectionChange={setReceiver}
             buttonText={"Receiver"}
             selectedOptions={receiver}
-            loading={receiversLoading}
+            loading={membersLoading}
           />
+          
           {receiver && <p>{receiver.name}</p>}
         </div>
 
@@ -214,10 +218,10 @@ const CreateReport = () => {
 
           <div>
             <div className="mb-2 flex items-center gap-4">
-              {submitLoading && <Loader className="animate-spin text-navBg2" />}
               <BigGreenButton action={handlePreview}>Preview</BigGreenButton>
               <div className="flex w-fit gap-4">
                 <BigGreenButton type="submit">Submit</BigGreenButton>
+                {submitLoading && <Spinner/>}
               </div>
             </div>
           </div>

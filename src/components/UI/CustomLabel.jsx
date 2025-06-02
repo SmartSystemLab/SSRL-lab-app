@@ -16,6 +16,7 @@ const CustomLabel = ({
   labelClassName,
   placeholder,
   required,
+  onKeyDown,
   name,
 }) => {
   return (
@@ -34,6 +35,7 @@ const CustomLabel = ({
         className={`h-10 w-full appearance-none rounded-lg border border-slate-900 px-3 py-1 text-slate-900 opacity-35 focus:text-black mt-l focus:opacity-100 focus:outline-none ${inputClassName}`}
         placeholder={placeholder}
         name={htmlFor}
+        onKeyDown={onKeyDown}
       />
       {isError && <InputError> {errorMessage} </InputError>}
     </div>
