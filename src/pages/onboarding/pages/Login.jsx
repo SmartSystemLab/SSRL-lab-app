@@ -41,10 +41,12 @@ const Login = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+
     validateUsername(username, setUsername, validateUsernameRef);
     if (validateUsernameRef) setUserId(username.username);
-    validatePassword(password, setPassword, validatePasswordRef);
 
+    validatePassword(password, setPassword, validatePasswordRef);
+    
     if (validateUsernameRef.current && validatePasswordRef.current) {
       setUserId(username.name);
       validateUser();

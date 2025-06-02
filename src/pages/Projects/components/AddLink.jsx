@@ -12,13 +12,19 @@ const AddLink = ({ id, setLink, link }) => {
   const [enteredLinkTitle, setEnteredLinkTitle] = useState();
 
   const handleSendLink = async () => {
+    if (!enteredLink.trim() || !enteredLinkTitle.trim()) {
+      toast.error('Enter all required info')
+      return
+    }
+
     const payload = {title: enteredLinkTitle, link: enteredLink}
     setLinkLoading(true);
     const res = await linkRequest(`project/submit_link/${id}`, "PATCH", payload);
     const data = await res.json();
 
     if (res.ok) {
-      toast.success("Doc uploaded successfully");
+      toast.success("Link uploaded successfully");
+      setInputOpen(false)
       setLink([...link, payload]);
     } else {
       toast.error(data.message);

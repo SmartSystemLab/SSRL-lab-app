@@ -77,7 +77,7 @@ const MyRoutes = () => {
             <Route path="edit/:id" element={<EditProject />} />
             <Route path="announcement/:id" element={<Announcement />} />
             <Route path="give_feedback/:id" element={<Feedback />} />
-            <Route path="feedbacks/:id" element={<Feedbacks />} />
+            <Route path=":id/feedback" element={<Feedbacks />} />
           </Route>
 
           <Route path="requests">
@@ -92,6 +92,7 @@ const MyRoutes = () => {
             <Route path=":id" element={<ViewReport />} />
             <Route path="create" element={<CreateReport />} />
             <Route path="preview-report" element={<PreviewReport />} />
+            <Route path=":id/feedback" element={<Feedbacks />} />
           </Route>
 
           <Route path="settings" element={<Settings />} />

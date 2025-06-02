@@ -8,8 +8,9 @@ import BigGreenButton from "../../../components/UI/BigGreenButton";
 import MultipleSelect from "../../../components/UI/MemberSelect";
 import toast from "react-hot-toast";
 import CustomLabel from "../../../components/UI/CustomLabel";
-import { useRequest } from "../../../hooks/useRequest";
+import { useGetMembers, useRequest } from "../../../hooks/useRequest";
 import { Loader } from "lucide-react";
+import MemberSelect from "../../../components/UI/MemberSelect";
 
 const CreateReport = () => {
   const location = useLocation();
@@ -20,7 +21,9 @@ const CreateReport = () => {
     setActiveOption(selectedOption);
   };
 
-  const [receivers, setReceivers] = useState([]);
+  const {receivers, receiversLoading, receiversError} = useGetMembers('admins_and_all_members')
+  const [allReceivers, setAllReceivers] = useState([]);
+
   const [receiver, setReceiver] = useState([]);
   // project report
   const [title, settitle] = useState("");
@@ -37,17 +40,17 @@ const CreateReport = () => {
   const [submitRequest, submitLoading, setSubmitloading] = useRequest();
   const [membersRequest] = useRequest();
 
-  const getReceivers = async () => {
-    const res = await membersRequest(`get_all_members`);
-    const data = await res.json();
-    if (res.ok) {
-      setReceivers(data.members);
-    }
-  };
+  // const getReceivers = async () => {
+  //   const res = await membersRequest(`get_all_members`);
+  //   const data = await res.json();
+  //   if (res.ok) {
+  //     setReceivers(data.members);
+  //   }
+  // };
 
   useEffect(() => {
-    getReceivers();
-  }, []);
+    setAllReceivers(receivers);
+  }, [receivers]);
 
   //preview
   const handlePreview = () => {
@@ -182,11 +185,12 @@ const CreateReport = () => {
         )}
 
         <div className="flex w-fit items-center justify-between gap-4">
-          <MultipleSelect
-            options={receivers}
+          <MemberSelect
+            allOptions={allReceivers}
             onSelectionChange={setReceiver}
             buttonText={"Receiver"}
             selectedOptions={receiver}
+            loading={receiversLoading}
           />
           {receiver && <p>{receiver.name}</p>}
         </div>

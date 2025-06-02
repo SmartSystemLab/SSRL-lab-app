@@ -1,10 +1,10 @@
 import { Plus } from "lucide-react";
 import React from "react";
 import { useRef } from "react";
-import { useRequest } from "../../../hooks/useRequest";
 import { Loader } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useRequest } from "@hooks/useRequest";
 
 const AddDoc = ({ id, sub, setSub }) => {
   const docRef = useRef();

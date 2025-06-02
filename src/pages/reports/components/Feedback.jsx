@@ -4,32 +4,26 @@ import toast from "react-hot-toast";
 import BigGreenButton from "../../../components/UI/BigGreenButton";
 import { Loader } from "lucide-react";
 
-const Feedback = ({ onClose, onSend, id }) => {
+const Feedback = ({ id, setShowPopup }) => {
   const [feedback, setFeedback] = useState("");
-
   const [sendFeedback, sendLoading, setSendLoading, sendError, setSendError] =
     useRequest();
 
   const handleFeedback = async () => {
-    if (!feedback) {
-      toast.error("Enter a feeedback");
+    if (!feedback.trim()) {
+      toast.error("Enter a feedback");
       return;
     }
 
     setSendLoading(true);
-    const res = await sendFeedback(`report/send_feedback/${id}`, "POST", {
-      feedback: feedback,
-    });
 
+    const res = await sendFeedback(`report/send_feedback/${id}`, "POST", {feedback});
     const data = await res.json();
 
     if (res.ok) {
       toast.success("Feedback sent successfully!");
       setFeedback("");
-      if (feedback.trim()) {
-        onSend(feedback);
-        onClose();
-      }
+      setShowPopup(false);
     } else {
       console.log(data);
       toast.error(sendError.msg);
@@ -53,7 +47,7 @@ const Feedback = ({ onClose, onSend, id }) => {
           {sendLoading && <Loader className="animate-spin text-navBg2" />}
           <button
             className="rounded-full bg-gray-200 px-3 py-1 font-medium transition hover:bg-gray-300"
-            onClick={onClose}
+            onClick={() => setShowPopup(false)}
           >
             Cancel
           </button>

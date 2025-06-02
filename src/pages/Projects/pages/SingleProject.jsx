@@ -80,7 +80,7 @@ const SingleProject = () => {
           {feedback && (
             <Link
               className="rounded-full border-2 border-logo p-2 px-4 font-medium hover:bg-logo hover:text-white"
-              to={`/home/projects/feedbacks/${project_id}`}
+              to={`/home/projects/${project_id}/feedback`}
               state={{ feedback, name }}
             >
               See all feedback
